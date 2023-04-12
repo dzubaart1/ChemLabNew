@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e6d0857d78da89408e391181281f1ac, type: 3}
+  m_Name: Na2HPO4AgarH2OMix
+  m_EditorClassIdentifier: 
+  SubName: Na2HPO4AgarH20
+  Color: {r: 0.880337, g: 0.8605672, b: 0.9245283, a: 0.45882353}
+  Components:
+  - {fileID: 11400000, guid: a148dafc099b0404ea7b975cdb4d2ba3, type: 2}
