@@ -15,7 +15,8 @@ namespace Containers
         {
             _substancesCollection = substancesCollection;
         }
-        public override bool AddSubstance(Substance substance)
+
+        protected override bool AddSubstance(Substance substance)
         {
             var res = substance.SubParams;
             var weight = substance.Weight;
@@ -25,12 +26,11 @@ namespace Containers
                 weight += Substance.Weight;
             }
 
-            Substance = new Substance(res, weight);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _baseFormPrefab.SetActive(true);
+            UpdateSubstance(new Substance(res, weight));
             return true;
         }
-        public override bool RemoveSubstance(float maxVolume)
+
+        protected override bool RemoveSubstance(float maxVolume)
         {
             if (Substance is null)
             {
@@ -38,8 +38,7 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
-                _baseFormPrefab.SetActive(false);
+                UpdateSubstance(null);
             }
             else
             {

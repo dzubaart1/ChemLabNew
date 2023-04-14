@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Containers;
 using Tasks;
@@ -6,11 +5,10 @@ using UnityEngine;
 using Zenject;
 using Cups;
 using BNG;
-using Interfaces;
 
 namespace Machines
 {
-    public class ExpTabletMachineCntrl: MonoBehaviour, IAbleTeleport
+    public class ExpTabletMachineCntrl: MonoBehaviour
     {
         public List<ExpTabletLunkaContainer> _lunkaContainers;
 

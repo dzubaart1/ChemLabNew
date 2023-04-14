@@ -7,8 +7,7 @@ namespace Containers
 {
     public class ExpTabletLunkaContainer : TransferSubstanceContainer
     {
-        [SerializeField]
-        private ExpTabletMachineCntrl _tabletMachineCntrl;
+        [SerializeField] private ExpTabletMachineCntrl _tabletMachineCntrl;
         private SubstancesParamsCollection _substancesCollection;
 
         [Inject]
@@ -16,7 +15,8 @@ namespace Containers
         {
             _substancesCollection = substancesCollection;
         }
-        public override bool AddSubstance(Substance substance)
+
+        protected override bool AddSubstance(Substance substance)
         {
             if (!_tabletMachineCntrl.IsEnable())
                 return false;
@@ -28,13 +28,12 @@ namespace Containers
                 weight += Substance.Weight;
             }
             //ДОПИСАТЬ ДОБАВЛЕНИЕ Больше volume
-            Substance = new Substance(res, weight);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _baseFormPrefab.SetActive(true);
+            UpdateSubstance(new Substance(res, weight));
             _tabletMachineCntrl.CheckCompliteFill();
             return true;
         }
-        public override bool RemoveSubstance(float maxVolume)
+
+        protected override bool RemoveSubstance(float maxVolume)
         {
             if (Substance is null)
             {
@@ -42,8 +41,7 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
-                _baseFormPrefab.SetActive(false);
+                UpdateSubstance(null);
             }
             else
             {

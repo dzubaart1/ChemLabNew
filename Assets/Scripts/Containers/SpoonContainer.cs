@@ -5,28 +5,23 @@ namespace Containers
 {
     public class SpoonContainer : TransferSubstanceContainer
     {
-        public override bool AddSubstance(Substance substance)
+        protected override bool AddSubstance(Substance substance)
         {
             if (Substance is not null)
             {
                 return false;
             }
+            var newSubstance = Substance;
             if (substance.Weight > MaxVolume)
             {
-                var newSubstance = new Substance(substance.SubParams, MaxVolume);
-                Substance = newSubstance;
+                newSubstance = new Substance(substance.SubParams, MaxVolume);
             }
-            else
-            {
-                Substance = substance;
-            }
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = Substance.SubParams.Color;
-            _baseFormPrefab.SetActive(true);
+            UpdateSubstance(newSubstance);
             return true;
 
         }
 
-        public override bool RemoveSubstance(float maxVolume)
+        protected override bool RemoveSubstance(float maxVolume)
         {
             if (Substance is null)
             {
@@ -34,8 +29,7 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
-                _baseFormPrefab.SetActive(false);
+                UpdateSubstance(null);
             }
             else
             {

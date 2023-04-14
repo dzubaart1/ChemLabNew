@@ -1,14 +1,16 @@
+#nullable enable
+using JetBrains.Annotations;
 using Substances;
 using Tasks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using Zenject;
 
 namespace Containers
 {
     public class EndlessContainer : TransferSubstanceContainer
     {
-        [SerializeField]
-        private SubstanceParams _substanceParams;
+        [SerializeField] private SubstanceParams _substanceParams;
         private TasksCntrl _tasksCntrl;
         
         [Inject]
@@ -23,12 +25,12 @@ namespace Containers
             _tasksCntrl.Notify += CheckTasks;
         }
 
-        public override bool AddSubstance(Substance substance)
+        protected override bool AddSubstance(Substance substance)
         {
             return false;
         }
 
-        public override bool RemoveSubstance(float maxVolume)
+        protected override bool RemoveSubstance(float maxVolume)
         {
             if (Substance == null && IsEnable())
             {
@@ -36,7 +38,7 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
+                UpdateSubstance(null);
             }
             else
             {
@@ -53,6 +55,11 @@ namespace Containers
                 var substance = new Substance(_substanceParams, _tasksCntrl.CurrentTask().Weight);
                 Substance = substance;
             }
+        }
+
+        public override void UpdateSubstance(Substance? substance)
+        {
+            
         }
     }
 }

@@ -45,16 +45,7 @@ namespace Containers
                 return;
             }
 
-            Grabber grabber;
-
-            if (InputBridge.Instance.RightTriggerDown)
-            {
-                grabber = _rightGrabber;
-            }
-            else
-            {
-                grabber = _leftGrabber;
-            }
+            var grabber = InputBridge.Instance.RightTriggerDown ? _rightGrabber : _leftGrabber;
 
             if (grabber.HeldGrabbable is null || grabber.HeldGrabbable.gameObject != gameObject)
             {
@@ -96,7 +87,5 @@ namespace Containers
             RemoveSubstance(triggerGameObject.GetComponent<BaseContainer>().MaxVolume);
             _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>().Substance);
         }
-        
-        
     }
 }

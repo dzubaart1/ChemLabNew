@@ -32,7 +32,7 @@ namespace Machines
         private void Update()
         {
             if (_snapZone.HeldItem is null ||
-                _snapZone.HeldItem.gameObject.GetComponent<WeightableContainer>() is null)
+                _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().IsAbleToWeight is false)
             {
                 _isEnter = false;
                 ResetValues();

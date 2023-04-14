@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using BNG;
 using Cups;
@@ -9,15 +10,14 @@ namespace Containers
 {
     public class BaseContainer : MonoBehaviour
     {
+        [SerializeField] protected GameObject _baseFormPrefab;
+        [SerializeField] protected List<BaseCup> _cupsList;
+        [SerializeField] protected SnapZone _snapZone;
+        
         public ContainersTypes ContainerType;
-        public Substance Substance;
+        public Substance? Substance;
         public float MaxVolume = 9000;
-        [SerializeField]
-        protected GameObject _baseFormPrefab;
-        [SerializeField]
-        protected List<BaseCup> _cupsList;
-        [SerializeField]
-        protected SnapZone _snapZone;
+        public bool IsAbleToWeight;
 
         public void Awake()
         {
@@ -33,22 +33,19 @@ namespace Containers
                 _snapZone.OnlyAllowNames.Add(cup.name);
             }
         }
-
-        public virtual bool IsEnable()
+        
+        protected virtual bool IsEnable()
         {
             return true;
         }
-        public virtual bool AddSubstance(Substance substance)
+
+        protected virtual bool AddSubstance(Substance substance)
         {
-            var res = substance.SubParams;
-            var weight = substance.Weight;
-            Substance = new Substance(res, weight);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _baseFormPrefab.SetActive(true);
+            UpdateSubstance(substance);
             return true;
         }
 
-        public virtual bool RemoveSubstance(float maxVolume)
+        protected virtual bool RemoveSubstance(float maxVolume)
         {
             if (Substance is null)
             {
@@ -56,14 +53,33 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
-                _baseFormPrefab.SetActive(false);
+                UpdateSubstance(null);
             }
             else
             {
                 Substance.RemoveSubstanceWeight(maxVolume);
             }
             return true;
+        }
+
+        public virtual void UpdateSubstance(Substance? substance)
+        {
+            if (substance is null)
+            {
+                Substance = null;
+                _baseFormPrefab.SetActive(false);
+                return;
+            }
+
+            var newSubstance = substance;
+            if (substance.Weight > MaxVolume)
+            {
+                newSubstance = new Substance(substance.SubParams, MaxVolume);
+            }
+            
+            Substance = newSubstance;
+            _baseFormPrefab.SetActive(true);
+            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Color;
         }
     }
 }

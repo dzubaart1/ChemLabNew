@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using System.Linq;
 using Containers;
@@ -16,19 +17,19 @@ namespace Tasks
             _taskCurrentId = 0;
             _tasksParamsList = new List<TaskParams>();
             _tasksParamsList = Resources.LoadAll<TaskParams>("Tasks/").ToList();
-            _tasksParamsList.Sort(ComapreToTaskParams);
+            _tasksParamsList.Sort(CompareToTaskParams);
         }
-
         public delegate void TaskUpdateHandler();
-        public event TaskUpdateHandler? Notify; 
-        public int ComapreToTaskParams(TaskParams t1, TaskParams t2)
+        public event TaskUpdateHandler? Notify;
+
+        private int CompareToTaskParams(TaskParams t1, TaskParams t2)
         {
-            if (t1.StepId > t2.StepId)
+            if (t1.Id > t2.Id)
             {
                 return 1;
             }
 
-            if (t1.StepId < t2.StepId)
+            if (t1.Id < t2.Id)
             {
                 return -1;
             }
@@ -53,12 +54,18 @@ namespace Tasks
             return GetTaskParamsById(_taskCurrentId);
         }
 
+        public void SetCurrentTaskId(int taskId)
+        {
+            _taskCurrentId = taskId;
+            Notify?.Invoke();
+        }
+
         public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, Substance substance)
         {
             if (!CurrentTask().ContainersType.Contains(firstContainer.ContainerType) ||
                 !CurrentTask().ContainersType.Contains(secondContainer.ContainerType)) 
                 return;
-            Debug.Log($"{CurrentTask().StepId} is done");
+            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
 
@@ -66,14 +73,14 @@ namespace Tasks
         {
             if (!CurrentTask().MachinesType.Equals(machinesType) ||
                 !CurrentTask().ContainersType.Contains(enteringContainer)) return;
-            Debug.Log($"{CurrentTask().StepId} is done");
+            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
         public void CheckStartMachineWork(MachinesTypes machinesType)
         {
             if (CurrentTask().MachinesType.Equals(machinesType))
             {
-                Debug.Log($"{CurrentTask().StepId} is done");
+                Debug.Log($"{CurrentTask().Id} is done");
                 MoveToNext();
             }
         }
@@ -83,7 +90,7 @@ namespace Tasks
             if (CurrentTask().MachinesType.Equals(machinesType)
                 && CurrentTask().ResultSubstance.Equals(substance.SubParams))
             {
-                Debug.Log($"{CurrentTask().StepId} is done");
+                Debug.Log($"{CurrentTask().Id} is done");
                 MoveToNext();
             }
         }

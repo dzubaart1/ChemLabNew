@@ -6,30 +6,19 @@ namespace Containers
 {
     public class DozatorMachineContainer : TransferSubstanceContainer
     {
-        public override bool AddSubstance(Substance substance)
+        protected override bool AddSubstance(Substance substance)
         {
             if (Substance is not null || !IsEnable())
             {
                 return false;
             }
-
-            if (substance.Weight > MaxVolume)
-            {
-                var newSubstance = new Substance(substance.SubParams, MaxVolume);
-                Substance = newSubstance;
-            }
-            else
-            {
-                Substance = substance;
-            }
-
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = Substance.SubParams.Color;
-            _baseFormPrefab.SetActive(true);
+            
+            UpdateSubstance(substance);
             _snapZone.HeldItem.GetComponent<DozatorCup>().IsDirty = true;
             return true;
         }
 
-        public override bool RemoveSubstance(float maxVolume)
+        protected override bool RemoveSubstance(float maxVolume)
         {
             if (Substance is null || !IsEnable())
             {
@@ -38,8 +27,7 @@ namespace Containers
 
             if (maxVolume >= Substance.Weight)
             {
-                Substance = null;
-                _baseFormPrefab.SetActive(false);
+                UpdateSubstance(null);
             }
             else
             {
@@ -48,7 +36,7 @@ namespace Containers
             return true;
         }
 
-        public override bool IsEnable()
+        protected override bool IsEnable()
         {
             return _snapZone.HeldItem is not null;
         }

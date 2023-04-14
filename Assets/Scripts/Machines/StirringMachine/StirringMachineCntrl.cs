@@ -1,19 +1,15 @@
-using System;
 using BNG;
 using Containers;
 using Interfaces;
-using Substances;
 using Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Machines
+namespace Machines.StirringMachine
 {
     public class StirringMachineCntrl : MonoBehaviour, IMachine
     {
-        [SerializeField]
-        private SnapZone _snapZone;
-
+        [SerializeField] private SnapZone _snapZone;
         private TasksCntrl _tasksCntrl;
         public bool _isEnter;
         public bool _isStart;

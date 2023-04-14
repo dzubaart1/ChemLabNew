@@ -8,8 +8,7 @@ namespace Machines.DozatorMachine
 {
     public class DozatorMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private BaseContainer _baseContainer;
+        [SerializeField] private BaseContainer _baseContainer;
         private TasksCntrl _tasksCntrl;
         [Inject]
         public void Construct(TasksCntrl tasksCntrl)
