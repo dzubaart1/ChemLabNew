@@ -8,7 +8,6 @@ namespace Machines.DozatorMachine
     {
         [SerializeField] private Text _dozeText;
         [SerializeField] private DozatorMachineCntrl _dozatorMachineCntrl;
-        [SerializeField] private Button dozButton;
 
         public void OnClickDozeBtn()
         {

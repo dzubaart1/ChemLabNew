@@ -55,8 +55,19 @@ namespace Containers
             }
             var res = _substancesCollection.GetStirringSubstance(Substance.SubParams);
             Substance = new Substance(res, Substance.Weight);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _baseFormPrefab.SetActive(true);
+            _basePrefab.GetComponent<MeshRenderer>().material.color = res.Color;
+            _basePrefab.SetActive(true);
+        }
+        public void DrySubstance()
+        {
+            if (Substance is null)
+            {
+                return;
+            }
+            var res = _substancesCollection.GetDrySubstance(Substance.SubParams);
+            Substance = new Substance(res, Substance.Weight);
+            _basePrefab.GetComponent<MeshRenderer>().material.color = res.Color;
+            _basePrefab.SetActive(true);
         }
         public AnchorCntrl Anchor => _anchor;
 

@@ -7,15 +7,18 @@ namespace Containers
     {
         protected override bool AddSubstance(Substance substance)
         {
+            Debug.Log("Here 1");
             if (Substance is not null)
             {
                 return false;
             }
-            var newSubstance = Substance;
+            Debug.Log("Here 2");
+            var newSubstance = substance;
             if (substance.Weight > MaxVolume)
             {
                 newSubstance = new Substance(substance.SubParams, MaxVolume);
             }
+            Debug.Log(newSubstance.SubParams.SubName);
             UpdateSubstance(newSubstance);
             return true;
 

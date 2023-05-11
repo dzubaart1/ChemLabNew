@@ -10,11 +10,14 @@ namespace Containers
 {
     public class BaseContainer : MonoBehaviour
     {
-        [SerializeField] protected GameObject _baseFormPrefab;
+        [SerializeField] protected GameObject _basePrefab;
+        [SerializeField] protected GameObject? _sedimentPrefab;
+        [SerializeField] protected GameObject? _membranePrefab;
         [SerializeField] protected List<BaseCup> _cupsList;
         [SerializeField] protected SnapZone _snapZone;
         
         public ContainersTypes ContainerType;
+        
         public Substance? Substance;
         public float MaxVolume = 9000;
         public bool IsAbleToWeight;
@@ -67,7 +70,7 @@ namespace Containers
             if (substance is null)
             {
                 Substance = null;
-                _baseFormPrefab.SetActive(false);
+                _basePrefab.SetActive(false);
                 return;
             }
 
@@ -78,8 +81,33 @@ namespace Containers
             }
             
             Substance = newSubstance;
-            _baseFormPrefab.SetActive(true);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Color;
+            _basePrefab.SetActive(true);
+            _basePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Color;
+            if (_sedimentPrefab is not null && newSubstance.SubParams.Sediment is not null)
+            {
+                _sedimentPrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Sediment.Color;
+            }
+            
+            if (_membranePrefab is not null && newSubstance.SubParams.Membrane is not null)
+            {
+                _membranePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Membrane.Color;
+            }
+        }
+
+        public void ShowSediment()
+        {
+            if (Substance is not null && _sedimentPrefab is not null && Substance.SubParams.Sediment is not null)
+            {
+                _sedimentPrefab.SetActive(true);
+            }
+        }
+        
+        public void ShowMembrane()
+        {
+            if (Substance is not null && _membranePrefab is not null && Substance.SubParams.Membrane is not null)
+            {
+                _membranePrefab.SetActive(true);
+            }
         }
     }
 }

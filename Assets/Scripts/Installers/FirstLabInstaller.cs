@@ -18,7 +18,6 @@ namespace Installers
             Container.Bind<TasksCntrl>().FromInstance(tasksCntrl).AsSingle();
             
             GameObject rigInst = Container.InstantiatePrefab(xrRigAdvanced);
-
             List<Grabber> grabbers = rigInst.GetComponentsInChildren<Grabber>().ToList();
             Container.Bind<List<Grabber>>().FromInstance(grabbers).AsSingle();
             

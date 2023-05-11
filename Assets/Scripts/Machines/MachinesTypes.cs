@@ -8,6 +8,9 @@ namespace Machines
         DozatorMachine,
         ExpTabletMachine,
         TrashMachine,
-        TeleportMachine
+        TeleportMachine,
+        ScannerMachine,
+        DryBoxMachine,
+        CentrifugeMachine
     }
 }

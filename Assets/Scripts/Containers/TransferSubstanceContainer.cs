@@ -63,7 +63,6 @@ namespace Containers
         private void Transfer(GameObject triggerGameObject)
         {
             bool temp;
-
             if (Substance is null)
             {
                 //если это ложка

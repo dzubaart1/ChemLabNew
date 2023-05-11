@@ -28,9 +28,15 @@ namespace Substances
         
         public SubstanceParams GetStirringSubstance(SubstanceParams substance)
         {
-            Debug.Log(substance.SubName);
             var res = _substanceParamsList.Find(temp =>
-                temp.Components.Contains(substance) && temp.Components.Count == 1);
+                temp.Components.Contains(substance) && temp.Components.Count == 1 && temp.IsStirring);
+            
+            return res ? res : GetBadSubstance();
+        }
+        public SubstanceParams GetDrySubstance(SubstanceParams substance)
+        {
+            var res = _substanceParamsList.Find(temp =>
+                temp.Components.Contains(substance) && temp.Components.Count == 1 && temp.IsDry);
             
             return res ? res : GetBadSubstance();
         }

@@ -1,4 +1,3 @@
-using Machines.StirringMachine;
 using UnityEngine;
 
 namespace Machines

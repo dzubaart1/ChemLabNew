@@ -10,6 +10,7 @@ namespace Containers
         DozatorContainer,
         TubeContainer,
         PetriContainer,
-        ExpTabletLunkaContainer
+        ExpTabletLunkaContainer,
+        CentrifugeContainer
     }
 }

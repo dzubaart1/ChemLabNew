@@ -20,8 +20,8 @@ namespace Containers
         }
         private void Start()
         {
-            _baseFormPrefab.SetActive(true);
-            _baseFormPrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
+            _basePrefab.SetActive(true);
+            _basePrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
             _tasksCntrl.Notify += CheckTasks;
         }
 
@@ -38,7 +38,7 @@ namespace Containers
             }
             if (maxVolume >= Substance.Weight)
             {
-                UpdateSubstance(null);
+                Substance = null;
             }
             else
             {
@@ -55,11 +55,6 @@ namespace Containers
                 var substance = new Substance(_substanceParams, _tasksCntrl.CurrentTask().Weight);
                 Substance = substance;
             }
-        }
-
-        public override void UpdateSubstance(Substance? substance)
-        {
-            
         }
     }
 }

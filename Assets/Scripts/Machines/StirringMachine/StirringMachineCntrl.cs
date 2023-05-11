@@ -5,7 +5,7 @@ using Tasks;
 using UnityEngine;
 using Zenject;
 
-namespace Machines.StirringMachine
+namespace Machines
 {
     public class StirringMachineCntrl : MonoBehaviour, IMachine
     {
@@ -49,7 +49,6 @@ namespace Machines.StirringMachine
                 return;
             }
             _isStart = true;
-            Debug.Log( "Start " +_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().Substance.SubParams.SubName);
             _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().StirringSubstance();
             StartStirringAnimation();
             _tasksCntrl.CheckStartMachineWork(MachinesTypes.StirringMachine);
