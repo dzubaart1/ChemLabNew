@@ -14,10 +14,10 @@ namespace Tasks
         private int _taskCurrentId;
         public TasksCntrl()
         {
-            _taskCurrentId = 0;
             _tasksParamsList = new List<TaskParams>();
             _tasksParamsList = Resources.LoadAll<TaskParams>("Tasks/").ToList();
             _tasksParamsList.Sort(CompareToTaskParams);
+            _taskCurrentId = 0;
         }
         public delegate void TaskUpdateHandler();
         public event TaskUpdateHandler? Notify;

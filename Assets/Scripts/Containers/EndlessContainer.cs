@@ -23,6 +23,7 @@ namespace Containers
             _basePrefab.SetActive(true);
             _basePrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
             _tasksCntrl.Notify += CheckTasks;
+            CheckTasks();
         }
 
         protected override bool AddSubstance(Substance substance)

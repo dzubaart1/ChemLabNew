@@ -602,13 +602,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4a07c49b2d7c740a11cc7509303850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 2041248536}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 1698693981}
   - {fileID: 593583691}
   _snapZone: {fileID: 1615279286}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 2041248536}
   ContainerType: 5
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -4780,11 +4780,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 589870491}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 589870491}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -5013,80 +5013,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1001 &443881703
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1038755888686120289, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: _basePrefab
-      value: 
-      objectReference: {fileID: 1627141822}
-    - target: {fileID: 1038755888686120305, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_Name
-      value: ChemicGlass (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.821
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3391
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a07ed1cda166cfb4d9812e7ae7319152, type: 3}
 --- !u!1 &451276236
 GameObject:
   m_ObjectHideFlags: 0
@@ -7726,80 +7652,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1001 &644743527
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1038755888686120289, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: _basePrefab
-      value: 
-      objectReference: {fileID: 1351438871}
-    - target: {fileID: 1038755888686120305, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_Name
-      value: ChemicGlass (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.9336
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.3391
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a07ed1cda166cfb4d9812e7ae7319152, type: 3}
 --- !u!1 &646349586
 GameObject:
   m_ObjectHideFlags: 0
@@ -9794,6 +9646,75 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &840469366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1038755888686120305, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_Name
+      value: ChemicGlass (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.340286
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a07ed1cda166cfb4d9812e7ae7319152, type: 3}
 --- !u!1 &842295489
 GameObject:
   m_ObjectHideFlags: 0
@@ -13218,11 +13139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 396683773}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 396683773}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -13552,12 +13473,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349942576}
   m_Mesh: {fileID: -462981019419857548, guid: 6000f911e263a3e498668b79aaaf282a, type: 3}
---- !u!1 &1351438871 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1038755889600876640, guid: a07ed1cda166cfb4d9812e7ae7319152,
-    type: 3}
-  m_PrefabInstance: {fileID: 644743527}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1352566715
 GameObject:
   m_ObjectHideFlags: 0
@@ -14313,12 +14228,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.010237483, y: 0.016232971, z: 0.000000045634806}
     m_Extent: {x: 0.011489669, y: 0.017057486, z: 0.01154515}
   m_DirtyAABB: 0
---- !u!1 &1417210849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1038755889600876640, guid: a07ed1cda166cfb4d9812e7ae7319152,
-    type: 3}
-  m_PrefabInstance: {fileID: 1770305549}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1427794865
 GameObject:
   m_ObjectHideFlags: 0
@@ -14490,6 +14399,75 @@ Transform:
   m_Father: {fileID: 1655554401258813335}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1470589936
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1038755888686120305, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_Name
+      value: ChemicGlass (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.752
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.340286
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a07ed1cda166cfb4d9812e7ae7319152, type: 3}
 --- !u!1 &1487776165
 GameObject:
   m_ObjectHideFlags: 0
@@ -14668,11 +14646,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1131bd450acac74a9c927b0bffd1d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 77542337}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 77542337}
   ContainerType: 3
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -16507,12 +16485,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1627141822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1038755889600876640, guid: a07ed1cda166cfb4d9812e7ae7319152,
-    type: 3}
-  m_PrefabInstance: {fileID: 443881703}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1631333264
 GameObject:
   m_ObjectHideFlags: 0
@@ -17787,11 +17759,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1038755888686120289, guid: a07ed1cda166cfb4d9812e7ae7319152,
-        type: 3}
-      propertyPath: _basePrefab
-      value: 
-      objectReference: {fileID: 1417210849}
     - target: {fileID: 1038755888686120305, guid: a07ed1cda166cfb4d9812e7ae7319152,
         type: 3}
       propertyPath: m_Name
@@ -17810,7 +17777,7 @@ PrefabInstance:
     - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3391
+      value: 0.332
       objectReference: {fileID: 0}
     - target: {fileID: 1038755888686120312, guid: a07ed1cda166cfb4d9812e7ae7319152,
         type: 3}
@@ -17927,11 +17894,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 940806402}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 940806402}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -18354,11 +18321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 326323465}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 326323465}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -18758,11 +18725,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 1963710489}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 1963710489}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -19941,11 +19908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 2075987055}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 2075987055}
   ContainerType: 8
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -21244,11 +21211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ba1c9036f84416a2fd8b223b52388a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 670350770}
-  _sedimentPrefab: {fileID: 1960910666}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 1960910666}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 670350770}
   ContainerType: 9
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -22132,11 +22099,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ba1c9036f84416a2fd8b223b52388a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 2055786342}
-  _sedimentPrefab: {fileID: 92661109}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 92661109}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 2055786342}
   ContainerType: 9
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -27408,11 +27375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1131bd450acac74a9c927b0bffd1d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 908582762857665658}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 908582762857665658}
   ContainerType: 3
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -28078,11 +28045,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3583702ac460cd42959f8698559128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 4002851832403825940}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 4002851832403825940}
   ContainerType: 1
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -28404,12 +28371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c579ec3ae608d5740b537747527bdb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 43339754865327950}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 1528372921177578001}
   _snapZone: {fileID: 8007435007524313228}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 43339754865327950}
   ContainerType: 0
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -33418,11 +33385,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c579ec3ae608d5740b537747527bdb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 4273235832412364193}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 4273235832412364193}
   ContainerType: 0
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -41384,11 +41351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992d097f458d15e49a33e10130256fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 4273235831787203563}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList: []
   _snapZone: {fileID: 0}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 4273235831787203563}
   ContainerType: 4
   MaxVolume: 9000
   IsAbleToWeight: 1
@@ -41404,12 +41371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c579ec3ae608d5740b537747527bdb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 43339754975092941}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 1528372921084052882}
   _snapZone: {fileID: 8007435007751915279}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 43339754975092941}
   ContainerType: 0
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -41540,16 +41507,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c579ec3ae608d5740b537747527bdb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 43339756177135053}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 1528372919882543250}
   _snapZone: {fileID: 8007435006281708047}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 43339756177135053}
   ContainerType: 0
   MaxVolume: 9000
   IsAbleToWeight: 0
-  _substanceParams: {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
+  _substanceParams: {fileID: 11400000, guid: 66dce865207297142b9de641b7a41fb2, type: 2}
 --- !u!1 &4273235832915908912
 GameObject:
   m_ObjectHideFlags: 0
@@ -53511,12 +53478,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e56548a7c38c4c8dd2c880f420c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 838400741755898647}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 2495983036026632755}
   _snapZone: {fileID: 2033257800}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 838400741755898647}
   ContainerType: 6
   MaxVolume: 9000
   IsAbleToWeight: 0
@@ -65808,12 +65775,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e56548a7c38c4c8dd2c880f420c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _basePrefab: {fileID: 6870842751212970224}
-  _sedimentPrefab: {fileID: 0}
-  _membranePrefab: {fileID: 0}
   _cupsList:
   - {fileID: 7003283178941637883}
   _snapZone: {fileID: 2016336935}
+  _sedimentPrefab: {fileID: 0}
+  _membranePrefab: {fileID: 0}
+  _basePrefab: {fileID: 6870842751212970224}
   ContainerType: 7
   MaxVolume: 9000
   IsAbleToWeight: 0

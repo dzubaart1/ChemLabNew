@@ -1,4 +1,3 @@
-#nullable enable
 using System.Collections.Generic;
 using BNG;
 using Cups;
@@ -10,12 +9,12 @@ namespace Containers
 {
     public class BaseContainer : MonoBehaviour
     {
-        [SerializeField] protected GameObject _basePrefab;
-        [SerializeField] protected GameObject? _sedimentPrefab;
-        [SerializeField] protected GameObject? _membranePrefab;
         [SerializeField] protected List<BaseCup> _cupsList;
         [SerializeField] protected SnapZone _snapZone;
         
+        public GameObject _sedimentPrefab;
+        public GameObject _membranePrefab;
+        public GameObject _basePrefab;
         public ContainersTypes ContainerType;
         
         public Substance? Substance;
@@ -84,7 +83,7 @@ namespace Containers
             _basePrefab.SetActive(true);
             _basePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Color;
             
-            /*if (_sedimentPrefab is not null && newSubstance.SubParams.Sediment is not null)
+            if (_sedimentPrefab is not null && newSubstance.SubParams.Sediment is not null)
             {
                 _sedimentPrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Sediment.Color;
             }
@@ -92,7 +91,7 @@ namespace Containers
             if (_membranePrefab is not null && newSubstance.SubParams.Membrane is not null)
             {
                 _membranePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Membrane.Color;
-            }*/
+            }
         }
 
         public void ShowSediment()
