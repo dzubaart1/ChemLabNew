@@ -83,7 +83,8 @@ namespace Containers
             Substance = newSubstance;
             _basePrefab.SetActive(true);
             _basePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Color;
-            if (_sedimentPrefab is not null && newSubstance.SubParams.Sediment is not null)
+            
+            /*if (_sedimentPrefab is not null && newSubstance.SubParams.Sediment is not null)
             {
                 _sedimentPrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Sediment.Color;
             }
@@ -91,7 +92,7 @@ namespace Containers
             if (_membranePrefab is not null && newSubstance.SubParams.Membrane is not null)
             {
                 _membranePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Membrane.Color;
-            }
+            }*/
         }
 
         public void ShowSediment()

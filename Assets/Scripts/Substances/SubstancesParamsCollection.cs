@@ -20,6 +20,7 @@ namespace Substances
         }
         public SubstanceParams GetMixSubstance(SubstanceParams oldParam, SubstanceParams addParam)
         {
+            Debug.Log("old " + oldParam.SubName + ", add " + addParam.SubName);
             var res = _substanceParamsList.Find(substance =>
                 substance.Components.Contains(oldParam) && substance.Components.Contains(addParam));
 

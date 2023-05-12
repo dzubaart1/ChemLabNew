@@ -65,6 +65,7 @@ namespace Containers
             bool temp;
             if (Substance is null)
             {
+                Debug.Log("spoon");
                 //если это ложка
                 if (ContainerType != ContainersTypes.SpoonContainer && ContainerType != ContainersTypes.DozatorContainer)
                 {
@@ -72,6 +73,7 @@ namespace Containers
                 }
                 if (triggerGameObject.GetComponent<BaseContainer>().Substance is null)
                 { 
+                    Debug.Log("2");
                     return;
                 }
                 temp = AddSubstance(triggerGameObject.GetComponent<BaseContainer>().Substance);

@@ -10,7 +10,7 @@ namespace Machines
     {
         [SerializeField] private SnapZone _snapZone;
         private TasksCntrl _tasksCntrl;
-        public bool _isEnter;
+        private bool _isEnter;
         private bool _isStart;
         [Inject]
         public void Construct(TasksCntrl tasksCntrl)
