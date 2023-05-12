@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using BNG;
 using Containers;
 using Interfaces;
@@ -9,7 +8,7 @@ using Zenject;
 
 namespace Machines.CentrifugeMachine
 {
-    public class CentrifugeMachineCntrl : IMachine
+    public class CentrifugeMachineCntrl : MonoBehaviour, IMachine
     {
         [SerializeField]
         private List<SnapZone> SnapZones;
