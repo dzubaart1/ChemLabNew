@@ -14,6 +14,7 @@ namespace Machines.CentrifugeMachine
         private List<SnapZone> SnapZones;
         private TasksCntrl _tasksCntrl;
         private const int MINTOCOMPLITETASK = 2;
+        [SerializeField] private GameObject animatedPart;
 
         [Inject]
         public void Construct(TasksCntrl tasksCntrl)
@@ -29,7 +30,7 @@ namespace Machines.CentrifugeMachine
         public void OnStartWork()
         {
             int countCurrentCentrifugeContainer = 0;
-            // анимация
+            animatedPart.GetComponent<Animator>().enabled = true;
             foreach (var snapZone in SnapZones)
             {
                 if (snapZone.HeldItem is null)
@@ -52,6 +53,7 @@ namespace Machines.CentrifugeMachine
 
         public void OnFinishWork()
         {
+            animatedPart.GetComponent<Animator>().enabled = false;
             foreach (var snapZone in SnapZones)
             {
                 if (snapZone.HeldItem is null)

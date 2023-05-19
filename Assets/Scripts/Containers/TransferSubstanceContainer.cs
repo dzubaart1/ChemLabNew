@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BNG;
 using Tasks;
@@ -11,9 +12,12 @@ namespace Containers
         private bool _isAgain;
         private Grabber _leftGrabber, _rightGrabber;
         private TasksCntrl _tasksCntrl;
+        private GameObject _player;
+        private bool _canvasState = false;
+        Vector3 newDirection;
 
         [Inject]
-        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl)
+        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl, GameObject rigInst)
         {
             foreach (var grabber in grabbers)
             {
@@ -27,7 +31,35 @@ namespace Containers
                 }
             }
             _tasksCntrl = tasksCntrl;
+            _player = rigInst;
         }
+        private void Update()
+        {
+            if (IsNull(GetComponent<BaseContainer>().HiddenCanvas))
+            {
+                return;
+            }
+            GameObject _hiddenCanvas = GetComponent<BaseContainer>().HiddenCanvas;
+            Vector3 offset = new Vector3(90, 0, 90);
+            newDirection = Vector3.RotateTowards(_hiddenCanvas.transform.forward, _player.transform.position - _hiddenCanvas.transform.position,0.01f,5);
+            _hiddenCanvas.transform.rotation = Quaternion.LookRotation(newDirection + offset);
+            //_hiddenCanvas.transform.position += _hiddenCanvas.transform.forward * 0.01f;
+            if (_rightGrabber.HeldGrabbable is null || _rightGrabber.HeldGrabbable.gameObject != gameObject)
+            {
+                _canvasState = false;
+                _hiddenCanvas.SetActive(_canvasState); 
+                return;
+            }
+            if (!InputBridge.Instance.AButtonDown)
+            {
+                return;
+            }
+            _canvasState = !_canvasState;
+            _hiddenCanvas.SetActive(_canvasState);
+        }
+
+        
+        
         private void OnTriggerStay(Collider other)
         {
             if (_isAgain)

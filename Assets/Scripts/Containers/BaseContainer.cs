@@ -3,6 +3,7 @@ using BNG;
 using Cups;
 using Substances;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace Containers
@@ -20,6 +21,8 @@ namespace Containers
         public Substance? Substance;
         public float MaxVolume = 9000;
         public bool IsAbleToWeight;
+        
+        public GameObject HiddenCanvas;
 
         public void Awake()
         {
@@ -92,8 +95,27 @@ namespace Containers
             {
                 _membranePrefab.GetComponent<MeshRenderer>().material.color = newSubstance.SubParams.Membrane.Color;
             }
+
+            if (IsNull(HiddenCanvas))
+            {
+                return;
+            }
+            HiddenCanvas.GetComponentInChildren<Text>().text = newSubstance.SubParams.SubName ?? "не определено";
         }
 
+        public bool IsNull<T>(T myObject, string message = "") where T : class
+        {
+            switch (myObject)
+            {
+                case UnityEngine.Object obj when !obj:
+                    return true;
+                case null:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        
         public void ShowSediment()
         {
             if (Substance is not null && _sedimentPrefab is not null && Substance.SubParams.Sediment is not null)
