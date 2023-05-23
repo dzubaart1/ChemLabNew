@@ -22,7 +22,7 @@ MonoBehaviour:
   Title: "\u0421\u043F\u0430\u0432\u043D Stir"
   SubstancesParams: {fileID: 11400000, guid: 5eb4966dcdc301b4085e552d8ab6d91a, type: 2}
   Weight: 10
->>>>>>>> b2fc7bd746205bfcdcdae57439a9634e1ff53048:Assets/Resources/newTasks/47 1.asset
+>>>>>>>> origin/LilyChange-fitch:Assets/Resources/newTasks/47 1.asset
   ContainersType: 0300000002000000
   DozatorDoze: 0
   MachinesType: 0
