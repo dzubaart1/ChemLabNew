@@ -21,11 +21,12 @@ namespace Installers
             List<Grabber> grabbers = rigInst.GetComponentsInChildren<Grabber>().ToList();
             Container.Bind<List<Grabber>>().FromInstance(grabbers).AsSingle();
             
-            SubstancesParamsCollection substancesCollection = new SubstancesParamsCollection();
-            Container.Bind<SubstancesParamsCollection>().FromInstance(substancesCollection).AsSingle();
-            
             SceneSetter sceneSetter = new SceneSetter(tasksCntrl);
             Container.Bind<SceneSetter>().FromInstance(sceneSetter).AsSingle();
+            
+            SubstancesParamsCollection substancesCollection = new SubstancesParamsCollection();
+            SubstancesCntrl substancesCntrl = new SubstancesCntrl(substancesCollection);
+            Container.Bind<SubstancesCntrl>().FromInstance(substancesCntrl).AsSingle();
         }
     }
 }

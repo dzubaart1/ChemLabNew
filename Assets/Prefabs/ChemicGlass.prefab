@@ -459,12 +459,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cupsList: []
   _snapZone: {fileID: 0}
-  _sedimentPrefab: {fileID: 532080669}
-  _membranePrefab: {fileID: 964371629}
-  _basePrefab: {fileID: 1038755889600876640}
   ContainerType: 2
   MaxVolume: 9000
   IsAbleToWeight: 0
+  _mainSubPrefab: {fileID: 1038755889600876640}
+  _sedimentPrefab: {fileID: 532080669}
+  _membranePrefab: {fileID: 964371629}
 --- !u!1 &1038755889600876640
 GameObject:
   m_ObjectHideFlags: 0

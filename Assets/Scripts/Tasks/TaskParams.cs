@@ -11,11 +11,11 @@ namespace Tasks
     {
         public int Id;
         public string Title;
-        public SubstanceParams SubstancesParams;
+        public SubstancePropertyBase SubstancesParams;
         public float Weight;
         public List<ContainersTypes> ContainersType;
         public float DozatorDoze;
         public MachinesTypes MachinesType;
-        public SubstanceParams ResultSubstance;
+        public SubstancePropertyBase ResultSubstance;
     }
 }

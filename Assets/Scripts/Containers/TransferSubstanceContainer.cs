@@ -1,19 +1,21 @@
 using System.Collections.Generic;
 using BNG;
+using Substances;
 using Tasks;
 using UnityEngine;
 using Zenject;
 
 namespace Containers
 {
-    public class TransferSubstanceContainer : BaseContainer
+    public class TransferSubstanceContainer : DisplaySubstance
     {
         private bool _isAgain;
         private Grabber _leftGrabber, _rightGrabber;
-        private TasksCntrl _tasksCntrl;
+        protected TasksCntrl _tasksCntrl;
+        protected SubstancesCntrl _substancesCntrl;
 
         [Inject]
-        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl)
+        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
         {
             foreach (var grabber in grabbers)
             {
@@ -27,6 +29,7 @@ namespace Containers
                 }
             }
             _tasksCntrl = tasksCntrl;
+            _substancesCntrl = substancesCntrl;
         }
         private void OnTriggerStay(Collider other)
         {
@@ -62,8 +65,8 @@ namespace Containers
 
         private void Transfer(GameObject triggerGameObject)
         {
-            bool temp;
-            if (Substance is null)
+            bool checkAdd, checkRemove;
+            if (CurrentSubstance is null)
             {
                 Debug.Log("spoon");
                 //если это ложка
@@ -71,22 +74,48 @@ namespace Containers
                 {
                     return;
                 }
-                if (triggerGameObject.GetComponent<BaseContainer>().Substance is null)
-                { 
-                    Debug.Log("2");
+                if (triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance is null)
+                {
                     return;
                 }
-                temp = AddSubstance(triggerGameObject.GetComponent<BaseContainer>().Substance);
-                if (!temp) return;
-                triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
-                _tasksCntrl.CheckTransferSubstance(this, triggerGameObject.GetComponent<BaseContainer>(), Substance);
+                checkAdd = AddSubstance(triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance);
+                if (!checkAdd) return;
+                checkRemove = triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
+                if(!checkRemove) return;
+                
+                _tasksCntrl.CheckTransferSubstance(this, triggerGameObject.GetComponent<BaseContainer>(), CurrentSubstance);
                 return;
             }
         
-            temp = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(Substance);
-            if (!temp) return;
-            RemoveSubstance(triggerGameObject.GetComponent<BaseContainer>().MaxVolume);
-            _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>().Substance);
+            checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(CurrentSubstance);
+            if (!checkAdd) return;
+            checkRemove = RemoveSubstance(triggerGameObject.GetComponent<BaseContainer>().MaxVolume);
+            if(!checkRemove) return;
+            
+            _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance);
+        }
+        
+        protected virtual bool AddSubstance(SubstanceSplit substance)
+        {
+            if (substance?.SubstanceProperty is null)
+            {
+                return false;
+            }
+            CurrentSubstance = _substancesCntrl.AddSubstance(CurrentSubstance, MaxVolume);
+            UpdateDisplaySubstance();
+            return true;
+        }
+
+        protected virtual bool RemoveSubstance(float volumeToRemove)
+        {
+            if (CurrentSubstance?.SubstanceProperty is null)
+            {
+                return false;
+            }
+            
+            CurrentSubstance = _substancesCntrl.RemoveSubstance(CurrentSubstance, volumeToRemove);
+            UpdateDisplaySubstance();
+            return true;
         }
     }
 }

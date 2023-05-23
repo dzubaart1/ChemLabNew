@@ -1,6 +1,7 @@
 using BNG;
 using Containers;
 using Interfaces;
+using Substances;
 using Tasks;
 using UnityEngine;
 using Zenject;
@@ -13,10 +14,13 @@ namespace Machines
         private TasksCntrl _tasksCntrl;
         public bool _isEnter;
         public bool _isStart;
+
+        private SubstancesCntrl _substancesCntrl;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
         {
             _tasksCntrl = tasksCntrl;
+            _substancesCntrl = substancesCntrl;
         }
 
         private void Update()
@@ -49,7 +53,7 @@ namespace Machines
                 return;
             }
             _isStart = true;
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().StirringSubstance();
+            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance = _substancesCntrl.StirSubstance(_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
             StartStirringAnimation();
             _tasksCntrl.CheckStartMachineWork(MachinesTypes.StirringMachine);
         }
@@ -61,7 +65,7 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.StirringMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().Substance);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.StirringMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
         }
 
         private void StartStirringAnimation()

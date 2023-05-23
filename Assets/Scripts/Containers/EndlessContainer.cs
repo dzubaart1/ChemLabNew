@@ -1,16 +1,13 @@
-#nullable enable
-using JetBrains.Annotations;
 using Substances;
 using Tasks;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using Zenject;
 
 namespace Containers
 {
     public class EndlessContainer : TransferSubstanceContainer
     {
-        [SerializeField] private SubstanceParams _substanceParams;
+        [SerializeField] private SubstancePropertyBase _substanceParams;
         private TasksCntrl _tasksCntrl;
         
         [Inject]
@@ -20,42 +17,35 @@ namespace Containers
         }
         private void Start()
         {
-            _basePrefab.SetActive(true);
-            _basePrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
+            UpdateDisplaySubstance();
             _tasksCntrl.Notify += CheckTasks;
             CheckTasks();
         }
 
-        protected override bool AddSubstance(Substance substance)
+        protected override bool AddSubstance(SubstanceSplit substance)
         {
             return false;
         }
 
         protected override bool RemoveSubstance(float maxVolume)
         {
-            if (Substance == null && IsEnable())
+            if (CurrentSubstance == null && IsEnable())
             {
                 return false;
             }
-            if (maxVolume >= Substance.Weight)
-            {
-                Substance = null;
-            }
-            else
-            {
-                Substance.RemoveSubstanceWeight(maxVolume);
-            }
+
+            CurrentSubstance = _substancesCntrl.RemoveSubstance(CurrentSubstance, maxVolume);
+            CheckTasks();
             return true;
         }
 
         public void CheckTasks()
         {
             if (_tasksCntrl.CurrentTask().SubstancesParams is null) return;
-            if (_substanceParams.SubName.Equals(_tasksCntrl.CurrentTask().SubstancesParams.SubName))
-            {
-                var substance = new Substance(_substanceParams, _tasksCntrl.CurrentTask().Weight);
-                Substance = substance;
-            }
+            if (!_substanceParams.SubName.Equals(_tasksCntrl.CurrentTask().SubstancesParams.SubName)) return;
+            
+            var substance = new SubstanceSplit(_substanceParams, _tasksCntrl.CurrentTask().Weight);
+            CurrentSubstance = substance;
         }
     }
 }

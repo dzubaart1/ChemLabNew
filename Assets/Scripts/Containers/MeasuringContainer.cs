@@ -5,35 +5,16 @@ namespace Containers
 {
     public class MeasuringContainer : TransferSubstanceContainer
     {
-        protected override bool AddSubstance(Substance substance)
+        protected override bool AddSubstance(SubstanceSplit substance)
         {
-            if (Substance is not null) return false;
-            var newSubstance = substance;
-            if (substance.Weight > MaxVolume)
-            {
-                newSubstance = new Substance(substance.SubParams, MaxVolume);
-            }
-            _basePrefab.transform.localScale = new Vector3(1, 1, substance.Weight / 10);
-            UpdateSubstance(newSubstance);
-            return true;
-
-        }
-
-        protected override bool RemoveSubstance(float maxVolume)
-        {
-            if (Substance is null)
+            if (CurrentSubstance is not null)
             {
                 return false;
             }
-            if (maxVolume >= Substance.Weight)
-            {
-                _basePrefab.transform.localScale = new Vector3(1, 1, 10);
-                UpdateSubstance(null);
-            }
-            else
-            {
-                Substance.RemoveSubstanceWeight(maxVolume);
-            }
+
+            CurrentSubstance = _substancesCntrl.AddSubstance(substance, MaxVolume);
+            _mainSubPrefab.transform.localScale = new Vector3(1, 1, substance.GetWeight() / 10);
+            UpdateDisplaySubstance();
             return true;
         }
     }

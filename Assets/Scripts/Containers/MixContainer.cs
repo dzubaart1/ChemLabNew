@@ -1,74 +1,26 @@
 using AnchorCntrls;
 using Substances;
-using UnityEngine;
-using Zenject;
 
 namespace Containers
 {
     public class MixContainer : TransferSubstanceContainer
     {
-        private SubstancesParamsCollection _substancesCollection;
         private AnchorCntrl _anchor;
         
-        [Inject]
-        public void Construct(SubstancesParamsCollection substancesCollection)
+        protected override bool AddSubstance(SubstanceSplit newSub)
         {
-            _substancesCollection = substancesCollection;
-        }
-
-        protected override bool AddSubstance(Substance substance)
-        {
-            var res = substance.SubParams;
-            var weight = substance.Weight;
-            if (Substance is not null)
+            if (CurrentSubstance is null)
             {
-                res = _substancesCollection.GetMixSubstance(Substance.SubParams, substance.SubParams);
-                weight += Substance.Weight;
-            }
-
-            UpdateSubstance(new Substance(res, weight));
-            return true;
-        }
-
-        protected override bool RemoveSubstance(float maxVolume)
-        {
-            if (Substance is null)
-            {
-                return false;
-            }
-            if (maxVolume >= Substance.Weight)
-            {
-                UpdateSubstance(null);
+                CurrentSubstance = _substancesCntrl.AddSubstance(newSub, MaxVolume);
             }
             else
             {
-                Substance.RemoveSubstanceWeight(maxVolume);
+                CurrentSubstance = _substancesCntrl.MixSubstances(CurrentSubstance, newSub);
             }
+            UpdateDisplaySubstance();
             return true;
         }
-
-        public void StirringSubstance()
-        {
-            if (Substance is null)
-            {
-                return;
-            }
-            var res = _substancesCollection.GetStirringSubstance(Substance.SubParams);
-            Substance = new Substance(res, Substance.Weight);
-            _basePrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _basePrefab.SetActive(true);
-        }
-        public void DrySubstance()
-        {
-            if (Substance is null)
-            {
-                return;
-            }
-            var res = _substancesCollection.GetDrySubstance(Substance.SubParams);
-            Substance = new Substance(res, Substance.Weight);
-            _basePrefab.GetComponent<MeshRenderer>().material.color = res.Color;
-            _basePrefab.SetActive(true);
-        }
+        
         public AnchorCntrl Anchor => _anchor;
 
         public void AddAnchor(AnchorCntrl anchor)

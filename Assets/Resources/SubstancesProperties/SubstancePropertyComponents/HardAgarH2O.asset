@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e42f0f66494181bae2cb44279ebc12, type: 3}
+  m_Name: HardAgarH2O
+  m_EditorClassIdentifier: 
+  SubName: HardAgarH2O
+  Color: {r: 0.7647059, g: 0.7490196, b: 0.6745098, a: 0.45882353}
+  SubstancePropertyBases:
+  - {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
+  - {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}

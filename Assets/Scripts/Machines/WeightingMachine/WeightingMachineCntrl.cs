@@ -44,13 +44,13 @@ namespace Machines
                 OnEnterObject();
             }
 
-            if (_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().Substance is null)
+            if (_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance is null)
             {
                 ResetValues();
                 return;
             }
             
-            if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().Substance.Weight
+            if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance.GetWeight()
                     .Equals(_currentWeight))
             {
                 OnStartWork();
@@ -74,7 +74,7 @@ namespace Machines
         
         public void OnStartWork()
         {
-            _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().Substance.Weight;
+            _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstance.GetWeight();
             Debug.Log("IsStart " + _currentWeight);
             _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
             OnFinishWork();
@@ -82,7 +82,7 @@ namespace Machines
 
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.WeightingMachine, _snapZone.HeldItem.GetComponent<BaseContainer>().Substance);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.WeightingMachine, _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstance);
         }
     }
 }

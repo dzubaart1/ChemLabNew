@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using BNG;
 using Containers;
 using Interfaces;
+using Substances;
 using Tasks;
 using UnityEngine;
 using Zenject;
@@ -15,10 +16,12 @@ namespace Machines.CentrifugeMachine
         private TasksCntrl _tasksCntrl;
         private const int MINTOCOMPLITETASK = 2;
 
+        private SubstancesCntrl _substancesCntrl;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
         {
             _tasksCntrl = tasksCntrl;
+            _substancesCntrl = substancesCntrl;
         }
 
         public void OnEnterObject()
@@ -40,7 +43,7 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().ShowSediment();
+                snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance = _substancesCntrl.SplitSubstances(snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance);
                 countCurrentCentrifugeContainer++;
             }
 
@@ -62,7 +65,7 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().Substance);
+                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance);
             }
         }
     }

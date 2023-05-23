@@ -50,7 +50,7 @@ namespace Machines
         }
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.DryBoxMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().Substance);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.DryBoxMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
         }
     }
 }
