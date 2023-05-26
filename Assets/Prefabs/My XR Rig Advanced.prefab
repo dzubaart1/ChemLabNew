@@ -15183,7 +15183,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.5
+  m_Height: 1
   m_Radius: 0.1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -20634,7 +20634,7 @@ GameObject:
   - component: {fileID: 8320362179581940927}
   m_Layer: 0
   m_Name: My XR Rig Advanced
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

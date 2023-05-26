@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1827639142981799579}
   - component: {fileID: 1827639142981799578}
   - component: {fileID: 6883195785797476453}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CentrifugeContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,9 +30,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1827639142981799576}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -5.959, y: 0.5493691, z: 3.1681}
-  m_LocalScale: {x: 0.16500004, y: 0.165, z: 0.16500004}
+  m_LocalScale: {x: 0.16500002, y: 0.165, z: 0.16500002}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1827639144675746652}
@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1827639143014636158}
   - component: {fileID: 1827639143014636157}
   - component: {fileID: 1827639143014636156}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pipetkaPrefabSed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827639143061138874}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827639143085490744}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 1827639143118596914}
   - component: {fileID: 1827639143118596913}
   - component: {fileID: 1827639143118596912}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: pipetkaCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827639143492489893}
   - component: {fileID: 1827639143492489894}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -593,7 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827639143492580751}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1827639143659210188}
   - component: {fileID: 1827639143659210189}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 1827639143910393361}
   - component: {fileID: 1827639143910393360}
   - component: {fileID: 1827639143910393391}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -845,7 +845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827639144211648165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Armature.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 1827639144405874819}
   - component: {fileID: 1827639144405874822}
   - component: {fileID: 1827639144405874821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: pipetkaPrefabBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -960,7 +960,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1827639144540987938}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 1827639144675746652}
   - component: {fileID: 1827639144675746654}
   - component: {fileID: 1827639144675746653}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cylinder.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 1827639144806464818}
   - component: {fileID: 1827639144806464820}
   - component: {fileID: 1827639144806464819}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

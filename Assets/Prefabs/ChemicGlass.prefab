@@ -457,10 +457,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e56548a7c38c4c8dd2c880f420c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxVolume: 9000
   _cupsList: []
   _snapZone: {fileID: 0}
   ContainerType: 2
-  MaxVolume: 9000
   IsAbleToWeight: 0
   _mainSubPrefab: {fileID: 1038755889600876640}
   _sedimentPrefab: {fileID: 532080669}

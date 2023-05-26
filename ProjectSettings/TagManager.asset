@@ -6,6 +6,7 @@ TagManager:
   tags:
   - subs
   - Serializable
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Restricted
   - Player
   - Grabbable
-  - 
+  - Interactable
   - 
   - 
   - 

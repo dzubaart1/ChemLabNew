@@ -42,10 +42,10 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                //add split substance
-                snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
                 
-                var substance = new Substance(_tasksCntrl.GetResultSubstance(), snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().MaxVolume);
+                //add split substance
+                var substance = snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Pop();
+                
                 var temp = _substancesCntrl.SplitSubstances(substance).ToArray();
                 for (int i = temp.Length-1; i >= 0; i--)
                 {

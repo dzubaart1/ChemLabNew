@@ -1,10 +1,13 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Canvases;
 using Containers;
+using Installers;
 using Machines;
 using Substances;
 using UnityEngine;
+using Zenject;
 
 namespace Tasks
 {
@@ -12,6 +15,8 @@ namespace Tasks
     {
         private List<TaskParams> _tasksParamsList;
         private int _taskCurrentId;
+
+        private SignalBus _signalBus;
         public TasksCntrl()
         {
             _tasksParamsList = new List<TaskParams>();
@@ -19,9 +24,14 @@ namespace Tasks
             _tasksParamsList.Sort(CompareToTaskParams);
             _taskCurrentId = 0;
         }
+        
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
         public delegate void TaskUpdateHandler();
         public event TaskUpdateHandler? Notify;
-
         private int CompareToTaskParams(TaskParams t1, TaskParams t2)
         {
             if (t1.Id > t2.Id)
@@ -36,68 +46,69 @@ namespace Tasks
 
             return 0;
         }
-
         public TaskParams GetTaskParamsById(int id)
         {
             return _tasksParamsList[id];
         }
-
         public void MoveToNext()
         {
             if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
             _taskCurrentId++;
             Notify?.Invoke();
         }
-
         public TaskParams CurrentTask()
         {
             return GetTaskParamsById(_taskCurrentId);
         }
-
         public void SetCurrentTaskId(int taskId)
         {
             _taskCurrentId = taskId;
             Notify?.Invoke();
         }
-
-        public SubstancePropertyBase GetResultSubstance()
-        {
-            return CurrentTask().ResultSubstance;
-        }
-
-        public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, SubstancePropertyBase substance)
+        public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, SubstancePropertyBase substanceProperty)
         {
             if (!CurrentTask().ContainersType.Contains(firstContainer.ContainerType) ||
-                !CurrentTask().ContainersType.Contains(secondContainer.ContainerType)) 
+                !CurrentTask().ContainersType.Contains(secondContainer.ContainerType)
+                /*!secondContainer.CurrentSubstancesList.Peek().SubstanceProperty.SubName
+                    .Equals(substanceProperty.SubName)*/)
+            {
+                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
                 return;
+            }
             Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
-
         public void CheckEnteringIntoMachine(MachinesTypes machinesType, ContainersTypes enteringContainer)
         {
             if (!CurrentTask().MachinesType.Equals(machinesType) ||
-                !CurrentTask().ContainersType.Contains(enteringContainer)) return;
+                !CurrentTask().ContainersType.Contains(enteringContainer))
+            {
+                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                return;
+            }
             Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
         public void CheckStartMachineWork(MachinesTypes machinesType)
         {
-            if (CurrentTask().MachinesType.Equals(machinesType))
+            if (!CurrentTask().MachinesType.Equals(machinesType))
             {
-                Debug.Log($"{CurrentTask().Id} is done");
-                MoveToNext();
+                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                return;
             }
+            Debug.Log($"{CurrentTask().Id} is done");
+            MoveToNext();
         }
-        
         public void CheckFinishMachineWork(MachinesTypes machinesType, SubstancePropertyBase substance)
         {
-            if (CurrentTask().MachinesType.Equals(machinesType)
-                && CurrentTask().ResultSubstance.Equals(substance))
+            if (!CurrentTask().MachinesType.Equals(machinesType)
+                || !CurrentTask().ResultSubstance.Equals(substance))
             {
-                Debug.Log($"{CurrentTask().Id} is done");
-                MoveToNext();
+                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                return;
             }
+            Debug.Log($"{CurrentTask().Id} is done");
+            MoveToNext();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Data
         private List<GameObject> _listOfObjects;
         private SceneState _savedSceneState;
         private TasksCntrl _tasksCntrl;
-        
+
         public SceneSetter(TasksCntrl tasksCntrl)
         {
             _listOfObjects = GameObject.FindGameObjectsWithTag("Serializable").ToList();
