@@ -53,7 +53,11 @@ namespace Machines
                 return;
             }
             _isStart = true;
-            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance = _substancesCntrl.StirSubstance(_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
+            var temp = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek();
+            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
+            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.StirSubstance(temp));
+            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
+
             StartStirringAnimation();
             _tasksCntrl.CheckStartMachineWork(MachinesTypes.StirringMachine);
         }
@@ -65,7 +69,8 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.StirringMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
+            Debug.Log("1" + _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.StirringMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
         }
 
         private void StartStirringAnimation()

@@ -12,32 +12,49 @@ namespace Containers
 
         public void UpdateDisplaySubstance()
         {
-            if (CurrentSubstance is null)
+            if (CurrentSubstancesList.Count == 0)
             {
                 TogglePrefab(_mainSubPrefab, null);
                 TogglePrefab(_sedimentPrefab, null);
                 TogglePrefab(_membranePrefab, null);
                 return;
             }
-            
-            if (CurrentSubstance.SubstanceProperty is SubstancePropertySplit)
+
+            if (CurrentSubstancesList.Count == 1)
             {
-                Debug.Log("Show 2");
-                TogglePrefab(_mainSubPrefab, CurrentSubstance.MainSubstance?.SubstanceProperty);
-                TogglePrefab(_sedimentPrefab, CurrentSubstance.SedimentSubstance?.SubstanceProperty);
-                TogglePrefab(_membranePrefab, CurrentSubstance.MembraneSubstance?.SubstanceProperty);
-            }
-            else
-            {
-                Debug.Log($"Show 3 {CurrentSubstance.SubstanceProperty.SubName} {ContainerType}");
-                TogglePrefab(_mainSubPrefab, CurrentSubstance.SubstanceProperty);
+                TogglePrefab(_mainSubPrefab, CurrentSubstancesList.Peek().SubstanceProperty);
                 TogglePrefab(_sedimentPrefab, null);
                 TogglePrefab(_membranePrefab, null);
+                return;
+            }
+            
+            
+            int i = 0;
+            foreach (var substance in CurrentSubstancesList)
+            {
+                switch (i)
+                {
+                    case 0:
+                        TogglePrefab(_sedimentPrefab, substance.SubstanceProperty);
+                        break;
+                    case 1:
+                        TogglePrefab(_mainSubPrefab, substance.SubstanceProperty);
+                        break;
+                    case 2:
+                        TogglePrefab(_membranePrefab, substance.SubstanceProperty);
+                        break;
+                }
+
+                i++;
             }
         }
         
         public void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)
         {
+            if (!prefab)
+            {
+                return;
+            }
             if (substanceParams is null)
             {
                 prefab.SetActive(false);

@@ -35,11 +35,11 @@ namespace Data
                 var indexInList = _savedSceneState.SaveObjectsList[i].IndexInList;
                 _listOfObjects[indexInList].transform.position = _savedSceneState.SaveObjectsList[i].Position.GetVector();
                 _listOfObjects[indexInList].transform.rotation = _savedSceneState.SaveObjectsList[i].Quaternion.GetQuaternion();
-                if (_listOfObjects[indexInList].GetComponent<DisplaySubstance>() is not null)
+                /*if (_listOfObjects[indexInList].GetComponent<DisplaySubstance>() is not null)
                 {
                     _listOfObjects[indexInList].GetComponent<DisplaySubstance>().CurrentSubstance = (_savedSceneState.SaveObjectsList[i].Substance);
                     _listOfObjects[indexInList].GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
-                }
+                }*/
             }
         }
 
@@ -53,10 +53,10 @@ namespace Data
                 var saveContent = new SaveObject(){IndexInList = i,
                     Position = new FVector(currentVecPos),
                     Quaternion = new FQuaternion(currentVecRot)};
-                if (_listOfObjects[i].GetComponent<BaseContainer>() != null)
+                /*if (_listOfObjects[i].GetComponent<BaseContainer>() != null)
                 {
                     saveContent.Substance = _listOfObjects[i].GetComponent<BaseContainer>().CurrentSubstance;
-                }
+                }*/
                 res.Add(saveContent);
             }
 
@@ -75,7 +75,7 @@ namespace Data
         public int IndexInList { get; set; }
         public FVector Position { get; set; }
         public FQuaternion Quaternion { get; set; }
-        public SubstanceSplit Substance { get; set; }
+        //public SubstanceSplit Substance { get; set; }
     }
     
     public struct FVector

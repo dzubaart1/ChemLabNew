@@ -4,14 +4,15 @@ namespace Containers
 {
     public class SpoonContainer : TransferSubstanceContainer
     {
-        protected override bool AddSubstance(SubstanceSplit substance)
+        public override bool AddSubstance(SubstanceContainer substanceContainer)
         {
-            if (CurrentSubstance is not null)
+            if (CurrentSubstancesList.Count > 0)
             {
                 return false;
             }
-
-            CurrentSubstance = _substancesCntrl.AddSubstance(substance, MaxVolume);
+            var temp = substanceContainer.CurrentSubstancesList.Peek();
+            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);
+            CurrentSubstancesList.Push(addingRes);
             UpdateDisplaySubstance();
             return true;
         }

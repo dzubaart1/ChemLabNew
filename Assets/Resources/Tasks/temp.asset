@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
+  m_Name: temp
+  m_EditorClassIdentifier: 
+  Id: -10
+  Title: take hard agar from pot
+  SubstancesParams: {fileID: 11400000, guid: 350b3ad068060cf4d8c9b3535b6ea54e, type: 2}
+  Weight: 5
+  ContainersType: 0000000003000000
+  DozatorDoze: 0
+  MachinesType: 0
+  ResultSubstance: {fileID: 11400000, guid: 350b3ad068060cf4d8c9b3535b6ea54e, type: 2}

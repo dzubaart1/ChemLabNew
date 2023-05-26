@@ -60,7 +60,12 @@ namespace Tasks
             Notify?.Invoke();
         }
 
-        public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, SubstanceBase substance)
+        public SubstancePropertyBase GetResultSubstance()
+        {
+            return CurrentTask().ResultSubstance;
+        }
+
+        public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, SubstancePropertyBase substance)
         {
             if (!CurrentTask().ContainersType.Contains(firstContainer.ContainerType) ||
                 !CurrentTask().ContainersType.Contains(secondContainer.ContainerType)) 
@@ -85,10 +90,10 @@ namespace Tasks
             }
         }
         
-        public void CheckFinishMachineWork(MachinesTypes machinesType, SubstanceBase substance)
+        public void CheckFinishMachineWork(MachinesTypes machinesType, SubstancePropertyBase substance)
         {
             if (CurrentTask().MachinesType.Equals(machinesType)
-                && CurrentTask().ResultSubstance.Equals(substance.SubstanceProperty))
+                && CurrentTask().ResultSubstance.Equals(substance))
             {
                 Debug.Log($"{CurrentTask().Id} is done");
                 MoveToNext();

@@ -6,17 +6,22 @@ namespace Containers
     public class MixContainer : TransferSubstanceContainer
     {
         private AnchorCntrl _anchor;
-        
-        protected override bool AddSubstance(SubstanceSplit newSub)
+        public override bool AddSubstance(SubstanceContainer substanceContainer)
         {
-            if (CurrentSubstance is null)
+            if (CurrentSubstancesList.Count > 1)
             {
-                CurrentSubstance = _substancesCntrl.AddSubstance(newSub, MaxVolume);
+                return false;
             }
-            else
+            
+            var temp = substanceContainer.CurrentSubstancesList.Peek();
+            
+            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);;
+            if(CurrentSubstancesList.Count == 1)
             {
-                CurrentSubstance = _substancesCntrl.MixSubstances(CurrentSubstance, newSub);
+                addingRes = _substancesCntrl.MixSubstances(substanceContainer.CurrentSubstancesList.Peek(), CurrentSubstancesList.Pop());
             }
+            
+            CurrentSubstancesList.Push(addingRes);
             UpdateDisplaySubstance();
             return true;
         }

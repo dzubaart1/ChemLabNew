@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +8,16 @@ namespace Machines.CentrifugeMachine
     {
         [SerializeField] private CentrifugeMachineCntrl _centrifugeMachineCntrl;
         [SerializeField] private Button _startBtn;
+        [SerializeField] private GameObject animatedPart;
 
         private bool _isWorked, _isPowerOn;
+
+        private void Start()
+        {
+            _isWorked = false;
+            _isPowerOn = false;
+            _startBtn.enabled = false;
+        }
 
         public void OnClickPowerBtn()
         {
@@ -30,15 +39,22 @@ namespace Machines.CentrifugeMachine
                     // АТАТАТ Так нельзя
                 }
             }
+            Debug.Log("power clicked, power is "+ _isPowerOn + " start is " + _isWorked + " start enable is " + _startBtn.enabled);
             
         }
         
         public void OnClickStartBtn()
         {
             _isWorked = !_isWorked;
+            Debug.Log("start clicked, power is "+ _isPowerOn + " start is " + _isWorked + " start enable is " + _startBtn.enabled);
             if (_isWorked)
             {
+                animatedPart.GetComponent<Animator>().enabled = true;
                 _centrifugeMachineCntrl.OnStartWork();
+            }
+            else
+            {
+                animatedPart.GetComponent<Animator>().enabled = false;
             }
         }
     }

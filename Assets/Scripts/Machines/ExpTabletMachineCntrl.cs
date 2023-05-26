@@ -34,12 +34,11 @@ namespace Machines
         {
             foreach (var container in _lunkaContainers)
             {
-                
-                if (container.GetComponent<BaseContainer>().CurrentSubstance is null)
+                if (container.GetComponent<BaseContainer>().CurrentSubstancesList.Count == 0)
                 {
                     return;
                 }
-                if (!container.GetComponent<BaseContainer>().CurrentSubstance.SubstanceProperty.SubName
+                if (!container.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName
                         .Equals(_tasksCntrl.CurrentTask().ResultSubstance.SubName))
                 {
                     return;

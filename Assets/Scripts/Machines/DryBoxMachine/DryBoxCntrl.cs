@@ -3,6 +3,7 @@ using UnityEngine;
 using Zenject;
 using Containers;
 using BNG;
+using Substances;
 
 namespace Machines
 {
@@ -12,8 +13,10 @@ namespace Machines
         private TasksCntrl _tasksCntrl;
         private bool _isEnter;
         private bool _isStart;
+
+        private SubstancesCntrl _substancesCntrl;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
         {
             _tasksCntrl = tasksCntrl;
         }
@@ -46,11 +49,16 @@ namespace Machines
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
                 return;
+            
+            var temp = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek();
+            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
+            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.DrySubstance(temp));
+            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
             _tasksCntrl.CheckStartMachineWork(MachinesTypes.DryBoxMachine);
         }
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.DryBoxMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.DryBoxMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
         }
     }
 }

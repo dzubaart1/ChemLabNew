@@ -44,13 +44,13 @@ namespace Machines
                 OnEnterObject();
             }
 
-            if (_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance is null)
+            if (_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Count == 0)
             {
                 ResetValues();
                 return;
             }
             
-            if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstance.GetWeight()
+            if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetWeight()
                     .Equals(_currentWeight))
             {
                 OnStartWork();
@@ -59,7 +59,6 @@ namespace Machines
         
         public void OnEnterObject()
         {
-            Debug.Log("IsEnter");
             _tasksCntrl.CheckEnteringIntoMachine(MachinesTypes.WeightingMachine,
                 _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType);
             _isEnter = true;
@@ -74,15 +73,16 @@ namespace Machines
         
         public void OnStartWork()
         {
-            _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstance.GetWeight();
-            Debug.Log("IsStart " + _currentWeight);
+            _snapZone.HeldItem.GetComponent<BaseContainer>().PrintStack();
+            Debug.Log(_snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().GetWeight());
+            _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
             OnFinishWork();
         }
 
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.WeightingMachine, _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstance);
+            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.WeightingMachine, _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
         }
     }
 }

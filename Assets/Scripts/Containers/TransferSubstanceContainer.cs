@@ -7,15 +7,14 @@ using Zenject;
 
 namespace Containers
 {
-    public class TransferSubstanceContainer : DisplaySubstance
+    public class TransferSubstanceContainer : SubstanceContainer
     {
         private bool _isAgain;
         private Grabber _leftGrabber, _rightGrabber;
         protected TasksCntrl _tasksCntrl;
-        protected SubstancesCntrl _substancesCntrl;
-
+        
         [Inject]
-        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
+        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl)
         {
             foreach (var grabber in grabbers)
             {
@@ -29,7 +28,6 @@ namespace Containers
                 }
             }
             _tasksCntrl = tasksCntrl;
-            _substancesCntrl = substancesCntrl;
         }
         private void OnTriggerStay(Collider other)
         {
@@ -66,7 +64,7 @@ namespace Containers
         private void Transfer(GameObject triggerGameObject)
         {
             bool checkAdd, checkRemove;
-            if (CurrentSubstance is null)
+            if (CurrentSubstancesList.Count == 0)
             {
                 Debug.Log("spoon");
                 //если это ложка
@@ -74,48 +72,26 @@ namespace Containers
                 {
                     return;
                 }
-                if (triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance is null)
+                if (triggerGameObject.GetComponent<SubstanceContainer>().CurrentSubstancesList.Count == 0)
                 {
                     return;
                 }
-                checkAdd = AddSubstance(triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance);
+                
+                checkAdd = AddSubstance(triggerGameObject.GetComponent<SubstanceContainer>());
                 if (!checkAdd) return;
                 checkRemove = triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
                 if(!checkRemove) return;
                 
-                _tasksCntrl.CheckTransferSubstance(this, triggerGameObject.GetComponent<BaseContainer>(), CurrentSubstance);
+                _tasksCntrl.CheckTransferSubstance(this, triggerGameObject.GetComponent<BaseContainer>(), CurrentSubstancesList.Peek().SubstanceProperty);
                 return;
             }
         
-            checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(CurrentSubstance);
+            checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(this);
             if (!checkAdd) return;
-            checkRemove = RemoveSubstance(triggerGameObject.GetComponent<BaseContainer>().MaxVolume);
+            checkRemove = RemoveSubstance(triggerGameObject.GetComponent<TransferSubstanceContainer>().MaxVolume);
             if(!checkRemove) return;
             
-            _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>().CurrentSubstance);
-        }
-        
-        protected virtual bool AddSubstance(SubstanceSplit substance)
-        {
-            if (substance?.SubstanceProperty is null)
-            {
-                return false;
-            }
-            CurrentSubstance = _substancesCntrl.AddSubstance(CurrentSubstance, MaxVolume);
-            UpdateDisplaySubstance();
-            return true;
-        }
-
-        protected virtual bool RemoveSubstance(float volumeToRemove)
-        {
-            if (CurrentSubstance?.SubstanceProperty is null)
-            {
-                return false;
-            }
-            
-            CurrentSubstance = _substancesCntrl.RemoveSubstance(CurrentSubstance, volumeToRemove);
-            UpdateDisplaySubstance();
-            return true;
+            _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<SubstanceContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
         }
     }
 }

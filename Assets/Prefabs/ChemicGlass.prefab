@@ -256,7 +256,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 25d9f562bd5d48d448ac721d6f83ce14, type: 2}
+  - {fileID: 2100000, guid: 3ede1b0947119ed4d8eda4634fa0d79c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,13 +459,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cupsList: []
   _snapZone: {fileID: 0}
-  _sedimentPrefab: {fileID: 532080669}
-  _membranePrefab: {fileID: 964371629}
-  _basePrefab: {fileID: 1038755889600876640}
   ContainerType: 2
   MaxVolume: 9000
   IsAbleToWeight: 0
-  HiddenCanvas: {fileID: 8258291459487651167}
+  _mainSubPrefab: {fileID: 1038755889600876640}
+  _sedimentPrefab: {fileID: 532080669}
+  _membranePrefab: {fileID: 964371629}
 --- !u!1 &1038755889600876640
 GameObject:
   m_ObjectHideFlags: 0

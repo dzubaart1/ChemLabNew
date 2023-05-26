@@ -12,10 +12,9 @@ namespace Machines.CentrifugeMachine
     public class CentrifugeMachineCntrl : MonoBehaviour, IMachine
     {
         [SerializeField]
-        private List<SnapZone> SnapZones;
+        private List<SnapZone> _SnapZones;
         private TasksCntrl _tasksCntrl;
         private const int MINTOCOMPLITETASK = 2;
-        [SerializeField] private GameObject animatedPart;
 
         private SubstancesCntrl _substancesCntrl;
         [Inject]
@@ -33,8 +32,7 @@ namespace Machines.CentrifugeMachine
         public void OnStartWork()
         {
             int countCurrentCentrifugeContainer = 0;
-            animatedPart.GetComponent<Animator>().enabled = true;
-            foreach (var snapZone in SnapZones)
+            foreach (var snapZone in _SnapZones)
             {
                 if (snapZone.HeldItem is null)
                 {
@@ -44,7 +42,17 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance = _substancesCntrl.SplitSubstances(snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance);
+                //add split substance
+                snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
+                
+                var substance = new Substance(_tasksCntrl.GetResultSubstance(), snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().MaxVolume);
+                var temp = _substancesCntrl.SplitSubstances(substance).ToArray();
+                for (int i = temp.Length-1; i >= 0; i--)
+                {
+                    snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(temp[i]);
+                }
+                snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
+                // end
                 countCurrentCentrifugeContainer++;
             }
 
@@ -56,8 +64,7 @@ namespace Machines.CentrifugeMachine
 
         public void OnFinishWork()
         {
-            animatedPart.GetComponent<Animator>().enabled = false;
-            foreach (var snapZone in SnapZones)
+            foreach (var snapZone in _SnapZones)
             {
                 if (snapZone.HeldItem is null)
                 {
@@ -67,7 +74,7 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstance);
+                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
             }
         }
     }

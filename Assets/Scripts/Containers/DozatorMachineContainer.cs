@@ -1,20 +1,25 @@
+using System.Globalization;
 using Cups;
 using Substances;
+using UnityEngine;
 
 namespace Containers
 {
     public class DozatorMachineContainer : TransferSubstanceContainer
     {
-        protected override bool AddSubstance(SubstanceSplit substance)
+        public override bool AddSubstance(SubstanceContainer substanceContainer)
         {
-            if (CurrentSubstance is not null || !IsEnable())
+            if (substanceContainer.CurrentSubstancesList.Count == 0 || !IsEnable())
             {
                 return false;
             }
-
-            CurrentSubstance = substance;
-            UpdateDisplaySubstance();
+            
+            var temp = substanceContainer.CurrentSubstancesList.Peek();
+            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);
+            Debug.Log(MaxVolume + " " + temp.GetWeight().ToString(CultureInfo.InvariantCulture));
+            CurrentSubstancesList.Push(addingRes);
             _snapZone.HeldItem.GetComponent<DozatorCup>().IsDirty = true;
+            UpdateDisplaySubstance();
             return true;
         }
         

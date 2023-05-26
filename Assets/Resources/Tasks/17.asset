@@ -21,4 +21,4 @@ MonoBehaviour:
   ContainersType: 0200000004000000
   DozatorDoze: 0
   MachinesType: 0
-  ResultSubstance: {fileID: 11400000, guid: 7bab5bb897621094097ae1fd3f0c7134, type: 2}
+  ResultSubstance: {fileID: 11400000, guid: f4541fe9b27440c4bbebe329c0440380, type: 2}
