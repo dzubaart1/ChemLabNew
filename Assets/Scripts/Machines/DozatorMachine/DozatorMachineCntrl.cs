@@ -1,5 +1,7 @@
+using System;
 using System.Globalization;
 using Containers;
+using Installers;
 using Tasks;
 using UnityEngine;
 using Zenject;
@@ -9,24 +11,33 @@ namespace Machines.DozatorMachine
     public class DozatorMachineCntrl : MonoBehaviour
     {
         [SerializeField] private BaseContainer _baseContainer;
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
+        private float _currentDoze;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
 
-        public string GetDoze()
+        private void Start()
         {
-            if (_tasksCntrl.CurrentTask().DozatorDoze == 0)
+            _signalBus.Subscribe<CheckTasksSignal>(CheckTask);
+        }
+
+        public void CheckTask(CheckTasksSignal checkTasksSignal)
+        {
+            if (checkTasksSignal.CurrentTask.DozatorDoze == 0)
             {
-                return "0.00";
+                _currentDoze = 0f;
+                return;
             }
 
-            _baseContainer.MaxVolume = _tasksCntrl.CurrentTask().DozatorDoze;
-            var text = _tasksCntrl.CurrentTask().DozatorDoze.ToString("0.00", CultureInfo.InvariantCulture);
-            _tasksCntrl.CheckStartMachineWork(MachinesTypes.DozatorMachine);
-            return text;
+            _currentDoze = checkTasksSignal.CurrentTask.DozatorDoze;
+        }
+        public string GetDoze()
+        {
+            _baseContainer.MaxVolume = _currentDoze;
+            return _currentDoze.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

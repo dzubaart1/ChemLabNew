@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using BNG;
+using Installers;
 using Substances;
 using Tasks;
 using UnityEngine;
@@ -11,10 +12,10 @@ namespace Containers
     {
         private bool _isAgain;
         private Grabber _leftGrabber, _rightGrabber;
-        protected TasksCntrl _tasksCntrl;
+        protected SignalBus _signalBus;
         
         [Inject]
-        public void Construct(List<Grabber> grabbers, TasksCntrl tasksCntrl)
+        public void Construct(List<Grabber> grabbers, SignalBus signalBus)
         {
             foreach (var grabber in grabbers)
             {
@@ -27,7 +28,7 @@ namespace Containers
                     _rightGrabber = grabber;
                 }
             }
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
         private void OnTriggerStay(Collider other)
         {
@@ -81,8 +82,14 @@ namespace Containers
                 if (!checkAdd) return;
                 checkRemove = triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
                 if(!checkRemove) return;
-                
-                _tasksCntrl.CheckTransferSubstance(this, triggerGameObject.GetComponent<BaseContainer>(), CurrentSubstancesList.Peek().SubstanceProperty);
+
+                var transferSubstanceSignal1 = new TransferSubstanceSignal()
+                {
+                    From = triggerGameObject.GetComponent<BaseContainer>().ContainerType,
+                    To = ContainerType,
+                    TranserProperty = CurrentSubstancesList.Peek().SubstanceProperty
+                };
+                _signalBus.Fire(transferSubstanceSignal1);
                 return;
             }
         
@@ -90,8 +97,13 @@ namespace Containers
             if (!checkAdd) return;
             checkRemove = RemoveSubstance(triggerGameObject.GetComponent<TransferSubstanceContainer>().MaxVolume);
             if(!checkRemove) return;
-            
-            _tasksCntrl.CheckTransferSubstance(GetComponent<BaseContainer>(), triggerGameObject.GetComponent<BaseContainer>(), triggerGameObject.GetComponent<SubstanceContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+            var transferSubstanceSignal = new TransferSubstanceSignal()
+            {
+                From = ContainerType,
+                To = triggerGameObject.GetComponent<TransferSubstanceContainer>().ContainerType,
+                TranserProperty = triggerGameObject.GetComponent<TransferSubstanceContainer>().CurrentSubstancesList.Peek().SubstanceProperty
+            };
+            _signalBus.Fire(transferSubstanceSignal);
         }
     }
 }

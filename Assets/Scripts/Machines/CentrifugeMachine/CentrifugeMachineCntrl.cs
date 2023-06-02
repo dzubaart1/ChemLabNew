@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BNG;
 using Containers;
+using Installers;
 using Interfaces;
 using Substances;
 using Tasks;
@@ -17,16 +18,17 @@ namespace Machines.CentrifugeMachine
         private const int MINTOCOMPLITETASK = 2;
 
         private SubstancesCntrl _substancesCntrl;
+        private SignalBus _signalBus;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
+        public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
         }
 
         public void OnEnterObject()
         {
-            throw new System.NotImplementedException();
+           //throw new System.NotImplementedException();
         }
 
         public void OnStartWork()
@@ -58,7 +60,11 @@ namespace Machines.CentrifugeMachine
 
             if (countCurrentCentrifugeContainer >= MINTOCOMPLITETASK)
             {
-                _tasksCntrl.CheckStartMachineWork(MachinesTypes.CentrifugeMachine);
+                StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+                {
+                    MachinesType = MachinesTypes.CentrifugeMachine
+                };
+                _signalBus.Fire(startMachineWorkSignal);
             }
         }
 
@@ -74,7 +80,14 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+
+                FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+                {
+                    MachinesType = MachinesTypes.CentrifugeMachine,
+                    SubstancePropertyBase = snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>()
+                        .CurrentSubstancesList.Peek().SubstanceProperty
+                };
+                _signalBus.Fire(finishMashineWorkSignal);
             }
         }
     }

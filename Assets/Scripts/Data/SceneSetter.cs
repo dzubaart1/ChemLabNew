@@ -13,10 +13,9 @@ namespace Data
         private SceneState _savedSceneState;
         private TasksCntrl _tasksCntrl;
 
-        public SceneSetter(TasksCntrl tasksCntrl)
+        public SceneSetter()
         {
             _listOfObjects = GameObject.FindGameObjectsWithTag("Serializable").ToList();
-            _tasksCntrl = tasksCntrl;
             _savedSceneState = new SceneState();
             SaveSceneState();
         }

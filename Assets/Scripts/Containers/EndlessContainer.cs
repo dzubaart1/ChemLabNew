@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Installers;
 using Substances;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -11,18 +8,17 @@ namespace Containers
     public class EndlessContainer : TransferSubstanceContainer
     {
         [SerializeField] private SubstancePropertyBase _substanceParams;
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
         
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
         private void Start()
         {
+            _signalBus.Subscribe<CheckTasksSignal>(CheckTasks);
             UpdateDisplaySubstance();
-            _tasksCntrl.Notify += CheckTasks;
-            CheckTasks();
         }
 
         public override bool AddSubstance(SubstanceContainer substance)
@@ -47,12 +43,12 @@ namespace Containers
             return true;
         }
 
-        public void CheckTasks()
+        public void CheckTasks(CheckTasksSignal checkTasksSignal)
         {
-            if (_tasksCntrl.CurrentTask().SubstancesParams is null) return;
-            if (!_substanceParams.SubName.Equals(_tasksCntrl.CurrentTask().SubstancesParams.SubName)) return;
+            if (checkTasksSignal.CurrentTask.SubstancesParams is null) return;
+            if (!_substanceParams.SubName.Equals(checkTasksSignal.CurrentTask.SubstancesParams.SubName)) return;
             
-            var substance = new Substance(_substanceParams, _tasksCntrl.CurrentTask().Weight);
+            var substance = new Substance(_substanceParams, checkTasksSignal.CurrentTask.Weight);
             if (_substanceParams is SubstancePropertySplit substancePropertySplit)
             {
                 var temp = _substancesCntrl.SplitSubstances(substance).ToArray();
