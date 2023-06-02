@@ -66,6 +66,7 @@ namespace Tasks
         }
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
+            Debug.Log(transferSubstanceSignal.From + " " + transferSubstanceSignal.To + " " + transferSubstanceSignal.TranserProperty.SubName);
             if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) ||
                 !CurrentTask().ContainersType.Contains(transferSubstanceSignal.To) ||
                 !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty.SubName))

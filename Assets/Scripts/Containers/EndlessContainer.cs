@@ -48,8 +48,7 @@ namespace Containers
             var substance = new Substance(_substanceParams, checkTasksSignal.CurrentTask.Weight);
             if (_substanceParams is SubstancePropertySplit)
             {
-                var temp = _substancesCntrl.SplitSubstances(substance);
-                UpdateSubstancesArray(temp);
+                _substancesCntrl.SplitSubstances(this);
             }
             AddSubstanceToArray(substance);
             UpdateDisplaySubstance();

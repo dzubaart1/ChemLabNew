@@ -1,3 +1,4 @@
+using System;
 using AnchorCntrls;
 using BNG;
 using Substances;
@@ -37,7 +38,7 @@ namespace Containers
                 _hintCanvasIsOn = false;
                 _hintCanvas.SetActive(_hintCanvasIsOn);
                 return;
-            }*/
+            }#1#
             if (InputBridge.Instance.AButtonDown)
             {
                 _hintCanvasIsOn = !_hintCanvasIsOn;
@@ -46,14 +47,16 @@ namespace Containers
         }*/
         public override bool AddSubstance(Substance substance)
         {
+            Debug.Log(CurrentCountSubstances);
             if (CurrentCountSubstances == 0)
             {
                 _substancesCntrl.AddSubstance(this,substance);
             }
             else
             {
-                _substancesCntrl.AddSubstance(this, _substancesCntrl.MixSubstances(substance, GetNextSubstance()));
+                _substancesCntrl.MixSubstances(this, substance);
             }
+            
             UpdateDisplaySubstance();
             
             /*if (!IsNull(_hintCanvas))

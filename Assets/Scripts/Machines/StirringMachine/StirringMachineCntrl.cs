@@ -59,10 +59,9 @@ namespace Machines
                 return;
             }
             _isStart = true;
-            /*var temp = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek();
-            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
-            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.StirSubstance(temp));
-            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();*/
+            var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
+            _substancesCntrl.StirSubstance(temp);
+            temp.UpdateDisplaySubstance();
 
             StartStirringAnimation();
             StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()

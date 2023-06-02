@@ -45,9 +45,7 @@ namespace Machines.CentrifugeMachine
                 }
                 
                 var subCont = snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
-                var substance = subCont.GetNextSubstance();
-                var temp = _substancesCntrl.SplitSubstances(substance);
-                subCont.UpdateSubstancesArray(temp);
+                _substancesCntrl.SplitSubstances(subCont);
                 subCont.UpdateDisplaySubstance();
 
                 countCurrentCentrifugeContainer++;

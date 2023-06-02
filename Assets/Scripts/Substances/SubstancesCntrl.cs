@@ -12,64 +12,85 @@ namespace Substances
             _substancesParamsCollection = substancesParamsCollection;
         }
         
-        public Substance StirSubstance(Substance substance)
+        public void StirSubstance(SubstanceContainer substanceContainer)
         {
-            var newSubPar = _substancesParamsCollection.GetStirringSubstanceParams(substance.SubstanceProperty);
-            return new Substance(newSubPar, substance.GetWeight());
-        }
-        
-        public Substance DrySubstance(Substance substance)
-        {
-            var newSubPar = _substancesParamsCollection.GetDrySubstanceParams(substance.SubstanceProperty);
-            return new Substance(newSubPar, substance.GetWeight());
-        }
-
-        public Substance MixSubstances(Substance firstSub, Substance secSub)
-        {
-            if (firstSub.SubstanceProperty.SubName.Equals(secSub.SubstanceProperty.SubName))
+            if (substanceContainer.CurrentCountSubstances > 1)
             {
-                return new Substance(firstSub.SubstanceProperty, firstSub.GetWeight() + secSub.GetWeight());
+                return;
             }
 
-            var newSubPar = _substancesParamsCollection.GetMixSubstanceParams(firstSub.SubstanceProperty, secSub.SubstanceProperty);
-            return new Substance(newSubPar, firstSub.GetWeight() + secSub.GetWeight());
+            var temp = substanceContainer.GetNextSubstance();
+            substanceContainer.RemoveSubstanceFromArray(0);
+            var newSubPar = _substancesParamsCollection.GetStirringSubstanceParams(temp.SubstanceProperty);
+            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
         }
         
-        public Substance[] SplitSubstances(Substance substance)
+        public void DrySubstance(SubstanceContainer substanceContainer)
         {
-            var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(substance.SubstanceProperty);
-            if (newSubPar is not SubstancePropertySplit substancePropertySplit) return null;
+            if (substanceContainer.CurrentCountSubstances > 1)
+            {
+                return;
+            }
+
+            var temp = substanceContainer.GetNextSubstance();
+            substanceContainer.RemoveSubstanceFromArray(0);
+            var newSubPar = _substancesParamsCollection.GetDrySubstanceParams(temp.SubstanceProperty);
+            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+        }
+
+        public void MixSubstances(SubstanceContainer substanceContainer, Substance secSub)
+        {
+            if (substanceContainer.CurrentCountSubstances > 1)
+            {
+                return;
+            }
+            
+            var temp = substanceContainer.GetNextSubstance();
+            substanceContainer.RemoveSubstanceFromArray(0);
+            var newSubPar = _substancesParamsCollection.GetMixSubstanceParams(temp.SubstanceProperty, secSub.SubstanceProperty);
+            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            Debug.Log(newSubPar.SubName);
+        }
+        
+        public void SplitSubstances(SubstanceContainer substanceContainer)
+        {
+            if (substanceContainer.CurrentCountSubstances > 1)
+            {
+                return;
+            }
+
+            var temp = substanceContainer.GetNextSubstance();
+            substanceContainer.RemoveSubstanceFromArray(0);
+            var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(temp.SubstanceProperty);
+            if (newSubPar is not SubstancePropertySplit substancePropertySplit) return;
             
             var res = new Substance[MAX_LAYOURS_COUNT];
             if (substancePropertySplit.Sediment is not null)
             {
                 res[0] = new Substance(substancePropertySplit.Sediment,
-                    substance.GetWeight() * substancePropertySplit.GetPartOfSedimentWeight());
+                    temp.GetWeight() * substancePropertySplit.GetPartOfSedimentWeight());
             }
             if (substancePropertySplit.Main is not null)
             {
                 res[1] = new Substance(substancePropertySplit.Main,
-                    substance.GetWeight() * substancePropertySplit.GetPartOfMainWeight());
+                    temp.GetWeight() * substancePropertySplit.GetPartOfMainWeight());
             }
             if (substancePropertySplit.Membrane is not null)
             {
                 res[2] = new Substance(substancePropertySplit.Membrane,
-                    substance.GetWeight() * substancePropertySplit.GetPartOfMembraneWeight());
+                    temp.GetWeight() * substancePropertySplit.GetPartOfMembraneWeight());
             }
 
-            return res;
+            substanceContainer.UpdateSubstancesArray(res);
         }
         
         public void AddSubstance(SubstanceContainer substanceContainer, Substance addingSubstance)
         {
             if (substanceContainer.MaxVolume >= addingSubstance.GetWeight())
             {
-                substanceContainer.AddSubstanceToArray(addingSubstance);
+                substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
             }
-            substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
-            Debug.Log(addingSubstance?.SubstanceProperty.SubName+ " "+(addingSubstance?.GetWeight() ?? 0));
-            Debug.Log("volume: "+ substanceContainer.MaxVolume);
-            Debug.Log("adding weight: " + addingSubstance.GetWeight());
+            substanceContainer.AddSubstanceToArray(addingSubstance);
         }
 
         public void RemoveSubstance(SubstanceContainer fromSubstanceContainer, float removeVolume)

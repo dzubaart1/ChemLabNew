@@ -49,10 +49,10 @@ namespace Machines
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
                 return;
 
-            /*var subCont = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
-            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
-            _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.DrySubstance(temp));
-            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();*/
+            var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
+            _substancesCntrl.DrySubstance(temp);
+            temp.UpdateDisplaySubstance();
+            
             StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
             {
                 MachinesType = MachinesTypes.DryBoxMachine

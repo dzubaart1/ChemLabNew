@@ -16,7 +16,7 @@ namespace Containers
             }
             else
             {
-                _substancesCntrl.AddSubstance(this, _substancesCntrl.MixSubstances(substance, GetNextSubstance()));
+                _substancesCntrl.MixSubstances(this, substance);
             }
             _tabletMachineCntrl.CheckCompliteFill();
             UpdateDisplaySubstance();

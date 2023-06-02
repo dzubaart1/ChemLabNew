@@ -62,14 +62,13 @@ namespace Machines
         }
         public void OnFinishWork()
         {
-            /*_scannerCanvas.SetActive(false);
+            _scannerCanvas.SetActive(false);
             FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().CurrentSubstancesList
-                    .Peek().SubstanceProperty
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().GetNextSubstance().SubstanceProperty
             };
-            _signalBus.Fire(finishMashineWorkSignal);*/
+            _signalBus.Fire(finishMashineWorkSignal);
         }
     }
 }
