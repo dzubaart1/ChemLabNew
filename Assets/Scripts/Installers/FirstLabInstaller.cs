@@ -5,6 +5,7 @@ using Canvases;
 using Data;
 using Substances;
 using Tasks;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using Zenject;
 
@@ -19,6 +20,8 @@ namespace Installers
             Container.DeclareSignal<ShowCanvasSignal>();
             
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
+            rigInst.GetComponentsInChildren<BNGPlayerController>()[0].transform.position = new Vector3(-7, 5, 0f );    
+            rigInst.GetComponentsInChildren<BNGPlayerController>()[0].transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
             Container.Bind<GameObject>().FromInstance(rigInst).AsSingle();
             
             List<Grabber> grabbers = rigInst.GetComponentsInChildren<Grabber>().ToList();

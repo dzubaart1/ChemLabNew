@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: CaCl2
   m_EditorClassIdentifier: 
   SubName: CaCl2
-  Color: {r: 0.7232704, g: 1, b: 0.9944764, a: 0}
-  Components: []
-  Weight: 0
+  Color: {r: 0.7232704, g: 1, b: 0.9944764, a: 1}

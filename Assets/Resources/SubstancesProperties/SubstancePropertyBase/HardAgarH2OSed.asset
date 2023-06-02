@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6d0857d78da89408e391181281f1ac, type: 3}
   m_Name: HardAgarH2OSed
   m_EditorClassIdentifier: 
-  Membrane: {fileID: 0}
-  Sediment: {fileID: 0}
   SubName: HardAgarH20Sed
-  Color: {r: 0.7735849, g: 0.28218818, b: 0.66841537, a: 0}
-  Components: []
-  IsStirring: 0
-  IsDry: 0
+  Color: {r: 0.7735849, g: 0.28218818, b: 0.66841537, a: 0.5882353}

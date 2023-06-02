@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: BadSubstance
   m_EditorClassIdentifier: 
   SubName: Bad Substance
-  Color: {r: 0.6245805, g: 1, b: 0, a: 0}
-  Components: []
-  Weight: 0
+  Color: {r: 0.6245805, g: 1, b: 0, a: 1}

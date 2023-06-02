@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: Agar
   m_EditorClassIdentifier: 
   SubName: Agar
-  Color: {r: 0.96039534, g: 0.9622642, b: 0.4690281, a: 0}
-  Components: []
-  Weight: 0
+  Color: {r: 0.96039534, g: 0.9622642, b: 0.4690281, a: 1}

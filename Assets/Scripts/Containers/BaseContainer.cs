@@ -3,6 +3,7 @@ using BNG;
 using Cups;
 using Substances;
 using UnityEngine;
+using Zenject;
 
 
 namespace Containers
@@ -17,6 +18,13 @@ namespace Containers
         public ContainersTypes ContainerType;
         public bool IsAbleToWeight;
 
+        public GameObject _XRrig;
+
+        [Inject]
+        public void Construct(GameObject rigInst)
+        {
+            _XRrig = rigInst;
+        }
         public void Awake()
         {
             CurrentSubstancesList = new Stack<Substance>();
@@ -50,12 +58,31 @@ namespace Containers
         
         public void PrintStack()
         {
+            Debug.Log(GetStringStack());
+        }
+
+        public string GetStringStack()
+        {
             string s = "";
             foreach (var VARIABLE in CurrentSubstancesList)
             {
-                s += (VARIABLE.SubstanceProperty.SubName + " ");
+                s += (VARIABLE.SubstanceProperty.SubName + ", ");
             }
-            Debug.Log(s);
+            s = s.Remove(s.Length - 2);
+            return s;
+        }
+        
+        public static bool IsNull<T>(T myObject, string message = "") where T : class
+        {
+            switch (myObject)
+            {
+                case UnityEngine.Object obj when !obj:
+                    return true;
+                case null:
+                    return true;
+                default:
+                    return false;
+            }
         }
     }
 }

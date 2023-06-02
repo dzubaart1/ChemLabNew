@@ -25,13 +25,19 @@ namespace Substances
 
         public Substance MixSubstances(Substance firstSub, Substance secSub)
         {
+            if (firstSub.SubstanceProperty.SubName.Equals(secSub.SubstanceProperty.SubName))
+            {
+                return new Substance(firstSub.SubstanceProperty, firstSub.GetWeight() + secSub.GetWeight());
+            }
+
             var newSubPar = _substancesParamsCollection.GetMixSubstanceParams(firstSub.SubstanceProperty, secSub.SubstanceProperty);
             return new Substance(newSubPar, firstSub.GetWeight() + secSub.GetWeight());
         }
         
         public Stack<Substance> SplitSubstances(Substance substance)
         {
-            if (substance.SubstanceProperty is not SubstancePropertySplit substancePropertySplit) return null;
+            var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(substance.SubstanceProperty);
+            if (newSubPar is not SubstancePropertySplit substancePropertySplit) return null;
             
             var res = new Stack<Substance>();
             if (substancePropertySplit.Sediment is not null)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Na2HPO4Agar
   m_EditorClassIdentifier: 
   SubName: Na2HPO4Agar
-  Color: {r: 0.8, g: 0.7529412, b: 0.654902, a: 0}
+  Color: {r: 0.8, g: 0.7529412, b: 0.654902, a: 0.7294118}
   SubstancePropertyBases:
   - {fileID: 11400000, guid: ddf82de018c606c4da3483ac51a3adc7, type: 2}
   - {fileID: 11400000, guid: fde453cb3fdf2e646b0d660cbe61ca9b, type: 2}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BNG;
 using Substances;
@@ -10,7 +11,7 @@ namespace Containers
     public class TransferSubstanceContainer : SubstanceContainer
     {
         private bool _isAgain;
-        private Grabber _leftGrabber, _rightGrabber;
+        protected Grabber _leftGrabber, _rightGrabber;
         protected TasksCntrl _tasksCntrl;
         
         [Inject]
@@ -29,6 +30,9 @@ namespace Containers
             }
             _tasksCntrl = tasksCntrl;
         }
+        
+        
+
         private void OnTriggerStay(Collider other)
         {
             if (_isAgain)

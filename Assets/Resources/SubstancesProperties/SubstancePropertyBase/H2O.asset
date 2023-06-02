@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: H2O
   m_EditorClassIdentifier: 
   SubName: H2O
-  Color: {r: 0, g: 0.74659276, b: 1, a: 0.43137255}
-  Components: []
-  Weight: 0
+  Color: {r: 0.627451, g: 0.7176471, b: 0.8666667, a: 0.43137255}

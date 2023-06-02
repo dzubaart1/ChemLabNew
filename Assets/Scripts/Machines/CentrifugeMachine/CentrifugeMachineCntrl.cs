@@ -45,7 +45,6 @@ namespace Machines.CentrifugeMachine
                 
                 //add split substance
                 var substance = snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Pop();
-                
                 var temp = _substancesCntrl.SplitSubstances(substance).ToArray();
                 for (int i = temp.Length-1; i >= 0; i--)
                 {
@@ -74,6 +73,7 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
+                Debug.Log("!!!!!"+snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName);
                 _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
             }
         }
