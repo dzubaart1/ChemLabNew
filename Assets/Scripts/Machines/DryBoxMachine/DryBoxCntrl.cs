@@ -3,6 +3,7 @@ using UnityEngine;
 using Zenject;
 using Containers;
 using BNG;
+using Installers;
 using Substances;
 
 namespace Machines
@@ -15,10 +16,11 @@ namespace Machines
         private bool _isStart;
 
         private SubstancesCntrl _substancesCntrl;
+        private SignalBus _signalBus;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
+        public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
         
         private void Update()
@@ -54,11 +56,21 @@ namespace Machines
             _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
             _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.DrySubstance(temp));
             _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
-            _tasksCntrl.CheckStartMachineWork(MachinesTypes.DryBoxMachine);
+            StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.DryBoxMachine
+            };
+            _signalBus.Fire(startMachineWorkSignal);
         }
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.DryBoxMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            {
+                MachinesType = MachinesTypes.DryBoxMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>()
+                    .CurrentSubstancesList.Peek().SubstanceProperty
+            };
+            _signalBus.Fire(finishMashineWorkSignal); 
         }
     }
 }

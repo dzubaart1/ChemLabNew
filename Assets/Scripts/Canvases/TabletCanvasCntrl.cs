@@ -1,4 +1,5 @@
 using Data;
+using Installers;
 using Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,29 +11,29 @@ namespace Canvases
     {
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
-
-        private TasksCntrl _tasksCntrl;
-        private SceneSetter _sceneSetter;
-        public void Start()
+        
+        //private SceneSetter _sceneSetter;
+        private SignalBus _signalBus;
+        private void Start()
         {
-            UpdateText();
-            _tasksCntrl.Notify += UpdateText;
+            _signalBus.Subscribe<CheckTasksSignal>(UpdateText);
         }
         
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl, SceneSetter sceneSetter)
+        //public void Construct(SignalBus signalBus, SceneSetter sceneSetter)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
-            _sceneSetter = sceneSetter;
+            _signalBus = signalBus; 
+            //_sceneSetter = sceneSetter;
         }
 
-        private void UpdateText()
+        private void UpdateText(CheckTasksSignal checkTasksSignal)
         {
-            _taskTitle.text = _tasksCntrl.CurrentTask().Title;
-            _taskNumber.text = "Задание " + _tasksCntrl.CurrentTask().Id;
+            _taskTitle.text = checkTasksSignal.CurrentTask.Title;
+            _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Id;
         }
 
-        public void SaveSceneState()
+        /*public void SaveSceneState()
         {
             _sceneSetter.SaveSceneState();
         }
@@ -40,6 +41,6 @@ namespace Canvases
         public void LoadSceneState()
         {
             _sceneSetter.GetSavedSceneState();
-        }
+        }*/
     }
 }

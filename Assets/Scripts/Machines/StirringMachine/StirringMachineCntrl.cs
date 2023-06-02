@@ -1,5 +1,6 @@
 using BNG;
 using Containers;
+using Installers;
 using Interfaces;
 using Substances;
 using Tasks;
@@ -16,10 +17,11 @@ namespace Machines
         public bool _isStart;
 
         private SubstancesCntrl _substancesCntrl;
+        private SignalBus _signalBus;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
+        public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
         }
 
@@ -41,8 +43,12 @@ namespace Machines
 
         public void OnEnterObject()
         {
-            _tasksCntrl.CheckEnteringIntoMachine(MachinesTypes.StirringMachine,
-                _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType);
+            EnterIntoMachineSignal enterIntoMachineSignal = new EnterIntoMachineSignal()
+            {
+                ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
+                MachinesType = MachinesTypes.StirringMachine
+            };
+            _signalBus.Fire(enterIntoMachineSignal);
             _isEnter = true;
         }
         
@@ -59,7 +65,11 @@ namespace Machines
             _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
 
             StartStirringAnimation();
-            _tasksCntrl.CheckStartMachineWork(MachinesTypes.StirringMachine);
+            StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.StirringMachine
+            };
+            _signalBus.Fire(startMachineWorkSignal);
         }
         public void OnFinishWork()
         {
@@ -69,8 +79,13 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            Debug.Log("1" + _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName);
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.StirringMachine, _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            {
+                MachinesType = MachinesTypes.StirringMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>()
+                    .CurrentSubstancesList.Peek().SubstanceProperty
+            };
+            _signalBus.Fire(finishMashineWorkSignal);
         }
 
         private void StartStirringAnimation()

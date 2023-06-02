@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Cups;
+using Installers;
 using Tasks;
 using UnityEngine;
 using Zenject;
@@ -12,17 +13,16 @@ namespace Machines
         private Transform _spawnPoint;
     
         private Stack<GameObject> thrownObjects;
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
 
         public void Start()
         {
             thrownObjects = new Stack<GameObject>();
         }
-
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
         private void OnCollisionEnter(Collision collision)
         {
@@ -35,7 +35,11 @@ namespace Machines
             gameObj.SetActive(false);
             if (gameObj.GetComponent<DozatorCup>() is not null && gameObj.GetComponent<DozatorCup>().IsDirty)
             {
-                _tasksCntrl.CheckStartMachineWork(MachinesTypes.TrashMachine);
+                StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+                {
+                    MachinesType = MachinesTypes.TrashMachine
+                };
+                _signalBus.Fire(startMachineWorkSignal);
             }
         }
 

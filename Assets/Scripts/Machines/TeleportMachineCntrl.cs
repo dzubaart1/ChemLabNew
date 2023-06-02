@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using BNG;
-using Tasks;
+using Installers;
 using UnityEngine;
 using Zenject;
 
@@ -13,12 +13,12 @@ namespace Machines
         [SerializeField]
         private List<ParticleSystem> ParticleSystems;
 
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
     
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
     
         public void OnEnter()
@@ -29,7 +29,11 @@ namespace Machines
             }
             _snapZone.HeldItem.gameObject.SetActive(false);
             _snapZone.HeldItem = null;
-            _tasksCntrl.CheckStartMachineWork(MachinesTypes.TeleportMachine);
+            var startMachineWorkSignal = new StartMachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.TeleportMachine
+            };
+            _signalBus.Fire(startMachineWorkSignal);
         } 
     }
 }

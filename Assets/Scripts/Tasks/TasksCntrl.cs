@@ -11,18 +11,20 @@ using Zenject;
 
 namespace Tasks
 {
-    public class TasksCntrl
+    public class TasksCntrl : MonoBehaviour
     {
         private List<TaskParams> _tasksParamsList;
         private int _taskCurrentId;
-
         private SignalBus _signalBus;
-        public TasksCntrl()
+        private void Start()
         {
             _tasksParamsList = new List<TaskParams>();
             _tasksParamsList = Resources.LoadAll<TaskParams>("Tasks/").ToList();
             _tasksParamsList.Sort(CompareToTaskParams);
             _taskCurrentId = 0;
+            
+            _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
+            _signalBus.Fire<CheckTasksSignal>();
         }
         
         [Inject]
@@ -30,8 +32,6 @@ namespace Tasks
         {
             _signalBus = signalBus;
         }
-        public delegate void TaskUpdateHandler();
-        public event TaskUpdateHandler? Notify;
         private int CompareToTaskParams(TaskParams t1, TaskParams t2)
         {
             if (t1.Id > t2.Id)
@@ -54,7 +54,7 @@ namespace Tasks
         {
             if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
             _taskCurrentId++;
-            Notify?.Invoke();
+            _signalBus.Fire<CheckTasksSignal>();
         }
         public TaskParams CurrentTask()
         {
@@ -63,16 +63,14 @@ namespace Tasks
         public void SetCurrentTaskId(int taskId)
         {
             _taskCurrentId = taskId;
-            Notify?.Invoke();
         }
-        public void CheckTransferSubstance(BaseContainer firstContainer, BaseContainer secondContainer, SubstancePropertyBase substanceProperty)
+        public void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
-            if (!CurrentTask().ContainersType.Contains(firstContainer.ContainerType) ||
-                !CurrentTask().ContainersType.Contains(secondContainer.ContainerType)
-                /*!secondContainer.CurrentSubstancesList.Peek().SubstanceProperty.SubName
-                    .Equals(substanceProperty.SubName)*/)
+            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) ||
+                !CurrentTask().ContainersType.Contains(transferSubstanceSignal.To) ||
+                !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty))
             {
-                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
                 return;
             }
             Debug.Log($"{CurrentTask().Id} is done");
@@ -83,7 +81,7 @@ namespace Tasks
             if (!CurrentTask().MachinesType.Equals(machinesType) ||
                 !CurrentTask().ContainersType.Contains(enteringContainer))
             {
-                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
                 return;
             }
             Debug.Log($"{CurrentTask().Id} is done");
@@ -93,7 +91,7 @@ namespace Tasks
         {
             if (!CurrentTask().MachinesType.Equals(machinesType))
             {
-                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
                 return;
             }
             Debug.Log($"{CurrentTask().Id} is done");
@@ -101,10 +99,10 @@ namespace Tasks
         }
         public void CheckFinishMachineWork(MachinesTypes machinesType, SubstancePropertyBase substance)
         {
-            if (!CurrentTask().MachinesType.Equals(machinesType)
-                || !CurrentTask().ResultSubstance.Equals(substance))
+            if (!CurrentTask().MachinesType.Equals(machinesType) ||
+                !CurrentTask().ResultSubstance.Equals(substance))
             {
-                //_signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
                 return;
             }
             Debug.Log($"{CurrentTask().Id} is done");

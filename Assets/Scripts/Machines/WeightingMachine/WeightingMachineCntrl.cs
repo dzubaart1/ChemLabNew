@@ -1,6 +1,7 @@
 using System.Globalization;
 using BNG;
 using Containers;
+using Installers;
 using Interfaces;
 using Tasks;
 using UnityEngine;
@@ -16,13 +17,13 @@ namespace Machines
         [SerializeField]
         private SnapZone _snapZone;
 
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
         private bool _isEnter, _hasObject;
         private float _currentWeight;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
         private void Awake()
         {
@@ -59,8 +60,12 @@ namespace Machines
         
         public void OnEnterObject()
         {
-            _tasksCntrl.CheckEnteringIntoMachine(MachinesTypes.WeightingMachine,
-                _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType);
+            EnterIntoMachineSignal enterIntoMachineSignal = new EnterIntoMachineSignal()
+            {
+                MachinesType = MachinesTypes.WeightingMachine,
+                ContainersType = _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType
+            };
+            _signalBus.Fire(enterIntoMachineSignal);
             _isEnter = true;
         }
         
@@ -73,8 +78,6 @@ namespace Machines
         
         public void OnStartWork()
         {
-            _snapZone.HeldItem.GetComponent<BaseContainer>().PrintStack();
-            Debug.Log(_snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().GetWeight());
             _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
             OnFinishWork();
@@ -82,7 +85,13 @@ namespace Machines
 
         public void OnFinishWork()
         {
-            _tasksCntrl.CheckFinishMachineWork(MachinesTypes.WeightingMachine, _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            {
+                MachinesType = MachinesTypes.WeightingMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek()
+                    .SubstanceProperty
+            };
+            _signalBus.Fire(finishMashineWorkSignal);
         }
     }
 }

@@ -5,29 +5,34 @@ using UnityEngine;
 using Zenject;
 using Cups;
 using BNG;
+using Installers;
 
 namespace Machines
 {
     public class ExpTabletMachineCntrl: MonoBehaviour
     {
         public List<ExpTabletLunkaContainer> _lunkaContainers;
-
-        private TasksCntrl _tasksCntrl;
+        
         [SerializeField]
         protected BaseCup _cup;
         [SerializeField]
         protected SnapZone _snapZone;
 
+        private SignalBus _signalBus;
+        private TaskParams _currentTaskParams;
+
         public void Awake()
         {
             _snapZone.OnlyAllowNames.Clear();
             _snapZone.OnlyAllowNames.Add(_cup.name);
+            
+            _signalBus.Subscribe<CheckTasksSignal>(CheckTasks);
         }
 
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl)
+        public void Construct(SignalBus signalBus)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
         }
 
         public void CheckCompliteFill()
@@ -39,12 +44,17 @@ namespace Machines
                     return;
                 }
                 if (!container.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName
-                        .Equals(_tasksCntrl.CurrentTask().ResultSubstance.SubName))
+                        .Equals(_currentTaskParams.ResultSubstance.SubName))
                 {
                     return;
                 }
             }
-            _tasksCntrl.CheckStartMachineWork(MachinesTypes.ExpTabletMachine);
+            _signalBus.Fire(new StartMachineWorkSignal(){MachinesType =  MachinesTypes.ExpTabletMachine});
+        }
+
+        public void CheckTasks(CheckTasksSignal checkTasksSignal)
+        {
+            _currentTaskParams = checkTasksSignal.CurrentTask;
         }
         public virtual bool IsEnable()
         {
