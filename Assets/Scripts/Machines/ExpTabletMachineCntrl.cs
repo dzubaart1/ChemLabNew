@@ -6,6 +6,7 @@ using Zenject;
 using Cups;
 using BNG;
 using Installers;
+using Substances;
 
 namespace Machines
 {
@@ -39,11 +40,11 @@ namespace Machines
         {
             foreach (var container in _lunkaContainers)
             {
-                if (container.GetComponent<BaseContainer>().CurrentSubstancesList.Count == 0)
+                if (container.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
                 {
                     return;
                 }
-                if (!container.GetComponent<BaseContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName
+                if (!container.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty.SubName
                         .Equals(_currentTaskParams.ResultSubstance.SubName))
                 {
                     return;

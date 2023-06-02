@@ -2,6 +2,8 @@ namespace Canvases
 {
     public enum CanvasId
     {
-        EndGame
+        EndGameCanvas,
+        TabletCanvas,
+        StartGameCanvas
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: Na2HPO4AgarH20
   Color: {r: 0.6039216, g: 0.5372549, b: 0.7529412, a: 0.45882353}
+  SubstanceLayer: 1
   SubstancePropertyBases:
   - {fileID: 11400000, guid: f4541fe9b27440c4bbebe329c0440380, type: 2}
   - {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}

@@ -1,3 +1,4 @@
+using Cups;
 using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
@@ -13,45 +14,22 @@ namespace Containers
 
         public void UpdateDisplaySubstance()
         {
-            
-            if (CurrentSubstancesList.Count == 0)
-            {
-                TogglePrefab(_mainSubPrefab, null);
-                TogglePrefab(_sedimentPrefab, null);
-                TogglePrefab(_membranePrefab, null);
-                return;
-            }
-
-            UpdateParticleSystem(CurrentSubstancesList.Peek().SubstanceProperty);
-            
-            if (CurrentSubstancesList.Count == 1)
-            {
-                TogglePrefab(_mainSubPrefab, CurrentSubstancesList.Peek().SubstanceProperty);
-                TogglePrefab(_sedimentPrefab, null);
-                TogglePrefab(_membranePrefab, null);
-                return;
-            }
-            
-            
-            int i = 0;
-            foreach (var substance in CurrentSubstancesList)
+            for (int i = 0; i < MAX_LAYOURS_COUNT; i++)
             {
                 switch (i)
                 {
-                    case 1:
-                        TogglePrefab(_sedimentPrefab, substance.SubstanceProperty);
-                        break;
                     case 0:
-                        TogglePrefab(_mainSubPrefab, substance.SubstanceProperty);
+                        TogglePrefab(_sedimentPrefab, CurrentSubstances[i]?.SubstanceProperty);
                         break;
-                    /*case 0:
-                        TogglePrefab(_membranePrefab, substance.SubstanceProperty);
-                        break;*/
+                    case 1:
+                        TogglePrefab(_mainSubPrefab, CurrentSubstances[i]?.SubstanceProperty);
+                        break;
+                    case 2:
+                        TogglePrefab(_membranePrefab, CurrentSubstances[i]?.SubstanceProperty);
+                        break;
                 }
-
-                i++;
             }
-            PrintStack();
+            //UpdateParticleSystem(CurrentSubstancesList.Peek().SubstanceProperty);
         }
         
         public void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)
@@ -69,7 +47,7 @@ namespace Containers
             prefab.GetComponent<MeshRenderer>().material.color = substanceParams.Color;
         }
 
-        public void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
+        /*public void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
         {
             if (IsNull(_particleSystem))
             {
@@ -84,6 +62,6 @@ namespace Containers
             _particleSystem.SetActive(true);
             Material _newMat = _particleSystem.GetComponent<Renderer>().material;
             _newMat.SetColor("_EmissionColor", substanceParams.Color);
-        }
+        }*/
     }
 }

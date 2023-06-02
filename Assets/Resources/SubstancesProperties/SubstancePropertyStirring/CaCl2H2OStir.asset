@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: CaCl2H2O
   Color: {r: 1, g: 1, b: 1, a: 0.2}
+  SubstanceLayer: 1

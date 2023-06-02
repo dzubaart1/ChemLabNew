@@ -1,9 +1,10 @@
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace Substances
 {
     public class SubstancesCntrl
     {
+        public const int MAX_LAYOURS_COUNT = 3;
         private SubstancesParamsCollection _substancesParamsCollection;
         
         public SubstancesCntrl(SubstancesParamsCollection substancesParamsCollection)
@@ -34,46 +35,54 @@ namespace Substances
             return new Substance(newSubPar, firstSub.GetWeight() + secSub.GetWeight());
         }
         
-        public Stack<Substance> SplitSubstances(Substance substance)
+        public Substance[] SplitSubstances(Substance substance)
         {
             var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(substance.SubstanceProperty);
             if (newSubPar is not SubstancePropertySplit substancePropertySplit) return null;
             
-            var res = new Stack<Substance>();
+            var res = new Substance[MAX_LAYOURS_COUNT];
             if (substancePropertySplit.Sediment is not null)
             {
-                res.Push(new Substance(substancePropertySplit.Sediment, substance.GetWeight()*substancePropertySplit.GetPartOfSedimentWeight()));
+                res[0] = new Substance(substancePropertySplit.Sediment,
+                    substance.GetWeight() * substancePropertySplit.GetPartOfSedimentWeight());
             }
             if (substancePropertySplit.Main is not null)
             {
-                res.Push(new Substance(substancePropertySplit.Main, substance.GetWeight()*substancePropertySplit.GetPartOfMainWeight()));
+                res[1] = new Substance(substancePropertySplit.Main,
+                    substance.GetWeight() * substancePropertySplit.GetPartOfMainWeight());
             }
             if (substancePropertySplit.Membrane is not null)
             {
-                res.Push(new Substance(substancePropertySplit.Membrane, substance.GetWeight()*substancePropertySplit.GetPartOfMembraneWeight()));
+                res[2] = new Substance(substancePropertySplit.Membrane,
+                    substance.GetWeight() * substancePropertySplit.GetPartOfMembraneWeight());
             }
 
             return res;
         }
         
-        public Substance AddSubstance(Substance addingSubstance, float maxVolume)
+        public void AddSubstance(SubstanceContainer substanceContainer, Substance addingSubstance)
         {
-            if (maxVolume >= addingSubstance.GetWeight())
+            if (substanceContainer.MaxVolume >= addingSubstance.GetWeight())
             {
-                return addingSubstance;
+                substanceContainer.AddSubstanceToArray(addingSubstance);
             }
-
-            return new Substance(addingSubstance.SubstanceProperty, maxVolume);
+            substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
+            Debug.Log(addingSubstance?.SubstanceProperty.SubName+ " "+(addingSubstance?.GetWeight() ?? 0));
+            Debug.Log("volume: "+ substanceContainer.MaxVolume);
+            Debug.Log("adding weight: " + addingSubstance.GetWeight());
         }
 
-        public Substance RemoveSubstance(Substance removingSubstance, float maxVolume)
+        public void RemoveSubstance(SubstanceContainer fromSubstanceContainer, float removeVolume)
         {
-            if (maxVolume >= removingSubstance.GetWeight())
+            var temp = fromSubstanceContainer.GetNextSubstance();
+            Debug.Log(temp?.SubstanceProperty.SubName+ " "+(temp?.GetWeight() ?? 0));
+            if (removeVolume >= temp.GetWeight())
             {
-                return null;
+                fromSubstanceContainer.RemoveSubstanceFromArray((int)temp.SubstanceProperty.SubstanceLayer);
+                return;
             }
-            removingSubstance.RemoveWeight(maxVolume);
-            return new Substance(removingSubstance.SubstanceProperty,removingSubstance.GetWeight());
+            
+            temp.RemoveWeight(removeVolume);
         }
     }
 }

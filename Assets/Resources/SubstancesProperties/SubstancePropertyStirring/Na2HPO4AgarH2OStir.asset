@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: Na2HPO4AgarH20
   Color: {r: 0.8784314, g: 0.85882354, b: 0.9254902, a: 0.45882353}
+  SubstanceLayer: 1

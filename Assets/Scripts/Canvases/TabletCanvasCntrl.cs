@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Canvases
 {
-    public class TabletCanvasCntrl : MonoBehaviour
+    public class TabletCanvasCntrl : CanvasBase
     {
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;

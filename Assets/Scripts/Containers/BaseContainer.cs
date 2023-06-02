@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BNG;
 using Cups;
+using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
 using Zenject;
@@ -10,24 +11,19 @@ namespace Containers
 {
     public class BaseContainer : MonoBehaviour
     {
-        public Stack<Substance> CurrentSubstancesList;
+        [ItemCanBeNull] public Substance[] CurrentSubstances;
         public float MaxVolume = 9000;
-        [SerializeField] protected List<BaseCup> _cupsList;
-        [SerializeField] protected SnapZone _snapZone;
-        
+        public const int MAX_LAYOURS_COUNT = 3;
+
         public ContainersTypes ContainerType;
         public bool IsAbleToWeight;
 
-        public GameObject _XRrig;
-
-        [Inject]
-        public void Construct(GameObject rigInst)
-        {
-            _XRrig = rigInst;
-        }
+        [SerializeField] protected List<BaseCup> _cupsList;
+        [SerializeField] protected SnapZone _snapZone;
+        
         public void Awake()
         {
-            CurrentSubstancesList = new Stack<Substance>();
+            CurrentSubstances = new Substance[MAX_LAYOURS_COUNT];
             if (_cupsList.Count == 0)
             {
                 return;
@@ -48,30 +44,13 @@ namespace Containers
         public float GetWeight()
         {
             float sumWeight = 0;
-            foreach (var substance in CurrentSubstancesList)
+            foreach (var substance in CurrentSubstances)
             {
-                sumWeight += substance.GetWeight();
+                sumWeight += substance?.GetWeight() ?? 0;
             }
 
             return sumWeight;
         }
-        
-        public void PrintStack()
-        {
-            Debug.Log(GetStringStack());
-        }
-
-        public string GetStringStack()
-        {
-            string s = "";
-            foreach (var VARIABLE in CurrentSubstancesList)
-            {
-                s += (VARIABLE.SubstanceProperty.SubName + ", ");
-            }
-            s = s.Remove(s.Length - 2);
-            return s;
-        }
-        
         public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
             switch (myObject)

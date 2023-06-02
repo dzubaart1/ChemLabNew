@@ -37,6 +37,7 @@ namespace Machines.DozatorMachine
         public string GetDoze()
         {
             _baseContainer.MaxVolume = _currentDoze;
+            _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine});
             return _currentDoze.ToString(CultureInfo.InvariantCulture);
         }
     }

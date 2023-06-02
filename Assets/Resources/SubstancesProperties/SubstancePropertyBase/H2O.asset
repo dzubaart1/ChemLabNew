@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: H2O
   Color: {r: 0.627451, g: 0.7176471, b: 0.8666667, a: 0.43137255}
+  SubstanceLayer: 1

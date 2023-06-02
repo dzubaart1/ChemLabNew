@@ -7,17 +7,14 @@ namespace Containers
 {
     public class DozatorMachineContainer : TransferSubstanceContainer
     {
-        public override bool AddSubstance(SubstanceContainer substanceContainer)
+        public override bool AddSubstance(Substance substance)
         {
-            if (substanceContainer.CurrentSubstancesList.Count == 0 || !IsEnable())
+            if (substance is null || !IsEnable())
             {
                 return false;
             }
             
-            var temp = substanceContainer.CurrentSubstancesList.Peek();
-            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);
-            Debug.Log(MaxVolume + " " + temp.GetWeight().ToString(CultureInfo.InvariantCulture));
-            CurrentSubstancesList.Push(addingRes);
+            _substancesCntrl.AddSubstance(this, substance);
             _snapZone.HeldItem.GetComponent<DozatorCup>().IsDirty = true;
             UpdateDisplaySubstance();
             return true;

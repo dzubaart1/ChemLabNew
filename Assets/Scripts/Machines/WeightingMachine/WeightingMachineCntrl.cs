@@ -3,6 +3,7 @@ using BNG;
 using Containers;
 using Installers;
 using Interfaces;
+using Substances;
 using Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,7 +46,7 @@ namespace Machines
                 OnEnterObject();
             }
 
-            if (_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Count == 0)
+            if (_snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
             {
                 ResetValues();
                 return;
@@ -88,7 +89,7 @@ namespace Machines
             FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().CurrentSubstancesList.Peek()
+                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<SubstanceContainer>().GetNextSubstance()
                     .SubstanceProperty
             };
             _signalBus.Fire(finishMashineWorkSignal);

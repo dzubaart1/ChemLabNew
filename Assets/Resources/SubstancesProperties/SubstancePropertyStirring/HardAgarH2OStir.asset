@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: HardAgarH2O
   Color: {r: 0.9529412, g: 0.92941177, b: 0.8784314, a: 0.45882353}
+  SubstanceLayer: 1

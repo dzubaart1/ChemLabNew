@@ -16,7 +16,7 @@ namespace Containers
         private ChemicGlassCanvasCntrl _cgCanvasCntrl;
         private bool _hintCanvasIsOn = false;
 
-        private void Start()
+        /*private void Start()
         {
             if (!IsNull(_hintCanvas))
                 _hintCanvas.SetActive(false);
@@ -27,8 +27,8 @@ namespace Containers
             }
             _cgCanvasCntrl = gameObject.GetComponentsInChildren<ChemicGlassCanvasCntrl>()[0].GetComponent<ChemicGlassCanvasCntrl>();
             _cgCanvasCntrl.target = _XRrig.GetComponentsInChildren<BNGPlayerController>()[0].transform;
-        }
-        private void Update()
+        }*/
+        /*private void Update()
         {
             if (IsNull(_hintCanvas))
                 return;
@@ -43,29 +43,23 @@ namespace Containers
                 _hintCanvasIsOn = !_hintCanvasIsOn;
             }
             _hintCanvas.SetActive(_hintCanvasIsOn);
-        }
-        public override bool AddSubstance(SubstanceContainer substanceContainer)
+        }*/
+        public override bool AddSubstance(Substance substance)
         {
-            if (CurrentSubstancesList.Count > 1)
+            if (CurrentCountSubstances == 0)
             {
-                return false;
+                _substancesCntrl.AddSubstance(this,substance);
             }
-            
-            var temp = substanceContainer.CurrentSubstancesList.Peek();
-            
-            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);;
-            if(CurrentSubstancesList.Count == 1)
+            else
             {
-                addingRes = _substancesCntrl.MixSubstances(substanceContainer.CurrentSubstancesList.Peek(), CurrentSubstancesList.Pop());
+                _substancesCntrl.AddSubstance(this, _substancesCntrl.MixSubstances(substance, GetNextSubstance()));
             }
-            
-            CurrentSubstancesList.Push(addingRes);
             UpdateDisplaySubstance();
             
-            if (!IsNull(_hintCanvas))
+            /*if (!IsNull(_hintCanvas))
             {
                 _hintCanvas.GetComponentsInChildren<Text>()[0].text = GetStringStack();
-            }
+            }*/
             return true;
         }
         

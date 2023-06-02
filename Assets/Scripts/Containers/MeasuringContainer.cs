@@ -5,16 +5,14 @@ namespace Containers
 {
     public class MeasuringContainer : TransferSubstanceContainer
     {
-        public override bool AddSubstance(SubstanceContainer substanceContainer)
+        public override bool AddSubstance(Substance substance)
         {
-            if (CurrentSubstancesList.Count > 0 || substanceContainer.CurrentSubstancesList.Count == 0)
+            if (CurrentCountSubstances > 0 || substance is null)
             {
                 return false;
             }
-            var temp = substanceContainer.CurrentSubstancesList.Peek();
-            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);
-            _mainSubPrefab.transform.localScale = new Vector3(1, 1, temp.GetWeight() / 10);
-            CurrentSubstancesList.Push(addingRes);
+            _substancesCntrl.AddSubstance(this,substance);
+            _mainSubPrefab.transform.localScale = new Vector3(1, 1, GetNextSubstance().GetWeight() / 10);
             UpdateDisplaySubstance();
             return true;
         }

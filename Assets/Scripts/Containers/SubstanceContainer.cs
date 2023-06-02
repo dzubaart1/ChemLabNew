@@ -1,11 +1,12 @@
 using Containers;
-using UnityEngine;
+using JetBrains.Annotations;
 using Zenject;
 
 namespace Substances
 {
     public class SubstanceContainer : DisplaySubstance
     {
+        public int CurrentCountSubstances;
         protected SubstancesCntrl _substancesCntrl;
 
         [Inject]
@@ -13,38 +14,67 @@ namespace Substances
         {
             _substancesCntrl = substancesCntrl;
         }
-        
-        public virtual bool AddSubstance(SubstanceContainer substanceContainer)
+
+        public void AddSubstanceToArray(Substance substance)
         {
-            if (CurrentSubstancesList.Count > 0 || substanceContainer.CurrentSubstancesList.Count == 0)
+            CurrentSubstances[(int)substance.SubstanceProperty.SubstanceLayer] = substance;
+            CurrentCountSubstances++;
+        }
+
+        public void RemoveSubstanceFromArray(int index)
+        {
+            CurrentSubstances[index] = null;
+            CurrentCountSubstances--;
+        }
+        
+        public virtual bool AddSubstance(Substance substance)
+        {
+            if (CurrentCountSubstances > 0 || substance is null)
             {
                 return false;
             }
             
-            var temp = substanceContainer.CurrentSubstancesList.Peek();
-            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);
-            CurrentSubstancesList.Push(addingRes);
+            _substancesCntrl.AddSubstance(this, substance);
             UpdateDisplaySubstance();
             return true;
         }
 
         public virtual bool RemoveSubstance(float targetVolume)
         {
-            if (CurrentSubstancesList.Count == 0)
+            if (CurrentCountSubstances == 0)
             {
                 return false;
             }
-            var temp = CurrentSubstancesList.Peek();
-            CurrentSubstancesList.Pop();
-            var removingRes = _substancesCntrl.RemoveSubstance(temp, targetVolume);
-            if (removingRes is not null)
-            {
-                CurrentSubstancesList.Push(removingRes);
-            }
-
+            _substancesCntrl.RemoveSubstance(this, targetVolume);
             UpdateDisplaySubstance();
+
             return true;
         }
         
+        [CanBeNull]
+        public Substance GetNextSubstance()
+        {
+            for (int i = MAX_LAYOURS_COUNT-1; i >= 0; i--)
+            {
+                if (CurrentSubstances[i] != null)
+                {
+                    return CurrentSubstances[i];
+                }
+            }
+            return null;
+        }
+
+        public void UpdateSubstancesArray(Substance[] substances)
+        {
+            substances.CopyTo(CurrentSubstances, 0);
+            CurrentCountSubstances = 0;
+            for (int i = 0; i < substances.Length; i++)
+            {
+                if (substances[i] != null)
+                {
+                    CurrentCountSubstances++;
+                }
+            }
+        }
     }
 }

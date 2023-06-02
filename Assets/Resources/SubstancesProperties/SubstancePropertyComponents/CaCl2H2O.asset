@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: CaCl2H2O
   Color: {r: 0.5176471, g: 0.8039216, b: 1, a: 0.6156863}
+  SubstanceLayer: 1
   SubstancePropertyBases:
   - {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
   - {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}

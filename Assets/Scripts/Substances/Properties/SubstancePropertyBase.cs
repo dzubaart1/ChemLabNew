@@ -6,5 +6,6 @@ namespace Substances
     {
         public string SubName;
         public Color Color;
+        public SubstanceLayer SubstanceLayer;
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: HardAgar
   Color: {r: 0.78039217, g: 1, b: 0.9411765, a: 0.45882353}
+  SubstanceLayer: 1
   SubstancePropertyBases:
   - {fileID: 11400000, guid: 3d9a23141ab7f724b9098dc53f295bbb, type: 2}
   - {fileID: 11400000, guid: 1bf8b2f9ae18ede4da0334cebce735ed, type: 2}

@@ -19,12 +19,13 @@ namespace Installers
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-            Container.DeclareSignal<ShowCanvasSignal>();
+            Container.DeclareSignal<ToggleCanvasSignal>();
             Container.DeclareSignal<CheckTasksSignal>();
             Container.DeclareSignal<TransferSubstanceSignal>();
             Container.DeclareSignal<StartMachineWorkSignal>();
             Container.DeclareSignal<FinishMashineWorkSignal>();
             Container.DeclareSignal<EnterIntoMachineSignal>();
+            Container.DeclareSignal<StartGameSignal>();
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.GetComponentsInChildren<BNGPlayerController>()[0].transform.position = new Vector3(-7, 5, 0f );    
@@ -43,7 +44,10 @@ namespace Installers
         }
     }
 
-    public class ShowCanvasSignal
+    public class StartGameSignal
+    {
+    }
+    public class ToggleCanvasSignal
     {
         public CanvasId Id;
     }

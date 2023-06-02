@@ -8,22 +8,16 @@ namespace Containers
     {
         [SerializeField] private ExpTabletMachineCntrl _tabletMachineCntrl;
 
-        public override bool AddSubstance(SubstanceContainer substanceContainer)
+        public override bool AddSubstance(Substance substance)
         {
-            if (CurrentSubstancesList.Count > 1)
+            if (CurrentCountSubstances == 0)
             {
-                return false;
+                _substancesCntrl.AddSubstance(this,substance);
             }
-            
-            var temp = substanceContainer.CurrentSubstancesList.Peek();
-            
-            var addingRes = _substancesCntrl.AddSubstance(temp, MaxVolume);;
-            if(CurrentSubstancesList.Count == 1)
+            else
             {
-                addingRes = _substancesCntrl.MixSubstances(substanceContainer.CurrentSubstancesList.Peek(), CurrentSubstancesList.Pop());
+                _substancesCntrl.AddSubstance(this, _substancesCntrl.MixSubstances(substance, GetNextSubstance()));
             }
-            
-            CurrentSubstancesList.Push(addingRes);
             _tabletMachineCntrl.CheckCompliteFill();
             UpdateDisplaySubstance();
             return true;

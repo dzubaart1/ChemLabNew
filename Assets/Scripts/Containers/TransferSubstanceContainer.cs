@@ -65,7 +65,7 @@ namespace Containers
         private void Transfer(GameObject triggerGameObject)
         {
             bool checkAdd, checkRemove;
-            if (CurrentSubstancesList.Count == 0)
+            if (CurrentCountSubstances == 0)
             {
                 Debug.Log("spoon");
                 //если это ложка
@@ -73,12 +73,12 @@ namespace Containers
                 {
                     return;
                 }
-                if (triggerGameObject.GetComponent<SubstanceContainer>().CurrentSubstancesList.Count == 0)
+                if (triggerGameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
                 {
                     return;
                 }
                 
-                checkAdd = AddSubstance(triggerGameObject.GetComponent<SubstanceContainer>());
+                checkAdd = AddSubstance(triggerGameObject.GetComponent<SubstanceContainer>().GetNextSubstance());
                 if (!checkAdd) return;
                 checkRemove = triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
                 if(!checkRemove) return;
@@ -87,23 +87,23 @@ namespace Containers
                 {
                     From = triggerGameObject.GetComponent<BaseContainer>().ContainerType,
                     To = ContainerType,
-                    TranserProperty = CurrentSubstancesList.Peek().SubstanceProperty
+                    TranserProperty = GetNextSubstance().SubstanceProperty
                 };
                 _signalBus.Fire(transferSubstanceSignal1);
                 return;
             }
         
-            checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(this);
+            checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(GetNextSubstance());
             if (!checkAdd) return;
             checkRemove = RemoveSubstance(triggerGameObject.GetComponent<TransferSubstanceContainer>().MaxVolume);
             if(!checkRemove) return;
-            var transferSubstanceSignal = new TransferSubstanceSignal()
+            var transferSubstanceSignal2 = new TransferSubstanceSignal()
             {
                 From = ContainerType,
                 To = triggerGameObject.GetComponent<TransferSubstanceContainer>().ContainerType,
-                TranserProperty = triggerGameObject.GetComponent<TransferSubstanceContainer>().CurrentSubstancesList.Peek().SubstanceProperty
+                TranserProperty = triggerGameObject.GetComponent<TransferSubstanceContainer>().GetNextSubstance().SubstanceProperty
             };
-            _signalBus.Fire(transferSubstanceSignal);
+            _signalBus.Fire(transferSubstanceSignal2);
         }
     }
 }

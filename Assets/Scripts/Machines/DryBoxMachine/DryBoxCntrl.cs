@@ -1,4 +1,3 @@
-using Tasks;
 using UnityEngine;
 using Zenject;
 using Containers;
@@ -11,7 +10,6 @@ namespace Machines
     public class DryBoxCntrl : MonoBehaviour
     {
         [SerializeField] private SnapZone _snapZone;
-        private TasksCntrl _tasksCntrl;
         private bool _isEnter;
         private bool _isStart;
 
@@ -40,8 +38,7 @@ namespace Machines
         }
         public void OnEnterObject()
         {
-            _tasksCntrl.CheckEnteringIntoMachine(MachinesTypes.DryBoxMachine,
-                _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType);
+            _signalBus.Fire(new EnterIntoMachineSignal(){ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType, MachinesType = MachinesTypes.DryBoxMachine});
             _isEnter = true;
         }
         
@@ -51,11 +48,11 @@ namespace Machines
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
                 return;
-            
-            var temp = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Peek();
+
+            /*var subCont = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
             _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Clear();
             _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(_substancesCntrl.DrySubstance(temp));
-            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
+            _snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();*/
             StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
             {
                 MachinesType = MachinesTypes.DryBoxMachine
@@ -64,13 +61,13 @@ namespace Machines
         }
         public void OnFinishWork()
         {
-            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            /*FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.DryBoxMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>()
                     .CurrentSubstancesList.Peek().SubstanceProperty
             };
-            _signalBus.Fire(finishMashineWorkSignal); 
+            _signalBus.Fire(finishMashineWorkSignal); */
         }
     }
 }

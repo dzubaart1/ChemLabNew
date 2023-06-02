@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SubName: HardAgarH2O
   Color: {r: 0.7647059, g: 0.7490196, b: 0.6745098, a: 0.85490197}
+  SubstanceLayer: 1
   Sediment: {fileID: 11400000, guid: 638266fc1f13115469560d5a091adf43, type: 2}
   Main: {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}
   Membrane: {fileID: 0}

@@ -19,16 +19,16 @@ namespace Canvases
 
         private void Start()
         {
-            _signalBus.Subscribe<ShowCanvasSignal>(ShowCanvas);
+            _signalBus.Subscribe<ToggleCanvasSignal>(ToggleCanvas);
         }
 
-        private void ShowCanvas(ShowCanvasSignal showCanvasSignal)
+        private void ToggleCanvas(ToggleCanvasSignal showCanvasSignal)
         {
             foreach (var canvas in _canvasBases)
             {
                 if (canvas.CanvasId.Equals(showCanvasSignal.Id))
                 {
-                    canvas.gameObject.SetActive(true);
+                    canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
                 }
             }
         }

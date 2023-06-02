@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Canvases;
-using Containers;
 using Installers;
-using Machines;
-using Substances;
 using UnityEngine;
 using Zenject;
 
@@ -16,21 +13,23 @@ namespace Tasks
         private List<TaskParams> _tasksParamsList;
         private int _taskCurrentId;
         private SignalBus _signalBus;
+        
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
+            _signalBus.Subscribe<StartGameSignal>(_ => _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() }));
+            _signalBus.Subscribe<EnterIntoMachineSignal>(CheckEnteringIntoMachine);
+            _signalBus.Subscribe<StartMachineWorkSignal>(CheckStartMachineWork);
+            _signalBus.Subscribe<FinishMashineWorkSignal>(CheckFinishMachineWork);
+        }
         private void Start()
         {
             _tasksParamsList = new List<TaskParams>();
             _tasksParamsList = Resources.LoadAll<TaskParams>("Tasks/").ToList();
             _tasksParamsList.Sort(CompareToTaskParams);
             _taskCurrentId = 0;
-            
-            _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
-            _signalBus.Fire<CheckTasksSignal>();
-        }
-        
-        [Inject]
-        public void Construct(SignalBus signalBus)
-        {
-            _signalBus = signalBus;
         }
         private int CompareToTaskParams(TaskParams t1, TaskParams t2)
         {
@@ -52,9 +51,10 @@ namespace Tasks
         }
         public void MoveToNext()
         {
+            Debug.Log($"{CurrentTask().Id} is done");
             if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
             _taskCurrentId++;
-            _signalBus.Fire<CheckTasksSignal>();
+            _signalBus.Fire(new CheckTasksSignal(){CurrentTask = CurrentTask()});
         }
         public TaskParams CurrentTask()
         {
@@ -64,48 +64,44 @@ namespace Tasks
         {
             _taskCurrentId = taskId;
         }
-        public void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
+        private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
             if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) ||
                 !CurrentTask().ContainersType.Contains(transferSubstanceSignal.To) ||
-                !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty))
+                !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty.SubName))
             {
-                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.EndGameCanvas});
                 return;
             }
-            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
-        public void CheckEnteringIntoMachine(MachinesTypes machinesType, ContainersTypes enteringContainer)
+        private void CheckEnteringIntoMachine(EnterIntoMachineSignal enterIntoMachineSignal)
         {
-            if (!CurrentTask().MachinesType.Equals(machinesType) ||
-                !CurrentTask().ContainersType.Contains(enteringContainer))
+            if (!CurrentTask().MachinesType.Equals(enterIntoMachineSignal.MachinesType) ||
+                !CurrentTask().ContainersType.Contains(enterIntoMachineSignal.ContainersType))
             {
-                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.EndGameCanvas});
                 return;
             }
-            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
-        public void CheckStartMachineWork(MachinesTypes machinesType)
+        private void CheckStartMachineWork(StartMachineWorkSignal startMachineWorkSignal)
         {
-            if (!CurrentTask().MachinesType.Equals(machinesType))
+            if (!CurrentTask().MachinesType.Equals(startMachineWorkSignal.MachinesType))
             {
-                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.EndGameCanvas});
                 return;
             }
-            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
-        public void CheckFinishMachineWork(MachinesTypes machinesType, SubstancePropertyBase substance)
+        private void CheckFinishMachineWork(FinishMashineWorkSignal finishMashineWorkSignal)
         {
-            if (!CurrentTask().MachinesType.Equals(machinesType) ||
-                !CurrentTask().ResultSubstance.Equals(substance))
+            if (!CurrentTask().MachinesType.Equals(finishMashineWorkSignal.MachinesType) ||
+                !CurrentTask().ResultSubstance.Equals(finishMashineWorkSignal.SubstancePropertyBase))
             {
-                _signalBus.Fire(new ShowCanvasSignal(){Id = CanvasId.EndGame});
+                _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.EndGameCanvas});
                 return;
             }
-            Debug.Log($"{CurrentTask().Id} is done");
             MoveToNext();
         }
     }

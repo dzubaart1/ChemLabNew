@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BNG;
 using Containers;
+using Installers;
 using Interfaces;
 using Substances;
 using Tasks;
@@ -13,14 +14,14 @@ namespace Machines.CentrifugeMachine
     {
         [SerializeField]
         private List<SnapZone> _SnapZones;
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
         private const int MINTOCOMPLITETASK = 2;
 
         private SubstancesCntrl _substancesCntrl;
         [Inject]
-        public void Construct(TasksCntrl tasksCntrl, SubstancesCntrl substancesCntrl)
+        public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
-            _tasksCntrl = tasksCntrl;
+            _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
         }
 
@@ -43,21 +44,18 @@ namespace Machines.CentrifugeMachine
                     continue;
                 }
                 
-                //add split substance
-                var substance = snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Pop();
-                var temp = _substancesCntrl.SplitSubstances(substance).ToArray();
-                for (int i = temp.Length-1; i >= 0; i--)
-                {
-                    snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentSubstancesList.Push(temp[i]);
-                }
-                snapZone.HeldItem.gameObject.GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
-                // end
+                var subCont = snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
+                var substance = subCont.GetNextSubstance();
+                var temp = _substancesCntrl.SplitSubstances(substance);
+                subCont.UpdateSubstancesArray(temp);
+                subCont.UpdateDisplaySubstance();
+
                 countCurrentCentrifugeContainer++;
             }
 
             if (countCurrentCentrifugeContainer >= MINTOCOMPLITETASK)
             {
-                _tasksCntrl.CheckStartMachineWork(MachinesTypes.CentrifugeMachine);
+                _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine});
             }
         }
 
@@ -73,8 +71,7 @@ namespace Machines.CentrifugeMachine
                 {
                     continue;
                 }
-                Debug.Log("!!!!!"+snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty.SubName);
-                _tasksCntrl.CheckFinishMachineWork(MachinesTypes.CentrifugeMachine, snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().CurrentSubstancesList.Peek().SubstanceProperty);
+                _signalBus.Fire(new FinishMashineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine, SubstancePropertyBase = snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().GetNextSubstance().SubstanceProperty});
             }
         }
     }
