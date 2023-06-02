@@ -32,12 +32,12 @@ namespace Containers
         {
             if (IsNull(_hintCanvas))
                 return;
-            if (_rightGrabber.HeldGrabbable is null || _rightGrabber.HeldGrabbable.gameObject != gameObject)
+            /*if (_rightGrabber.HeldGrabbable is null || _rightGrabber.HeldGrabbable.gameObject != gameObject)
             {
                 _hintCanvasIsOn = false;
                 _hintCanvas.SetActive(_hintCanvasIsOn);
                 return;
-            }
+            }*/
             if (InputBridge.Instance.AButtonDown)
             {
                 _hintCanvasIsOn = !_hintCanvasIsOn;
