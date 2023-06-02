@@ -97,6 +97,7 @@ namespace Tasks
         }
         private void CheckFinishMachineWork(FinishMashineWorkSignal finishMashineWorkSignal)
         {
+            Debug.Log(finishMashineWorkSignal.MachinesType + " " + finishMashineWorkSignal.SubstancePropertyBase);
             if (!CurrentTask().MachinesType.Equals(finishMashineWorkSignal.MachinesType) ||
                 !CurrentTask().ResultSubstance.Equals(finishMashineWorkSignal.SubstancePropertyBase))
             {

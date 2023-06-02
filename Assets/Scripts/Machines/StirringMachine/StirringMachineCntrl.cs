@@ -78,13 +78,12 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            /*FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>()
-                    .CurrentSubstancesList.Peek().SubstanceProperty
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty
             };
-            _signalBus.Fire(finishMashineWorkSignal);*/
+            _signalBus.Fire(finishMashineWorkSignal);
         }
 
         private void StartStirringAnimation()

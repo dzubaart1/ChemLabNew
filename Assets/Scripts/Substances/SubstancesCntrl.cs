@@ -14,11 +14,13 @@ namespace Substances
         
         public void StirSubstance(SubstanceContainer substanceContainer)
         {
+            Debug.Log("Stri1");
             if (substanceContainer.CurrentCountSubstances > 1)
             {
                 return;
             }
 
+            Debug.Log("Stri2");
             var temp = substanceContainer.GetNextSubstance();
             substanceContainer.RemoveSubstanceFromArray(0);
             var newSubPar = _substancesParamsCollection.GetStirringSubstanceParams(temp.SubstanceProperty);
@@ -88,9 +90,10 @@ namespace Substances
         {
             if (substanceContainer.MaxVolume >= addingSubstance.GetWeight())
             {
-                substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
+                substanceContainer.AddSubstanceToArray(addingSubstance);
+                return;
             }
-            substanceContainer.AddSubstanceToArray(addingSubstance);
+            substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
         }
 
         public void RemoveSubstance(SubstanceContainer fromSubstanceContainer, float removeVolume)

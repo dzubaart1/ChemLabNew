@@ -1,5 +1,6 @@
 using Containers;
 using JetBrains.Annotations;
+using UnityEngine;
 using Zenject;
 
 namespace Substances
@@ -19,12 +20,15 @@ namespace Substances
         {
             CurrentSubstances[(int)substance.SubstanceProperty.SubstanceLayer] = substance;
             CurrentCountSubstances++;
+            Debug.Log("Increze" + ContainerType);
         }
 
         public void RemoveSubstanceFromArray(int index)
         {
             CurrentSubstances[index] = null;
             CurrentCountSubstances--;
+            CurrentCountSubstances++;
+            Debug.Log("Decreze" + ContainerType);
         }
         
         public virtual bool AddSubstance(Substance substance)
