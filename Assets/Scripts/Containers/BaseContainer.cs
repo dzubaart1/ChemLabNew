@@ -55,7 +55,7 @@ namespace Containers
         {
             switch (myObject)
             {
-                case UnityEngine.Object obj when !obj:
+                case Object obj when !obj:
                     return true;
                 case null:
                     return true;

@@ -47,7 +47,7 @@ namespace Containers
             prefab.GetComponent<MeshRenderer>().material.color = substanceParams.Color;
         }
 
-        /*public void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
+        public void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
         {
             if (IsNull(_particleSystem))
             {
@@ -62,6 +62,6 @@ namespace Containers
             _particleSystem.SetActive(true);
             Material _newMat = _particleSystem.GetComponent<Renderer>().material;
             _newMat.SetColor("_EmissionColor", substanceParams.Color);
-        }*/
+        }
     }
 }
