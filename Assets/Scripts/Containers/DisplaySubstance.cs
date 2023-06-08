@@ -1,7 +1,7 @@
-using Cups;
 using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Containers
 {
@@ -16,20 +16,23 @@ namespace Containers
         {
             for (int i = 0; i < MAX_LAYOURS_COUNT; i++)
             {
+                
                 switch (i)
                 {
                     case 0:
                         TogglePrefab(_sedimentPrefab, CurrentSubstances[i]?.SubstanceProperty);
+                        UpdateParticleSystem(CurrentSubstances[i]?.SubstanceProperty);
                         break;
                     case 1:
                         TogglePrefab(_mainSubPrefab, CurrentSubstances[i]?.SubstanceProperty);
+                        UpdateParticleSystem(CurrentSubstances[i]?.SubstanceProperty);
                         break;
                     case 2:
                         TogglePrefab(_membranePrefab, CurrentSubstances[i]?.SubstanceProperty);
                         break;
                 }
             }
-            //UpdateParticleSystem(CurrentSubstancesList.Peek().SubstanceProperty);
+            UpdateHintCanvasText();
         }
         
         public void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)
@@ -38,6 +41,7 @@ namespace Containers
             {
                 return;
             }
+            Debug.Log("!" + gameObject.name + "! sub: " + substanceParams + ":");
             if (substanceParams is null)
             {
                 prefab.SetActive(false);

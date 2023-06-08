@@ -44,6 +44,7 @@ namespace Substances
         {
             if (substanceContainer.CurrentCountSubstances > 1)
             {
+                Debug.Log("CurrentCountSubstances " + substanceContainer.CurrentCountSubstances);
                 return;
             }
             
@@ -53,6 +54,8 @@ namespace Substances
             substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
             Debug.Log(newSubPar.SubName);
         }
+
+        
         
         public void SplitSubstances(SubstanceContainer substanceContainer)
         {

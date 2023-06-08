@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3069291468914084698}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2763303093455264785
 GameObject:
@@ -43,12 +43,12 @@ GameObject:
   - component: {fileID: 1926751998629955854}
   - component: {fileID: 4420782169233571268}
   m_Layer: 3
-  m_Name: BaseMeasuringPrefab
+  m_Name: content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3247914644774569643
 Transform:
   m_ObjectHideFlags: 0
@@ -57,12 +57,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2763303093455264785}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0.155}
+  m_LocalPosition: {x: 0, y: 0, z: 0.14060004}
   m_LocalScale: {x: 1.2, y: 1.2, z: 12}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3069291468914084698}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1926751998629955854
 MeshFilter:
@@ -232,9 +232,9 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3247914645516308522}
-  - {fileID: 3247914644774569643}
   - {fileID: 3827254254460316717}
   - {fileID: 7668621427868115813}
+  - {fileID: 3247914644774569643}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -348,7 +348,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.03
-  m_Center: {x: 0, y: 0, z: 0.24}
+  m_Center: {x: 0, y: 0, z: 0.29}
 --- !u!114 &3069291468914084697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,15 +362,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 1
   IsAbleToWeight: 0
-  _XRrig: {fileID: 0}
+  _cupsList: []
+  _snapZone: {fileID: 0}
   _mainSubPrefab: {fileID: 2763303093455264785}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
   _particleSystem: {fileID: 3872524285696593724}
+  CurrentCountSubstances: 0
 --- !u!114 &8172694664631405668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5327,7 +5327,7 @@ Transform:
   m_Children:
   - {fileID: 2683852908192880509}
   m_Father: {fileID: 3069291468914084698}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2598775794789179968
 ParticleSystem:

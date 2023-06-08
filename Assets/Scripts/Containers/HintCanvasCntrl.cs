@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class ChemicGlassCanvasCntrl : MonoBehaviour
+public class HintCanvasCntrl : MonoBehaviour
 {
     private Transform obj1;
     public Transform target;
     public Vector3 newDir;
 
-    /*private void Start()
+    private void Start()
     {
         obj1 = gameObject.transform;
     }
@@ -17,5 +17,5 @@ public class ChemicGlassCanvasCntrl : MonoBehaviour
         obj1.rotation = Quaternion.LookRotation(newDir);
         obj1.eulerAngles = new Vector3(0, obj1.eulerAngles.y, 0);
 
-    }*/
+    }
 }

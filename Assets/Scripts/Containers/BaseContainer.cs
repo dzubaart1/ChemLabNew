@@ -4,6 +4,7 @@ using Cups;
 using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 
@@ -20,6 +21,9 @@ namespace Containers
 
         [SerializeField] protected List<BaseCup> _cupsList;
         [SerializeField] protected SnapZone _snapZone;
+        
+        [SerializeField]
+        protected GameObject _hintCanvas;
         
         public void Awake()
         {
@@ -61,6 +65,27 @@ namespace Containers
                     return true;
                 default:
                     return false;
+            }
+        }
+        public string GetStringStack()
+        {
+            string s = "";
+            foreach (var sub in CurrentSubstances)
+            {
+                s += (sub?.SubstanceProperty.SubName + " ");
+                s += (sub?.SubstanceProperty.SubName + ", ");
+            }
+            s = s.Remove(s.Length - 2);
+            if (s == "")
+                return "Вещество не определено";
+            return s;
+        }
+
+        public void UpdateHintCanvasText()
+        {
+            if (!IsNull(_hintCanvas))
+            {
+                _hintCanvas.GetComponentsInChildren<Text>()[0].text = GetStringStack();
             }
         }
     }
