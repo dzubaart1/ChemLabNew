@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: 32
   m_EditorClassIdentifier: 
   Id: 32
-  Title: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435
-    \u043D\u0430 \u043F\u0438\u043F\u0435\u0442\u0434\u043E\u0437\u0430\u0442\u043E\u0440\u0435
-    0.05"
+  Title: "\u0421\u043D\u0438\u043C\u0438\u0442\u0435 \u043D\u0430\u043A\u043E\u043D\u0435\u0447\u043D\u0438\u043A
+    \u0441 \u043F\u0438\u043F\u0435\u0442\u0434\u043E\u0437\u0430\u0442\u043E\u0440\u0430
+    \u0438 \u0432\u044B\u0431\u0440\u043E\u0441\u0438\u0442\u0435 \u0435\u0433\u043E
+    \u0432 \u0443\u0440\u043D\u0443."
   SubstancesParams: {fileID: 0}
   Weight: 0
   ContainersType: 
-  DozatorDoze: 0.05
-  MachinesType: 3
+  DozatorDoze: 0
+  MachinesType: 5
   ResultSubstance: {fileID: 0}

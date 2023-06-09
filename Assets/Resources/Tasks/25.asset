@@ -13,12 +13,11 @@ MonoBehaviour:
   m_Name: 25
   m_EditorClassIdentifier: 
   Id: 25
-  Title: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435
-    \u043D\u0430 \u043F\u0438\u043F\u0435\u0442\u0434\u043E\u0437\u0430\u0442\u043E\u0440\u0435
-    8.00"
+  Title: "\u0417\u0430\u043B\u0435\u0439\u0442\u0435 6.00 \u043C\u043B \u0440\u0430\u0441\u0442\u0432\u043E\u0440\u0430
+    Na2HPO4 \u0438 Agar \u0432 \u043F\u0440\u043E\u0431\u0438\u0440\u043A\u0443. "
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 
-  DozatorDoze: 8
-  MachinesType: 3
-  ResultSubstance: {fileID: 0}
+  ContainersType: 0500000006000000
+  DozatorDoze: 0
+  MachinesType: 0
+  ResultSubstance: {fileID: 11400000, guid: 3d9a23141ab7f724b9098dc53f295bbb, type: 2}

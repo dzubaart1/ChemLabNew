@@ -188,18 +188,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ba1c9036f84416a2fd8b223b52388a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 1
   ContainerType: 9
   IsAbleToWeight: 0
   _cupsList: []
   _snapZone: {fileID: 0}
-  _hintCanvas: {fileID: 2962092066871742218}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 1827639144405874818}
   _sedimentPrefab: {fileID: 1827639143014636154}
   _membranePrefab: {fileID: 0}
   _particleSystem: {fileID: 0}
-  CurrentCountSubstances: 0
-  _cgCanvasCntrl: {fileID: 0}
   _pipetkaCanvas: {fileID: 1827639143085490743}
 --- !u!135 &6883195785797476453
 SphereCollider:
@@ -1237,14 +1236,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HintCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3440326183819485712, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff2a53e8ef15fec479b3b3f6c1ce2881, type: 3}
---- !u!1 &2962092066871742218 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3440326183819485712, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
-    type: 3}
-  m_PrefabInstance: {fileID: 478799268001197338}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3041218748260630017 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3211520852092293915, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,

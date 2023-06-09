@@ -29,6 +29,7 @@ namespace Containers
         {
             if (GetComponent<Grabbable>() is null || !GetComponent<Grabbable>().BeingHeld)
             {
+                _substanceCanvasCntrl.gameObject.SetActive(false);
                 return;
             }
             _substanceCanvasCntrl.UpdateSubstanceText(GetStringStack());
@@ -54,7 +55,6 @@ namespace Containers
                         break;
                 }
             }
-            //UpdateHintCanvasText();
         }
         
         private void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)

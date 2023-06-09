@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: 49
   m_EditorClassIdentifier: 
   Id: 49
-  Title: "\u041F\u043E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u043F\u0440\u043E\u0431\u0438\u0440\u043A\u0438
-    \u0432 \u0446\u0435\u043D\u0442\u0440\u0438\u0444\u0443\u0433\u0443 \u0438 \u0432\u043A\u043B\u044E\u0447\u0438\u0442\u0435
-    \u0435\u0451."
+  Title: "\u041F\u0435\u0440\u0435\u043B\u0435\u0439\u0442\u0435 \u0432\u043E\u0434\u0443
+    \u0438\u0437 \u043C\u0435\u0440\u043D\u043E\u0433\u043E \u0446\u0438\u043B\u0438\u043D\u0434\u0440\u0430
+    \u0432 \u0441\u0442\u0430\u043A\u0430\u043D \u0441 \u0442\u0432\u0451\u0440\u0434\u044B\u043C
+    Agar \u0438 \u0432\u0435\u0449\u0435\u0441\u0442\u0432\u043E\u043C."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 
+  ContainersType: 0100000002000000
   DozatorDoze: 0
-  MachinesType: 9
-  ResultSubstance: {fileID: 0}
+  MachinesType: 0
+  ResultSubstance: {fileID: 11400000, guid: cc3aed17280b88d4c894c791ca2f2853, type: 2}
