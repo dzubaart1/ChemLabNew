@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using BNG;
+using Canvases;
 using Installers;
 using Substances;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -11,15 +11,11 @@ namespace Containers
     public class TransferSubstanceContainer : SubstanceContainer
     {
         private bool _isAgain;
-        protected Grabber _leftGrabber, _rightGrabber;
-        protected SignalBus _signalBus;
-        [SerializeField]
-        private HintCanvasCntrl _cgCanvasCntrl;
-        private bool _hintCanvasIsOn = false;
-        private GameObject _XRrig;
-        
+        private Grabber _leftGrabber, _rightGrabber;
+        private SignalBus _signalBus;
+
         [Inject]
-        public void Construct(List<Grabber> grabbers, SignalBus signalBus, GameObject rigInst)
+        public void Construct(List<Grabber> grabbers, SignalBus signalBus)
         {
             foreach (var grabber in grabbers)
             {
@@ -33,38 +29,8 @@ namespace Containers
                 }
             }
             _signalBus = signalBus;
-            _XRrig = rigInst;
-        }
-        private void Start()
-        {
-            if (!IsNull(_hintCanvas))
-                _hintCanvas.SetActive(false);
-            if (gameObject.GetComponentsInChildren<HintCanvasCntrl>().Length == 0
-                || IsNull(gameObject.GetComponentsInChildren<HintCanvasCntrl>()[0]))
-            {
-                return;
-            }
-            _cgCanvasCntrl = gameObject.GetComponentsInChildren<HintCanvasCntrl>()[0].GetComponent<HintCanvasCntrl>();
-            _cgCanvasCntrl.target = _XRrig.GetComponentsInChildren<BNGPlayerController>()[0].transform;
-        }
-        private void Update()
-        {
-            ClickAButton();
         }
 
-        private void ClickAButton()
-        {
-            if (IsNull(_hintCanvas))
-                return;
-            if (_rightGrabber.HeldGrabbable is null || _rightGrabber.HeldGrabbable.gameObject != gameObject)
-            {
-                _hintCanvasIsOn = false;
-                _hintCanvas.SetActive(_hintCanvasIsOn);
-                return;
-            }
-            _hintCanvasIsOn = !_hintCanvasIsOn;
-            _hintCanvas.SetActive(_hintCanvasIsOn);
-        }
         private void OnTriggerStay(Collider other)
         {
             if (_isAgain)

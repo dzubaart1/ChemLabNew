@@ -13,7 +13,6 @@ namespace Containers
             }
             _substancesCntrl.AddSubstance(this,substance);
             _mainSubPrefab.transform.localScale = new Vector3(1, 1, GetNextSubstance().GetWeight() / 10);
-            UpdateDisplaySubstance();
             return true;
         }
     }

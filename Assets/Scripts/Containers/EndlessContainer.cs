@@ -7,6 +7,7 @@ namespace Containers
 {
     public class EndlessContainer : TransferSubstanceContainer
     {
+        [Header("Endless Container Params")]
         [SerializeField] private SubstancePropertyBase _substanceParams;
         private SignalBus _signalBus;
         
@@ -28,6 +29,7 @@ namespace Containers
 
         public override bool RemoveSubstance(float maxVolume)
         {
+            Debug.Log("Spoon" +CurrentCountSubstances);
             if (CurrentCountSubstances == 0 || !IsEnable())
             {
                 return false;
@@ -50,8 +52,10 @@ namespace Containers
             {
                 _substancesCntrl.SplitSubstances(this);
             }
-            AddSubstanceToArray(substance);
-            UpdateDisplaySubstance();
+            else
+            {
+                AddSubstanceToArray(substance);
+            }
         }
         
         protected override bool IsEnable()

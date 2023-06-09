@@ -12,19 +12,18 @@ namespace Containers
 {
     public class BaseContainer : MonoBehaviour
     {
-        [ItemCanBeNull] public Substance[] CurrentSubstances;
+        [HideInInspector] public Substance[] CurrentSubstances;
+        [HideInInspector] public int CurrentCountSubstances;
+        
+        [Header("Base Container Params")]
         public float MaxVolume = 9000;
-        public const int MAX_LAYOURS_COUNT = 3;
-
         public ContainersTypes ContainerType;
         public bool IsAbleToWeight;
 
         [SerializeField] protected List<BaseCup> _cupsList;
         [SerializeField] protected SnapZone _snapZone;
-        
-        [SerializeField]
-        protected GameObject _hintCanvas;
-        
+        protected const int MAX_LAYOURS_COUNT = 3;
+
         public void Awake()
         {
             CurrentSubstances = new Substance[MAX_LAYOURS_COUNT];
@@ -34,12 +33,12 @@ namespace Containers
             }
             _snapZone.OnlyAllowNames.Clear();
 
-            foreach (BaseCup cup in _cupsList)
+            foreach (var cup in _cupsList)
             {
                 _snapZone.OnlyAllowNames.Add(cup.name);
             }
         }
-        
+
         protected virtual bool IsEnable()
         {
             return true;
@@ -55,7 +54,7 @@ namespace Containers
 
             return sumWeight;
         }
-        public static bool IsNull<T>(T myObject, string message = "") where T : class
+        /*public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
             switch (myObject)
             {
@@ -66,27 +65,6 @@ namespace Containers
                 default:
                     return false;
             }
-        }
-        public string GetStringStack()
-        {
-            string s = "";
-            foreach (var sub in CurrentSubstances)
-            {
-                s += (sub?.SubstanceProperty.SubName + " ");
-                s += (sub?.SubstanceProperty.SubName + ", ");
-            }
-            s = s.Remove(s.Length - 2);
-            if (s == "")
-                return "Вещество не определено";
-            return s;
-        }
-
-        public void UpdateHintCanvasText()
-        {
-            if (!IsNull(_hintCanvas))
-            {
-                _hintCanvas.GetComponentsInChildren<Text>()[0].text = GetStringStack();
-            }
-        }
+        }*/
     }
 }

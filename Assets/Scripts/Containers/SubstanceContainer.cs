@@ -1,13 +1,12 @@
-using Containers;
 using JetBrains.Annotations;
+using Substances;
 using UnityEngine;
 using Zenject;
 
-namespace Substances
+namespace Containers
 {
     public class SubstanceContainer : DisplaySubstance
     {
-        public int CurrentCountSubstances;
         protected SubstancesCntrl _substancesCntrl;
 
         [Inject]
@@ -20,6 +19,7 @@ namespace Substances
         {
             CurrentSubstances[(int)substance.SubstanceProperty.SubstanceLayer] = substance;
             CurrentCountSubstances++;
+            UpdateDisplaySubstance();
             Debug.Log("Increze" + ContainerType);
         }
 
@@ -27,8 +27,17 @@ namespace Substances
         {
             CurrentSubstances[index] = null;
             CurrentCountSubstances--;
-            CurrentCountSubstances++;
+            UpdateDisplaySubstance();
             Debug.Log("Decreze" + ContainerType);
+        }
+
+        public void ClearSubstances()
+        {
+            for (int i = 0; i < CurrentSubstances.Length; i++)
+            {
+                CurrentSubstances[i] = null;
+            }
+            CurrentCountSubstances = 0;
         }
         
         public virtual bool AddSubstance(Substance substance)
@@ -39,7 +48,6 @@ namespace Substances
             }
             
             _substancesCntrl.AddSubstance(this, substance);
-            UpdateDisplaySubstance();
             return true;
         }
 
@@ -50,15 +58,13 @@ namespace Substances
                 return false;
             }
             _substancesCntrl.RemoveSubstance(this, targetVolume);
-            UpdateDisplaySubstance();
-
             return true;
         }
         
         [CanBeNull]
         public Substance GetNextSubstance()
         {
-            for (int i = MAX_LAYOURS_COUNT-1; i >= 0; i--)
+            for (var i = MAX_LAYOURS_COUNT-1; i >= 0; i--)
             {
                 if (CurrentSubstances[i] != null)
                 {
@@ -72,7 +78,7 @@ namespace Substances
         {
             substances.CopyTo(CurrentSubstances, 0);
             CurrentCountSubstances = 0;
-            for (int i = 0; i < substances.Length; i++)
+            for (var i = substances.Length - 1; i >= 0; i--)
             {
                 if (substances[i] != null)
                 {

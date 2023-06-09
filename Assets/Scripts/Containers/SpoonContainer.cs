@@ -1,4 +1,5 @@
 using Substances;
+using UnityEngine;
 
 namespace Containers
 {
@@ -6,12 +7,12 @@ namespace Containers
     {
         public override bool AddSubstance(Substance substance)
         {
+            Debug.Log("Spoon" +CurrentCountSubstances);
             if (CurrentCountSubstances > 0)
             {
                 return false;
             }
             _substancesCntrl.AddSubstance(this, substance);
-            UpdateDisplaySubstance();
             return true;
         }
     }

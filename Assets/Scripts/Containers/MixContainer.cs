@@ -10,10 +10,6 @@ namespace Containers
     public class MixContainer : TransferSubstanceContainer
     {
         private AnchorCntrl _anchor;
-
-        
-
-        
         
         public override bool AddSubstance(Substance substance)
         {
@@ -25,13 +21,6 @@ namespace Containers
             else
             {
                 _substancesCntrl.MixSubstances(this, substance);
-            }
-            
-            UpdateDisplaySubstance();
-            
-            if (!IsNull(_hintCanvas))
-            {
-                _hintCanvas.GetComponentsInChildren<Text>()[0].text = GetStringStack();
             }
             return true;
         }

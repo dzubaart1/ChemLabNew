@@ -1,5 +1,6 @@
 using Cups;
 using Substances;
+using UnityEngine;
 
 namespace Containers
 {
@@ -7,6 +8,7 @@ namespace Containers
     {
         public override bool AddSubstance(Substance substance)
         {
+            Debug.Log("Add " + substance.GetWeight() + " " + MaxVolume );
             if (substance is null || !IsEnable())
             {
                 return false;
@@ -14,7 +16,6 @@ namespace Containers
             
             _substancesCntrl.AddSubstance(this, substance);
             _snapZone.HeldItem.GetComponent<DozatorCup>().IsDirty = true;
-            UpdateDisplaySubstance();
             return true;
         }
         

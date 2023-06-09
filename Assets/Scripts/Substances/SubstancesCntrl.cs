@@ -1,3 +1,4 @@
+using Containers;
 using UnityEngine;
 
 namespace Substances
@@ -14,58 +15,60 @@ namespace Substances
         
         public void StirSubstance(SubstanceContainer substanceContainer)
         {
-            Debug.Log("Stri1");
-            if (substanceContainer.CurrentCountSubstances > 1)
+            Debug.Log("Here" + substanceContainer.CurrentCountSubstances);
+            if (substanceContainer.CurrentCountSubstances != 1)
             {
                 return;
             }
-
-            Debug.Log("Stri2");
+            
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.RemoveSubstanceFromArray(0);
+            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetStirringSubstanceParams(temp.SubstanceProperty);
             substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            substanceContainer.UpdateDisplaySubstance();
         }
         
         public void DrySubstance(SubstanceContainer substanceContainer)
         {
-            if (substanceContainer.CurrentCountSubstances > 1)
+            if (substanceContainer.CurrentCountSubstances != 1)
             {
                 return;
             }
 
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.RemoveSubstanceFromArray(0);
+            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetDrySubstanceParams(temp.SubstanceProperty);
             substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            substanceContainer.UpdateDisplaySubstance();
         }
 
         public void MixSubstances(SubstanceContainer substanceContainer, Substance secSub)
         {
-            if (substanceContainer.CurrentCountSubstances > 1)
+            if (substanceContainer.CurrentCountSubstances != 1)
             {
                 Debug.Log("CurrentCountSubstances " + substanceContainer.CurrentCountSubstances);
                 return;
             }
             
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.RemoveSubstanceFromArray(0);
+            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetMixSubstanceParams(temp.SubstanceProperty, secSub.SubstanceProperty);
-            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight() + secSub.GetWeight()));
             Debug.Log(newSubPar.SubName);
+            substanceContainer.UpdateDisplaySubstance();
         }
 
         
         
         public void SplitSubstances(SubstanceContainer substanceContainer)
         {
-            if (substanceContainer.CurrentCountSubstances > 1)
+            if (substanceContainer.CurrentCountSubstances != 1)
             {
                 return;
             }
 
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.RemoveSubstanceFromArray(0);
+            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(temp.SubstanceProperty);
             if (newSubPar is not SubstancePropertySplit substancePropertySplit) return;
             
@@ -87,6 +90,7 @@ namespace Substances
             }
 
             substanceContainer.UpdateSubstancesArray(res);
+            substanceContainer.UpdateDisplaySubstance();
         }
         
         public void AddSubstance(SubstanceContainer substanceContainer, Substance addingSubstance)
@@ -97,19 +101,21 @@ namespace Substances
                 return;
             }
             substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
+            substanceContainer.UpdateDisplaySubstance();
         }
 
-        public void RemoveSubstance(SubstanceContainer fromSubstanceContainer, float removeVolume)
+        public void RemoveSubstance(SubstanceContainer substanceContainer, float removeVolume)
         {
-            var temp = fromSubstanceContainer.GetNextSubstance();
+            var temp = substanceContainer.GetNextSubstance();
             Debug.Log(temp?.SubstanceProperty.SubName+ " "+(temp?.GetWeight() ?? 0));
             if (removeVolume >= temp.GetWeight())
             {
-                fromSubstanceContainer.RemoveSubstanceFromArray((int)temp.SubstanceProperty.SubstanceLayer);
+                substanceContainer.RemoveSubstanceFromArray((int)temp.SubstanceProperty.SubstanceLayer);
                 return;
             }
             
             temp.RemoveWeight(removeVolume);
+            substanceContainer.UpdateDisplaySubstance();
         }
     }
 }

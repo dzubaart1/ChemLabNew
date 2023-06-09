@@ -12,6 +12,7 @@ namespace Tasks
     {
         private List<TaskParams> _tasksParamsList;
         private int _taskCurrentId;
+        private bool _isStartGame;
         private SignalBus _signalBus;
         
         [Inject]
@@ -19,7 +20,11 @@ namespace Tasks
         {
             _signalBus = signalBus;
             _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
-            _signalBus.Subscribe<StartGameSignal>(_ => _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() }));
+            _signalBus.Subscribe<StartGameSignal>(_ =>
+            {
+                _isStartGame = true;
+                _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
+            });
             _signalBus.Subscribe<EnterIntoMachineSignal>(CheckEnteringIntoMachine);
             _signalBus.Subscribe<StartMachineWorkSignal>(CheckStartMachineWork);
             _signalBus.Subscribe<FinishMashineWorkSignal>(CheckFinishMachineWork);
@@ -51,6 +56,11 @@ namespace Tasks
         }
         public void MoveToNext()
         {
+            if (!_isStartGame)
+            {
+                return;
+            }
+            
             Debug.Log($"{CurrentTask().Id} is done");
             if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
             _taskCurrentId++;

@@ -6,6 +6,7 @@ namespace Containers
 {
     public class ExpTabletLunkaContainer : TransferSubstanceContainer
     {
+        [Header("ExpTabletLunka Container Params")]
         [SerializeField] private ExpTabletMachineCntrl _tabletMachineCntrl;
 
         public override bool AddSubstance(Substance substance)
@@ -19,7 +20,6 @@ namespace Containers
                 _substancesCntrl.MixSubstances(this, substance);
             }
             _tabletMachineCntrl.CheckCompliteFill();
-            UpdateDisplaySubstance();
             return true;
         }
     }

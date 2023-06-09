@@ -9990,7 +9990,7 @@ Transform:
   - {fileID: 1168600395042319272}
   - {fileID: 1330749416969737945}
   - {fileID: 8825254796587231395}
-  - {fileID: 7510941982442269148}
+  - {fileID: 5599584907720514323}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
@@ -10131,18 +10131,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992d097f458d15e49a33e10130256fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
   ContainerType: 4
   IsAbleToWeight: 1
   _cupsList: []
   _snapZone: {fileID: 0}
-  _hintCanvas: {fileID: 7715751022705744087}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 8042613396403210729}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
   _particleSystem: {fileID: 6540865795165699885}
-  CurrentCountSubstances: 0
-  _cgCanvasCntrl: {fileID: 0}
 --- !u!114 &6323088147818703517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10188,7 +10187,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1001 &4948792723540982471
+--- !u!1001 &6999761490939561992
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10213,7 +10212,7 @@ PrefabInstance:
     - target: {fileID: 3211520852092293915, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.089
       objectReference: {fileID: 0}
     - target: {fileID: 3211520852092293915, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
         type: 3}
@@ -10253,19 +10252,18 @@ PrefabInstance:
     - target: {fileID: 3440326183819485712, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
         type: 3}
       propertyPath: m_Name
-      value: HintCanvas
+      value: SubstanceCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3440326183819485712, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff2a53e8ef15fec479b3b3f6c1ce2881, type: 3}
---- !u!4 &7510941982442269148 stripped
+--- !u!4 &5599584907720514323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3211520852092293915, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
     type: 3}
-  m_PrefabInstance: {fileID: 4948792723540982471}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &7715751022705744087 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3440326183819485712, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
-    type: 3}
-  m_PrefabInstance: {fileID: 4948792723540982471}
+  m_PrefabInstance: {fileID: 6999761490939561992}
   m_PrefabAsset: {fileID: 0}

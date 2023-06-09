@@ -402,6 +402,18 @@ namespace BNG {
         /// </summary>
         public delegate void ControllerFoundAction();
         public static event ControllerFoundAction OnControllerFound;
+        
+        public delegate void AButtonPressed();
+        public static event AButtonPressed OnAButtonPressed;
+        
+        public delegate void BButtonPressed();
+        public static event BButtonPressed OnBButtonPressed;
+        
+        public delegate void XButtonPressed();
+        public static event XButtonPressed OnXButtonPressed;
+        
+        public delegate void YButtonPressed();
+        public static event YButtonPressed OnYButtonPressed;
 
         #endregion
 
@@ -541,6 +553,26 @@ namespace BNG {
 
             // Call events
             OnInputsUpdated?.Invoke();
+
+            if (aButton.triggered)
+            {
+                OnAButtonPressed?.Invoke();
+            }
+            
+            if (bButton.triggered)
+            {
+                OnBButtonPressed?.Invoke();
+            }
+            
+            if (xButton.triggered)
+            {
+                OnXButtonPressed?.Invoke();
+            }
+            
+            if (yButton.triggered)
+            {
+                OnYButtonPressed?.Invoke();
+            }
         }
 
         #region SteamVR Action Input

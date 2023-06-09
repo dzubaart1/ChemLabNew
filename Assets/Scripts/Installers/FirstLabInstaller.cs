@@ -16,6 +16,7 @@ namespace Installers
     public class FirstLabInstaller : MonoInstaller
     {
         public GameObject XRRigAdvancedPrefab;
+        public Transform SpawnPoint;
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -28,8 +29,7 @@ namespace Installers
             Container.DeclareSignal<StartGameSignal>();
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
-            rigInst.GetComponentsInChildren<BNGPlayerController>()[0].transform.position = new Vector3(-7, 5, 0f );    
-            rigInst.GetComponentsInChildren<BNGPlayerController>()[0].transform.Rotate(0.0f, 90.0f, 0.0f, Space.Self);
+            rigInst.transform.position = SpawnPoint.transform.position;
             Container.Bind<GameObject>().FromInstance(rigInst).AsSingle();
             
             List<Grabber> grabbers = rigInst.GetComponentsInChildren<Grabber>().ToList();

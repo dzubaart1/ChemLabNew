@@ -4,10 +4,11 @@ namespace Containers
 {
     public class CentrifugeContainer : MixContainer
     {
+        [SerializeField] private GameObject _pipetkaCanvas;
         private bool _isOpen;
         private const string OPENCUPANIMNAME = "Armature_001|ArmatureAction_001";
         private const string CLOSECUPANIMNAME = "Armature_001|ArmatureAction_002";
-        [SerializeField] private GameObject _pipetkaCanvas;
+        
 
         private void Start()
         {

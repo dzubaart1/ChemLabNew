@@ -59,12 +59,13 @@ namespace Machines
                 return;
             }
             _isStart = true;
+            
             var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
+            Debug.Log($"Before Stir: {temp.CurrentSubstances[1].SubstanceProperty.SubName}");
             _substancesCntrl.StirSubstance(temp);
-            temp.UpdateDisplaySubstance();
-
+            Debug.Log($"After Stir: {temp.CurrentSubstances[1].SubstanceProperty.SubName}");
             StartStirringAnimation();
-            StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new StartMachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine
             };
@@ -78,7 +79,7 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            var finishMashineWorkSignal = new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty

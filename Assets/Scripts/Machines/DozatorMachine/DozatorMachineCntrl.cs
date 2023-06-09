@@ -1,8 +1,6 @@
-using System;
 using System.Globalization;
 using Containers;
 using Installers;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +26,6 @@ namespace Machines.DozatorMachine
         {
             if (checkTasksSignal.CurrentTask.DozatorDoze == 0)
             {
-                _currentDoze = 0f;
                 return;
             }
 
@@ -37,7 +34,7 @@ namespace Machines.DozatorMachine
         public string GetDoze()
         {
             _baseContainer.MaxVolume = _currentDoze;
-            _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine});
+            _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.DozatorMachine});
             return _currentDoze.ToString(CultureInfo.InvariantCulture);
         }
     }
