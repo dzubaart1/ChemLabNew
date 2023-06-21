@@ -1,6 +1,5 @@
 using Data;
 using Installers;
-using Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,7 +11,6 @@ namespace Canvases
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
         
-        //private SceneSetter _sceneSetter;
         private SignalBus _signalBus;
         private void Start()
         {
@@ -20,27 +18,25 @@ namespace Canvases
         }
         
         [Inject]
-        //public void Construct(SignalBus signalBus, SceneSetter sceneSetter)
         public void Construct(SignalBus signalBus)
         {
-            _signalBus = signalBus; 
-            //_sceneSetter = sceneSetter;
+            _signalBus = signalBus;
         }
 
         private void UpdateText(CheckTasksSignal checkTasksSignal)
         {
             _taskTitle.text = checkTasksSignal.CurrentTask.Title;
-            _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Id;
+            _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Number;
         }
 
-        /*public void SaveSceneState()
+        public void SaveSceneState()
         {
-            _sceneSetter.SaveSceneState();
+            _signalBus.Fire<SaveSignal>();
         }
 
         public void LoadSceneState()
         {
-            _sceneSetter.GetSavedSceneState();
-        }*/
+            _signalBus.Fire<LoadSignal>();
+        }
     }
 }

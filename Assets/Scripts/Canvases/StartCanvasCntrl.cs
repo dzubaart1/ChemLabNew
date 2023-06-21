@@ -1,7 +1,9 @@
 using Installers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 using System.Collections.Generic;
+
 
 namespace Canvases
 {
@@ -20,15 +22,16 @@ namespace Canvases
         
         public void OnStartBtnClick()
         {
+            //SceneManager.LoadScene(0);
             _signalBus.Fire(new StartGameSignal());
             _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.StartGameCanvas});
         }
 
         public void OnNextBtnClick()
         {
-            panels[rulesCount].SetActive(false);
-            panels[rulesCount + 1].SetActive(true);
+            Destroy(panels[rulesCount]);
             rulesCount++;
+            panels[rulesCount].SetActive(true);
         }
     }
 }

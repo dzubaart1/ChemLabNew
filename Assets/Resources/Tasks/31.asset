@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 31
   m_EditorClassIdentifier: 
-  Id: 31
-  Title: "\u0417\u0430\u043B\u0435\u0439\u0442\u0435 0.80 \u043C\u043B \u0440\u0430\u0441\u0442\u0432\u043E\u0440\u0430
-    Na2HPO4 \u0438 Agar \u0432 6 \u043E\u0442\u0432\u0435\u0440\u0441\u0442\u0438\u0439
-    \u043B\u0443\u043D\u043E\u0447\u043D\u043E\u0433\u043E \u043F\u043B\u0430\u043D\u0448\u0435\u0442\u0430."
+  Number: 31
+  Title: "\u0417\u0430\u043B\u0435\u0439\u0442\u0435 8.00 \u043C\u043B \u0440\u0430\u0441\u0442\u0432\u043E\u0440\u0430
+    Na2HPO4 \u0438 Agar \u0432 \u0447\u0430\u0448\u043A\u0443 \u041F\u0435\u0442\u0440\u0438."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 
+  ContainersType: 0500000007000000
   DozatorDoze: 0
-  MachinesType: 4
+  MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: 3d9a23141ab7f724b9098dc53f295bbb, type: 2}

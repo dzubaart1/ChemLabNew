@@ -95,6 +95,8 @@ namespace Substances
         
         public void AddSubstance(SubstanceContainer substanceContainer, Substance addingSubstance)
         {
+            substanceContainer.IsDirty = true;
+            
             if (substanceContainer.MaxVolume >= addingSubstance.GetWeight())
             {
                 substanceContainer.AddSubstanceToArray(addingSubstance);

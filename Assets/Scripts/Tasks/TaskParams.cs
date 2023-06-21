@@ -9,7 +9,7 @@ namespace Tasks
     [CreateAssetMenu(fileName = "TaskParams", menuName = "TaskParams/Task Params", order = 1)]
     public class TaskParams : ScriptableObject
     {
-        public int Id;
+        public int Number;
         public string Title;
         public SubstancePropertyBase SubstancesParams;
         public float Weight;
@@ -17,5 +17,6 @@ namespace Tasks
         public float DozatorDoze;
         public MachinesTypes MachinesType;
         public SubstancePropertyBase ResultSubstance;
+        public bool IsSpawnPoint;
     }
 }

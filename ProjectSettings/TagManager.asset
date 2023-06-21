@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - subs
-  - Serializable
   - Water
+  - Serializable
+  - Anchor
   layers:
   - Default
   - TransparentFX

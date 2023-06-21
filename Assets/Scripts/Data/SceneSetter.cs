@@ -1,124 +1,99 @@
 using System.Collections.Generic;
 using System.Linq;
+using BNG;
 using Containers;
+using Installers;
 using Substances;
 using Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace Data
 {
-    public class SceneSetter
+    public class SceneSetter : MonoBehaviour
     {
         private List<GameObject> _listOfObjects;
         private SceneState _savedSceneState;
-        private TasksCntrl _tasksCntrl;
+        private SignalBus _signalBus;
 
-        public SceneSetter()
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            _signalBus.Subscribe<LoadSignal>(LoadState);
+            _signalBus.Subscribe<SaveSignal>(SaveState);
+        }
+        private void Start()
         {
             _listOfObjects = GameObject.FindGameObjectsWithTag("Serializable").ToList();
+            
             _savedSceneState = new SceneState();
-            SaveSceneState();
+            _savedSceneState.SaveObjectsList = new List<SavedObjectState>();
         }
         
-        public void SaveSceneState()
+        public void LoadState()
         {
-            _savedSceneState.SaveObjectsList = GetSaveContentListFromGameObjectList(_listOfObjects);
-            _savedSceneState.TaskId = _tasksCntrl.CurrentTask().Id;
-        }
-
-        public void GetSavedSceneState()
-        {
-            _tasksCntrl.SetCurrentTaskId(_savedSceneState.TaskId);
-            for (var i = 0; i < _savedSceneState.SaveObjectsList.Count; i++)
+            foreach (var t in _savedSceneState.SaveObjectsList)
             {
-                var indexInList = _savedSceneState.SaveObjectsList[i].IndexInList;
-                _listOfObjects[indexInList].transform.position = _savedSceneState.SaveObjectsList[i].Position.GetVector();
-                _listOfObjects[indexInList].transform.rotation = _savedSceneState.SaveObjectsList[i].Quaternion.GetQuaternion();
-                /*if (_listOfObjects[indexInList].GetComponent<DisplaySubstance>() is not null)
+
+                var objInList = _listOfObjects[t.IndexInList];
+
+                objInList.transform.position = t.Position;
+                objInList.transform.rotation = t.Rotation;
+                    
+                var subCont = objInList.GetComponent<SubstanceContainer>();
+                var grab = objInList.GetComponent<Grabbable>();
+                
+                if (subCont is not null)
                 {
-                    _listOfObjects[indexInList].GetComponent<DisplaySubstance>().CurrentSubstance = (_savedSceneState.SaveObjectsList[i].Substance);
-                    _listOfObjects[indexInList].GetComponent<DisplaySubstance>().UpdateDisplaySubstance();
-                }*/
+                    subCont.ClearSubstances();
+                    foreach (var substance in t.Substances)
+                    {
+                        if (substance is not null)
+                        {
+                            subCont.AddSubstanceToArray(substance);
+                        }
+                    }
+                }
+
+                if (grab is not null)
+                {
+                    grab.enabled = true;
+                }
             }
+            _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
         }
 
-        private List<SaveObject> GetSaveContentListFromGameObjectList(List<GameObject> list)
+        private void SaveState(SaveSignal saveSignal)
         {
-            var res = new List<SaveObject>();
+            _savedSceneState.SaveObjectsList.Clear();
+            _savedSceneState.TaskId = saveSignal.TaskId;
             for(var i = 0; i < _listOfObjects.Count; i++)
             {
-                var currentVecPos = _listOfObjects[i].GetComponent<Transform>().position;
-                var currentVecRot = _listOfObjects[i].GetComponent<Transform>().rotation;
-                var saveContent = new SaveObject(){IndexInList = i,
-                    Position = new FVector(currentVecPos),
-                    Quaternion = new FQuaternion(currentVecRot)};
-                /*if (_listOfObjects[i].GetComponent<BaseContainer>() != null)
+                var savedObjectState = new SavedObjectState()
                 {
-                    saveContent.Substance = _listOfObjects[i].GetComponent<BaseContainer>().CurrentSubstance;
-                }*/
-                res.Add(saveContent);
+                    IndexInList = i,
+                    Position = _listOfObjects[i].transform.position,
+                    Rotation = _listOfObjects[i].transform.rotation
+                };
+                savedObjectState.Substances = new Substance[3];
+                _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.CopyTo(savedObjectState.Substances,0);
+                _savedSceneState.SaveObjectsList.Add(savedObjectState);
             }
-
-            return res;
         }
     }
     
     public struct SceneState
     {
         public int TaskId;
-        public List<SaveObject> SaveObjectsList;
-    }
-    
-    public struct SaveObject
-    {
-        public int IndexInList { get; set; }
-        public FVector Position { get; set; }
-        public FQuaternion Quaternion { get; set; }
-        //public SubstanceSplit Substance { get; set; }
-    }
-    
-    public struct FVector
-    {
-        public float X, Y, Z;
-
-        public FVector(Vector3 vector)
-        {
-            X = vector.x;
-            Y = vector.y;
-            Z = vector.z;
-        }
-
-        public Vector3 GetVector()
-        {
-            return new Vector3(X, Y, Z);
-        }
-
-        public override string ToString()
-        {
-            return $"({X}, {Y}, {Z})";
-        }
+        public List<SavedObjectState> SaveObjectsList;
     }
 
-    public struct FQuaternion
+    public struct SavedObjectState
     {
-        public float X, Y, Z, W;
-
-        public FQuaternion(Quaternion quaternion)
-        {
-            X = quaternion.x;
-            Y = quaternion.y;
-            Z = quaternion.z;
-            W = quaternion.w;
-        }
-        
-        public Quaternion GetQuaternion()
-        {
-            return new Quaternion(X, Y, Z, W);
-        }
-
-        public override string ToString()
-        {
-            return $"({X}, {Y}, {Z}, {W})";
-        }
+        public int IndexInList;
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public Substance[] Substances;
     }
 }

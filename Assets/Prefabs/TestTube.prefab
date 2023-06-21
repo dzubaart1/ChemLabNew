@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5107097452719996414}
   m_Layer: 3
   m_Name: test_tube_50ml
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 6090497538589592664}
   m_Layer: 3
   m_Name: Cup
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,7 +700,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513571752015484691}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -816,15 +816,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e56548a7c38c4c8dd2c880f420c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
+  ContainerType: 6
+  IsAbleToWeight: 0
+  IsDirty: 0
   _cupsList:
   - {fileID: 6090497538589592664}
   _snapZone: {fileID: 8513571751734786851}
-  ContainerType: 6
-  IsAbleToWeight: 0
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 9044584224476790140}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
+  _particleSystem: {fileID: 0}
 --- !u!1 &8513571752801770520
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,10 @@
-using Machines;
 using Substances;
-using UnityEngine;
+
 
 namespace Containers
 {
     public class ExpTabletLunkaContainer : TransferSubstanceContainer
     {
-        [Header("ExpTabletLunka Container Params")]
-        [SerializeField] private ExpTabletMachineCntrl _tabletMachineCntrl;
-
         public override bool AddSubstance(Substance substance)
         {
             if (CurrentCountSubstances == 0)
@@ -19,7 +15,6 @@ namespace Containers
             {
                 _substancesCntrl.MixSubstances(this, substance);
             }
-            _tabletMachineCntrl.CheckCompliteFill();
             return true;
         }
     }

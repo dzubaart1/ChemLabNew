@@ -1,16 +1,14 @@
-using AnchorCntrls;
 using BNG;
 using Substances;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 namespace Containers
 {
     public class MixContainer : TransferSubstanceContainer
     {
-        private AnchorCntrl _anchor;
-        
+        private GameObject _anchor;
+
+        public GameObject AnchorCntrl => _anchor;
         public override bool AddSubstance(Substance substance)
         {
             Debug.Log(CurrentCountSubstances);
@@ -24,12 +22,19 @@ namespace Containers
             }
             return true;
         }
-        
-        public AnchorCntrl Anchor => _anchor;
 
-        public void AddAnchor(AnchorCntrl anchor)
+        private void OnTriggerStay(Collider other)
         {
-            _anchor = anchor;
+            if (!other.CompareTag("Anchor") || other.GetComponent<Grabbable>().BeingHeld || _anchor is not null)
+            {
+                return;
+            }
+            
+            other.GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<BoxCollider>().enabled = false;
+            other.gameObject.transform.parent = other.transform;
+            other.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            _anchor = other.gameObject;
         }
     }
 }

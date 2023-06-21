@@ -22,7 +22,10 @@ namespace Containers
 
         private void Start()
         {
-            InputBridge.OnAButtonPressed += ToggleSubstanceCanvas;
+            if (_substanceCanvasCntrl is not null)
+            {
+                InputBridge.OnAButtonPressed += ToggleSubstanceCanvas;
+            }
         }
 
         private void ToggleSubstanceCanvas()

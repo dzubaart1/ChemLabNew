@@ -29,13 +29,14 @@ namespace Containers
 
         public override bool RemoveSubstance(float maxVolume)
         {
-            Debug.Log("Spoon" +CurrentCountSubstances);
             if (CurrentCountSubstances == 0 || !IsEnable())
             {
                 return false;
             }
             
             _substancesCntrl.RemoveSubstance(this, maxVolume);
+            _mainSubPrefab.SetActive(true);
+            _mainSubPrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
             return true;
         }
 
@@ -56,6 +57,9 @@ namespace Containers
             {
                 AddSubstanceToArray(substance);
             }
+            
+            _mainSubPrefab.SetActive(true);
+            _mainSubPrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
         }
         
         protected override bool IsEnable()

@@ -29,7 +29,7 @@ namespace Machines
         {
             if (_snapZone.HeldItem is null ||
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
-                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().Anchor is null)
+                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl is null)
             {
                 _isEnter = false;
                 return;
@@ -43,7 +43,7 @@ namespace Machines
 
         public void OnEnterObject()
         {
-            EnterIntoMachineSignal enterIntoMachineSignal = new EnterIntoMachineSignal()
+            var enterIntoMachineSignal = new EnterIntoMachineSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
                 MachinesType = MachinesTypes.StirringMachine
@@ -61,9 +61,7 @@ namespace Machines
             _isStart = true;
             
             var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
-            Debug.Log($"Before Stir: {temp.CurrentSubstances[1].SubstanceProperty.SubName}");
             _substancesCntrl.StirSubstance(temp);
-            Debug.Log($"After Stir: {temp.CurrentSubstances[1].SubstanceProperty.SubName}");
             StartStirringAnimation();
             var startMachineWorkSignal = new StartMachineWorkSignal()
             {
@@ -89,13 +87,13 @@ namespace Machines
 
         private void StartStirringAnimation()
         {
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().Anchor.gameObject.GetComponent<Animator>().enabled = true;
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.gameObject.GetComponent<Animator>().enabled = true;
             gameObject.GetComponent<Animator>().enabled = true;
         }
         
         private void StopStirringAnimation()
         {
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().Anchor.gameObject.GetComponent<Animator>().enabled = false;
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.gameObject.GetComponent<Animator>().enabled = false;
             gameObject.GetComponent<Animator>().enabled = false;
         }
     }

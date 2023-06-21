@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3230590818201616874}
   - component: {fileID: 3230590818201616873}
   - component: {fileID: 3230590818201616872}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: snapPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 3230590819400659983}
   - component: {fileID: 3230590819400659982}
   - component: {fileID: 3230590819400659981}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,9 +384,9 @@ GameObject:
   - component: {fileID: 5613162757780011323}
   - component: {fileID: 5613162757780011326}
   - component: {fileID: 5613162757780011327}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Cup
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5535191197090020131}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: PetriDish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,9 +630,9 @@ GameObject:
   - component: {fileID: 4749117862259072120}
   - component: {fileID: 4749117862259072122}
   - component: {fileID: 4749117862259072123}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: BasePetriDish
-  m_TagString: Untagged
+  m_TagString: Serializable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -827,15 +827,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39e56548a7c38c4c8dd2c880f420c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
+  ContainerType: 7
+  IsAbleToWeight: 0
+  IsDirty: 0
   _cupsList:
   - {fileID: 5613162757780011323}
   _snapZone: {fileID: 3230590818201616871}
-  ContainerType: 7
-  IsAbleToWeight: 0
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 8327012979987512624}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
+  _particleSystem: {fileID: 0}
 --- !u!114 &4749117862259072123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -861,7 +865,7 @@ GameObject:
   - component: {fileID: 2093294477827696897}
   - component: {fileID: 814650317622315893}
   - component: {fileID: 2505635319577200111}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: PetriDishPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

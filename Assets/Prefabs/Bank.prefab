@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 2174725150674927015}
   m_Layer: 3
   m_Name: Pot
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,13 +778,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c579ec3ae608d5740b537747527bdb9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
+  ContainerType: 0
+  IsAbleToWeight: 0
+  IsDirty: 0
   _cupsList:
   - {fileID: 8395895720916930085}
   _snapZone: {fileID: 1049890706315267256}
-  ContainerType: 0
-  IsAbleToWeight: 0
-  _XRrig: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 7039664695848158087}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}

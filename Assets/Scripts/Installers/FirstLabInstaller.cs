@@ -27,6 +27,9 @@ namespace Installers
             Container.DeclareSignal<FinishMashineWorkSignal>();
             Container.DeclareSignal<EnterIntoMachineSignal>();
             Container.DeclareSignal<StartGameSignal>();
+            Container.DeclareSignal<SaveSignal>();
+            Container.DeclareSignal<LoadSignal>();
+            Container.DeclareSignal<RevertTaskSignal>();
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.transform.position = SpawnPoint.transform.position;
@@ -38,9 +41,7 @@ namespace Installers
             SubstancesParamsCollection substancesCollection = new SubstancesParamsCollection();
             SubstancesCntrl substancesCntrl = new SubstancesCntrl(substancesCollection);
             Container.Bind<SubstancesCntrl>().FromInstance(substancesCntrl).AsSingle();
-
-            /*SceneSetter sceneSetter = new SceneSetter();
-            Container.Bind<SceneSetter>().FromInstance(sceneSetter).AsSingle();*/
+            
         }
     }
 
@@ -74,5 +75,19 @@ namespace Installers
     {
         public MachinesTypes MachinesType;
         public ContainersTypes ContainersType;
+    }
+
+    public class SaveSignal
+    {
+        public int TaskId;
+    }
+
+    public class LoadSignal
+    {
+    }
+
+    public class RevertTaskSignal
+    {
+        public int TaskId;
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2128336855146540702}
   - component: {fileID: 3037260695330529595}
   - component: {fileID: 991482184923502065}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3708743213412771410}
   - component: {fileID: 3708743213412771412}
   - component: {fileID: 3708743213412771411}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: SpoonPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,9 +180,9 @@ GameObject:
   - component: {fileID: 3708743214830875555}
   - component: {fileID: 3708743214830875554}
   - component: {fileID: 3708743214830875553}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: PuttyKnife
-  m_TagString: Untagged
+  m_TagString: Serializable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,11 +327,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1131bd450acac74a9c927b0bffd1d38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 3
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 3708743213412771409}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
+  _particleSystem: {fileID: 0}

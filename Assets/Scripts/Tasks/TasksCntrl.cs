@@ -1,6 +1,5 @@
 #nullable enable
 using System.Collections.Generic;
-using System.Linq;
 using Canvases;
 using Installers;
 using UnityEngine;
@@ -10,7 +9,7 @@ namespace Tasks
 {
     public class TasksCntrl : MonoBehaviour
     {
-        private List<TaskParams> _tasksParamsList;
+        public List<TaskParams> _tasksParamsList;
         private int _taskCurrentId;
         private bool _isStartGame;
         private SignalBus _signalBus;
@@ -28,27 +27,7 @@ namespace Tasks
             _signalBus.Subscribe<EnterIntoMachineSignal>(CheckEnteringIntoMachine);
             _signalBus.Subscribe<StartMachineWorkSignal>(CheckStartMachineWork);
             _signalBus.Subscribe<FinishMashineWorkSignal>(CheckFinishMachineWork);
-        }
-        private void Start()
-        {
-            _tasksParamsList = new List<TaskParams>();
-            _tasksParamsList = Resources.LoadAll<TaskParams>("Tasks/").ToList();
-            _tasksParamsList.Sort(CompareToTaskParams);
-            _taskCurrentId = 0;
-        }
-        private int CompareToTaskParams(TaskParams t1, TaskParams t2)
-        {
-            if (t1.Id > t2.Id)
-            {
-                return 1;
-            }
-
-            if (t1.Id < t2.Id)
-            {
-                return -1;
-            }
-
-            return 0;
+            _signalBus.Subscribe<RevertTaskSignal>(RevertTask);
         }
         public TaskParams GetTaskParamsById(int id)
         {
@@ -60,8 +39,13 @@ namespace Tasks
             {
                 return;
             }
+
+            if (CurrentTask().IsSpawnPoint)
+            {
+                _signalBus.Fire(new SaveSignal(){TaskId = _taskCurrentId});
+            }
             
-            Debug.Log($"{CurrentTask().Id} is done");
+            Debug.Log($"{_taskCurrentId} is done");
             if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
             _taskCurrentId++;
             _signalBus.Fire(new CheckTasksSignal(){CurrentTask = CurrentTask()});
@@ -70,9 +54,11 @@ namespace Tasks
         {
             return GetTaskParamsById(_taskCurrentId);
         }
-        public void SetCurrentTaskId(int taskId)
+        public void RevertTask(RevertTaskSignal revertTaskSignal)
         {
-            _taskCurrentId = taskId;
+            _taskCurrentId = revertTaskSignal.TaskId;
+            _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
+            Debug.Log($"Revert id {_taskCurrentId}");
         }
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
@@ -98,6 +84,7 @@ namespace Tasks
         }
         private void CheckStartMachineWork(StartMachineWorkSignal startMachineWorkSignal)
         {
+            Debug.Log("Here 2");
             if (!CurrentTask().MachinesType.Equals(startMachineWorkSignal.MachinesType))
             {
                 _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.EndGameCanvas});

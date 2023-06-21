@@ -106,15 +106,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102990260369888}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102989498226173
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,15 +419,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102989520477298}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102989696026628
 GameObject:
   m_ObjectHideFlags: 0
@@ -581,15 +587,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102990551122207}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102989830301777
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,15 +672,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102990196694292}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102989854817597
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,15 +757,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102989696026628}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102990043365534
 GameObject:
   m_ObjectHideFlags: 0
@@ -827,15 +842,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5733d777232a046ab74dee40e4699d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentCountSubstances: 0
   MaxVolume: 9000
-  _cupsList: []
-  _snapZone: {fileID: 0}
   ContainerType: 8
   IsAbleToWeight: 0
+  IsDirty: 0
+  _cupsList: []
+  _snapZone: {fileID: 0}
+  _substanceCanvasCntrl: {fileID: 0}
   _mainSubPrefab: {fileID: 4779102991006672262}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
-  _tabletMachineCntrl: {fileID: 4142000584765382234}
+  _particleSystem: {fileID: 0}
 --- !u!1 &4779102990046809305
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,10 +1424,9 @@ GameObject:
   - component: {fileID: 4142000584765382235}
   - component: {fileID: 4142000584765382232}
   - component: {fileID: 4142000584765382233}
-  - component: {fileID: 4142000584765382234}
   m_Layer: 3
-  m_Name: Base
-  m_TagString: Serializable
+  m_Name: BaseExpTablet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,27 +1601,6 @@ MonoBehaviour:
   UseCustomInspector: 1
   lastFlickTime: 0
   FlickForce: 1
---- !u!114 &4142000584765382234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6671019529057094890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f72d3147171f4e29be61a6f8de395227, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _lunkaContainers:
-  - {fileID: 4779102990043365527}
-  - {fileID: 4779102989830301775}
-  - {fileID: 4779102989771289853}
-  - {fileID: 4779102989677710722}
-  - {fileID: 4779102989290466360}
-  - {fileID: 4779102989854817594}
-  _cup: {fileID: 2512026453095564211}
-  _snapZone: {fileID: 4779102990046809307}
 --- !u!1 &7389975473546541149
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,7 +1619,7 @@ GameObject:
   - component: {fileID: 2512026453095564208}
   m_Layer: 3
   m_Name: Cup
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

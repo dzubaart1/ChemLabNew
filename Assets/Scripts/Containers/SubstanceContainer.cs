@@ -38,6 +38,7 @@ namespace Containers
                 CurrentSubstances[i] = null;
             }
             CurrentCountSubstances = 0;
+            UpdateDisplaySubstance();
         }
         
         public virtual bool AddSubstance(Substance substance)
@@ -46,7 +47,7 @@ namespace Containers
             {
                 return false;
             }
-            
+
             _substancesCntrl.AddSubstance(this, substance);
             return true;
         }
