@@ -96,9 +96,10 @@ GameObject:
   - component: {fileID: 8569025454902821835}
   - component: {fileID: 8569025454902821834}
   - component: {fileID: 8569025454902821838}
+  - component: {fileID: 4273235831939763777}
   m_Layer: 11
   m_Name: Anchor
-  m_TagString: Anchor
+  m_TagString: Animator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +204,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &8569025454902821834
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -237,3 +238,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4273235831939763777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8569025454902821831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3e7f3cb7ed4b5d9b222d07f49ccd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

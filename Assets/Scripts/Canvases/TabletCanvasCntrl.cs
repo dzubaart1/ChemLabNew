@@ -1,5 +1,6 @@
 using Data;
 using Installers;
+using ModestTree;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -10,11 +11,15 @@ namespace Canvases
     {
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
+        [SerializeField] private Text _taskDescription;
+        [SerializeField] private GameObject _deskPanel;
+        [SerializeField] private GameObject _deskBtn;
         
         private SignalBus _signalBus;
         private void Start()
         {
             _signalBus.Subscribe<CheckTasksSignal>(UpdateText);
+            gameObject.SetActive(false);
         }
         
         [Inject]
@@ -27,6 +32,16 @@ namespace Canvases
         {
             _taskTitle.text = checkTasksSignal.CurrentTask.Title;
             _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Number;
+            
+            if (checkTasksSignal.CurrentTask.TaskDescription == "")
+            {
+                _deskBtn.SetActive(false);
+            }
+            else
+            {
+                _deskBtn.SetActive(true);
+                _taskDescription.text = checkTasksSignal.CurrentTask.TaskDescription;
+            }
         }
 
         public void SaveSceneState()
@@ -37,6 +52,11 @@ namespace Canvases
         public void LoadSceneState()
         {
             _signalBus.Fire<LoadSignal>();
+        }
+
+        public void ToogleDescriptionPanel()
+        {
+            _deskPanel.SetActive(!_deskPanel.activeSelf);
         }
     }
 }

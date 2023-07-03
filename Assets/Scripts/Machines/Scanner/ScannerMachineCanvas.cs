@@ -8,7 +8,6 @@ namespace Machines
     {
         private bool _buttonIsOn = false;
         [SerializeField] private Image _img;
-        [SerializeField] private Button _btn;
         [SerializeField] ScannerMachineCntrl _scannerMachineCntrl;
         
         public void clickButton()

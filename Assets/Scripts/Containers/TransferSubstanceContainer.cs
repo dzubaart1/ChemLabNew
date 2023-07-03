@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using BNG;
-using Canvases;
 using Installers;
-using Substances;
 using UnityEngine;
 using Zenject;
 
@@ -42,7 +40,7 @@ namespace Containers
             {
                 return;
             }
-            
+
             if (!InputBridge.Instance.RightTriggerDown && !InputBridge.Instance.LeftTriggerDown)
             {
                 return;
@@ -68,10 +66,9 @@ namespace Containers
             bool checkAdd, checkRemove;
             if (CurrentCountSubstances == 0)
             {
-                Debug.Log("spoon");
-                //если это ложка
-                if (ContainerType != ContainersTypes.SpoonContainer && ContainerType != ContainersTypes.DozatorContainer)
+                if (GetComponent<SpoonContainer>() is null && ContainerType != ContainersTypes.DozatorContainer)
                 {
+                    Debug.Log("Here");
                     return;
                 }
                 if (triggerGameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
@@ -93,7 +90,7 @@ namespace Containers
                 _signalBus.Fire(transferSubstanceSignal1);
                 return;
             }
-        
+
             checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(GetNextSubstance());
             if (!checkAdd) return;
             checkRemove = RemoveSubstance(triggerGameObject.GetComponent<TransferSubstanceContainer>().MaxVolume);

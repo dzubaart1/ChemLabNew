@@ -56,7 +56,7 @@ namespace Containers
             return sumWeight;
         }
         
-        /*public static bool IsNull<T>(T myObject, string message = "") where T : class
+        public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
             switch (myObject)
             {
@@ -67,6 +67,19 @@ namespace Containers
                 default:
                     return false;
             }
-        }*/
+        }
+        
+        [CanBeNull]
+        public Substance GetNextSubstance()
+        {
+            for (var i = MAX_LAYOURS_COUNT-1; i >= 0; i--)
+            {
+                if (CurrentSubstances[i] != null)
+                {
+                    return CurrentSubstances[i];
+                }
+            }
+            return null;
+        }
     }
 }

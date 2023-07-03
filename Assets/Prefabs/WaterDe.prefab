@@ -25,15 +25,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510104009470367770}
-  m_LocalRotation: {x: 0.000000015454313, y: 0.7071069, z: -0.000000015454313, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 1.732, z: 0.72}
+  m_LocalRotation: {x: 0.21192475, y: 0.67460203, z: 0.21192475, w: 0.67460203}
+  m_LocalPosition: {x: 0, y: 1.754, z: 0.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6996936076475651598}
   m_Father: {fileID: 5796766697951785480}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 34.88}
 --- !u!198 &5272710037369997280
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4875,7 +4875,39 @@ Transform:
   - {fileID: 8775762036252064170}
   - {fileID: 4000034116529799954}
   m_Father: {fileID: 5796766697951785480}
-  m_RootOrder: 1
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1863012829654188370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7060091817363240242}
+  m_Layer: 0
+  m_Name: basePref
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7060091817363240242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863012829654188370}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5487717308117091822}
+  m_Father: {fileID: 5796766697951785480}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2028496078469032734
 GameObject:
@@ -5069,12 +5101,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2755328925870071721}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5796766697951785480}
+  m_Father: {fileID: 7060091817363240242}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7092624307358688325
@@ -5227,7 +5259,7 @@ GameObject:
   - component: {fileID: 3090036148216426541}
   m_Layer: 0
   m_Name: WaterDe
-  m_TagString: Untagged
+  m_TagString: Serializable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5244,10 +5276,10 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 5487717308117091822}
   - {fileID: 6891619587525373761}
   - {fileID: 1910668868336620480}
   - {fileID: 2560091124627777602}
+  - {fileID: 7060091817363240242}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5378,10 +5410,11 @@ MonoBehaviour:
   MaxVolume: 9000
   ContainerType: 0
   IsAbleToWeight: 0
+  IsDirty: 0
   _cupsList: []
   _snapZone: {fileID: 0}
   _substanceCanvasCntrl: {fileID: 0}
-  _mainSubPrefab: {fileID: 2755328925870071721}
+  _mainSubPrefab: {fileID: 1863012829654188370}
   _sedimentPrefab: {fileID: 0}
   _membranePrefab: {fileID: 0}
   _particleSystem: {fileID: 510104009470367770}
@@ -5398,7 +5431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d32532b12919940ab8b4c076f7c127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Threshold: 0.5
+  m_Threshold: 0.3
   m_Target: {fileID: 2560091124627777602}
   m_UpSource: {fileID: 0}
   m_OnBegin:
@@ -5460,7 +5493,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5796766697951785480}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6990865960206855178
 GameObject:

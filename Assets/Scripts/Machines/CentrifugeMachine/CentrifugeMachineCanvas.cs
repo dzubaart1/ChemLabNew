@@ -10,58 +10,53 @@ namespace Machines.CentrifugeMachine
         [SerializeField] private GameObject _startBtn;
         [SerializeField] private GameObject _powerBtn;
         [SerializeField] private GameObject animatedPart;
-        [SerializeField] private List<Sprite> powerButtonSprites;
-        [SerializeField] private List<Sprite> startButtonSprites;
+        [SerializeField] private Sprite _onPowerBtnSprite;
+        [SerializeField] private Sprite _offPowerBtnSprite;
+        [SerializeField] private Sprite _onStartBtnSprite;
+        [SerializeField] private Sprite _offStartBtnSprite;
 
-        private bool _isWorked, _isPowerOn;
+        private bool _isStart, _isPower;
 
         private void Start()
         {
-            _isWorked = false;
-            _isPowerOn = false;
+            _isStart = false;
+            _isPower = false;
             _startBtn.GetComponent<Button>().enabled = false;
         }
 
         public void OnClickPowerBtn()
         {
             
-            _isPowerOn = !_isPowerOn;
-            if (_isPowerOn)
+            _isPower = !_isPower;
+            if (_isPower)
             {
-                _powerBtn.GetComponent<Image>().sprite = powerButtonSprites[1];
+                _powerBtn.GetComponent<Image>().sprite = _offPowerBtnSprite;
                 _startBtn.GetComponent<Button>().enabled = true;
             }
 
-            if (!_isPowerOn)
+            if (!_isPower)
             {
-                _powerBtn.GetComponent<Image>().sprite = powerButtonSprites[0];
-                if (!_isWorked)
+                _powerBtn.GetComponent<Image>().sprite = _onPowerBtnSprite;
+                if (!_isStart)
                 {
                     _startBtn.GetComponent<Button>().enabled = false;
                     _centrifugeMachineCntrl.OnFinishWork();
                 }
-                else
-                {
-                    // АТАТАТ Так нельзя
-                }
             }
-            Debug.Log("power clicked, power is "+ _isPowerOn + " start is " + _isWorked + " start enable is " + _startBtn.GetComponent<Button>().enabled);
-            
         }
         
         public void OnClickStartBtn()
         {
-            _isWorked = !_isWorked;
-            Debug.Log("start clicked, power is "+ _isPowerOn + " start is " + _isWorked + " start enable is " + _startBtn.GetComponent<Button>().enabled);
-            if (_isWorked)
+            _isStart = !_isStart;
+            if (_isStart)
             {
-                _startBtn.GetComponent<Image>().sprite = startButtonSprites[1];
+                _startBtn.GetComponent<Image>().sprite = _offStartBtnSprite;
                 animatedPart.GetComponent<Animator>().enabled = true;
                 _centrifugeMachineCntrl.OnStartWork();
             }
             else
             {
-                _startBtn.GetComponent<Image>().sprite = startButtonSprites[0];
+                _startBtn.GetComponent<Image>().sprite = _onStartBtnSprite;
                 animatedPart.GetComponent<Animator>().enabled = false;
             }
         }

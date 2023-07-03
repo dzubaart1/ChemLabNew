@@ -1,8 +1,6 @@
 using Installers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
-using System.Collections.Generic;
 
 
 namespace Canvases
@@ -10,9 +8,7 @@ namespace Canvases
     public class StartCanvasCntrl : CanvasBase
     {
         private SignalBus _signalBus;
-        
-        [SerializeField] private List<GameObject> panels;
-        private int rulesCount = 0;
+        [SerializeField] private GameObject _tabletCanvas;
         
         [Inject] 
         public void Construct(SignalBus signalBus)
@@ -22,16 +18,10 @@ namespace Canvases
         
         public void OnStartBtnClick()
         {
-            //SceneManager.LoadScene(0);
+            _tabletCanvas.SetActive(true);
             _signalBus.Fire(new StartGameSignal());
             _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.StartGameCanvas});
-        }
-
-        public void OnNextBtnClick()
-        {
-            Destroy(panels[rulesCount]);
-            rulesCount++;
-            panels[rulesCount].SetActive(true);
+            
         }
     }
 }

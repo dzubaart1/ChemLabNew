@@ -15,31 +15,38 @@ namespace Substances
         
         public void StirSubstance(SubstanceContainer substanceContainer)
         {
-            Debug.Log("Here" + substanceContainer.CurrentCountSubstances);
             if (substanceContainer.CurrentCountSubstances != 1)
             {
                 return;
             }
             
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetStirringSubstanceParams(temp.SubstanceProperty);
-            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            var sub = new Substance(newSubPar, temp.GetWeight());
+            
+            substanceContainer.ClearSubstances();
+            substanceContainer.AddSubstanceToArray(sub);
             substanceContainer.UpdateDisplaySubstance();
         }
         
-        public void DrySubstance(SubstanceContainer substanceContainer)
+        public bool DrySubstance(SubstanceContainer substanceContainer)
         {
             if (substanceContainer.CurrentCountSubstances != 1)
             {
-                return;
+                return false;
+            }
+            var temp = substanceContainer.GetNextSubstance();
+            var newSubPar = _substancesParamsCollection.GetDrySubstanceParams(temp.SubstanceProperty);
+            if (newSubPar.SubName.Equals("Bad Substance"))
+            {
+                return false;
             }
 
-            var temp = substanceContainer.GetNextSubstance();
+            var sub = new Substance(newSubPar, temp.GetWeight());
             substanceContainer.ClearSubstances();
-            var newSubPar = _substancesParamsCollection.GetDrySubstanceParams(temp.SubstanceProperty);
-            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight()));
+            substanceContainer.AddSubstanceToArray(sub);
             substanceContainer.UpdateDisplaySubstance();
+            return true;
         }
 
         public void MixSubstances(SubstanceContainer substanceContainer, Substance secSub)
@@ -50,58 +57,77 @@ namespace Substances
                 return;
             }
             
+            var nextSub = substanceContainer.GetNextSubstance();
+            if (nextSub is not null && nextSub.SubstanceProperty.SubName
+                    .Equals(secSub.SubstanceProperty.SubName))
+            {
+                nextSub.AddWeight(secSub.GetWeight());
+                return;
+            }
+            
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetMixSubstanceParams(temp.SubstanceProperty, secSub.SubstanceProperty);
-            substanceContainer.AddSubstanceToArray(new Substance(newSubPar, temp.GetWeight() + secSub.GetWeight()));
-            Debug.Log(newSubPar.SubName);
+            var sub = new Substance(newSubPar, temp.GetWeight() + secSub.GetWeight());
+            substanceContainer.ClearSubstances();
+            substanceContainer.AddSubstanceToArray(sub);
             substanceContainer.UpdateDisplaySubstance();
         }
 
         
         
-        public void SplitSubstances(SubstanceContainer substanceContainer)
+        public bool SplitSubstances(SubstanceContainer substanceContainer)
         {
             if (substanceContainer.CurrentCountSubstances != 1)
             {
-                return;
+                return false;
             }
 
             var temp = substanceContainer.GetNextSubstance();
-            substanceContainer.ClearSubstances();
             var newSubPar = _substancesParamsCollection.GetSplitSubstanceParams(temp.SubstanceProperty);
-            if (newSubPar is not SubstancePropertySplit substancePropertySplit) return;
+            
+            if (newSubPar.SubName.Equals("Bad Substance"))
+            {
+                return false;
+            }
+            
+            if (newSubPar is not SubstancePropertySplit substancePropertySplit)
+            {
+                return false;
+            }
             
             var res = new Substance[MAX_LAYOURS_COUNT];
             if (substancePropertySplit.Sediment is not null)
             {
                 res[0] = new Substance(substancePropertySplit.Sediment,
-                    temp.GetWeight() * substancePropertySplit.GetPartOfSedimentWeight());
+                    temp.GetWeight()); 
             }
             if (substancePropertySplit.Main is not null)
             {
                 res[1] = new Substance(substancePropertySplit.Main,
-                    temp.GetWeight() * substancePropertySplit.GetPartOfMainWeight());
+                    temp.GetWeight());
             }
             if (substancePropertySplit.Membrane is not null)
             {
                 res[2] = new Substance(substancePropertySplit.Membrane,
-                    temp.GetWeight() * substancePropertySplit.GetPartOfMembraneWeight());
+                    temp.GetWeight());
             }
-
+            
+            substanceContainer.ClearSubstances();
             substanceContainer.UpdateSubstancesArray(res);
             substanceContainer.UpdateDisplaySubstance();
+            return true;
         }
         
         public void AddSubstance(SubstanceContainer substanceContainer, Substance addingSubstance)
         {
             substanceContainer.IsDirty = true;
             
-            if (substanceContainer.MaxVolume >= addingSubstance.GetWeight())
+            if (substanceContainer.MaxVolume - substanceContainer.GetWeight() >= addingSubstance.GetWeight())
             {
                 substanceContainer.AddSubstanceToArray(addingSubstance);
                 return;
             }
+            
             substanceContainer.AddSubstanceToArray(new Substance(addingSubstance.SubstanceProperty, substanceContainer.MaxVolume));
             substanceContainer.UpdateDisplaySubstance();
         }

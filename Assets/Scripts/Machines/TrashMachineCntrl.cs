@@ -1,7 +1,7 @@
 using System.Collections.Generic;
+using BNG;
 using Cups;
 using Installers;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -9,8 +9,7 @@ namespace Machines
 {
     public class TrashMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private Transform _spawnPoint;
+        [SerializeField] private Transform _spawnPoint;
     
         private Stack<GameObject> thrownObjects;
         private SignalBus _signalBus;
@@ -24,23 +23,19 @@ namespace Machines
         {
             _signalBus = signalBus;
         }
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerStay(Collider other)
         {
-            AddObject(collision.gameObject);
-        }
-
-        private void AddObject(GameObject gameObj)
-        {
-            thrownObjects.Push(gameObj); 
-            gameObj.SetActive(false);
-            if (gameObj.GetComponent<DozatorCup>() is not null && gameObj.GetComponent<DozatorCup>().IsDirty)
+            if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
             {
-                StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
-                {
-                    MachinesType = MachinesTypes.TrashMachine
-                };
-                _signalBus.Fire(startMachineWorkSignal);
+                return;
             }
+            thrownObjects.Push(other.gameObject); 
+            other.gameObject.SetActive(false);
+            var startMachineWorkSignal = new StartMachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.TrashMachine
+            };
+            _signalBus.Fire(startMachineWorkSignal);
         }
 
         public void ReturnObject()

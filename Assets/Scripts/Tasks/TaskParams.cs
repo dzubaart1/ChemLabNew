@@ -18,5 +18,6 @@ namespace Tasks
         public MachinesTypes MachinesType;
         public SubstancePropertyBase ResultSubstance;
         public bool IsSpawnPoint;
+        public string TaskDescription;
     }
 }

@@ -10,14 +10,14 @@ using Zenject;
 
 namespace Machines.CentrifugeMachine
 {
-    public class CentrifugeMachineCntrl : MonoBehaviour, IMachine
+    public class CentrifugeMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private List<SnapZone> _SnapZones;
+        [SerializeField] private List<SnapZone> _snapZones;
         private SignalBus _signalBus;
         private const int MINTOCOMPLITETASK = 2;
 
         private SubstancesCntrl _substancesCntrl;
+
         [Inject]
         public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
@@ -25,51 +25,54 @@ namespace Machines.CentrifugeMachine
             _substancesCntrl = substancesCntrl;
         }
 
-        public void OnEnterObject()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public void OnStartWork()
         {
             int countCurrentCentrifugeContainer = 0;
-            foreach (var snapZone in _SnapZones)
+            foreach (var snapZone in _snapZones)
             {
                 if (snapZone.HeldItem is null)
                 {
                     continue;
                 }
+
                 if (snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null)
                 {
                     continue;
                 }
-                
+
                 var subCont = snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
                 _substancesCntrl.SplitSubstances(subCont);
-                subCont.UpdateDisplaySubstance();
 
                 countCurrentCentrifugeContainer++;
             }
 
             if (countCurrentCentrifugeContainer >= MINTOCOMPLITETASK)
             {
-                _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine});
+                _signalBus.Fire(new StartMachineWorkSignal() { MachinesType = MachinesTypes.CentrifugeMachine });
             }
         }
 
         public void OnFinishWork()
         {
-            foreach (var snapZone in _SnapZones)
+            var index = 0;
+            for (; index < _snapZones.Count; index++)
             {
+                var snapZone = _snapZones[index];
                 if (snapZone.HeldItem is null)
                 {
                     continue;
                 }
+
                 if (snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null)
                 {
                     continue;
                 }
-                _signalBus.Fire(new FinishMashineWorkSignal(){MachinesType = MachinesTypes.CentrifugeMachine, SubstancePropertyBase = snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().GetNextSubstance().SubstanceProperty});
+
+                var substanceProp = snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().GetNextSubstance()
+                    .SubstanceProperty;
+                _signalBus.Fire(new FinishMashineWorkSignal()
+                    { MachinesType = MachinesTypes.CentrifugeMachine, SubstancePropertyBase = substanceProp });
+                return;
             }
         }
     }

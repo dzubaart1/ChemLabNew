@@ -2,7 +2,7 @@ namespace Generators
 {
     public class IdGenerator
     {
-        private static int _cupId = 0;
+        private static int _cupId;
 
         public static int GetCupId()
         {

@@ -36,11 +36,11 @@ namespace Containers
             
             _substancesCntrl.RemoveSubstance(this, maxVolume);
             _mainSubPrefab.SetActive(true);
-            _mainSubPrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
+            _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
             return true;
         }
 
-        public void CheckTasks(CheckTasksSignal checkTasksSignal)
+        private void CheckTasks(CheckTasksSignal checkTasksSignal)
         {
             if (checkTasksSignal.CurrentTask.SubstancesParams is null ||
                 !_substanceParams.SubName.Equals(checkTasksSignal.CurrentTask.SubstancesParams.SubName))
@@ -59,7 +59,7 @@ namespace Containers
             }
             
             _mainSubPrefab.SetActive(true);
-            _mainSubPrefab.GetComponent<MeshRenderer>().material.color = _substanceParams.Color;
+            _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
         }
         
         protected override bool IsEnable()

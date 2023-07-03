@@ -30,7 +30,7 @@ namespace Substances
             _substancePropertyStirrings = Resources.LoadAll<SubstancePropertyStirring>("SubstancesProperties/SubstancePropertyStirring").ToList();
             _substancePropertyBases = Resources.LoadAll<SubstancePropertyBase>("SubstancesProperties/SubstancePropertyBase").ToList();
         }
-        private SubstancePropertyBase getBadSubstanceParams() 
+        public SubstancePropertyBase GetBadSubstanceParams() 
         {
             return _substancePropertyBases.Find(sub => sub.SubName.Equals("Bad Substance"));
         }
@@ -39,28 +39,28 @@ namespace Substances
             var res = _substancePropertyComponents.Find(substance =>
                 substance.SubstancePropertyBases.Contains(oldParam) && substance.SubstancePropertyBases.Contains(addParam));
 
-            return res ? res : getBadSubstanceParams();
+            return res ? res : GetBadSubstanceParams();
         }
         public SubstancePropertyBase GetStirringSubstanceParams(SubstancePropertyBase substance)
         {
             var res = _substancePropertyStirrings.Find(temp =>
                 temp.SubName.Equals(substance.SubName));
             
-            return res ? res : getBadSubstanceParams();
+            return res ? res : GetBadSubstanceParams();
         }
         public SubstancePropertyBase GetDrySubstanceParams(SubstancePropertyBase substance)
         {
             var res = _substancePropertyDries.Find(temp =>
                 temp.SubName.Equals(substance.SubName));
             
-            return res ? res : getBadSubstanceParams();
+            return res ? res : GetBadSubstanceParams();
         }
         public SubstancePropertyBase GetSplitSubstanceParams(SubstancePropertyBase substance)
         {
             var res = _substancePropertySplits.Find(temp =>
                 temp.SubName.Equals(substance.SubName));
             
-            return res ? res : getBadSubstanceParams();
+            return res ? res : GetBadSubstanceParams();
         }
     }
 }

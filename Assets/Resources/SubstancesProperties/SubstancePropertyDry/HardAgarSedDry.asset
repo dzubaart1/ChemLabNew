@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a503cb410e6c4ac180bd94482637b606, type: 3}
+  m_Name: HardAgarSedDry
+  m_EditorClassIdentifier: 
+  SubName: HardAgarSed
+  Color: {r: 0.60793793, g: 0.07879429, b: 0.7830189, a: 1}
+  SubstanceLayer: 0

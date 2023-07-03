@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using BNG;
 using Containers;
 using UnityEngine;
 using Zenject;
@@ -8,8 +9,7 @@ namespace Machines
 {
     public class SinkMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private Transform _spawnPoint;
+        [SerializeField] private Transform _spawnPoint;
     
         private Stack<GameObject> thrownObjects;
         private SignalBus _signalBus;
@@ -24,12 +24,10 @@ namespace Machines
             _signalBus = signalBus;
         }
         
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerStay(Collider other)
         {
-            var gameObj = collision.gameObject;
-            Debug.Log(gameObj.GetComponent<BaseContainer>().IsDirty);
-            if (gameObj.GetComponent<BaseContainer>() is null ||
-                !gameObj.GetComponent<BaseContainer>().IsDirty)
+            var gameObj = other.gameObject;
+            if (gameObj.GetComponent<BaseContainer>() is null || !gameObj.GetComponent<BaseContainer>().IsDirty || gameObj.GetComponent<Grabbable>().BeingHeld)
             {
                 return;
             }
@@ -41,7 +39,6 @@ namespace Machines
             {
                 MachinesType = MachinesTypes.SinkMachine
             };
-            Debug.Log("Here");
             _signalBus.Fire(startMachineWorkSignal);
         }
         

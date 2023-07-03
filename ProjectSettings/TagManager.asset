@@ -8,6 +8,11 @@ TagManager:
   - Water
   - Serializable
   - Anchor
+  - Document
+  - Animator
+  - SnapZone
+  - ExpTablet
+  - canvas
   layers:
   - Default
   - TransparentFX

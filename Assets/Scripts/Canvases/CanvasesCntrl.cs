@@ -7,8 +7,11 @@ namespace Canvases
 {
     public class CanvasesCntrl : MonoBehaviour
     {
-        [SerializeField] private List<CanvasBase> _canvasBases;
+        public List<CanvasBase> _canvasBases;
         private SignalBus _signalBus;
+
+        [SerializeField]
+        private GameObject _tabletCanvas;
         
         [Inject]
         public void Construct(SignalBus signalBus)
@@ -25,9 +28,14 @@ namespace Canvases
         {
             foreach (var canvas in _canvasBases)
             {
-                if (canvas.CanvasId.Equals(showCanvasSignal.Id))
+                if (!canvas.CanvasId.Equals(showCanvasSignal.Id) || (showCanvasSignal.Id == CanvasId.EndGameCanvas && canvas.gameObject.activeSelf))
                 {
-                    canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+                    continue;
+                }
+                canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
+                if (canvas.CanvasId == CanvasId.EndGameCanvas && canvas.gameObject.activeSelf == true)
+                {
+                    _tabletCanvas.SetActive(false);
                 }
             }
         }

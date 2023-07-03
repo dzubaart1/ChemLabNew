@@ -1,6 +1,5 @@
 using Cups;
 using Substances;
-using UnityEngine;
 
 namespace Containers
 {
@@ -8,8 +7,7 @@ namespace Containers
     {
         public override bool AddSubstance(Substance substance)
         {
-            Debug.Log("Add " + substance.GetWeight() + " " + MaxVolume );
-            if (substance is null || !IsEnable())
+            if (!IsEnable())
             {
                 return false;
             }

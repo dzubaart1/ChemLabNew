@@ -3,11 +3,9 @@ using System.Linq;
 using BNG;
 using Canvases;
 using Containers;
-using Data;
 using Machines;
 using Substances;
 using Tasks;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using Zenject;
 
@@ -17,6 +15,7 @@ namespace Installers
     {
         public GameObject XRRigAdvancedPrefab;
         public Transform SpawnPoint;
+        //[SerializeField] private CanvasesCntrl CanvasesCntrl;
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
@@ -33,6 +32,13 @@ namespace Installers
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.transform.position = SpawnPoint.transform.position;
+            /*var canvases = rigInst.GetComponentsInChildren<CanvasBase>();
+            foreach (CanvasBase canvas in canvases)
+            {
+                CanvasesCntrl._canvasBases.Add(canvas);
+            }
+            */
+            
             Container.Bind<GameObject>().FromInstance(rigInst).AsSingle();
             
             List<Grabber> grabbers = rigInst.GetComponentsInChildren<Grabber>().ToList();

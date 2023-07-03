@@ -9,9 +9,13 @@ namespace Machines
         ExpTabletMachine,
         TrashMachine,
         SinkMachine,
-        TeleportMachine,
         ScannerMachine,
         DryBoxMachine,
-        CentrifugeMachine
+        CentrifugeMachine,
+        TeleportCellResearchLab,
+        TeleportScanElecMicroLab,
+        TeleportRFAMachine,
+        PaperTray,
+        KspectrometrMachine
     }
 }

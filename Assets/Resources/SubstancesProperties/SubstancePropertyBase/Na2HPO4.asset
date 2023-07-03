@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Na2HPO4
   m_EditorClassIdentifier: 
   SubName: Na2HPO4
-  Color: {r: 1, g: 0.6666666, b: 0.9348137, a: 1}
+  Color: {r: 0.8605672, g: 0.9152715, b: 0.9245283, a: 1}
   SubstanceLayer: 1

@@ -8,13 +8,13 @@ namespace Machines
 {
     public class TeleportMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private SnapZone _snapZone;
-        [SerializeField]
-        private List<ParticleSystem> ParticleSystems;
+        [SerializeField] private SnapZone _snapZone;
+        [SerializeField] private List<ParticleSystem> ParticleSystems;
+        [SerializeField] private MachinesTypes _teleportType;
+        [SerializeField] private GameObject _docPrefab;
 
         private SignalBus _signalBus;
-    
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -27,13 +27,30 @@ namespace Machines
             {
                 particleSystem.Play();
             }
-            _snapZone.HeldItem.gameObject.SetActive(false);
+
+            var _teleportedGameObject = _snapZone.HeldItem.gameObject;
+            
+            _teleportedGameObject.SetActive(false);
             _snapZone.HeldItem = null;
             var startMachineWorkSignal = new StartMachineWorkSignal()
             {
-                MachinesType = MachinesTypes.TeleportMachine
+                MachinesType = _teleportType
             };
             _signalBus.Fire(startMachineWorkSignal);
-        } 
+        }
+
+        public void OnReturnBtnClick()
+        {
+            Instantiate(_docPrefab, _snapZone.transform.position, Quaternion.identity);
+            foreach (var particleSystem in ParticleSystems)
+            {
+                particleSystem.Play();
+            }
+            var startMachineWorkSignal = new StartMachineWorkSignal()
+            {
+                MachinesType = _teleportType
+            };
+            _signalBus.Fire(startMachineWorkSignal);
+        }
     }
 }

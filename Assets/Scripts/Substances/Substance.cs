@@ -9,6 +9,12 @@ namespace Substances
             Weight = weight;
             SubstanceProperty = substanceProperty;
         }
+
+        public Substance(Substance substance)
+        {
+            Weight = substance.GetWeight();
+            SubstanceProperty = substance.SubstanceProperty;
+        }
         
         public float GetWeight()
         {
@@ -18,6 +24,11 @@ namespace Substances
         public void RemoveWeight(float weight)
         {
             Weight -= weight;
+        }
+
+        public void AddWeight(float weight)
+        {
+            Weight += weight;
         }
     }
 }

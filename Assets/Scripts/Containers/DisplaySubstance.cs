@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using BNG;
 using Canvases;
 using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
-using UnityEngine.UI;
-using Zenject;
 
 namespace Containers
 {
@@ -26,6 +22,11 @@ namespace Containers
             {
                 InputBridge.OnAButtonPressed += ToggleSubstanceCanvas;
             }
+            if (IsNull(_particleSystem))
+            {
+                return;
+            }
+            _particleSystem.SetActive(false);
         }
 
         private void ToggleSubstanceCanvas()
@@ -41,23 +42,17 @@ namespace Containers
         
         public void UpdateDisplaySubstance()
         {
-            for (int i = 0; i < MAX_LAYOURS_COUNT; i++)
+            if (_mainSubPrefab && !_membranePrefab && !_sedimentPrefab)
             {
-                switch (i)
-                {
-                    case 0:
-                        TogglePrefab(_sedimentPrefab, CurrentSubstances[i]?.SubstanceProperty);
-                        //UpdateParticleSystem(CurrentSubstances[i]?.SubstanceProperty);
-                        break;
-                    case 1:
-                        TogglePrefab(_mainSubPrefab, CurrentSubstances[i]?.SubstanceProperty);
-                        //UpdateParticleSystem(CurrentSubstances[i]?.SubstanceProperty);
-                        break;
-                    case 2:
-                        TogglePrefab(_membranePrefab, CurrentSubstances[i]?.SubstanceProperty);
-                        break;
-                }
+                TogglePrefab(_mainSubPrefab, GetNextSubstance()?.SubstanceProperty);
+                return;
             }
+
+            TogglePrefab(_sedimentPrefab, CurrentSubstances[0]?.SubstanceProperty);
+            TogglePrefab(_mainSubPrefab, CurrentSubstances[1]?.SubstanceProperty);
+            TogglePrefab(_membranePrefab, CurrentSubstances[2]?.SubstanceProperty);
+
+            UpdateParticleSystem(CurrentSubstances[1]?.SubstanceProperty);
         }
         
         private void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)
@@ -72,7 +67,12 @@ namespace Containers
                 return;
             }
             prefab.SetActive(true);
-            prefab.GetComponent<MeshRenderer>().material.color = substanceParams.Color;
+            var _mr = prefab.GetComponentInChildren<MeshRenderer>();
+            if (_mr == null)
+            {
+                return;
+            }
+            _mr.material.color = substanceParams.Color;
         }
         
         private string GetStringStack()
@@ -81,7 +81,7 @@ namespace Containers
                 CurrentSubstances.Aggregate("", (current, sub) => current + (sub?.SubstanceProperty.SubName + " "));
         }
 
-        /*private void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
+        private void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
         {
             if (IsNull(_particleSystem))
             {
@@ -96,6 +96,6 @@ namespace Containers
             _particleSystem.SetActive(true);
             var newMat = _particleSystem.GetComponent<Renderer>().material;
             newMat.SetColor("_EmissionColor", substanceParams.Color);
-        }*/
+        }
     }
 }

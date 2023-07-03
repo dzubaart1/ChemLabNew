@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using Canvases;
 using Installers;
@@ -23,6 +24,7 @@ namespace Tasks
             {
                 _isStartGame = true;
                 _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
+                _signalBus.Fire(new SaveSignal(){TaskId = _taskCurrentId});
             });
             _signalBus.Subscribe<EnterIntoMachineSignal>(CheckEnteringIntoMachine);
             _signalBus.Subscribe<StartMachineWorkSignal>(CheckStartMachineWork);
@@ -43,10 +45,14 @@ namespace Tasks
             if (CurrentTask().IsSpawnPoint)
             {
                 _signalBus.Fire(new SaveSignal(){TaskId = _taskCurrentId});
+                Debug.Log($"{_taskCurrentId} is saved");
             }
             
             Debug.Log($"{_taskCurrentId} is done");
-            if (_taskCurrentId + 1 >= _tasksParamsList.Count) return;
+            if (_taskCurrentId + 1 >= _tasksParamsList.Count)
+            {
+                return;
+            }
             _taskCurrentId++;
             _signalBus.Fire(new CheckTasksSignal(){CurrentTask = CurrentTask()});
         }
@@ -63,6 +69,9 @@ namespace Tasks
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
             Debug.Log(transferSubstanceSignal.From + " " + transferSubstanceSignal.To + " " + transferSubstanceSignal.TranserProperty.SubName);
+            var s = "";
+            CurrentTask().ContainersType.ForEach(param => s += param + " ");
+            Debug.Log(s + " " + transferSubstanceSignal.TranserProperty.SubName);
             if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) ||
                 !CurrentTask().ContainersType.Contains(transferSubstanceSignal.To) ||
                 !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty.SubName))

@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Substances;
 using UnityEngine;
 using Zenject;
@@ -43,36 +42,32 @@ namespace Containers
         
         public virtual bool AddSubstance(Substance substance)
         {
-            if (CurrentCountSubstances > 0 || substance is null)
+            if (CurrentCountSubstances > 0 || substance is null || !IsEnable())
             {
                 return false;
             }
 
             _substancesCntrl.AddSubstance(this, substance);
+            if (ContainerType == ContainersTypes.KspectrometrContainer)
+                return true;
+            var localScale = GetNextSubstance().GetWeight() > 1
+                ? new Vector3(1, GetNextSubstance().GetWeight() / 4, 1)
+                : GetNextSubstance().GetWeight() > 0.1
+                    ? new Vector3(1  , GetNextSubstance().GetWeight(), 1 )
+                    : new Vector3(0.5f , GetNextSubstance().GetWeight()  * 2, 0.5f);
+            _mainSubPrefab.transform.localScale = localScale;
             return true;
         }
 
         public virtual bool RemoveSubstance(float targetVolume)
         {
-            if (CurrentCountSubstances == 0)
+            if (CurrentCountSubstances == 0 || !IsEnable())
             {
                 return false;
             }
+            
             _substancesCntrl.RemoveSubstance(this, targetVolume);
             return true;
-        }
-        
-        [CanBeNull]
-        public Substance GetNextSubstance()
-        {
-            for (var i = MAX_LAYOURS_COUNT-1; i >= 0; i--)
-            {
-                if (CurrentSubstances[i] != null)
-                {
-                    return CurrentSubstances[i];
-                }
-            }
-            return null;
         }
 
         public void UpdateSubstancesArray(Substance[] substances)

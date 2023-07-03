@@ -11,6 +11,11 @@ namespace Containers
         TubeContainer,
         PetriContainer,
         ExpTabletLunkaContainer,
-        CentrifugeContainer
+        CentrifugeContainer,
+        AtomicMicContainer,
+        KspectrometrContainer,
+        SpatulaContainer,
+        TweezersContainer,
+        MagicSpatulaContainer
     }
 }

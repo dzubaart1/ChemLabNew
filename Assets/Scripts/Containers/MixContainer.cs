@@ -1,4 +1,4 @@
-using BNG;
+using DefaultNamespace;
 using Substances;
 using UnityEngine;
 
@@ -6,12 +6,16 @@ namespace Containers
 {
     public class MixContainer : TransferSubstanceContainer
     {
-        private GameObject _anchor;
+        private AnchorCntrl _anchor;
 
-        public GameObject AnchorCntrl => _anchor;
+        public AnchorCntrl AnchorCntrl => _anchor;
         public override bool AddSubstance(Substance substance)
         {
-            Debug.Log(CurrentCountSubstances);
+            if (!IsEnable())
+            {
+                return false;
+            }
+
             if (CurrentCountSubstances == 0)
             {
                 _substancesCntrl.AddSubstance(this,substance);
@@ -20,21 +24,32 @@ namespace Containers
             {
                 _substancesCntrl.MixSubstances(this, substance);
             }
+            if (ContainerType == ContainersTypes.PetriContainer)
+            {
+                return true;
+            }
+            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / 60, 1);
             return true;
         }
 
-        private void OnTriggerStay(Collider other)
+        public bool AddAnchor(AnchorCntrl anchorCntrl)
         {
-            if (!other.CompareTag("Anchor") || other.GetComponent<Grabbable>().BeingHeld || _anchor is not null)
+            if (_anchor is not null)
             {
-                return;
+                return false;
             }
             
-            other.GetComponent<Rigidbody>().isKinematic = true;
-            other.GetComponent<BoxCollider>().enabled = false;
-            other.gameObject.transform.parent = other.transform;
-            other.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-            _anchor = other.gameObject;
+            _anchor = anchorCntrl;
+            return true;
+        }
+
+        protected override bool IsEnable()
+        {
+            if (_cupsList.Count > 0)
+            {
+                return _snapZone.HeldItem is null;
+            }
+            return true;
         }
     }
 }
