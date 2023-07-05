@@ -13,7 +13,18 @@ namespace Machines.DozatorMachine
 
         public void OnClickDozeBtn()
         {
-            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", _dozatorMachineCntrl.GetDoze());
+            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", _dozatorMachineCntrl.GetDozeFromTask());
+        }
+
+        public float GetDoze()
+        {
+            return _dozatorMachineCntrl.GetDoze();
+        }
+
+        public void SetDoze(float volume)
+        {
+            _dozatorMachineCntrl.SetDoze(volume);
+            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", volume);
         }
     }
 }

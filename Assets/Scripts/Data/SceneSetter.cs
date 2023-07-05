@@ -4,6 +4,7 @@ using BNG;
 using Containers;
 using Installers;
 using JetBrains.Annotations;
+using Machines.DozatorMachine;
 using Substances;
 using UnityEngine;
 using Zenject;
@@ -12,10 +13,14 @@ namespace Data
 {
     public class SceneSetter : MonoBehaviour
     {
+        [SerializeField] private GameObject _expTabletObj;
+        [SerializeField] private DozatorMachineCanvas _dozatorObj;
+        [SerializeField] private SnapZone _dozatorSnapZone;
+        
         private List<GameObject> _listOfObjects;
         private List<GameObject> _animatorObjects;
         private List<GameObject> _snapZoneObjects;
-        private GameObject _expTablet;
+
         private SceneState _savedSceneState;
         private SignalBus _signalBus;
 
@@ -31,29 +36,62 @@ namespace Data
             _listOfObjects = GameObject.FindGameObjectsWithTag("Serializable").ToList();
             _animatorObjects = GameObject.FindGameObjectsWithTag("Animator").ToList();
             _snapZoneObjects = GameObject.FindGameObjectsWithTag("SnapZone").ToList();
-            _expTablet = GameObject.FindGameObjectWithTag("ExpTablet");
             
             _savedSceneState = new SceneState();
-            _savedSceneState.SaveObjectsList = new List<SavedObjectState>();
+            _savedSceneState.ObjectsList = new List<SavedObject>();
         }
         
-        public void LoadState()
+        private void LoadState()
         {
-            _expTablet.transform.position = _savedSceneState.ExpTabletTransform.Position;
-            _expTablet.transform.rotation = _savedSceneState.ExpTabletTransform.Rotation;
+            LoadExpTablet();
+            LoadSnapZones();
+            LoadAnimators();
+            LoadObjects();
+            
+            _dozatorSnapZone.GrabGrabbable(_dozatorObj.GetComponent<Grabbable>());
+            _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
+            _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
+        }
+
+        private void SaveState(SaveSignal saveSignal)
+        {
+            _savedSceneState.ObjectsList.Clear();
+            _savedSceneState.TaskId = saveSignal.TaskId;
+            
+            _savedSceneState.ExpTabletTransform = new SavedTransform()
+            {
+                Position = _expTabletObj.transform.position,
+                Rotation = _expTabletObj.transform.rotation
+            };
+
+            _savedSceneState.DozatorDoze = _dozatorObj.GetDoze();
+            SaveSnapZones();
+            SaveObjects();
+        }
+
+        private void LoadSnapZones()
+        {
             foreach (var t in _snapZoneObjects)
             {
                 t.GetComponent<SnapZone>().ReleaseAll();
-                if (_savedSceneState.SaveSnapPoint.TryGetValue(t, out GameObject value))
+                if (_savedSceneState.SnapZoneList.TryGetValue(t, out GameObject value))
                 {
                     t.GetComponent<SnapZone>().GrabGrabbable(value.GetComponent<Grabbable>());
                 }
             }
+        }
+
+        private void LoadAnimators()
+        {
             foreach (var t in _animatorObjects)
             {
                 t.GetComponent<Animator>().enabled = false;
             }
-            foreach (var t in _savedSceneState.SaveObjectsList)
+        }
+
+        private void LoadObjects()
+        {
+            foreach (var t in _savedSceneState.ObjectsList)
             {
                 var objInList = _listOfObjects[t.IndexInList];
                 var subCont = objInList.GetComponent<SubstanceContainer>();
@@ -84,22 +122,19 @@ namespace Data
                 objInList.transform.rotation = t.Transform.Rotation;
                 objInList.SetActive(t.IsActive);
             }
-            
-            _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
         }
 
-        private void SaveState(SaveSignal saveSignal)
+        private void LoadExpTablet()
         {
-            _savedSceneState.SaveObjectsList.Clear();
-            _savedSceneState.TaskId = saveSignal.TaskId;
-            _savedSceneState.ExpTabletTransform = new SavedTransform()
-            {
-                Position = _expTablet.transform.position,
-                Rotation = _expTablet.transform.rotation
-            };
+            _expTabletObj.transform.position = _savedSceneState.ExpTabletTransform.Position;
+            _expTabletObj.transform.rotation = _savedSceneState.ExpTabletTransform.Rotation;
+        }
+
+        private void SaveObjects()
+        {
             for(var i = 0; i < _listOfObjects.Count; i++)
             {
-                var savedObjectState = new SavedObjectState()
+                var savedObjectState = new SavedObject()
                 {
                     IndexInList = i,
                     Transform = new SavedTransform()
@@ -120,15 +155,19 @@ namespace Data
                     }
                     savedObjectState.Substances[j] = substance;
                 }
-                _savedSceneState.SaveObjectsList.Add(savedObjectState);
+                
+                _savedSceneState.ObjectsList.Add(savedObjectState);
             }
+        }
 
-            _savedSceneState.SaveSnapPoint = new Dictionary<GameObject, GameObject>();
+        private void SaveSnapZones()
+        {
+            _savedSceneState.SnapZoneList = new Dictionary<GameObject, GameObject>();
             foreach (var t in _snapZoneObjects)
             {
                 if (t.GetComponent<SnapZone>().HeldItem is not null)
                 {
-                    _savedSceneState.SaveSnapPoint.Add(t, t.GetComponent<SnapZone>().HeldItem?.gameObject);
+                    _savedSceneState.SnapZoneList.Add(t, t.GetComponent<SnapZone>().HeldItem?.gameObject);
                 }
             }
         }
@@ -137,12 +176,13 @@ namespace Data
     public struct SceneState
     {
         public int TaskId;
-        public List<SavedObjectState> SaveObjectsList;
-        public Dictionary<GameObject, GameObject> SaveSnapPoint;
+        public List<SavedObject> ObjectsList;
+        public Dictionary<GameObject, GameObject> SnapZoneList;
         public SavedTransform ExpTabletTransform;
+        public float DozatorDoze;
     }
 
-    public struct SavedObjectState
+    public struct SavedObject
     {
         public int IndexInList;
         public SavedTransform Transform;

@@ -24,4 +24,5 @@ MonoBehaviour:
   DozatorDoze: 0
   MachinesType: 7
   ResultSubstance: {fileID: 0}
-  IsSpawnPoint: 0
+  IsSpawnPoint: 1
+  TaskDescription: 

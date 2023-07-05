@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 321406086712089709}
   m_Layer: 0
   m_Name: PuttyKnife
-  m_TagString: Untagged
+  m_TagString: Serializable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
   MaxVolume: 9000
-  ContainerType: 3
+  ContainerType: 12
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []

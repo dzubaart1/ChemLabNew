@@ -2,16 +2,13 @@ using System.Globalization;
 using BNG;
 using Containers;
 using Installers;
-using Interfaces;
-using Substances;
-using Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Machines
+namespace Machines.WeightingMachine
 {
-    public class WeightingMachineCntrl : MonoBehaviour, IMachine
+    public class WeightingMachineCntrl : MonoBehaviour
     {
         [SerializeField]
         private Text _weightText;
@@ -55,7 +52,7 @@ namespace Machines
             if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetWeight()
                     .Equals(_currentWeight))
             {
-                OnStartWork();
+                OnFinishWork();
             }
         }
         
@@ -77,15 +74,15 @@ namespace Machines
             _weightText.text = "0.0000g";
         }
         
-        public void OnStartWork()
+        public void OnFinishWork()
         {
             _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
-            OnFinishWork();
-        }
-
-        public void OnFinishWork()
-        {
+            _signalBus.Fire(new FinishMashineWorkSignal()
+            {
+                MachinesType = MachinesTypes.WeightingMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance().SubstanceProperty
+            });
         }
     }
 }

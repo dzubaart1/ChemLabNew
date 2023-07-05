@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 16797230}
   m_Layer: 11
   m_Name: DozatorMachine
-  m_TagString: Serializable
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -574,7 +574,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!135 &16797219
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11733,11 +11733,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
-    - target: {fileID: 321406086712089709, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
-        type: 3}
-      propertyPath: ContainerType
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 5027702092990159816, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
         type: 3}
       propertyPath: m_RootOrder
@@ -11815,7 +11810,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &151136903
 MonoBehaviour:
@@ -11829,6 +11824,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c3f62e38ff4454bb575e674b3b8df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _expTabletObj: {fileID: 4779102990417858590}
+  _dozatorObj: {fileID: 16797229}
+  _dozatorSnapZone: {fileID: 172865380}
 --- !u!4 &151136904
 Transform:
   m_ObjectHideFlags: 0
@@ -12420,25 +12418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
-    - target: {fileID: 12465112451432319, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
       propertyPath: m_Name
       value: DozatorCup (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 12465113412104653, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
@@ -13684,25 +13667,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
-    - target: {fileID: 12465112451432319, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
       propertyPath: m_Name
       value: DozatorCup (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 12465113412104653, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
@@ -34445,6 +34413,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tweezers
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 096971bbeacffaf488583174f7a6f2a6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Serializable
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 096971bbeacffaf488583174f7a6f2a6, type: 3}
 --- !u!1 &1291760148
@@ -42358,25 +42331,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
-    - target: {fileID: 12465112451432319, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
       propertyPath: m_Name
       value: DozatorCup
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 12465113412104653, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
@@ -43843,25 +43801,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
-    - target: {fileID: 12465112451432319, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
       propertyPath: m_Name
       value: DozatorCup (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 12465113412104643, guid: 9e215e83477890b439579c0d66f7263e,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 12465113412104653, guid: 9e215e83477890b439579c0d66f7263e,
         type: 3}
@@ -65765,11 +65708,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasuringCyllinder
       objectReference: {fileID: 0}
-    - target: {fileID: 5290638263369769993, guid: a66e6fb09cd84384fae3847a1cb11c4c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 1a0aeb0cb9520ec48a4a79965e3ec3bf, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a66e6fb09cd84384fae3847a1cb11c4c, type: 3}
 --- !u!4 &2832431032332007102
@@ -69086,7 +69024,7 @@ PrefabInstance:
     - target: {fileID: 1984683018438414150, guid: ecbcf9bf229f1bc45ac060993e12b874,
         type: 3}
       propertyPath: m_TagString
-      value: ExpTablet
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4779102989290466307, guid: ecbcf9bf229f1bc45ac060993e12b874,
         type: 3}
@@ -69200,6 +69138,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbcf9bf229f1bc45ac060993e12b874, type: 3}
+--- !u!1 &4779102990417858590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1984683018438414150, guid: ecbcf9bf229f1bc45ac060993e12b874,
+    type: 3}
+  m_PrefabInstance: {fileID: 4779102990417858589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4791447046579316754
 GameObject:
   m_ObjectHideFlags: 0

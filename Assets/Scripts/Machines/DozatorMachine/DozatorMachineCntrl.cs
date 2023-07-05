@@ -31,7 +31,17 @@ namespace Machines.DozatorMachine
 
             _currentDoze = checkTasksSignal.CurrentTask.DozatorDoze;
         }
-        public string GetDoze()
+
+        public void SetDoze(float volume)
+        {
+            _baseContainer.MaxVolume = volume;
+        }
+
+        public float GetDoze()
+        {
+            return _baseContainer.MaxVolume;
+        }
+        public string GetDozeFromTask()
         {
             _baseContainer.MaxVolume = _currentDoze;
             _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.DozatorMachine});
