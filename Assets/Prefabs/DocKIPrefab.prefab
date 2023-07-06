@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 2907231620883913475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.0033328, z: 0.2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.0016666667, z: 0.33333334}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6023090812924606077}
   m_RootOrder: 0
@@ -53,7 +53,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 555bf8dc836b9814aabfaf4ddd5389f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6023090812924606073}
   - component: {fileID: 6023090812924606072}
   m_Layer: 0
-  m_Name: DocPrefab
+  m_Name: DocKIPrefab
   m_TagString: Document
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,8 +145,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.079916894, y: 0.003456188, z: 0.10876104}
-  m_Center: {x: -0.00035618246, y: -0.00049356394, z: 0.0001393836}
+  m_Size: {x: 0.25155222, y: 0.003456188, z: 0.3339604}
+  m_Center: {x: 0.00021976978, y: -0.00049356394, z: -0.00014859438}
 --- !u!114 &6023090812924606072
 MonoBehaviour:
   m_ObjectHideFlags: 0

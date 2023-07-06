@@ -15,6 +15,8 @@ MonoBehaviour:
   SubName: HardAgarH2O
   Color: {r: 0.7647059, g: 0.7490196, b: 0.6745098, a: 0.45882353}
   SubstanceLayer: 1
+  HintName: "\u0414\u0435\u043A\u0430\u043D\u0442\u0430\u0446\u0438\u044F \u043A\u043E\u043B\u0435\u0446
+    \u041B\u0438\u0437\u0435\u0433\u0430\u043D\u0433\u0430 "
   SubstancePropertyBases:
   - {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
   - {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}

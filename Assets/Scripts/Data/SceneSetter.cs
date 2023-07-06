@@ -43,10 +43,10 @@ namespace Data
         
         private void LoadState()
         {
-            LoadExpTablet();
+            LoadObjects();
             LoadSnapZones();
             LoadAnimators();
-            LoadObjects();
+            LoadExpTablet();
             
             _dozatorSnapZone.GrabGrabbable(_dozatorObj.GetComponent<Grabbable>());
             _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
@@ -143,19 +143,25 @@ namespace Data
                         Rotation = _listOfObjects[i].transform.rotation
                     }
                 };
-                savedObjectState.Substances = new Substance[_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length];
+                
+
+                
                 savedObjectState.IsActive = _listOfObjects[i].activeSelf;
 
-                for (int j = 0; j < _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length; j++)
+                if (_listOfObjects[i].GetComponent<SubstanceContainer>() is not null
+                    && _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances is not null)
                 {
-                    Substance substance = null;
-                    if (_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j] is not null)
+                    savedObjectState.Substances = new Substance[_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length];
+                    for (int j = 0; j < _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length; j++)
                     {
-                        substance = new Substance(_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j]);
+                        Substance substance = null;
+                        if (_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j] is not null)
+                        {
+                            substance = new Substance(_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j]);
+                        }
+                        savedObjectState.Substances[j] = substance;
                     }
-                    savedObjectState.Substances[j] = substance;
                 }
-                
                 _savedSceneState.ObjectsList.Add(savedObjectState);
             }
         }

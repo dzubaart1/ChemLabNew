@@ -13,6 +13,7 @@ namespace Canvases
         [SerializeField] private Text _taskTitle;
         [SerializeField] private Text _taskDescription;
         [SerializeField] private GameObject _deskPanel;
+        [SerializeField] private GameObject _mainPanel;
         [SerializeField] private GameObject _deskBtn;
         
         private SignalBus _signalBus;
@@ -57,6 +58,7 @@ namespace Canvases
         public void ToogleDescriptionPanel()
         {
             _deskPanel.SetActive(!_deskPanel.activeSelf);
+            _mainPanel.SetActive(!_deskPanel.activeSelf);
         }
     }
 }

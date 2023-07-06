@@ -15,6 +15,8 @@ MonoBehaviour:
   SubName: CaCl2H2O
   Color: {r: 0.5176471, g: 0.8039216, b: 1, a: 0.6156863}
   SubstanceLayer: 1
+  HintName: "\u0420\u0430\u0441\u0442\u0432\u043E\u0440 \u0445\u043B\u043E\u0440\u0438\u0434\u0430
+    \u043A\u0430\u043B\u044C\u0446\u0438\u044F"
   SubstancePropertyBases:
   - {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
   - {fileID: 11400000, guid: 830975c53df4d2e4282dc5de7cbae570, type: 2}

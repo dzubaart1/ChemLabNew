@@ -18,8 +18,15 @@ namespace Canvases
 
         public void OnNextBtnClick()
         {
-            Destroy(panels[rulesCount]);
+            panels[rulesCount].SetActive(false);
             rulesCount++;
+            panels[rulesCount].SetActive(true);
+        }
+
+        public void OnPrevBtnClick()
+        {
+            panels[rulesCount].SetActive(false);
+            rulesCount--;
             panels[rulesCount].SetActive(true);
         }
     }

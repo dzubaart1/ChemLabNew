@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 83
   m_EditorClassIdentifier: 
-  Number: 83
+  Number: 87
   Title: "\u0417\u0430\u0431\u0435\u0440\u0438\u0442\u0435 \u0438\u0437 \u0441\u0443\u0448\u0438\u043B\u044C\u043D\u043E\u0433\u043E
     \u0448\u043A\u0430\u0444\u0430 \u0447\u0430\u0448\u043A\u0443 \u041F\u0435\u0442\u0440\u0438
     \u0441 \u0432\u044B\u0441\u0443\u0448\u0435\u043D\u043D\u044B\u043C \u043F\u0430\u0441\u0442\u043E\u043E\u0431\u0440\u0430\u0437\u043D\u044B\u043C
@@ -28,3 +28,4 @@ MonoBehaviour:
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: db30502c42b6e6641b154f49fa1e96b8, type: 2}
   IsSpawnPoint: 0
+  TaskDescription: 

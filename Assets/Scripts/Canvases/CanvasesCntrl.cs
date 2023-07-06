@@ -33,7 +33,7 @@ namespace Canvases
                     continue;
                 }
                 canvas.gameObject.SetActive(!canvas.gameObject.activeSelf);
-                if (canvas.CanvasId == CanvasId.EndGameCanvas && canvas.gameObject.activeSelf == true)
+                if (canvas.CanvasId == CanvasId.EndGameCanvas && canvas.gameObject.activeSelf)
                 {
                     _tabletCanvas.SetActive(false);
                 }

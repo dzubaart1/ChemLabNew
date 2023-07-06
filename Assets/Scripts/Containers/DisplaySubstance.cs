@@ -78,7 +78,7 @@ namespace Containers
         private string GetStringStack()
         {
             return CurrentCountSubstances == 0 ? "Вещество не определено" :
-                CurrentSubstances.Aggregate("", (current, sub) => current + (sub?.SubstanceProperty.SubName + " "));
+                CurrentSubstances.Aggregate("", (current, sub) => current + (sub?.SubstanceProperty.HintName + " "));
         }
 
         private void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
