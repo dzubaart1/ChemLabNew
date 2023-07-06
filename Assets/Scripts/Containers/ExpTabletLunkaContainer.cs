@@ -9,9 +9,9 @@ namespace Containers
             if (CurrentCountSubstances == 0)
             {
                 _substancesCntrl.AddSubstance(this,substance);
-                return true;
             }
-            return false;
+            _substancesCntrl.MixSubstances(this,substance);
+            return true;
         }
     }
 }
