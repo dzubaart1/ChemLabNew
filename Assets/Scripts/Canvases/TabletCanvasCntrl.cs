@@ -11,10 +11,10 @@ namespace Canvases
     {
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
-        [SerializeField] private Text _taskDescription;
-        [SerializeField] private GameObject _deskPanel;
+        [SerializeField] private Text _taskDescription, _taskWarning;
+        [SerializeField] private GameObject _deskPanel, _warnPanel;
         [SerializeField] private GameObject _mainPanel;
-        [SerializeField] private GameObject _deskBtn;
+        [SerializeField] private GameObject _deskBtn, _warnBtn;
         
         private SignalBus _signalBus;
         private void Start()
@@ -43,6 +43,16 @@ namespace Canvases
                 _deskBtn.SetActive(true);
                 _taskDescription.text = checkTasksSignal.CurrentTask.TaskDescription;
             }
+            if (checkTasksSignal.CurrentTask.TaskWarning == "")
+            {
+                _warnBtn.SetActive(false);
+            }
+            else
+            {
+                _warnBtn.SetActive(true);
+                _taskWarning.text = checkTasksSignal.CurrentTask.TaskWarning;
+            }
+            
         }
 
         public void SaveSceneState()
@@ -59,6 +69,14 @@ namespace Canvases
         {
             _deskPanel.SetActive(!_deskPanel.activeSelf);
             _mainPanel.SetActive(!_deskPanel.activeSelf);
+            _warnPanel.SetActive(!_deskPanel.activeSelf);
+        }
+        
+        public void ToogleWarningPanel()
+        {
+            _warnPanel.SetActive(!_warnPanel.activeSelf);
+            _mainPanel.SetActive(!_warnPanel.activeSelf);
+            _deskPanel.SetActive(!_warnPanel.activeSelf);
         }
     }
 }

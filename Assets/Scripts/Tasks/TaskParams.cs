@@ -19,5 +19,6 @@ namespace Tasks
         public SubstancePropertyBase ResultSubstance;
         public bool IsSpawnPoint;
         public string TaskDescription;
+        public string TaskWarning;
     }
 }
