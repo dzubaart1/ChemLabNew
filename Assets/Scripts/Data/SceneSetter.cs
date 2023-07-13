@@ -13,15 +13,17 @@ namespace Data
 {
     public class SceneSetter : MonoBehaviour
     {
-        [SerializeField] private GameObject _expTabletObj;
         [SerializeField] private DozatorMachineCanvas _dozatorObj;
         [SerializeField] private SnapZone _dozatorSnapZone;
         
-        private List<GameObject> _listOfObjects;
+        private List<GameObject> _objectsWithTransformAndSubstanceState;
+        private List<GameObject> _objectsWithTransformState;
+        private List<GameObject> _objectsWithSubstanceState;
         private List<GameObject> _animatorObjects;
         private List<GameObject> _snapZoneObjects;
 
         private SceneState _savedSceneState;
+        
         private SignalBus _signalBus;
 
         [Inject]
@@ -33,48 +35,109 @@ namespace Data
         }
         private void Start()
         {
-            _listOfObjects = GameObject.FindGameObjectsWithTag("Serializable").ToList();
+            _savedSceneState = new SceneState();
+            
+            _objectsWithTransformAndSubstanceState = GameObject.FindGameObjectsWithTag("SerializeTransferAndSubstance").ToList();
+            _objectsWithTransformState = GameObject.FindGameObjectsWithTag("SerializeTransfer").ToList();
+            _objectsWithSubstanceState = GameObject.FindGameObjectsWithTag("SerializeSubstance").ToList();
             _animatorObjects = GameObject.FindGameObjectsWithTag("Animator").ToList();
             _snapZoneObjects = GameObject.FindGameObjectsWithTag("SnapZone").ToList();
-            
-            _savedSceneState = new SceneState();
-            _savedSceneState.ObjectsList = new List<SavedObject>();
         }
         
         private void LoadState()
         {
-            LoadObjects();
+            if (_savedSceneState is null)
+            {
+                return;
+            }
+
+            LoadObjectsWithTransferAndSubstanceState();
+            LoadObjectsWithTransformState();
+            LoadObjectsWithSubstanceState();
+            
             LoadSnapZones();
             LoadAnimators();
-            LoadExpTablet();
-            
-            _dozatorSnapZone.GrabGrabbable(_dozatorObj.GetComponent<Grabbable>());
-            _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
+            LoadDozator();
+
             _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
         }
 
-        private void SaveState(SaveSignal saveSignal)
+        private void LoadTransformForObj(GameObject obj, TransformState transformState)
         {
-            _savedSceneState.ObjectsList.Clear();
-            _savedSceneState.TaskId = saveSignal.TaskId;
+            var grabComp = obj.GetComponent<Grabbable>();
             
-            _savedSceneState.ExpTabletTransform = new SavedTransform()
+            if (grabComp is not null)
             {
-                Position = _expTabletObj.transform.position,
-                Rotation = _expTabletObj.transform.rotation
-            };
-
-            _savedSceneState.DozatorDoze = _dozatorObj.GetDoze();
-            SaveSnapZones();
-            SaveObjects();
+                if (grabComp.HeldByGrabbers is not null && grabComp.HeldByGrabbers.Count > 0)
+                {
+                    grabComp.DropItem(grabComp.HeldByGrabbers[0]);
+                }
+                grabComp.enabled = true;
+            }
+            
+            obj.transform.rotation = transformState.Rotation;
+            obj.transform.position = transformState.Position;
+            obj.SetActive(transformState.IsActive);
         }
 
+        private void LoadSubstanceForObj(GameObject obj, SubstanceState substanceState)
+        {
+            var subContOfObj = obj.GetComponent<SubstanceContainer>();
+            if (subContOfObj is null)
+            {
+                return;
+            }
+                
+            subContOfObj.ClearSubstances();
+            foreach (var substance in substanceState.Substances)
+            {
+                if (substance is not null)
+                {
+                    subContOfObj.AddSubstanceToArray(new Substance(substance));
+                }
+            }
+        }
+
+        private void LoadObjectsWithTransferAndSubstanceState()
+        {
+            foreach (var saveObj in _savedSceneState.ObjectsWithTransformAndSubstanceState)
+            {
+                var obj = saveObj.Key;
+                var state = saveObj.Value;
+
+                LoadTransformForObj(obj, state.TransformState);
+                LoadSubstanceForObj(obj, state.SubstanceState);
+            }
+        }
+
+        private void LoadObjectsWithTransformState()
+        {
+            foreach (var saveObj in _savedSceneState.ObjectsWithTransformState)
+            {
+                var obj = saveObj.Key;
+                var state = saveObj.Value;
+
+                LoadTransformForObj(obj, state);
+            }
+        }
+
+        private void LoadObjectsWithSubstanceState()
+        {
+            foreach (var saveObj in _savedSceneState.ObjectsWithSubstanceState)
+            {
+                var obj = saveObj.Key;
+                var state = saveObj.Value;
+                
+                LoadSubstanceForObj(obj, state);
+            }
+        }
+        
         private void LoadSnapZones()
         {
             foreach (var t in _snapZoneObjects)
             {
                 t.GetComponent<SnapZone>().ReleaseAll();
-                if (_savedSceneState.SnapZoneList.TryGetValue(t, out GameObject value))
+                if (_savedSceneState.SnapZonesDictionary.TryGetValue(t, out GameObject value))
                 {
                     t.GetComponent<SnapZone>().GrabGrabbable(value.GetComponent<Grabbable>());
                 }
@@ -89,116 +152,139 @@ namespace Data
             }
         }
 
-        private void LoadObjects()
+        private void LoadDozator()
         {
-            foreach (var t in _savedSceneState.ObjectsList)
-            {
-                var objInList = _listOfObjects[t.IndexInList];
-                var subCont = objInList.GetComponent<SubstanceContainer>();
-                var grab = objInList.GetComponent<Grabbable>();
-                
-                if (grab is not null)
-                {
-                    if (grab.HeldByGrabbers is not null && grab.HeldByGrabbers.Count > 0)
-                    {
-                        grab.DropItem(grab.HeldByGrabbers[0]);
-                    }
-                    grab.enabled = true;
-                }
-                
-                if (subCont is not null)
-                {
-                    subCont.ClearSubstances();
-                    foreach (var substance in t.Substances)
-                    {
-                        if (substance is not null)
-                        {
-                            subCont.AddSubstanceToArray(new Substance(substance));
-                        }
-                    }
-                }
+            _dozatorSnapZone.GrabGrabbable(_dozatorObj.GetComponent<Grabbable>());
+            _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
+        }
 
-                objInList.transform.position = t.Transform.Position;
-                objInList.transform.rotation = t.Transform.Rotation;
-                objInList.SetActive(t.IsActive);
+        private void SaveState(SaveSignal saveSignal)
+        {
+            _savedSceneState.TaskId = saveSignal.TaskId;
+            _savedSceneState.DozatorDoze = _dozatorObj.GetDoze();
+
+            SaveObjectsWithTransformAndSubstanceState();
+            SaveObjectsWithTransformState();
+            SaveObjectsWithSubstanceState();
+            
+            SaveSnapZones();
+        }
+
+        private void SaveObjectsWithTransformAndSubstanceState()
+        {
+            _savedSceneState.ObjectsWithTransformAndSubstanceState.Clear();
+
+            foreach (var obj in _objectsWithTransformAndSubstanceState)
+            {
+                _savedSceneState.ObjectsWithTransformAndSubstanceState.Add(obj,GetTransformAndSubstanceStateByObj(obj));
             }
         }
 
-        private void LoadExpTablet()
+        private void SaveObjectsWithTransformState()
         {
-            _expTabletObj.transform.position = _savedSceneState.ExpTabletTransform.Position;
-            _expTabletObj.transform.rotation = _savedSceneState.ExpTabletTransform.Rotation;
-        }
+            _savedSceneState.ObjectsWithTransformState.Clear();
 
-        private void SaveObjects()
-        {
-            for(var i = 0; i < _listOfObjects.Count; i++)
+            foreach (var obj in _objectsWithTransformState)
             {
-                var savedObjectState = new SavedObject()
-                {
-                    IndexInList = i,
-                    Transform = new SavedTransform()
-                    {
-                        Position = _listOfObjects[i].transform.position,
-                        Rotation = _listOfObjects[i].transform.rotation
-                    }
-                };
-                
-
-                
-                savedObjectState.IsActive = _listOfObjects[i].activeSelf;
-
-                if (_listOfObjects[i].GetComponent<SubstanceContainer>() is not null
-                    && _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances is not null)
-                {
-                    savedObjectState.Substances = new Substance[_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length];
-                    for (int j = 0; j < _listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances.Length; j++)
-                    {
-                        Substance substance = null;
-                        if (_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j] is not null)
-                        {
-                            substance = new Substance(_listOfObjects[i].GetComponent<SubstanceContainer>().CurrentSubstances[j]);
-                        }
-                        savedObjectState.Substances[j] = substance;
-                    }
-                }
-                _savedSceneState.ObjectsList.Add(savedObjectState);
+                _savedSceneState.ObjectsWithTransformState.Add(obj,GetTransformStateByObj(obj));
             }
         }
+        
+        private void SaveObjectsWithSubstanceState()
+        {
+            _savedSceneState.ObjectsWithSubstanceState.Clear();
 
+            foreach (var obj in _objectsWithSubstanceState)
+            {
+                _savedSceneState.ObjectsWithSubstanceState.Add(obj,GetSubstanceState(obj));
+            }
+        }
+        
         private void SaveSnapZones()
         {
-            _savedSceneState.SnapZoneList = new Dictionary<GameObject, GameObject>();
+            _savedSceneState.SnapZonesDictionary.Clear();
             foreach (var t in _snapZoneObjects)
             {
                 if (t.GetComponent<SnapZone>().HeldItem is not null)
                 {
-                    _savedSceneState.SnapZoneList.Add(t, t.GetComponent<SnapZone>().HeldItem?.gameObject);
+                    _savedSceneState.SnapZonesDictionary.Add(t, t.GetComponent<SnapZone>().HeldItem?.gameObject);
                 }
             }
         }
+
+        private TransferAndSubstanceState GetTransformAndSubstanceStateByObj(GameObject obj)
+        {
+            return new TransferAndSubstanceState()
+            {
+                TransformState = GetTransformStateByObj(obj),
+                SubstanceState = GetSubstanceState(obj)
+            };
+        }
+
+        private TransformState GetTransformStateByObj(GameObject obj)
+        {
+            return new TransformState()
+            {
+                IsActive = obj.activeSelf,
+                Position = obj.transform.position,
+                Rotation = obj.transform.rotation
+            };
+        }
+
+        private SubstanceState GetSubstanceState(GameObject obj)
+        {
+            var substanceContainerOfObj = obj.GetComponent<SubstanceContainer>();
+            var substanceState = new SubstanceState();
+            substanceState.Substances = new Substance[substanceContainerOfObj.CurrentSubstances.Length];
+            
+            for (var j = 0; j < substanceContainerOfObj.CurrentSubstances.Length; j++)
+            {
+                Substance substance = null;
+                if (substanceContainerOfObj.CurrentSubstances[j] is not null)
+                {
+                    substance = new Substance(substanceContainerOfObj.CurrentSubstances[j]);
+                }
+                substanceState.Substances[j] = substance;
+            }
+
+            return substanceState;
+        }
     }
     
-    public struct SceneState
+    public class SceneState
     {
         public int TaskId;
-        public List<SavedObject> ObjectsList;
-        public Dictionary<GameObject, GameObject> SnapZoneList;
-        public SavedTransform ExpTabletTransform;
+
         public float DozatorDoze;
+
+        public SceneState()
+        {
+            ObjectsWithSubstanceState = new Dictionary<GameObject, SubstanceState>();
+            ObjectsWithTransformState = new Dictionary<GameObject, TransformState>();
+            ObjectsWithTransformAndSubstanceState = new Dictionary<GameObject, TransferAndSubstanceState>();
+        }
+        
+        public Dictionary<GameObject, TransferAndSubstanceState> ObjectsWithTransformAndSubstanceState { get; }
+        public Dictionary<GameObject, SubstanceState> ObjectsWithSubstanceState{ get; }
+        public Dictionary<GameObject, TransformState> ObjectsWithTransformState{ get; }
+        public Dictionary<GameObject, GameObject> SnapZonesDictionary{ get; }
     }
 
-    public struct SavedObject
+    public struct TransferAndSubstanceState
     {
-        public int IndexInList;
-        public SavedTransform Transform;
+        public TransformState TransformState;
+        public SubstanceState SubstanceState;
+    }
+    
+    public struct SubstanceState
+    {
         [ItemCanBeNull] public Substance[] Substances;
-        public bool IsActive;
     }
 
-    public struct SavedTransform
+    public struct TransformState
     {
         public Vector3 Position;
         public Quaternion Rotation;
+        public bool IsActive;
     }
 }

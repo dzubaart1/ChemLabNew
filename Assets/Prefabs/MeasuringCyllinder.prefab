@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4498253284741607984}
   m_Layer: 0
   m_Name: MeasuringCyllinder
-  m_TagString: Serializable
+  m_TagString: SerializeTransferAndSubstance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

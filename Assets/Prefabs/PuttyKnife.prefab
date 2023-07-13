@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 321406086712089709}
   m_Layer: 0
   m_Name: PuttyKnife
-  m_TagString: Serializable
+  m_TagString: SerializeTransferAndSubstance
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

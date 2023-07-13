@@ -42,7 +42,7 @@ namespace Machines.DryBoxMachine
         private void OnEnterObject()
         {
             _isEnter = true;
-            _signalBus.Fire(new EnterIntoMachineSignal() { MachinesType = MachinesTypes.DryBoxMachine, ContainersType =  _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType});
+            _signalBus.Fire(new FinishMashineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase =  _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
         }
         
         public void OnToggleWork()
