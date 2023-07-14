@@ -69,14 +69,14 @@ namespace Canvases
         {
             _deskPanel.SetActive(!_deskPanel.activeSelf);
             _mainPanel.SetActive(!_deskPanel.activeSelf);
-            _warnPanel.SetActive(!_deskPanel.activeSelf);
+            _warnPanel.SetActive(false);
         }
         
         public void ToogleWarningPanel()
         {
             _warnPanel.SetActive(!_warnPanel.activeSelf);
             _mainPanel.SetActive(!_warnPanel.activeSelf);
-            _deskPanel.SetActive(!_warnPanel.activeSelf);
+            _deskPanel.SetActive(false);
         }
     }
 }

@@ -262,6 +262,7 @@ namespace Data
             ObjectsWithSubstanceState = new Dictionary<GameObject, SubstanceState>();
             ObjectsWithTransformState = new Dictionary<GameObject, TransformState>();
             ObjectsWithTransformAndSubstanceState = new Dictionary<GameObject, TransferAndSubstanceState>();
+            SnapZonesDictionary = new Dictionary<GameObject, GameObject>();
         }
         
         public Dictionary<GameObject, TransferAndSubstanceState> ObjectsWithTransformAndSubstanceState { get; }

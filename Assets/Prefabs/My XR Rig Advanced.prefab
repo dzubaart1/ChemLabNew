@@ -8234,7 +8234,7 @@ RectTransform:
   m_Children:
   - {fileID: 4515908523318080847}
   m_Father: {fileID: 5673269805932441459}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8325,7 +8325,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5673269805932441469}
         m_TargetAssemblyTypeName: Canvases.TabletCanvasCntrl, Assembly-CSharp
-        m_MethodName: ToogleDescriptionPanel
+        m_MethodName: ToogleWarningPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23987,7 +23987,7 @@ RectTransform:
   m_Children:
   - {fileID: 3775332454098348812}
   m_Father: {fileID: 5673269805932441459}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -28661,7 +28661,7 @@ GameObject:
   - component: {fileID: 8312843981838047955}
   - component: {fileID: 7020701907514805897}
   m_Layer: 5
-  m_Name: DescText
+  m_Name: WarnText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34312,7 +34312,7 @@ RectTransform:
   m_Children:
   - {fileID: 2944704312787643231}
   m_Father: {fileID: 5673269805932441459}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -41612,10 +41612,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5673269807727758230}
+  - {fileID: 8596345892450247299}
   - {fileID: 5895738584500400645}
   - {fileID: 3289363395193006278}
   - {fileID: 7459871437464219673}
-  - {fileID: 8596345892450247299}
   m_Father: {fileID: 3416402730557518936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -5.998, y: 282.332, z: -16.342}
@@ -41725,6 +41725,7 @@ MonoBehaviour:
   _taskNumber: {fileID: 5673269807606435264}
   _taskTitle: {fileID: 5673269805803490239}
   _taskDescription: {fileID: 1994525488622807027}
+  _taskWarning: {fileID: 8312843981838047955}
   _deskPanel: {fileID: 4648943277179456937}
   _warnPanel: {fileID: 7150597446489497230}
   _mainPanel: {fileID: 5673269807727758231}
@@ -52255,14 +52256,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7150597446489497230}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3267103998938115068}
   m_Father: {fileID: 5673269805932441459}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

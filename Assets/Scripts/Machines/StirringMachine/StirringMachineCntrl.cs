@@ -88,13 +88,17 @@ namespace Machines
         private void StartStirringAnimation()
         {
             _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.StartAnimate();
-            gameObject.GetComponent<Animator>().enabled = true;
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>().enabled = true;
+            //gameObject.GetComponent<Animator>().enabled = true;
         }
         
         private void StopStirringAnimation()
         {
             _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.FinishAnimate();
-            gameObject.GetComponent<Animator>().enabled = false;
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>().enabled = false;
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>()
+                .gameObject.transform.localPosition = new Vector3(0, 0, 0);
+            //gameObject.GetComponent<Animator>().enabled = false;
         }
     }
 }
