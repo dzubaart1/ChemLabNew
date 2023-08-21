@@ -162,33 +162,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "dae94c47-3da5-40be-9db6-36a9239b3603",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Sprint",
-                    "type": "Value",
-                    "id": "5655e5d6-b3bf-4d77-92af-ac9f96f41f7e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
-                    "name": "Slow Time",
-                    "type": "Button",
-                    "id": "0a79676f-8968-4656-bfd8-e1605ca62d6a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Menu",
                     "type": "Button",
                     "id": "c2dedd64-ee19-4581-bed1-8180a29cf847",
@@ -427,50 +400,6 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "Locomotion Mode Toggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "73a6d359-40f8-4581-9827-91d1d6b66a4e",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Sprint",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fa1e2100-b0e0-4e5c-822e-3df406ac00fd",
-                    "path": "<XRController>{LeftHand}/secondaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Generic XR Controller",
-                    "action": "Slow Time",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "89b24cb8-9e2a-42a2-bbf3-c106fea6e24e",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Slow Time",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "583bd4fd-754c-4e71-972b-60d1e120215b",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Press(behavior=2)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

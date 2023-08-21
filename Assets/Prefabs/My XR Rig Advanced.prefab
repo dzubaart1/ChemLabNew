@@ -15928,7 +15928,6 @@ GameObject:
   - component: {fileID: 4095492992128682948}
   - component: {fileID: 3719865058671406943}
   - component: {fileID: 8449739408642836996}
-  - component: {fileID: 8123834767609328093}
   - component: {fileID: 8183438871837410239}
   - component: {fileID: 5959677274440945754}
   - component: {fileID: 699835362}
@@ -16151,27 +16150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GravityEnabled: 1
   Gravity: {x: 0, y: -7.81, z: 0}
---- !u!114 &8123834767609328093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093207351254691191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e659c238ebc5428bdb4e8d43de9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SlowTimeScale: 0.25
-  YKeySlowsTime: 1
-  SlowTimeAction: {fileID: 4152163271159088786, guid: e39f4b35a6db18348b41eb0262520e69,
-    type: 3}
-  SlowTimeClip: {fileID: 8300000, guid: 3264b135b94635f42a09d672b19cae85, type: 3}
-  SpeedupTimeClip: {fileID: 8300000, guid: 8a4a5bd0b5270024ca91ab9d88bce279, type: 3}
-  SetFixedDelta: 0
-  CheckInput: 1
-  ForceTimeScale: 0
 --- !u!82 &8183438871837410239
 AudioSource:
   m_ObjectHideFlags: 0
