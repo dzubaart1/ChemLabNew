@@ -15,11 +15,10 @@ namespace Installers
     {
         public GameObject XRRigAdvancedPrefab;
         public Transform SpawnPoint;
-        //[SerializeField] private CanvasesCntrl CanvasesCntrl;
         public override void InstallBindings()
         {
             SignalBusInstaller.Install(Container);
-            Container.DeclareSignal<ToggleCanvasSignal>();
+            Container.DeclareSignal<EndGameSignal>();
             Container.DeclareSignal<CheckTasksSignal>();
             Container.DeclareSignal<TransferSubstanceSignal>();
             Container.DeclareSignal<StartMachineWorkSignal>();
@@ -32,12 +31,6 @@ namespace Installers
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.transform.position = SpawnPoint.transform.position;
-            /*var canvases = rigInst.GetComponentsInChildren<CanvasBase>();
-            foreach (CanvasBase canvas in canvases)
-            {
-                CanvasesCntrl._canvasBases.Add(canvas);
-            }
-            */
             
             Container.Bind<GameObject>().FromInstance(rigInst).AsSingle();
             
@@ -47,16 +40,15 @@ namespace Installers
             SubstancesParamsCollection substancesCollection = new SubstancesParamsCollection();
             SubstancesCntrl substancesCntrl = new SubstancesCntrl(substancesCollection);
             Container.Bind<SubstancesCntrl>().FromInstance(substancesCntrl).AsSingle();
-            
         }
     }
 
     public class StartGameSignal
     {
     }
-    public class ToggleCanvasSignal
+    public class EndGameSignal
     {
-        public CanvasId Id;
+        
     }
     public class CheckTasksSignal
     {

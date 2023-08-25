@@ -5,11 +5,10 @@ using System.Collections.Generic;
 
 namespace Canvases
 {
-    public class StartSceneCanvasCntrl : CanvasBase
+    public class StartSceneCanvasCntrl : MonoBehaviour
     {
-        
         [SerializeField] private List<GameObject> panels;
-        private int rulesCount = 0;
+        private int rulesCount;
         
         public void OnStartBtnClick()
         {

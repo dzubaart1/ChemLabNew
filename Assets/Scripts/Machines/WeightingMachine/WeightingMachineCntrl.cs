@@ -22,6 +22,7 @@ namespace Machines.WeightingMachine
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+            _signalBus.Subscribe<CheckTasksSignal>(OnFinishWork);
         }
         private void Awake()
         {
@@ -46,19 +47,12 @@ namespace Machines.WeightingMachine
             if (_snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
             {
                 ResetValues();
-                return;
-            }
-            
-            if (!_snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetWeight()
-                    .Equals(_currentWeight))
-            {
-                OnFinishWork();
             }
         }
-        
-        public void OnEnterObject()
+
+        private void OnEnterObject()
         {
-            EnterIntoMachineSignal enterIntoMachineSignal = new EnterIntoMachineSignal()
+            var enterIntoMachineSignal = new EnterIntoMachineSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
                 ContainersType = _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType
@@ -66,22 +60,31 @@ namespace Machines.WeightingMachine
             _signalBus.Fire(enterIntoMachineSignal);
             _isEnter = true;
         }
-        
 
-        public void ResetValues()
+
+        private void ResetValues()
         {
             _currentWeight = 0f;
             _weightText.text = "0.0000g";
         }
-        
-        public void OnFinishWork()
+
+        private void OnFinishWork(CheckTasksSignal signal)
         {
+            Debug.Log(signal.CurrentTask.ResultSubstance);
+            if (!signal.CurrentTask.MachinesType.Equals(MachinesTypes.WeightingMachine) || signal.CurrentTask.ResultSubstance is null)
+            {
+                return;
+            }
+            
+            Debug.Log("---HERERERER--");
+            
             _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
+            
             _signalBus.Fire(new FinishMashineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance().SubstanceProperty
+                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty
             });
         }
     }

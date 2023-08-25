@@ -48,14 +48,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.pico.livepreview": {
-      "version": "file:C:/Users/uxr/Downloads/PICO Unity Live Preview Plugin (Experiment)",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.xr.management": "4.0.0"
-      }
-    },
     "com.unity.postprocessing": {
       "version": "3.2.2",
       "depth": 0,
@@ -73,15 +65,6 @@
         "com.unity.modules.unitywebrequest": "1.0.0",
         "com.unity.nuget.newtonsoft-json": "3.0.2",
         "com.unity.modules.androidjni": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.subsystemregistration": {
-      "version": "1.1.0",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.subsystems": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -117,30 +100,6 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
-    "com.unity.xr.core-utils": {
-      "version": "2.0.0",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.modules.xr": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.interaction.toolkit": {
-      "version": "2.0.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.inputsystem": "1.2.0",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.xr.core-utils": "2.0.0",
-        "com.unity.xr.legacyinputhelpers": "2.1.8",
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.physics": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.xr.legacyinputhelpers": {
       "version": "2.1.10",
       "depth": 1,
@@ -171,17 +130,6 @@
         "com.unity.xr.management": "4.2.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.picoxr": {
-      "version": "file:C:/Users/uxr/Downloads/PICO Unity IntegrationSDK-214-20230302",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {
-        "com.unity.xr.management": "3.2.16",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.subsystemregistration": "1.0.6",
-        "com.unity.xr.interaction.toolkit": "0.9.4-preview"
-      }
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

@@ -1,17 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BNG {
-
-    /// <summary>
-    /// This script will toggle a GameObject whenever the provided InputAction is executed
-    /// </summary>
     public class ToggleActiveOnInputAction : MonoBehaviour {
 
-        public InputActionReference InputAction = default;
-        public GameObject ToggleObject = default;
+        public InputActionReference InputAction;
+        public GameObject ToggleObject;
 
         private void OnEnable() {
             InputAction.action.performed += ToggleActive;
@@ -21,10 +15,13 @@ namespace BNG {
             InputAction.action.performed -= ToggleActive;
         }
 
-        public void ToggleActive(InputAction.CallbackContext context) {
-            if(ToggleObject) {
-                ToggleObject.SetActive(!ToggleObject.activeSelf);
+        private void ToggleActive(InputAction.CallbackContext context)
+        {
+            if(!ToggleObject)
+            {
+                return;
             }
+            ToggleObject.SetActive(!ToggleObject.activeSelf);
         }
     }
 }

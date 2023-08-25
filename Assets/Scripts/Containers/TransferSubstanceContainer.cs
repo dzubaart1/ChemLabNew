@@ -68,7 +68,6 @@ namespace Containers
             {
                 if (GetComponent<SpoonContainer>() is null && ContainerType != ContainersTypes.DozatorContainer)
                 {
-                    Debug.Log("Here");
                     return;
                 }
                 if (triggerGameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
@@ -77,10 +76,16 @@ namespace Containers
                 }
                 
                 checkAdd = AddSubstance(triggerGameObject.GetComponent<SubstanceContainer>().GetNextSubstance());
-                if (!checkAdd) return;
+                if (!checkAdd)
+                {
+                    return;
+                }
                 checkRemove = triggerGameObject.GetComponent<TransferSubstanceContainer>().RemoveSubstance(MaxVolume);
-                if(!checkRemove) return;
-
+                if (!checkRemove)
+                {
+                    return;
+                }
+                
                 var transferSubstanceSignal1 = new TransferSubstanceSignal()
                 {
                     From = triggerGameObject.GetComponent<BaseContainer>().ContainerType,
@@ -92,9 +97,15 @@ namespace Containers
             }
 
             checkAdd = triggerGameObject.GetComponent<TransferSubstanceContainer>().AddSubstance(GetNextSubstance());
-            if (!checkAdd) return;
+            if (!checkAdd)
+            {
+                return;
+            }
             checkRemove = RemoveSubstance(triggerGameObject.GetComponent<TransferSubstanceContainer>().MaxVolume);
-            if(!checkRemove) return;
+            if (!checkRemove)
+            {
+                return;
+            }
             var transferSubstanceSignal2 = new TransferSubstanceSignal()
             {
                 From = ContainerType,

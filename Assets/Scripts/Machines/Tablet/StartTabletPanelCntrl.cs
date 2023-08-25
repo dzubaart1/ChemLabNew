@@ -2,13 +2,11 @@ using Installers;
 using UnityEngine;
 using Zenject;
 
-
-namespace Canvases
+namespace Machines.Tablet
 {
-    public class StartCanvasCntrl : CanvasBase
+    public class StartTabletPanelCntrl : MonoBehaviour
     {
         private SignalBus _signalBus;
-        [SerializeField] private GameObject _tabletCanvas;
         
         [Inject] 
         public void Construct(SignalBus signalBus)
@@ -18,10 +16,7 @@ namespace Canvases
         
         public void OnStartBtnClick()
         {
-            _tabletCanvas.SetActive(true);
             _signalBus.Fire(new StartGameSignal());
-            _signalBus.Fire(new ToggleCanvasSignal(){Id = CanvasId.StartGameCanvas});
-            
         }
     }
 }

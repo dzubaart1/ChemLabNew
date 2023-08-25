@@ -15,14 +15,10 @@ namespace Machines.DozatorMachine
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
-        }
-
-        private void Start()
-        {
             _signalBus.Subscribe<CheckTasksSignal>(CheckTask);
         }
 
-        public void CheckTask(CheckTasksSignal checkTasksSignal)
+        private void CheckTask(CheckTasksSignal checkTasksSignal)
         {
             if (checkTasksSignal.CurrentTask.DozatorDoze == 0)
             {

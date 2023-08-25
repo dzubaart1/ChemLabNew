@@ -1,32 +1,25 @@
-using Data;
 using Installers;
-using ModestTree;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace Canvases
+namespace Machines.Tablet
 {
-    public class TabletCanvasCntrl : CanvasBase
+    public class MainPanelCntrl : MonoBehaviour
     {
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
         [SerializeField] private Text _taskDescription, _taskWarning;
         [SerializeField] private GameObject _deskPanel, _warnPanel;
-        [SerializeField] private GameObject _mainPanel;
         [SerializeField] private GameObject _deskBtn, _warnBtn;
         
         private SignalBus _signalBus;
-        private void Start()
-        {
-            _signalBus.Subscribe<CheckTasksSignal>(UpdateText);
-            gameObject.SetActive(false);
-        }
         
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+            _signalBus.Subscribe<CheckTasksSignal>(UpdateText);
         }
 
         private void UpdateText(CheckTasksSignal checkTasksSignal)
@@ -34,7 +27,7 @@ namespace Canvases
             _taskTitle.text = checkTasksSignal.CurrentTask.Title;
             _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Number;
             
-            if (checkTasksSignal.CurrentTask.TaskDescription == "")
+            if (string.IsNullOrWhiteSpace(checkTasksSignal.CurrentTask.TaskDescription))
             {
                 _deskBtn.SetActive(false);
             }
@@ -43,7 +36,8 @@ namespace Canvases
                 _deskBtn.SetActive(true);
                 _taskDescription.text = checkTasksSignal.CurrentTask.TaskDescription;
             }
-            if (checkTasksSignal.CurrentTask.TaskWarning == "")
+            
+            if (string.IsNullOrWhiteSpace(checkTasksSignal.CurrentTask.TaskWarning))
             {
                 _warnBtn.SetActive(false);
             }
@@ -55,28 +49,16 @@ namespace Canvases
             
         }
 
-        public void SaveSceneState()
+        public void ShowDescriptionPanel()
         {
-            _signalBus.Fire<SaveSignal>();
-        }
-
-        public void LoadSceneState()
-        {
-            _signalBus.Fire<LoadSignal>();
-        }
-
-        public void ToogleDescriptionPanel()
-        {
-            _deskPanel.SetActive(!_deskPanel.activeSelf);
-            _mainPanel.SetActive(!_deskPanel.activeSelf);
+            _deskPanel.SetActive(true);
             _warnPanel.SetActive(false);
         }
         
-        public void ToogleWarningPanel()
+        public void ShowWarningPanel()
         {
-            _warnPanel.SetActive(!_warnPanel.activeSelf);
-            _mainPanel.SetActive(!_warnPanel.activeSelf);
             _deskPanel.SetActive(false);
+            _warnPanel.SetActive(true);
         }
     }
 }
