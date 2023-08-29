@@ -24,7 +24,7 @@ MonoBehaviour:
   ContainersType: 07000000
   DozatorDoze: 0
   MachinesType: 8
-  ResultSubstance: {fileID: 0}
+  ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
   IsSpawnPoint: 0
   TaskDescription: "\u0421\u0443\u0448\u0438\u043B\u044C\u043D\u044B\u0439 \u0448\u043A\u0430\u0444
     \u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u043D\u044B\u0439 \u2014

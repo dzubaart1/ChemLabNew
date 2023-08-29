@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace BNG {
-    public class DoorHelper : MonoBehaviour {
-
+    public class DoorHelper : MonoBehaviour
+    {
         public AudioClip DoorOpenSound;
         public AudioClip DoorCloseSound;
 
@@ -69,6 +69,7 @@ namespace BNG {
             }
         }
 
+        
         void Update() {
 
             // Read Angular Velocity used for snapping door shut
@@ -81,12 +82,13 @@ namespace BNG {
             angle = Mathf.Floor(currentRotation.y);
 
             if(angle >= 180) {
-                angle -= 180; 
+                angle -= 180;
             }
             else {
                 angle = 180 - angle;
             }
-
+            
+            
             // Play Open Sound
             if (angle > 10) {
                 if(!playedOpenSound) {

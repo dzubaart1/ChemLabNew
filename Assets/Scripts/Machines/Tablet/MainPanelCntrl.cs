@@ -10,7 +10,7 @@ namespace Machines.Tablet
         [SerializeField] private Text _taskNumber;
         [SerializeField] private Text _taskTitle;
         [SerializeField] private Text _taskDescription, _taskWarning;
-        [SerializeField] private GameObject _deskPanel, _warnPanel;
+        [SerializeField] private GameObject _tasksPanel, _deskPanel, _warnPanel;
         [SerializeField] private GameObject _deskBtn, _warnBtn;
         
         private SignalBus _signalBus;
@@ -49,16 +49,18 @@ namespace Machines.Tablet
             
         }
 
-        public void ShowDescriptionPanel()
+        public void ToogleDescriptionPanel()
         {
-            _deskPanel.SetActive(true);
+            _deskPanel.SetActive(!_deskPanel.activeSelf);
+            _tasksPanel.SetActive(!_deskPanel.activeSelf);
             _warnPanel.SetActive(false);
         }
         
-        public void ShowWarningPanel()
+        public void ToogleWarningPanel()
         {
+            _warnPanel.SetActive(!_warnPanel.activeSelf);
+            _tasksPanel.SetActive(!_warnPanel.activeSelf);
             _deskPanel.SetActive(false);
-            _warnPanel.SetActive(true);
         }
     }
 }

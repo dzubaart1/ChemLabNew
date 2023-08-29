@@ -22,6 +22,7 @@ MonoBehaviour:
   ContainersType: 07000000
   DozatorDoze: 0
   MachinesType: 8
-  ResultSubstance: {fileID: 0}
+  ResultSubstance: {fileID: 11400000, guid: 638266fc1f13115469560d5a091adf43, type: 2}
   IsSpawnPoint: 1
   TaskDescription: 
+  TaskWarning: 
