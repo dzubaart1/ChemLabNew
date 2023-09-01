@@ -19,7 +19,7 @@ namespace Machines
         {
             Instantiate(_docPrefab, _spawnPoint.position, Quaternion.identity);
             
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.KspectrometrMachine
             };

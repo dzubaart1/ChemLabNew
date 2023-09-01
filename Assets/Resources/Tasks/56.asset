@@ -19,9 +19,10 @@ MonoBehaviour:
     Agar \u0438 \u0432\u0435\u0449\u0435\u0441\u0442\u0432\u043E\u043C."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0100000002000000
+  ContainersType: 0200000003000000
   DozatorDoze: 0
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: cc3aed17280b88d4c894c791ca2f2853, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 
+  TaskWarning: 

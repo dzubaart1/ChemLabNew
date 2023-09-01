@@ -21,7 +21,7 @@ MonoBehaviour:
     Agar."
   SubstancesParams: {fileID: 11400000, guid: fde453cb3fdf2e646b0d660cbe61ca9b, type: 2}
   Weight: 0.3
-  ContainersType: 0000000003000000
+  ContainersType: 0100000004000000
   DozatorDoze: 0
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: fde453cb3fdf2e646b0d660cbe61ca9b, type: 2}

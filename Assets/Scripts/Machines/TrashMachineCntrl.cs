@@ -31,7 +31,7 @@ namespace Machines
             }
             thrownObjects.Push(other.gameObject); 
             other.gameObject.SetActive(false);
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.TrashMachine
             };

@@ -50,15 +50,14 @@ namespace Data
             {
                 return;
             }
-
-            LoadObjectsWithTransferAndSubstanceState();
             LoadObjectsWithTransformState();
             LoadObjectsWithSubstanceState();
+            LoadObjectsWithTransferAndSubstanceState();
             
             LoadSnapZones();
             LoadAnimators();
             LoadDozator();
-
+            
             _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
         }
 
@@ -66,15 +65,11 @@ namespace Data
         {
             var grabComp = obj.GetComponent<Grabbable>();
             
-            if (grabComp is not null)
+            if (grabComp is not null && grabComp.BeingHeld)
             {
-                if (grabComp.HeldByGrabbers is not null && grabComp.HeldByGrabbers.Count > 0)
-                {
-                    grabComp.DropItem(grabComp.HeldByGrabbers[0]);
-                }
-                grabComp.enabled = true;
+                grabComp.DropItem(grabComp.HeldByGrabbers[0]);
             }
-            
+
             obj.transform.rotation = transformState.Rotation;
             obj.transform.position = transformState.Position;
             obj.SetActive(transformState.IsActive);
@@ -137,8 +132,10 @@ namespace Data
             foreach (var t in _snapZoneObjects)
             {
                 t.GetComponent<SnapZone>().ReleaseAll();
-                if (_savedSceneState.SnapZonesDictionary.TryGetValue(t, out GameObject value))
+                if (_savedSceneState.SnapZonesDictionary.TryGetValue(t, out var value))
                 {
+                    value.transform.localPosition = new Vector3(0, 0, 0);
+                    value.transform.localRotation = Quaternion.identity;
                     t.GetComponent<SnapZone>().GrabGrabbable(value.GetComponent<Grabbable>());
                 }
             }
@@ -154,6 +151,10 @@ namespace Data
 
         private void LoadDozator()
         {
+            if (_dozatorObj.GetComponent<Grabbable>().BeingHeld)
+            {
+                _dozatorObj.GetComponent<Grabbable>().DropItem(_dozatorObj.GetComponent<Grabbable>().HeldByGrabbers[0]);
+            }
             _dozatorSnapZone.GrabGrabbable(_dozatorObj.GetComponent<Grabbable>());
             _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
         }
@@ -208,6 +209,7 @@ namespace Data
                 if (t.GetComponent<SnapZone>().HeldItem is not null)
                 {
                     _savedSceneState.SnapZonesDictionary.Add(t, t.GetComponent<SnapZone>().HeldItem?.gameObject);
+                    Debug.Log(t.GetComponent<SnapZone>().HeldItem?.gameObject.name);
                 }
             }
         }

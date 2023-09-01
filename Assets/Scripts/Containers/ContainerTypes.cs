@@ -2,6 +2,7 @@ namespace Containers
 {
     public enum ContainersTypes
     {
+        None,
         EndlessContainer,
         MeasuringContainer,
         MixContainer,

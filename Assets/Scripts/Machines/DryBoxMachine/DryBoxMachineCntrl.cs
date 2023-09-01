@@ -42,20 +42,22 @@ namespace Machines.DryBoxMachine
         private void OnEnterObject()
         {
             _isEnter = true;
-            _signalBus.Fire(new FinishMashineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase =  _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
+            _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
         }
         
         public void OnToggleWork()
         {
-            _isStart = !_isStart;  
+            _isStart = !_isStart;
+            
             if (_isStart)
             {
                 _startBtn.GetComponent<Image>().sprite = _onStartBtnSprite;
-                _signalBus.Fire(new StartMachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine });
+                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
             }
             else
             {
                 _startBtn.GetComponent<Image>().sprite = _offStartBtnSprite;
+                
                 var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
                 var res = _substancesCntrl.DrySubstance(temp);
                 if (!res)
@@ -64,7 +66,7 @@ namespace Machines.DryBoxMachine
                     _substancesCntrl.SplitSubstances(temp);
                 }
                 
-                _signalBus.Fire(new FinishMashineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance().SubstanceProperty});
+                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance()?.SubstanceProperty});
             }
         }
     }

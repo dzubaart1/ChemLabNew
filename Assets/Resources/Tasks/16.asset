@@ -19,9 +19,10 @@ MonoBehaviour:
     \u0441\u0442\u0430\u043A\u0430\u043D."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0200000004000000
+  ContainersType: 0300000005000000
   DozatorDoze: 0
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: ddf82de018c606c4da3483ac51a3adc7, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 
+  TaskWarning: 

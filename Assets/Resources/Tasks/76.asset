@@ -20,9 +20,10 @@ MonoBehaviour:
     \u043C\u0438\u043A\u0440\u043E\u0441\u043A\u043E\u043F."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0a0000000d000000
+  ContainersType: 0b0000000e000000
   DozatorDoze: 0
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: 323e5cd0418be3d459a34613b26887be, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 
+  TaskWarning: 

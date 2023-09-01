@@ -388,8 +388,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []
@@ -701,8 +702,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []
@@ -869,8 +871,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []
@@ -954,8 +957,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []
@@ -1039,8 +1043,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []
@@ -1124,8 +1129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 8
+  ContainerType: 9
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []

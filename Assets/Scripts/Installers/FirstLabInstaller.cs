@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BNG;
-using Canvases;
 using Containers;
 using Machines;
 using Substances;
@@ -21,9 +20,7 @@ namespace Installers
             Container.DeclareSignal<EndGameSignal>();
             Container.DeclareSignal<CheckTasksSignal>();
             Container.DeclareSignal<TransferSubstanceSignal>();
-            Container.DeclareSignal<StartMachineWorkSignal>();
-            Container.DeclareSignal<FinishMashineWorkSignal>();
-            Container.DeclareSignal<EnterIntoMachineSignal>();
+            Container.DeclareSignal<MachineWorkSignal>();
             Container.DeclareSignal<StartGameSignal>();
             Container.DeclareSignal<SaveSignal>();
             Container.DeclareSignal<LoadSignal>();
@@ -60,18 +57,10 @@ namespace Installers
         public ContainersTypes To;
         public SubstancePropertyBase TranserProperty;
     }
-    public class StartMachineWorkSignal
-    {
-        public MachinesTypes MachinesType;
-    }
-    public class FinishMashineWorkSignal
+    public class MachineWorkSignal
     {
         public MachinesTypes MachinesType;
         public SubstancePropertyBase SubstancePropertyBase;
-    }
-    public class EnterIntoMachineSignal
-    {
-        public MachinesTypes MachinesType;
         public ContainersTypes ContainersType;
     }
 

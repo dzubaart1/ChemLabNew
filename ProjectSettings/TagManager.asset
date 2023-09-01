@@ -10,6 +10,9 @@ TagManager:
   - SerializeTransferAndSubstance
   - SerializeSubstance
   - SerializeTransfer
+  - Document
+  - canvas
+  - handle
   layers:
   - Default
   - TransparentFX

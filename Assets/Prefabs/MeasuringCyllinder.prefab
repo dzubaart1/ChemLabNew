@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
+  Weight: 0
   MaxVolume: 9000
-  ContainerType: 1
+  ContainerType: 2
   IsAbleToWeight: 0
   IsDirty: 0
   _cupsList: []

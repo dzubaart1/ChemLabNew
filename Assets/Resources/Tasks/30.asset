@@ -21,7 +21,7 @@ MonoBehaviour:
     \u0441\u0442\u0430\u043A\u0430\u043D\u0430."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0500000002000000
+  ContainersType: 0600000003000000
   DozatorDoze: 0
   MachinesType: 0
   ResultSubstance: {fileID: 11400000, guid: 3d9a23141ab7f724b9098dc53f295bbb, type: 2}

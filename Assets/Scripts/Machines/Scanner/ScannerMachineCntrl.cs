@@ -1,4 +1,3 @@
-using Tasks;
 using UnityEngine;
 using Zenject;
 using Containers;
@@ -39,7 +38,7 @@ namespace Machines
         }
         public void OnEnterObject()
         {
-            EnterIntoMachineSignal enterIntoMachineSignal = new EnterIntoMachineSignal()
+            MachineWorkSignal enterIntoMachineSignal = new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
                 MachinesType = MachinesTypes.ScannerMachine
@@ -56,7 +55,7 @@ namespace Machines
                 return;
             _scannerCanvas.SetActive(true);
             _videoPlayer.Play();
-            StartMachineWorkSignal startMachineWorkSignal = new StartMachineWorkSignal()
+            MachineWorkSignal startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine
             }; 
@@ -66,7 +65,7 @@ namespace Machines
         {
             _scannerCanvas.SetActive(false);
             _videoPlayer.Stop();
-            FinishMashineWorkSignal finishMashineWorkSignal = new FinishMashineWorkSignal()
+            MachineWorkSignal finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().GetNextSubstance().SubstanceProperty

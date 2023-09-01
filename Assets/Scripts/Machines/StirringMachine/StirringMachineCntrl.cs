@@ -43,7 +43,7 @@ namespace Machines
 
         public void OnEnterObject()
         {
-            var enterIntoMachineSignal = new EnterIntoMachineSignal()
+            var enterIntoMachineSignal = new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
                 MachinesType = MachinesTypes.StirringMachine
@@ -63,7 +63,7 @@ namespace Machines
             var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
             _substancesCntrl.StirSubstance(temp);
             StartStirringAnimation();
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine
             };
@@ -77,7 +77,7 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
-            var finishMashineWorkSignal = new FinishMashineWorkSignal()
+            var finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty

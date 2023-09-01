@@ -29,7 +29,7 @@ namespace Machines
                 particleSystem.Play();
             }
             
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.PaperTray
             };

@@ -1304,8 +1304,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -328.0001}
-  m_SizeDelta: {x: 1700, y: 242.1}
+  m_AnchoredPosition: {x: 0, y: -355}
+  m_SizeDelta: {x: 1700, y: 305.87}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &903034100
 MonoBehaviour:
@@ -1343,14 +1343,14 @@ MonoBehaviour:
   m_Text: "\u041D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B
     \u0437\u0430\u043F\u0443\u0441\u043A\u0430\u044E\u0442\u0441\u044F \u043F\u0440\u0438
     \u043F\u043E\u043C\u043E\u0449\u0438 \u043A\u043D\u043E\u043F\u043E\u043A \r\n(\u043F\u043B\u0438\u0442\u043A\u0430,
-    \u043F\u0438\u043F\u0435\u0442\u0434\u043E\u0437\u0430\u0442\u043E\u0440, \u0441\u0443\u0448\u0438\u043B\u044C\u043D\u044B\u0439
+    \u043F\u0438\u043F\u0435\u0442-\u0434\u043E\u0437\u0430\u0442\u043E\u0440, \u0441\u0443\u0448\u0438\u043B\u044C\u043D\u044B\u0439
     \u0448\u043A\u0430\u0444). \u0414\u043B\u044F \u0430\u043A\u0442\u0438\u0432\u0430\u0446\u0438\u0438
     \r\n\u044D\u0442\u0438\u0445 \u043A\u043D\u043E\u043F\u043E\u043A \u043D\u0430\u0432\u0435\u0434\u0438\u0442\u0435
-    \u0440\u0443\u043A\u0443 \u043D\u0430 \u043A\u043D\u043E\u043F\u043A\u0443 \u0434\u043E
-    \u043F\u043E\u044F\u0432\u043B\u0435\u043D\u0438\u044F \u0431\u0435\u043B\u043E\u0433\u043E\r\n\u043B\u0443\u0447\u0430
-    \u0438 \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u0442\u0440\u0438\u0433\u0433\u0435\u0440
-    1 \u043D\u0430 \u043F\u0440\u0430\u0432\u043E\u043C \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440\u0435.
-    \r"
+    \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440 \u043D\u0430 \u043A\u043D\u043E\u043F\u043A\u0443
+    \u0434\u043E \u043F\u043E\u044F\u0432\u043B\u0435\u043D\u0438\u044F\n\u0431\u0435\u043B\u043E\u0433\u043E\r
+    \u043B\u0443\u0447\u0430 \u0438 \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430
+    \u0442\u0440\u0438\u0433\u0433\u0435\u0440 1 \u043D\u0430 \u043F\u0440\u0430\u0432\u043E\u043C
+    \u043A\u043E\u043D\u0442\u0440\u043E\u043B\u043B\u0435\u0440\u0435. \r"
 --- !u!222 &903034101
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3456,7 +3456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376a950a05a41234d8fec493fda50987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasId: 2
   panels:
   - {fileID: 23969304}
   - {fileID: 1201918301}
@@ -11649,27 +11648,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &789488064057234696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441612778745170338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 494e659c238ebc5428bdb4e8d43de9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SlowTimeScale: 0.25
-  YKeySlowsTime: 1
-  SlowTimeAction: {fileID: 4152163271159088786, guid: e39f4b35a6db18348b41eb0262520e69,
-    type: 3}
-  SlowTimeClip: {fileID: 8300000, guid: 3264b135b94635f42a09d672b19cae85, type: 3}
-  SpeedupTimeClip: {fileID: 8300000, guid: 8a4a5bd0b5270024ca91ab9d88bce279, type: 3}
-  SetFixedDelta: 0
-  CheckInput: 1
-  ForceTimeScale: 0
 --- !u!1 &795533763505450513
 GameObject:
   m_ObjectHideFlags: 0
@@ -74419,7 +74397,6 @@ GameObject:
   - component: {fileID: 4800668662123343633}
   - component: {fileID: 5320692983755410314}
   - component: {fileID: 1083954237334761169}
-  - component: {fileID: 789488064057234696}
   - component: {fileID: 853451715127977834}
   - component: {fileID: 2953373428165244047}
   - component: {fileID: 8811710055141214007}
@@ -76768,7 +76745,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b07c337f1845ca448c029c2db157c7f, type: 2}
+  - {fileID: 2100000, guid: 3f9db4907cb27704d991f0ab4b9a658b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85993,7 +85970,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0b07c337f1845ca448c029c2db157c7f, type: 2}
+  - {fileID: 2100000, guid: 3f9db4907cb27704d991f0ab4b9a658b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

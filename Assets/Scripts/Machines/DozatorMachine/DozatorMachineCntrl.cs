@@ -40,7 +40,7 @@ namespace Machines.DozatorMachine
         public string GetDozeFromTask()
         {
             _baseContainer.MaxVolume = _currentDoze;
-            _signalBus.Fire(new StartMachineWorkSignal(){MachinesType = MachinesTypes.DozatorMachine});
+            _signalBus.Fire(new MachineWorkSignal(){MachinesType = MachinesTypes.DozatorMachine});
             return _currentDoze.ToString(CultureInfo.InvariantCulture);
         }
     }

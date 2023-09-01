@@ -19,7 +19,7 @@ MonoBehaviour:
     \u0448\u043A\u0430\u0444."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 07000000
+  ContainersType: 08000000
   DozatorDoze: 0
   MachinesType: 8
   ResultSubstance: {fileID: 11400000, guid: 638266fc1f13115469560d5a091adf43, type: 2}

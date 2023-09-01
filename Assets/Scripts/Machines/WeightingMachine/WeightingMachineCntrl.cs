@@ -16,13 +16,13 @@ namespace Machines.WeightingMachine
         private SnapZone _snapZone;
 
         private SignalBus _signalBus;
-        private bool _isEnter, _hasObject;
-        private float _currentWeight;
+        
+        private int _prevSubCount = -1;
+        private float _currentDiscardWeight;
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
-            _signalBus.Subscribe<CheckTasksSignal>(OnFinishWork);
         }
         private void Awake()
         {
@@ -34,58 +34,47 @@ namespace Machines.WeightingMachine
             if (_snapZone.HeldItem is null ||
                 _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().IsAbleToWeight is false)
             {
-                _isEnter = false;
+                _prevSubCount = -1;
                 ResetValues();
                 return;
             }
             
-            if (!_isEnter)
+            if (_prevSubCount != _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentCountSubstances)
             {
                 OnEnterObject();
-            }
-
-            if (_snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().CurrentCountSubstances == 0)
-            {
-                ResetValues();
             }
         }
 
         private void OnEnterObject()
         {
-            var enterIntoMachineSignal = new EnterIntoMachineSignal()
-            {
-                MachinesType = MachinesTypes.WeightingMachine,
-                ContainersType = _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType
-            };
-            _signalBus.Fire(enterIntoMachineSignal);
-            _isEnter = true;
-        }
-
-
-        private void ResetValues()
-        {
-            _currentWeight = 0f;
-            _weightText.text = "0.0000g";
-        }
-
-        private void OnFinishWork(CheckTasksSignal signal)
-        {
-            Debug.Log(signal.CurrentTask.ResultSubstance);
-            if (!signal.CurrentTask.MachinesType.Equals(MachinesTypes.WeightingMachine) || signal.CurrentTask.ResultSubstance is null)
-            {
-                return;
-            }
-            
-            Debug.Log("---HERERERER--");
-            
-            _currentWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
-            _weightText.text = _currentWeight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
-            
-            _signalBus.Fire(new FinishMashineWorkSignal()
+            ChangeValues();
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty
             });
+            _prevSubCount = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentCountSubstances;
+        }
+
+        public void OnClickContainerBtn()
+        {
+            _signalBus.Fire(new MachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.WeightingMachine,
+            });
+            _currentDiscardWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
+            ResetValues();
+        }
+
+        public void ResetValues()
+        {
+            _weightText.text = "0.0000g";
+        }
+
+        private void ChangeValues()
+        {
+            var res = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight()-_currentDiscardWeight;
+            _weightText.text = res.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
         }
     }
 }

@@ -1,7 +1,9 @@
 #nullable enable
 using System.Collections.Generic;
 using Canvases;
+using Containers;
 using Installers;
+using Machines;
 using UnityEngine;
 using Zenject;
 
@@ -20,9 +22,7 @@ namespace Tasks
             _signalBus = signalBus;
             _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
             _signalBus.Subscribe<StartGameSignal>(OnStartGame);
-            _signalBus.Subscribe<EnterIntoMachineSignal>(CheckEnteringIntoMachine);
-            _signalBus.Subscribe<StartMachineWorkSignal>(CheckStartMachineWork);
-            _signalBus.Subscribe<FinishMashineWorkSignal>(CheckFinishMachineWork);
+            _signalBus.Subscribe<MachineWorkSignal>(CheckMachineWork);
             _signalBus.Subscribe<RevertTaskSignal>(RevertTask);
         }
 
@@ -63,42 +63,52 @@ namespace Tasks
         }
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
-            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) ||
-                !CurrentTask().ContainersType.Contains(transferSubstanceSignal.To) ||
-                !CurrentTask().ResultSubstance.SubName.Equals(transferSubstanceSignal.TranserProperty.SubName))
+            if (CurrentTask().MachinesType is not MachinesTypes.None)
+            {
+                return;
+            }
+            
+            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From))
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+            
+            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.To))
+            {
+                _signalBus.Fire<EndGameSignal>();
+                return;
+            }
+
+            if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(transferSubstanceSignal.TranserProperty))
+            {
+                _signalBus.Fire<EndGameSignal>();
+                return;
+            }
+            
             MoveToNext();
         }
-        private void CheckEnteringIntoMachine(EnterIntoMachineSignal enterIntoMachineSignal)
+        private void CheckMachineWork(MachineWorkSignal machineWorkSignal)
         {
-            if (!CurrentTask().MachinesType.Equals(enterIntoMachineSignal.MachinesType) ||
-                !CurrentTask().ContainersType.Contains(enterIntoMachineSignal.ContainersType))
+            if (CurrentTask().ContainersType.Count > 0 &&
+                machineWorkSignal.ContainersType is not ContainersTypes.None)
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            MoveToNext();
-        }
-        private void CheckStartMachineWork(StartMachineWorkSignal startMachineWorkSignal)
-        {
-            if (!CurrentTask().MachinesType.Equals(startMachineWorkSignal.MachinesType))
+
+            if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType))
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            MoveToNext();
-        }
-        private void CheckFinishMachineWork(FinishMashineWorkSignal finishMashineWorkSignal)
-        {
-            if (!CurrentTask().MachinesType.Equals(finishMashineWorkSignal.MachinesType) ||
-                !CurrentTask().ResultSubstance.Equals(finishMashineWorkSignal.SubstancePropertyBase))
+
+            if (CurrentTask().SubstancesParams && !CurrentTask().SubstancesParams.Equals(machineWorkSignal.SubstancePropertyBase))
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+
             MoveToNext();
         }
     }

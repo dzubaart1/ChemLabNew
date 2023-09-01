@@ -32,7 +32,7 @@ namespace Machines
             
             _teleportedGameObject.SetActive(false);
             _snapZone.HeldItem = null;
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = _teleportType
             };
@@ -46,7 +46,7 @@ namespace Machines
             {
                 particleSystem.Play();
             }
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = _teleportType
             };

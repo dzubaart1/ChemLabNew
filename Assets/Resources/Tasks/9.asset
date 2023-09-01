@@ -22,7 +22,7 @@ MonoBehaviour:
     \u043D\u0430 \u043F\u043B\u0438\u0442\u043A\u0443."
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 02000000
+  ContainersType: 03000000
   DozatorDoze: 0
   MachinesType: 1
   ResultSubstance: {fileID: 0}

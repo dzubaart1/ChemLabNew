@@ -12,8 +12,9 @@ namespace Containers
     {
         public Substance[] CurrentSubstances;
         [HideInInspector] public int CurrentCountSubstances;
-        
+
         [Header("Base Container Params")]
+        public float Weight;
         public float MaxVolume = 9000;
         public ContainersTypes ContainerType;
         public bool IsAbleToWeight;
@@ -51,7 +52,7 @@ namespace Containers
                 sumWeight += substance?.GetWeight() ?? 0;
             }
 
-            return sumWeight;
+            return sumWeight + Weight;
         }
         
         public static bool IsNull<T>(T myObject, string message = "") where T : class

@@ -48,7 +48,7 @@ namespace Machines.CentrifugeMachine
 
             if (countCurrentCentrifugeContainer >= MINTOCOMPLITETASK)
             {
-                _signalBus.Fire(new StartMachineWorkSignal() { MachinesType = MachinesTypes.CentrifugeMachine });
+                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.CentrifugeMachine });
             }
         }
 
@@ -70,7 +70,7 @@ namespace Machines.CentrifugeMachine
 
                 var substanceProp = snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().GetNextSubstance()
                     .SubstanceProperty;
-                _signalBus.Fire(new FinishMashineWorkSignal()
+                _signalBus.Fire(new MachineWorkSignal()
                     { MachinesType = MachinesTypes.CentrifugeMachine, SubstancePropertyBase = substanceProp });
                 return;
             }

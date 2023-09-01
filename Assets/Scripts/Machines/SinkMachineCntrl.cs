@@ -35,7 +35,7 @@ namespace Machines
             thrownObjects.Push(gameObj);
             gameObj.SetActive(false);
 
-            var startMachineWorkSignal = new StartMachineWorkSignal()
+            var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.SinkMachine
             };

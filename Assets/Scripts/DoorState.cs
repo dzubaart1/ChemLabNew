@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using BNG;
 using UnityEngine;
@@ -9,16 +9,18 @@ public class DoorState : MonoBehaviour
         public int MinAngleToMove, MaxAngleToMove;
         public bool DoorIsOpen;
 
-        Rigidbody rigid;
-        public float angle;
-        
-        public bool DoorIsLocked = false;
+        private float angle;
         
         Vector3 currentRotation;
         float moveLockAmount, rotateAngles, ratio;
         private bool DoorIsHeld;
         private Grabber _leftGrabber, _rightGrabber;
         private SignalBus _signalBus;
+        
+        Rigidbody rigid;
+        private Vector3 startPos;
+        public Vector3 closeRot;
+        public Vector3 openRot;
 
         [Inject]
         public void Construct(List<Grabber> grabbers, SignalBus signalBus)
@@ -36,17 +38,11 @@ public class DoorState : MonoBehaviour
             }
             _signalBus = signalBus;
         }
-
         void Start() 
         {
             rigid = GetComponent<Rigidbody>();
+            startPos = transform.position;
         }
-
-        private void OnCollisionStay(Collision collisionInfo)
-        {
-            
-        }
-
         private void OnTriggerStay(Collider other)
         {
             if (!InputBridge.Instance.RightTriggerDown && !InputBridge.Instance.LeftTriggerDown)
@@ -62,53 +58,53 @@ public class DoorState : MonoBehaviour
             }
         }
 
-        
-
         private void CheckDoorState()
         {
+            
+            if (!(_rightGrabber.HeldGrabbable is null) && _rightGrabber.HeldGrabbable.gameObject.CompareTag("handle") ||
+                    !(_leftGrabber.HeldGrabbable is null) && _leftGrabber.HeldGrabbable.gameObject.CompareTag("handle"))
+            {
+                UnlockTheDoor();
+                return;
+            }
+
+            
             if (angle > MinAngleToMove && angle < MaxAngleToMove)
             {
-                Debug.Log("move");
-                DoorIsLocked = false;
-                /*if (angle < MinAngleToMove+10)
-                {
-                    DoorIsOpen = false;
-                    gameObject.transform.localEulerAngles = new Vector3(gameObject.transform.localEulerAngles.x,
-                        MinAngleToMove, gameObject.transform.localEulerAngles.z);
-                }
-
-                if (angle > MaxAngleToMove)
-                {
-                    DoorIsOpen = true;
-                    gameObject.transform.localEulerAngles = new Vector3(gameObject.transform.localEulerAngles.x,
-                        MaxAngleToMove, gameObject.transform.localEulerAngles.z);
-                }*/
-
+                UnlockTheDoor();
+            }
+            else
+            {
+                LockTheDoor();
             }
         }
         void Update() {
-
             currentRotation = transform.localEulerAngles;
             angle = Mathf.Floor(currentRotation.y);
             CheckDoorState();
+        }
 
-
-            // Lock Door in place if closed and requires handle to be turned
-            if(angle < 0.02f && DoorIsLocked) {
-                // Check on detection mode
-                if (rigid.collisionDetectionMode == CollisionDetectionMode.Continuous || rigid.collisionDetectionMode == CollisionDetectionMode.ContinuousDynamic) {
-                    rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
-                }
-
-                rigid.isKinematic = true;
+        private void LockTheDoor()
+        {
+            GetComponent<DoorHelper>().DoorIsLocked = true;
+            rigid.constraints = RigidbodyConstraints.FreezeAll;
+            Debug.Log(MaxAngleToMove);
+            if (angle >= MaxAngleToMove)
+            {
+                transform.eulerAngles = closeRot;
+                DoorIsOpen = false;
             }
-            else {
-                // Check on detection mode
-                if (rigid.collisionDetectionMode == CollisionDetectionMode.ContinuousSpeculative) {
-                    rigid.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-                }
-
-                rigid.isKinematic = false;
+            else
+            {
+                transform.eulerAngles = openRot;
+                DoorIsOpen = true;
             }
+            
+            transform.position = startPos;
+        }
+        private void UnlockTheDoor()
+        {
+            GetComponent<DoorHelper>().DoorIsLocked = false;
+            rigid.constraints = RigidbodyConstraints.None;
         }
 }
