@@ -9,7 +9,7 @@ public class DoorState : MonoBehaviour
         public int MinAngleToMove, MaxAngleToMove;
         public bool DoorIsOpen;
 
-        private float angle;
+        public float angle, _addAngle;
         
         Vector3 currentRotation;
         float moveLockAmount, rotateAngles, ratio;
@@ -42,20 +42,7 @@ public class DoorState : MonoBehaviour
         {
             rigid = GetComponent<Rigidbody>();
             startPos = transform.position;
-        }
-        private void OnTriggerStay(Collider other)
-        {
-            if (!InputBridge.Instance.RightTriggerDown && !InputBridge.Instance.LeftTriggerDown)
-            {
-                return;
-            }
-
-            var grabber = InputBridge.Instance.RightTriggerDown ? _rightGrabber : _leftGrabber;
-
-            if (grabber.HeldGrabbable is null || grabber.HeldGrabbable.gameObject != gameObject)
-            {
-                return;
-            }
+            
         }
 
         private void CheckDoorState()
@@ -81,6 +68,12 @@ public class DoorState : MonoBehaviour
         void Update() {
             currentRotation = transform.localEulerAngles;
             angle = Mathf.Floor(currentRotation.y);
+            if(angle >= 180) {
+                _addAngle = angle - 360;
+            }
+            else {
+                _addAngle = 360 - angle;
+            }
             CheckDoorState();
         }
 
@@ -88,15 +81,14 @@ public class DoorState : MonoBehaviour
         {
             GetComponent<DoorHelper>().DoorIsLocked = true;
             rigid.constraints = RigidbodyConstraints.FreezeAll;
-            Debug.Log(MaxAngleToMove);
-            if (angle >= MaxAngleToMove)
+            if (angle >= MaxAngleToMove) //&& angle < _addAngle)
             {
-                transform.eulerAngles = closeRot;
+                transform.localEulerAngles = closeRot;
                 DoorIsOpen = false;
             }
             else
             {
-                transform.eulerAngles = openRot;
+                transform.localEulerAngles = openRot;
                 DoorIsOpen = true;
             }
             
@@ -104,6 +96,7 @@ public class DoorState : MonoBehaviour
         }
         private void UnlockTheDoor()
         {
+            
             GetComponent<DoorHelper>().DoorIsLocked = false;
             rigid.constraints = RigidbodyConstraints.None;
         }
