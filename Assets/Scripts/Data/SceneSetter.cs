@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using BNG;
+using Canvases;
 using Containers;
 using Installers;
 using JetBrains.Annotations;
 using Machines.DozatorMachine;
 using Substances;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Data
@@ -21,6 +23,7 @@ namespace Data
         private List<GameObject> _objectsWithSubstanceState;
         private List<GameObject> _animatorObjects;
         private List<GameObject> _snapZoneObjects;
+        private List<GameObject> _uiBtnsObjects;
 
         private SceneState _savedSceneState;
         
@@ -42,6 +45,7 @@ namespace Data
             _objectsWithSubstanceState = GameObject.FindGameObjectsWithTag("SerializeSubstance").ToList();
             _animatorObjects = GameObject.FindGameObjectsWithTag("Animator").ToList();
             _snapZoneObjects = GameObject.FindGameObjectsWithTag("SnapZone").ToList();
+            _uiBtnsObjects = GameObject.FindGameObjectsWithTag("SerializeUIBtn").ToList();
         }
         
         private void LoadState()
@@ -57,6 +61,8 @@ namespace Data
             LoadSnapZones();
             LoadAnimators();
             LoadDozator();
+
+            LoadUIBtns();
             
             _signalBus.Fire(new RevertTaskSignal(){TaskId = _savedSceneState.TaskId});
         }
@@ -159,6 +165,17 @@ namespace Data
             _dozatorObj.SetDoze(_savedSceneState.DozatorDoze);
         }
 
+        private void LoadUIBtns()
+        {
+            foreach (var t in _uiBtnsObjects)
+            {
+                if (_savedSceneState.UIBtnStates.TryGetValue(t, out var value))
+                {
+                    t.GetComponent<Image>().sprite = value.Sprite;
+                }
+            }
+        }
+
         private void SaveState(SaveSignal saveSignal)
         {
             _savedSceneState.TaskId = saveSignal.TaskId;
@@ -169,6 +186,7 @@ namespace Data
             SaveObjectsWithSubstanceState();
             
             SaveSnapZones();
+            SaveUIBtns();
         }
 
         private void SaveObjectsWithTransformAndSubstanceState()
@@ -214,6 +232,18 @@ namespace Data
             }
         }
 
+        private void SaveUIBtns()
+        {
+            _savedSceneState.UIBtnStates.Clear();
+            foreach (var btn in _uiBtnsObjects)
+            {
+                if (btn.GetComponent<Image>() is not null)
+                {
+                    _savedSceneState.UIBtnStates.Add(btn, GetUIBtnStateType(btn));
+                }
+            }
+        }
+
         private TransferAndSubstanceState GetTransformAndSubstanceStateByObj(GameObject obj)
         {
             return new TransferAndSubstanceState()
@@ -251,6 +281,16 @@ namespace Data
 
             return substanceState;
         }
+
+        private UIBtnState GetUIBtnStateType(GameObject obj)
+        {
+            var btn = obj.GetComponent<Image>();
+
+            return new UIBtnState()
+            {
+                Sprite = btn.sprite
+            };
+        }
     }
     
     public class SceneState
@@ -265,11 +305,13 @@ namespace Data
             ObjectsWithTransformState = new Dictionary<GameObject, TransformState>();
             ObjectsWithTransformAndSubstanceState = new Dictionary<GameObject, TransferAndSubstanceState>();
             SnapZonesDictionary = new Dictionary<GameObject, GameObject>();
+            UIBtnStates = new Dictionary<GameObject, UIBtnState>();
         }
         
         public Dictionary<GameObject, TransferAndSubstanceState> ObjectsWithTransformAndSubstanceState { get; }
         public Dictionary<GameObject, SubstanceState> ObjectsWithSubstanceState{ get; }
         public Dictionary<GameObject, TransformState> ObjectsWithTransformState{ get; }
+        public Dictionary<GameObject, UIBtnState> UIBtnStates{ get; }
         public Dictionary<GameObject, GameObject> SnapZonesDictionary{ get; }
     }
 
@@ -289,5 +331,10 @@ namespace Data
         public Vector3 Position;
         public Quaternion Rotation;
         public bool IsActive;
+    }
+
+    public struct UIBtnState
+    {
+        public Sprite Sprite;
     }
 }

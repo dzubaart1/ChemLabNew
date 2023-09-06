@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Containers;
+using DefaultNamespace;
 using Machines;
 using Substances;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Tasks
         public List<ContainersTypes> ContainersType;
         public float DozatorDoze;
         public MachinesTypes MachinesType;
+        public DoorTypes DoorTypes;
+        public bool IsOpenDoor;
         public SubstancePropertyBase ResultSubstance;
         public bool IsSpawnPoint;
         public string TaskDescription;

@@ -13,6 +13,7 @@ TagManager:
   - Document
   - canvas
   - handle
+  - SerializeUIBtn
   layers:
   - Default
   - TransparentFX

@@ -26,6 +26,8 @@ MonoBehaviour:
   ContainersType: 0600000009000000
   DozatorDoze: 0
   MachinesType: 0
+  DoorTypes: 0
+  IsOpenDoor: 0
   ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 

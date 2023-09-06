@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 19
   m_EditorClassIdentifier: 
-  Number: 21
+  Number: 22
   Title: "\u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u0435\u043C\u043A\u043E\u0441\u0442\u044C
     \u0441 Agar, \u043E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 \u043A\u0440\u044B\u0448\u043A\u0443.
     \u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u043C\u0435\u0440\u043D\u0443\u044E
@@ -24,6 +24,8 @@ MonoBehaviour:
   ContainersType: 0100000004000000
   DozatorDoze: 0
   MachinesType: 0
+  DoorTypes: 0
+  IsOpenDoor: 0
   ResultSubstance: {fileID: 11400000, guid: fde453cb3fdf2e646b0d660cbe61ca9b, type: 2}
   IsSpawnPoint: 0
   TaskDescription: "\u0410\u0433\u0430\u0440 \u2014 \u044D\u0442\u043E \u0440\u0430\u0441\u0442\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0439

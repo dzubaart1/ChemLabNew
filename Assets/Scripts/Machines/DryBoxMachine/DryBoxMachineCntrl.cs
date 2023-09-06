@@ -11,8 +11,8 @@ namespace Machines.DryBoxMachine
     public class DryBoxMachineCntrl : MonoBehaviour
     {
         [SerializeField] private SnapZone _snapZone;
-        [SerializeField] private GameObject _startBtn;
-        [SerializeField] private Sprite _onStartBtnSprite, _offStartBtnSprite;
+        [SerializeField] private Image _startBtnImage;
+        [SerializeField] private Sprite _onSprite, _offSprite;
         private bool _isEnter, _isStart;
 
         private SubstancesCntrl _substancesCntrl;
@@ -51,12 +51,12 @@ namespace Machines.DryBoxMachine
             
             if (_isStart)
             {
-                _startBtn.GetComponent<Image>().sprite = _onStartBtnSprite;
+                _startBtnImage.sprite = _onSprite;
                 _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
             }
             else
             {
-                _startBtn.GetComponent<Image>().sprite = _offStartBtnSprite;
+                _startBtnImage.sprite = _offSprite;
                 
                 var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
                 var res = _substancesCntrl.DrySubstance(temp);

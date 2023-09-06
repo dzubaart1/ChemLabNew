@@ -63,12 +63,13 @@ namespace Machines.WeightingMachine
                 MachinesType = MachinesTypes.WeightingMachine,
             });
             _currentDiscardWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
-            ResetValues();
+            _weightText.text = "0.0000g";
         }
 
-        public void ResetValues()
+        private void ResetValues()
         {
             _weightText.text = "0.0000g";
+            _currentDiscardWeight = 0;
         }
 
         private void ChangeValues()

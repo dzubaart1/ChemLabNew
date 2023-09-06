@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BNG;
 using Containers;
+using DefaultNamespace;
 using Machines;
 using Substances;
 using Tasks;
@@ -25,6 +26,7 @@ namespace Installers
             Container.DeclareSignal<SaveSignal>();
             Container.DeclareSignal<LoadSignal>();
             Container.DeclareSignal<RevertTaskSignal>();
+            Container.DeclareSignal<DoorWorkSignal>();
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.transform.position = SpawnPoint.transform.position;
@@ -62,6 +64,12 @@ namespace Installers
         public MachinesTypes MachinesType;
         public SubstancePropertyBase SubstancePropertyBase;
         public ContainersTypes ContainersType;
+    }
+
+    public class DoorWorkSignal
+    {
+        public DoorTypes DoorType;
+        public bool IsOpen;
     }
 
     public class SaveSignal

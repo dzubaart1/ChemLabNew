@@ -1,103 +1,130 @@
  using System;
 using System.Collections.Generic;
 using BNG;
-using UnityEngine;
+ using DefaultNamespace;
+ using Installers;
+ using Machines;
+ using UnityEngine;
 using Zenject;
 
 public class DoorState : MonoBehaviour
 {
-        public int MinAngleToMove, MaxAngleToMove;
-        public bool DoorIsOpen;
+    public DoorTypes DoorType;
+    public int MinAngleToMove, MaxAngleToMove;
+    public bool DoorIsOpen;
 
-        public float angle, _addAngle;
-        
-        Vector3 currentRotation;
-        float moveLockAmount, rotateAngles, ratio;
-        private bool DoorIsHeld;
-        private Grabber _leftGrabber, _rightGrabber;
-        private SignalBus _signalBus;
-        
-        Rigidbody rigid;
-        private Vector3 startPos;
-        public Vector3 closeRot;
-        public Vector3 openRot;
+    public float angle, _addAngle;
+    
+    Vector3 currentRotation;
+    float moveLockAmount, rotateAngles, ratio;
+    private bool DoorIsHeld;
+    private Grabber _leftGrabber, _rightGrabber;
+    private SignalBus _signalBus;
+    
+    Rigidbody rigid;
+    private Vector3 startPos;
+    public Vector3 closeRot;
+    public Vector3 openRot;
 
-        [Inject]
-        public void Construct(List<Grabber> grabbers, SignalBus signalBus)
+    [Inject]
+    public void Construct(List<Grabber> grabbers, SignalBus signalBus)
+    {
+        foreach (var grabber in grabbers)
         {
-            foreach (var grabber in grabbers)
+            if(grabber.HandSide == ControllerHand.Left)
             {
-                if(grabber.HandSide == ControllerHand.Left)
-                {
-                    _leftGrabber = grabber;
-                }
-                else
-                {
-                    _rightGrabber = grabber;
-                }
+                _leftGrabber = grabber;
             }
-            _signalBus = signalBus;
+            else
+            {
+                _rightGrabber = grabber;
+            }
         }
-        void Start() 
+        _signalBus = signalBus;
+    }
+    void Start() 
+    {
+        rigid = GetComponent<Rigidbody>();
+        startPos = transform.position;
+        
+    }
+
+    private void CheckDoorState()
+    {
+        
+        if (!(_rightGrabber.HeldGrabbable is null) && _rightGrabber.HeldGrabbable.gameObject.CompareTag("handle") ||
+                !(_leftGrabber.HeldGrabbable is null) && _leftGrabber.HeldGrabbable.gameObject.CompareTag("handle"))
         {
-            rigid = GetComponent<Rigidbody>();
-            startPos = transform.position;
-            
+            UnlockTheDoor();
+            return;
         }
 
-        private void CheckDoorState()
+        
+        if (angle > MinAngleToMove && angle < MaxAngleToMove)
         {
-            
-            if (!(_rightGrabber.HeldGrabbable is null) && _rightGrabber.HeldGrabbable.gameObject.CompareTag("handle") ||
-                    !(_leftGrabber.HeldGrabbable is null) && _leftGrabber.HeldGrabbable.gameObject.CompareTag("handle"))
-            {
-                UnlockTheDoor();
+            UnlockTheDoor();
+        }
+        else
+        {
+            LockTheDoor();
+        }
+    }
+    void Update() {
+        currentRotation = transform.localEulerAngles;
+        angle = Mathf.Floor(currentRotation.y);
+        if(angle >= 180) {
+            _addAngle = angle - 360;
+        }
+        else {
+            _addAngle = 360 - angle;
+        }
+        CheckDoorState();
+    }
+
+    private void LockTheDoor()
+    {
+        
+        GetComponent<DoorHelper>().DoorIsLocked = true;
+        rigid.constraints = RigidbodyConstraints.FreezeAll;
+        if (angle >= MaxAngleToMove) //&& angle < _addAngle)
+        {
+            if (!DoorIsOpen)
                 return;
+            transform.localEulerAngles = closeRot;
+            DoorIsOpen = false;
+            if (DoorType != DoorTypes.ScannerDoor)
+            {
+                _signalBus.Fire(new DoorWorkSignal()
+                {
+                    DoorType = DoorType,
+                    IsOpen = false
+                });
             }
-
             
-            if (angle > MinAngleToMove && angle < MaxAngleToMove)
-            {
-                UnlockTheDoor();
-            }
-            else
-            {
-                LockTheDoor();
-            }
         }
-        void Update() {
-            currentRotation = transform.localEulerAngles;
-            angle = Mathf.Floor(currentRotation.y);
-            if(angle >= 180) {
-                _addAngle = angle - 360;
-            }
-            else {
-                _addAngle = 360 - angle;
-            }
-            CheckDoorState();
-        }
-
-        private void LockTheDoor()
+        else
         {
-            GetComponent<DoorHelper>().DoorIsLocked = true;
-            rigid.constraints = RigidbodyConstraints.FreezeAll;
-            if (angle >= MaxAngleToMove) //&& angle < _addAngle)
+            if (DoorIsOpen)
+                return;
+            Debug.Log("DOOR IS CLOSE" + angle + " " + MaxAngleToMove);
+            transform.localEulerAngles = openRot;
+            DoorIsOpen = true;
+            /*if (DoorType == DoorTypes.DryBoxDoor)
             {
-                transform.localEulerAngles = closeRot;
-                DoorIsOpen = false;
-            }
-            else
-            {
-                transform.localEulerAngles = openRot;
-                DoorIsOpen = true;
-            }
+                _signalBus.Fire(new DoorWorkSignal()
+                {
+                    DoorType = DoorType,
+                    IsOpen = true
+                });
+            }*/
             
-            transform.position = startPos;
         }
-        private void UnlockTheDoor()
-        {
-            
-            GetComponent<DoorHelper>().DoorIsLocked = false;
-            rigid.constraints = RigidbodyConstraints.None;
-        }
+        
+        transform.position = startPos;
+    }
+    private void UnlockTheDoor()
+    {
+        GetComponent<DoorHelper>().DoorIsLocked = false;
+        rigid.constraints = RigidbodyConstraints.None;
+    }
 }

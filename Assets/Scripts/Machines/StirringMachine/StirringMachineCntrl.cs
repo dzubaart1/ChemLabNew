@@ -13,8 +13,8 @@ namespace Machines
     {
         [SerializeField] private SnapZone _snapZone;
         private TasksCntrl _tasksCntrl;
-        public bool _isEnter;
-        public bool _isStart;
+        private bool _isEnter;
+        private bool _isStart;
 
         private SubstancesCntrl _substancesCntrl;
         private SignalBus _signalBus;

@@ -16,6 +16,6 @@ namespace Machines
         TeleportScanElecMicroLab,
         TeleportRFAMachine,
         PaperTray,
-        KspectrometrMachine
+        KspectrometrMachine,
     }
 }

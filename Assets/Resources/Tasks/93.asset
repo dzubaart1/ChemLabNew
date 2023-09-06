@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 93
   m_EditorClassIdentifier: 
-  Number: 97
+  Number: 99
   Title: "\u041E\u0437\u043D\u0430\u043A\u043E\u043C\u044C\u0442\u0435\u0441\u044C
     \u0441 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043D\u044B\u043C\u0438 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0430\u043C\u0438
     \u0438 \u043F\u043E\u043B\u043E\u0436\u0438\u0442\u0435 \u0438\u0445 \u0432 \u043B\u043E\u0442\u043E\u043A
@@ -22,6 +22,9 @@ MonoBehaviour:
   ContainersType: 
   DozatorDoze: 0
   MachinesType: 13
+  DoorTypes: 0
+  IsOpenDoor: 0
   ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: 
+  TaskWarning: 

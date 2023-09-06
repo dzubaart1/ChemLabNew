@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Canvases;
 using Containers;
+using DefaultNamespace;
 using Installers;
 using Machines;
 using UnityEngine;
@@ -24,6 +25,7 @@ namespace Tasks
             _signalBus.Subscribe<StartGameSignal>(OnStartGame);
             _signalBus.Subscribe<MachineWorkSignal>(CheckMachineWork);
             _signalBus.Subscribe<RevertTaskSignal>(RevertTask);
+            _signalBus.Subscribe<DoorWorkSignal>(CheckDoorWork);
         }
 
         private void OnStartGame()
@@ -56,11 +58,13 @@ namespace Tasks
         {
             return _tasksParamsList[_taskCurrentId];
         }
+        
         private void RevertTask(RevertTaskSignal revertTaskSignal)
         {
             _taskCurrentId = revertTaskSignal.TaskId;
             _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
         }
+        
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
             if (CurrentTask().MachinesType is not MachinesTypes.None)
@@ -88,6 +92,7 @@ namespace Tasks
             
             MoveToNext();
         }
+        
         private void CheckMachineWork(MachineWorkSignal machineWorkSignal)
         {
             if (CurrentTask().ContainersType.Count > 0 &&
@@ -104,6 +109,23 @@ namespace Tasks
             }
 
             if (CurrentTask().SubstancesParams && !CurrentTask().SubstancesParams.Equals(machineWorkSignal.SubstancePropertyBase))
+            {
+                _signalBus.Fire<EndGameSignal>();
+                return;
+            }
+
+            MoveToNext();
+        }
+
+        private void CheckDoorWork(DoorWorkSignal doorWorkSignal)
+        {
+            if (!CurrentTask().DoorTypes.Equals(doorWorkSignal.DoorType))
+            {
+                _signalBus.Fire<EndGameSignal>();
+                return;
+            }
+
+            if (!CurrentTask().IsOpenDoor.Equals(doorWorkSignal.IsOpen))
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;

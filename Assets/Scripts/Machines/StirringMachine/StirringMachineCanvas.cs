@@ -1,21 +1,19 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Machines
 {
     public class StirringMachineCanvas : MonoBehaviour
     {
-        private bool _isHeating;
-        private bool _isStirring;
-        private bool _isStart = false;
+        [SerializeField] private Image _heatingButtonImage, _stirringButtonImage;
+        [SerializeField] private Sprite _onSprite, _offSprite;
+        [SerializeField] private StirringMachineCntrl _heatMachineCntrl;
 
-        [SerializeField] private Material _heatingButtonMaterial, _stirringButtonMaterial;
-        [SerializeField] private Texture _onTexture, _offTexture;
-        [SerializeField] StirringMachineCntrl _heatMachineCntrl;
-        private void Start()
-        {
-            _heatingButtonMaterial.mainTexture = _offTexture;
-            _stirringButtonMaterial.mainTexture = _offTexture;
-        }
+        public bool _isHeating;
+        public bool _isStirring;
+
+        private bool _isStart;
+        
         public void ClickHeatingBtn()
         {
             _isHeating = !_isHeating;
@@ -27,8 +25,8 @@ namespace Machines
             {
                 TryStop();
             }
-            _heatingButtonMaterial.mainTexture = _isHeating ? _onTexture : _offTexture;
-            
+
+            ChangeSpriteByUIBtnState(_heatingButtonImage, _isHeating);
         }
         public void ClickStirringBtn()
         {
@@ -41,7 +39,20 @@ namespace Machines
             {
                 TryStop();
             }
-            _stirringButtonMaterial.mainTexture = _isStirring ? _onTexture : _offTexture;
+
+            ChangeSpriteByUIBtnState(_stirringButtonImage, _isStirring);
+        }
+
+        private void ChangeSpriteByUIBtnState(Image image, bool state)
+        {
+            if (state)
+            {
+                image.sprite = _onSprite;
+            }
+            else
+            {
+                image.sprite = _offSprite;
+            }
         }
 
         private void TryStart()
