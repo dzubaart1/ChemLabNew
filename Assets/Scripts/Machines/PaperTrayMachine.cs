@@ -28,6 +28,7 @@ namespace Machines
             {
                 particleSystem.Play();
             }
+            gameObject.GetComponent<AudioSource>().Play();
             
             var startMachineWorkSignal = new MachineWorkSignal()
             {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BNG;
 using Cups;
@@ -10,6 +11,7 @@ namespace Machines
     public class TrashMachineCntrl : MonoBehaviour
     {
         [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private List<ParticleSystem> ParticleSystems;
     
         private Stack<GameObject> thrownObjects;
         private SignalBus _signalBus;
@@ -23,6 +25,20 @@ namespace Machines
         {
             _signalBus = signalBus;
         }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            /*if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
+            {
+                return;
+            }*/
+            gameObject.GetComponent<AudioSource>().Play();
+            foreach (var particleSystem in ParticleSystems)
+            {
+                particleSystem.Play();
+            }
+        }
+
         private void OnTriggerStay(Collider other)
         {
             if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)

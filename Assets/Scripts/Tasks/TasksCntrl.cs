@@ -98,18 +98,21 @@ namespace Tasks
             if (CurrentTask().ContainersType.Count > 0 &&
                 machineWorkSignal.ContainersType is not ContainersTypes.None)
             {
+                Debug.Log("1 " + CurrentTask().ContainersType.Count + " " + !CurrentTask().ContainersType.Contains(machineWorkSignal.ContainersType));
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
 
             if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType))
             {
+                Debug.Log("2");
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
 
             if (CurrentTask().SubstancesParams && !CurrentTask().SubstancesParams.Equals(machineWorkSignal.SubstancePropertyBase))
             {
+                Debug.Log("3");
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BNG;
 using Containers;
@@ -10,6 +11,7 @@ namespace Machines
     public class SinkMachineCntrl : MonoBehaviour
     {
         [SerializeField] private Transform _spawnPoint;
+        [SerializeField] private List<ParticleSystem> ParticleSystems;
     
         private Stack<GameObject> thrownObjects;
         private SignalBus _signalBus;
@@ -23,7 +25,20 @@ namespace Machines
         {
             _signalBus = signalBus;
         }
-        
+
+        private void OnTriggerEnter(Collider other)
+        {
+            var gameObj = other.gameObject;
+            if (gameObj.GetComponent<BaseContainer>() is null || !gameObj.GetComponent<BaseContainer>().IsDirty || gameObj.GetComponent<Grabbable>().BeingHeld)
+            {
+                return;
+            }
+            foreach (var particleSystem in ParticleSystems)
+            {
+                particleSystem.Play();
+            }
+        }
+
         private void OnTriggerStay(Collider other)
         {
             var gameObj = other.gameObject;

@@ -63,6 +63,7 @@ namespace Machines
             var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
             _substancesCntrl.StirSubstance(temp);
             StartStirringAnimation();
+            gameObject.GetComponent<AudioSource>().Play();
             var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine
@@ -77,6 +78,7 @@ namespace Machines
             }
             _isStart = false;
             StopStirringAnimation();
+            gameObject.GetComponent<AudioSource>().Stop();
             var finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,

@@ -27,6 +27,7 @@ namespace Machines
             {
                 particleSystem.Play();
             }
+            gameObject.GetComponent<AudioSource>().Play();
 
             var _teleportedGameObject = _snapZone.HeldItem.gameObject;
             

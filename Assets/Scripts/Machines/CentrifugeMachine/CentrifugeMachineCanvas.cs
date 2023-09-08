@@ -52,12 +52,14 @@ namespace Machines.CentrifugeMachine
             {
                 _startBtn.GetComponent<Image>().sprite = _offStartBtnSprite;
                 animatedPart.GetComponent<Animator>().enabled = true;
+                gameObject.GetComponent<AudioSource>().Play();
                 _centrifugeMachineCntrl.OnStartWork();
             }
             else
             {
                 _startBtn.GetComponent<Image>().sprite = _onStartBtnSprite;
                 animatedPart.GetComponent<Animator>().enabled = false;
+                gameObject.GetComponent<AudioSource>().Stop();
             }
         }
     }
