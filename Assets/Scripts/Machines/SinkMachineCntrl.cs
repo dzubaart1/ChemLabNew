@@ -37,6 +37,7 @@ namespace Machines
             {
                 particleSystem.Play();
             }
+            gameObject.GetComponent<AudioSource>().Play();
         }
 
         private void OnTriggerStay(Collider other)

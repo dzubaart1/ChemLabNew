@@ -45,9 +45,9 @@ namespace Containers
             if (_mainSubPrefab && !_membranePrefab && !_sedimentPrefab)
             {
                 TogglePrefab(_mainSubPrefab, GetNextSubstance()?.SubstanceProperty);
+                UpdateParticleSystem(GetNextSubstance()?.SubstanceProperty);
                 return;
             }
-
             TogglePrefab(_sedimentPrefab, CurrentSubstances[0]?.SubstanceProperty);
             TogglePrefab(_mainSubPrefab, CurrentSubstances[1]?.SubstanceProperty);
             TogglePrefab(_membranePrefab, CurrentSubstances[2]?.SubstanceProperty);

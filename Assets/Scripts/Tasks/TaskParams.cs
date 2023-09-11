@@ -4,6 +4,7 @@ using DefaultNamespace;
 using Machines;
 using Substances;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Tasks
 {
@@ -23,5 +24,6 @@ namespace Tasks
         public bool IsSpawnPoint;
         public string TaskDescription;
         public string TaskWarning;
+        public Sprite TaskImage;
     }
 }
