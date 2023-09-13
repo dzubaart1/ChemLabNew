@@ -5114,7 +5114,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3631087789419195193}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: -6.237, y: 0.359, z: 6.6340003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -5167,7 +5167,7 @@ MonoBehaviour:
   MaxDropTime: 0.1
   LastSnapTime: 0
   OnlyAllowNames:
-  - BaseExpTablet
+  - ExpTabletBody
   ExcludeTransformNames: []
   SoundOnSnap: {fileID: 0}
   SoundOnUnsnap: {fileID: 0}
@@ -5325,7 +5325,7 @@ MonoBehaviour:
   - {fileID: 6590006913484015281}
   - {fileID: 8913779578107588931}
   _teleportType: 10
-  _docPrefab: {fileID: 6023090812924606075, guid: 0805a175aef10cb4b8f4f979fc5be2c1,
+  _docPrefab: {fileID: 6023090812924606075, guid: bbfaab8341188784f8eb8ab86a5096a7,
     type: 3}
 --- !u!82 &8942116926419390339
 AudioSource:

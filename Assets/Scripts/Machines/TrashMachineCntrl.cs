@@ -28,10 +28,10 @@ namespace Machines
 
         private void OnTriggerEnter(Collider other)
         {
-            /*if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
+            if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
             {
                 return;
-            }*/
+            }
             gameObject.GetComponent<AudioSource>().Play();
             foreach (var particleSystem in ParticleSystems)
             {

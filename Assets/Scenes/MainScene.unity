@@ -861,7 +861,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.32801056
-  MaxDistance: 500
+  MaxDistance: 0.32801157
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -13963,7 +13963,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -30305,6 +30305,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041364851}
     m_Modifications:
+    - target: {fileID: 3090393591566728572, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.15655565
+      objectReference: {fileID: 0}
     - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: _docPrefab
@@ -30453,6 +30458,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.7839155
       objectReference: {fileID: 0}
+    - target: {fileID: 8942116926419390339, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 371b8c5571c0e514f9bfa372dfee733a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fce193735aace4b8e5194f26729b3c, type: 3}
 --- !u!4 &779835224 stripped
@@ -31580,6 +31590,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6864786efdc9204198a1e2d32b6a68c, type: 2}
   - {fileID: 11400000, guid: 21c1801fe693e124daf48e9c60434809, type: 2}
   - {fileID: 11400000, guid: 604c0f1baedfae445a1dad09e0861c34, type: 2}
+  - {fileID: 11400000, guid: df906ca0870349949b0565e1a09b5c74, type: 2}
   - {fileID: 11400000, guid: df906ca0870349949b0565e1a09b5c74, type: 2}
   - {fileID: 11400000, guid: bb243a5faa1db8c47b2240deb191bb97, type: 2}
   - {fileID: 11400000, guid: 328d61a1cc55128409cc368f6e07013b, type: 2}
@@ -55400,7 +55411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1235759979
 Transform:
   m_ObjectHideFlags: 0
@@ -62617,6 +62628,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041364851}
     m_Modifications:
+    - target: {fileID: 3090393591566728572, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: MinDistance
+      value: 0.18012762
+      objectReference: {fileID: 0}
     - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: _docPrefab
@@ -62749,6 +62765,11 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.7322726
       objectReference: {fileID: 0}
+    - target: {fileID: 8942116926419390339, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 371b8c5571c0e514f9bfa372dfee733a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fce193735aace4b8e5194f26729b3c, type: 3}
 --- !u!4 &1442173951 stripped
@@ -104741,17 +104762,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1041364851}
     m_Modifications:
-    - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
+    - target: {fileID: 3090393591566728572, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
-      propertyPath: _docPrefab
-      value: 
-      objectReference: {fileID: 6023090812924606075, guid: bbfaab8341188784f8eb8ab86a5096a7,
-        type: 3}
-    - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
-        type: 3}
-      propertyPath: _spawnPoint
-      value: 
-      objectReference: {fileID: 528717699}
+      propertyPath: MinDistance
+      value: 0.13004684
+      objectReference: {fileID: 0}
     - target: {fileID: 3631087789419195187, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: m_RootOrder
@@ -104812,6 +104827,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportCellResearchLab
       objectReference: {fileID: 0}
+    - target: {fileID: 8942116926419390339, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 371b8c5571c0e514f9bfa372dfee733a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6fce193735aace4b8e5194f26729b3c, type: 3}
 --- !u!33 &3658226473591050281
@@ -106499,8 +106519,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heatingButtonImage: {fileID: 77560679}
   _stirringButtonImage: {fileID: 1794841161}
-  _onSprite: {fileID: 21300000, guid: 5f1fe07fcbd0bff4f9c830408c4e4e08, type: 3}
-  _offSprite: {fileID: 21300000, guid: 81bbf3216ce8bd24da370d9239ef4db8, type: 3}
+  _onSprite: {fileID: 21300000, guid: 533b814952506b04ab06b6326ff712b9, type: 3}
+  _offSprite: {fileID: 21300000, guid: 0fa6d62076afa0a46ab43034acd31939, type: 3}
   _heatMachineCntrl: {fileID: 4273235832165551916}
   _isHeating: 0
   _isStirring: 0
@@ -106751,7 +106771,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.13539743
-  MaxDistance: 500
+  MaxDistance: 74.87699
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -112638,6 +112658,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ExpTablet
       objectReference: {fileID: 0}
+    - target: {fileID: 3429748069764138211, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5460986811277013219, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: m_IsActive
@@ -112661,32 +112686,67 @@ PrefabInstance:
     - target: {fileID: 8416106283592482123, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106283592482125, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
       objectReference: {fileID: 0}
     - target: {fileID: 8416106283721598589, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106283721598591, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106284184225112, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeTransfer
       objectReference: {fileID: 0}
     - target: {fileID: 8416106284619933413, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106284619933415, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
       objectReference: {fileID: 0}
     - target: {fileID: 8416106284759046600, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106284759046602, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
       objectReference: {fileID: 0}
     - target: {fileID: 8416106284999385603, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106284999385605, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
       objectReference: {fileID: 0}
     - target: {fileID: 8416106285414471659, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: ContainerType
-      value: 8
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416106285414471661, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_TagString
+      value: SerializeSubstance
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35f14ee1098330740b5b9f88f745ef48, type: 3}

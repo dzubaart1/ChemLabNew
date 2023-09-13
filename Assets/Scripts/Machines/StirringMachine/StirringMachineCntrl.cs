@@ -46,7 +46,8 @@ namespace Machines
             var enterIntoMachineSignal = new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
-                MachinesType = MachinesTypes.StirringMachine
+                MachinesType = MachinesTypes.StirringMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty
             };
             _signalBus.Fire(enterIntoMachineSignal);
             _isEnter = true;

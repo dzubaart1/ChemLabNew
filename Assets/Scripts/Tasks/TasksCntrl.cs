@@ -7,6 +7,7 @@ using Installers;
 using Machines;
 using UnityEngine;
 using Zenject;
+using UnityEngine.SceneManagement;
 
 namespace Tasks
 {
@@ -43,6 +44,8 @@ namespace Tasks
             
             if (_taskCurrentId + 1 >= _tasksParamsList.Count)
             {
+                //load final scene
+                SceneManager.LoadScene(2);
                 return;
             }
             _taskCurrentId++;
@@ -67,26 +70,38 @@ namespace Tasks
         
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
-            if (CurrentTask().MachinesType is not MachinesTypes.None)
-            {
-                return;
-            }
+            Debug.Log($"Transfer Enter {_taskCurrentId}");
+
+            Debug.Log("Transfer 0");
             
-            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From))
+            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.To)
+                && transferSubstanceSignal.To is not ContainersTypes.None)
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
             
-            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.To))
+            Debug.Log("Transfer 1");
+            
+            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) 
+                && transferSubstanceSignal.From is not ContainersTypes.None)
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+            
+            Debug.Log("Transfer 2");
 
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(transferSubstanceSignal.TranserProperty))
             {
                 _signalBus.Fire<EndGameSignal>();
+                return;
+            }
+            
+            Debug.Log("Transfer 3");
+            
+            if (CurrentTask().MachinesType is not MachinesTypes.None)
+            {
                 return;
             }
             
@@ -95,27 +110,34 @@ namespace Tasks
         
         private void CheckMachineWork(MachineWorkSignal machineWorkSignal)
         {
-            if (CurrentTask().ContainersType.Count > 0 &&
-                machineWorkSignal.ContainersType is not ContainersTypes.None)
+            Debug.Log($"Machine Enter {_taskCurrentId}");
+            Debug.Log($"{machineWorkSignal.MachinesType} {machineWorkSignal.ContainersType} {machineWorkSignal.SubstancePropertyBase}");
+            
+            if (!CurrentTask().ContainersType.Contains(machineWorkSignal.ContainersType)
+                && machineWorkSignal.ContainersType is not ContainersTypes.None)
             {
-                Debug.Log("1 " + CurrentTask().ContainersType.Count + " " + !CurrentTask().ContainersType.Contains(machineWorkSignal.ContainersType));
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+            
+            Debug.Log("Machine 1");
 
-            if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType))
+            if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType)
+                && machineWorkSignal.MachinesType is not MachinesTypes.None)
             {
-                Debug.Log("2");
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+            
+            Debug.Log("Machine 2");
 
             if (CurrentTask().SubstancesParams && !CurrentTask().SubstancesParams.Equals(machineWorkSignal.SubstancePropertyBase))
             {
-                Debug.Log("3");
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
+            
+            Debug.Log("Machine 3");
 
             MoveToNext();
         }

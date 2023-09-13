@@ -51,7 +51,8 @@ namespace Machines.WeightingMachine
             _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty
+                SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty,
+                ContainersType = _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType
             });
             _prevSubCount = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentCountSubstances;
         }
@@ -60,7 +61,7 @@ namespace Machines.WeightingMachine
         {
             _signalBus.Fire(new MachineWorkSignal()
             {
-                MachinesType = MachinesTypes.WeightingMachine,
+                MachinesType = MachinesTypes.WeightingMachine
             });
             _currentDiscardWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = "0.0000g";
