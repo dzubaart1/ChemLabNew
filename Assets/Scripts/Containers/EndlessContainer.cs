@@ -19,7 +19,7 @@ namespace Containers
         private void Start()
         {
             _signalBus.Subscribe<CheckTasksSignal>(CheckTasks);
-            UpdateDisplaySubstance();
+            _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
         }
 
         public override bool AddSubstance(Substance substance)

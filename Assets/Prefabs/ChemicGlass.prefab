@@ -597,7 +597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
   Weight: 0
-  MaxVolume: 9000
+  MaxVolume: 600
   ContainerType: 3
   IsAbleToWeight: 0
   IsDirty: 0
@@ -5587,7 +5587,7 @@ Transform:
   m_GameObject: {fileID: 6661965075222077766}
   m_LocalRotation: {x: -0.7071069, y: -0, z: -0, w: 0.70710677}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03800002, y: 0.038000014, z: 0.038000014}
+  m_LocalScale: {x: 0.03800002, y: 0.038000014, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5278725708375984351}

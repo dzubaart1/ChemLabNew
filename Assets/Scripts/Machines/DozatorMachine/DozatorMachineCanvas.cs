@@ -11,9 +11,32 @@ namespace Machines.DozatorMachine
         [SerializeField] private Text _dozeText;
         [SerializeField] private DozatorMachineCntrl _dozatorMachineCntrl;
 
+        private const float MAX_BREAK = 3f;
+        
+        private bool _isStartTimer;
+        private float _timer;
+
+        private void Update()
+        {
+            if (_isStartTimer)
+            {
+                _timer += Time.deltaTime;
+            }
+
+            if (_timer >= MAX_BREAK)
+            {
+                _isStartTimer = false;
+                _timer = 0;
+            }
+        }
+
         public void OnClickDozeBtn()
         {
-            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", _dozatorMachineCntrl.GetDozeFromTask());
+            if (!_isStartTimer)
+            {
+                _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", _dozatorMachineCntrl.GetDozeFromTask());
+                _isStartTimer = true;
+            }
         }
 
         public float GetDoze()

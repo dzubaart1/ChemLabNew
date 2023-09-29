@@ -12,7 +12,7 @@ namespace Containers
                 return false;
             }
             _substancesCntrl.AddSubstance(this,substance);
-            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / 29, 1);
+            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / MaxVolume, 1);
             return true;
         }
     }

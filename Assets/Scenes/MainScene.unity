@@ -11826,6 +11826,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
+    - target: {fileID: 321406086712089709, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
+        type: 3}
+      propertyPath: MaxVolume
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 5027702092990159816, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
         type: 3}
       propertyPath: m_RootOrder
@@ -11879,6 +11884,11 @@ PrefabInstance:
     - target: {fileID: 5027702092990159816, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310770337827522691, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7029700211736426441, guid: 9ce2b2b10f9b2f04784dc2bb86367f70,
@@ -62451,6 +62461,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 367514178}
     m_Modifications:
+    - target: {fileID: 3731057835736345553, guid: 2320603bfcfe8ed4b86329826d562ad3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3731057835775268674, guid: 2320603bfcfe8ed4b86329826d562ad3,
         type: 3}
       propertyPath: m_Name
@@ -103886,6 +103901,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeasuringCyllinder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2646711302226116103, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647245188953538711, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939429535714336549, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: MaxVolume
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a66e6fb09cd84384fae3847a1cb11c4c, type: 3}

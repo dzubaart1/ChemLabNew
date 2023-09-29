@@ -382,7 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
   Weight: 0
-  MaxVolume: 9000
+  MaxVolume: 5
   ContainerType: 4
   IsAbleToWeight: 0
   IsDirty: 0

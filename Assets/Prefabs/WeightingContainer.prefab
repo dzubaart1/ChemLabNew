@@ -5132,7 +5132,7 @@ Transform:
   m_GameObject: {fileID: 4654904198178951026}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: 0, y: 0.0006, z: 0}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
+  m_LocalScale: {x: 1.29, y: 1.29, z: 1.29}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4587751075904456374}
@@ -10281,7 +10281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCountSubstances: 0
   Weight: 0.25
-  MaxVolume: 9000
+  MaxVolume: 60
   ContainerType: 5
   IsAbleToWeight: 1
   IsDirty: 0

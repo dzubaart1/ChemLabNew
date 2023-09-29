@@ -28,7 +28,8 @@ namespace Containers
             {
                 return true;
             }
-            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / 60, 1);
+
+            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / MaxVolume, 1);
             return true;
         }
 
