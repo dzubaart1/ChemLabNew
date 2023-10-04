@@ -15,10 +15,10 @@ namespace Containers
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+            _signalBus.Subscribe<CheckTasksSignal>(CheckTasks);
         }
         private void Start()
         {
-            _signalBus.Subscribe<CheckTasksSignal>(CheckTasks);
             _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
         }
 

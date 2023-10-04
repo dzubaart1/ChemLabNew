@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 2
   Title: "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 \u043A\u043D\u043E\u043F\u043A\u0443
-    \"\u0422\u0430\u0440\u0430\"."
+    \"\u0422\u0430\u0440\u0430\" \u043D\u0430 \u0432\u0435\u0441\u0430\u0445."
   SubstancesParams: {fileID: 0}
   Weight: 0
   ContainersType: 
@@ -26,3 +26,4 @@ MonoBehaviour:
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
+  TaskImage: {fileID: 0}

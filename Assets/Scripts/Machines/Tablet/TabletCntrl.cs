@@ -21,7 +21,7 @@ namespace Machines.Tablet
             _signalBus.Subscribe<LoadSignal>(ShowMainPanel);
         }
 
-        private void Start()
+        private void Awake()
         {
             ShowStartPanel();
         }

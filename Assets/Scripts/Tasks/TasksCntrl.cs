@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using Canvases;
 using Containers;
@@ -23,18 +24,19 @@ namespace Tasks
         {
             _signalBus = signalBus;
             _signalBus.Subscribe<TransferSubstanceSignal>(CheckTransferSubstance);
-            _signalBus.Subscribe<StartGameSignal>(OnStartGame);
             _signalBus.Subscribe<MachineWorkSignal>(CheckMachineWork);
             _signalBus.Subscribe<RevertTaskSignal>(RevertTask);
             _signalBus.Subscribe<DoorWorkSignal>(CheckDoorWork);
         }
 
-        private void OnStartGame()
+        private void Start()
         {
-            _isStartGame = true;
+            _signalBus.Fire(new StartGameSignal());
             _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
             _signalBus.Fire(new SaveSignal(){TaskId = _taskCurrentId});
+            _isStartGame = true;
         }
+
         private void MoveToNext()
         {
             if (!_isStartGame)
