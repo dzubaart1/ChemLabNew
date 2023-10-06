@@ -140,9 +140,21 @@ namespace Data
                 t.GetComponent<SnapZone>().ReleaseAll();
                 if (_savedSceneState.SnapZonesDictionary.TryGetValue(t, out var value))
                 {
-                    value.transform.localPosition = new Vector3(0, 0, 0);
-                    value.transform.localRotation = Quaternion.identity;
                     t.GetComponent<SnapZone>().GrabGrabbable(value.GetComponent<Grabbable>());
+
+                    var pos = new Vector3(0, 0, 0);
+                    var rot = new Vector3(0, 0, 0);
+
+                    var zoneOffset = value.GetComponent<SnapZoneOffset>();
+
+                    if (zoneOffset is not null)
+                    {
+                        pos = zoneOffset.LocalPositionOffset;
+                        rot = zoneOffset.LocalRotationOffset;
+                    }
+
+                    value.transform.localPosition = pos;
+                    value.transform.localEulerAngles = rot;
                 }
             }
         }
