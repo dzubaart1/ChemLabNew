@@ -17146,7 +17146,7 @@ MonoBehaviour:
   MinimumCapsuleHeight: 0.2
   MaximumCapsuleHeight: 3
   LastTeleportTime: 0
-  CharacterControllerYOffset: -0.45
+  CharacterControllerYOffset: 0
   CameraHeight: 0
   ElevateCameraIfNoHMDPresent: 0
   ElevateCameraHeight: 1.3
