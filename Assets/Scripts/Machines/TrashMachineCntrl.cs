@@ -26,19 +26,6 @@ namespace Machines
             _signalBus = signalBus;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
-            {
-                return;
-            }
-            gameObject.GetComponent<AudioSource>().Play();
-            foreach (var particleSystem in ParticleSystems)
-            {
-                particleSystem.Play();
-            }
-        }
-
         private void OnTriggerStay(Collider other)
         {
             if (other.gameObject.GetComponent<DozatorCup>() is null || !other.gameObject.GetComponent<DozatorCup>().IsDirty || other.gameObject.GetComponent<Grabbable>().BeingHeld)
@@ -46,6 +33,14 @@ namespace Machines
                 return;
             }
             thrownObjects.Push(other.gameObject); 
+            if (other.gameObject.activeSelf)
+            {
+                foreach (var particleSystem in ParticleSystems)
+                {
+                    particleSystem.Play();
+                }
+                gameObject.GetComponent<AudioSource>().Play();
+            }
             other.gameObject.SetActive(false);
             var startMachineWorkSignal = new MachineWorkSignal()
             {

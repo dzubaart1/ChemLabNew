@@ -26,16 +26,6 @@ namespace Machines
             _signalBus = signalBus;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            var gameObj = other.gameObject;
-            if (gameObj.GetComponent<BaseContainer>() is null || !gameObj.GetComponent<BaseContainer>().IsDirty || gameObj.GetComponent<Grabbable>().BeingHeld)
-            {
-                return;
-            }
-            
-        }
-
         private void OnTriggerStay(Collider other)
         {
             var gameObj = other.gameObject;
