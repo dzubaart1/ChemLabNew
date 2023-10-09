@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HardAgarMembrane
   m_EditorClassIdentifier: 
   SubName: HardAgarH20Sed
-  Color: {r: 0.77254903, g: 0.7466354, b: 0.28235298, a: 0.5882353}
+  Color: {r: 0.7075472, g: 0.7021894, b: 0.61187255, a: 0.5882353}
   SubstanceLayer: 2
+  HintName: 

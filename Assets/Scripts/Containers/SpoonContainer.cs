@@ -15,7 +15,7 @@ namespace Containers
             Debug.Log(substance.GetWeight());   
             _substancesCntrl.AddSubstance(this, substance);
 
-            if (ContainerType != ContainersTypes.TweezersContainer && ContainerType != ContainersTypes.MagicSpatulaContainer && ContainerType == ContainersTypes.SpatulaContainer)
+            if (ContainerType != ContainersTypes.TweezersContainer && ContainerType != ContainersTypes.MagicSpatulaContainer && ContainerType != ContainersTypes.SpatulaContainer)
             {
                 _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
             }

@@ -27,3 +27,4 @@ MonoBehaviour:
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
+  TaskImage: {fileID: 21300000, guid: 643c295139bfcf144b680158ff91a901, type: 3}

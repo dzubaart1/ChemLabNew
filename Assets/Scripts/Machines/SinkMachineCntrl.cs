@@ -33,11 +33,7 @@ namespace Machines
             {
                 return;
             }
-            foreach (var particleSystem in ParticleSystems)
-            {
-                particleSystem.Play();
-            }
-            gameObject.GetComponent<AudioSource>().Play();
+            
         }
 
         private void OnTriggerStay(Collider other)
@@ -48,7 +44,16 @@ namespace Machines
                 return;
             }
             
+            
             thrownObjects.Push(gameObj);
+            if (gameObj.activeSelf)
+            {
+                foreach (var particleSystem in ParticleSystems)
+                {
+                    particleSystem.Play();
+                }
+                gameObject.GetComponent<AudioSource>().Play();
+            }
             gameObj.SetActive(false);
 
             var startMachineWorkSignal = new MachineWorkSignal()
@@ -56,6 +61,7 @@ namespace Machines
                 MachinesType = MachinesTypes.SinkMachine
             };
             _signalBus.Fire(startMachineWorkSignal);
+            
         }
         
         public void ReturnObject()

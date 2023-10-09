@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: HardAgarSed
   m_EditorClassIdentifier: 
   SubName: HardAgarSed
-  Color: {r: 0.7735849, g: 0.28218818, b: 0.66841537, a: 0.5882353}
+  Color: {r: 0.68709683, g: 0.64874804, b: 0.7264151, a: 0.5882353}
   SubstanceLayer: 0
+  HintName: 

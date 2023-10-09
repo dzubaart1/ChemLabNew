@@ -52,4 +52,4 @@ MonoBehaviour:
     \u0438 \u043B\u0438\u0431\u0440\u0430\u0446\u0438\u043E\u043D\u043D\u044B\u0445
     \u043A\u043E\u043B\u0435\u0431\u0430\u043D\u0438\u0439 \u043C\u043E\u043B\u0435\u043A\u0443\u043B.  "
   TaskWarning: 
-  TaskImage: {fileID: 0}
+  TaskImage: {fileID: 21300000, guid: eb7ba036a73bbee439973df04bf6d256, type: 3}

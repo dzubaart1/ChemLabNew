@@ -10,7 +10,7 @@ namespace Canvases
     public class StartSceneCanvasCntrl : MonoBehaviour
     {
         [SerializeField] private List<GameObject> _panels;
-        [SerializeField] private ParticleSystem _teleportParticleSystem;
+        [SerializeField] private List<ParticleSystem> _teleportParticleSystems;
         
         [SerializeField] private String _sceneName;
         
@@ -41,7 +41,10 @@ namespace Canvases
         {
             var operation = SceneManager.LoadSceneAsync(_sceneName);
             
-            _teleportParticleSystem.Play();
+            foreach (var particleSystem in _teleportParticleSystems)
+            {
+                particleSystem.Play();
+            }
 
             while (!operation.isDone)
             {

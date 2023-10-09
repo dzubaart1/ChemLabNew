@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HardAgarDry
   m_EditorClassIdentifier: 
   SubName: HardAgar
-  Color: {r: 0.8773585, g: 0.58112574, b: 0.113118485, a: 1}
+  Color: {r: 0.8867924, g: 0.8237545, b: 0.7250504, a: 1}
   SubstanceLayer: 1
   HintName: "\u0412\u044B\u0441\u0443\u0448\u0435\u043D\u043D\u044B\u0435 \u043A\u043E\u043B\u044C\u0446\u0430
     \u041B\u0438\u0437\u0435\u0433\u0430\u043D\u0433\u0430 \u0432 \u0430\u0433\u0430\u0440\u0435"
