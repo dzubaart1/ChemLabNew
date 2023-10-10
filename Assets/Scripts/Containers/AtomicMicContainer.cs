@@ -13,7 +13,7 @@ namespace Containers
             {
                 return false;
             }
-            
+            Debug.Log($"TRY ADD TO ATOMIC--- {substance.SubstanceProperty.SubName}");
             _substancesCntrl.AddSubstance(this,substance);
             _onAddSubstanceEvent.Invoke();
             return true;

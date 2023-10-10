@@ -46,8 +46,7 @@ namespace Tasks
             
             if (_taskCurrentId + 1 >= _tasksParamsList.Count)
             {
-                //load final scene
-                SceneManager.LoadScene(2);
+                _signalBus.Fire(new GameOverSignal());
                 return;
             }
             _taskCurrentId++;

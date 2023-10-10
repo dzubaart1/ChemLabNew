@@ -23,7 +23,7 @@ MonoBehaviour:
   DozatorDoze: 0
   MachinesType: 0
   DoorTypes: 3
-  IsOpenDoor: 0
+  IsOpenDoor: 1
   ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: "\u0426\u0435\u043D\u0442\u0440\u0438\u0444\u0443\u0433\u0430

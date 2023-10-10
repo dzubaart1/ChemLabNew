@@ -27,6 +27,7 @@ namespace Installers
             Container.DeclareSignal<LoadSignal>();
             Container.DeclareSignal<RevertTaskSignal>();
             Container.DeclareSignal<DoorWorkSignal>();
+            Container.DeclareSignal<GameOverSignal>();
 
             GameObject rigInst = Container.InstantiatePrefab(XRRigAdvancedPrefab);
             rigInst.transform.position = SpawnPoint.transform.position;
@@ -45,6 +46,11 @@ namespace Installers
     public class StartGameSignal
     {
     }
+    
+    public class GameOverSignal
+    {
+    }
+    
     public class EndGameSignal
     {
         

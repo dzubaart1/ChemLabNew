@@ -50,7 +50,7 @@ namespace Containers
             _substancesCntrl.AddSubstance(this, substance);
             if (ContainerType == ContainersTypes.KspectrometrContainer)
                 return true;
-            _mainSubPrefab.transform.localScale = new Vector3(1, GetNextSubstance().GetWeight() / MaxVolume, 1);
+            _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
             return true;
         }
 

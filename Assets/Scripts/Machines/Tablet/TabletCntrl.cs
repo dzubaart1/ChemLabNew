@@ -9,6 +9,7 @@ namespace Machines.Tablet
         [SerializeField] private GameObject _endGamePanel;
         [SerializeField] private GameObject _startPanel;
         [SerializeField] private GameObject _mainPanel;
+        [SerializeField] private GameObject _gameOverPanel;
         
         private SignalBus _signalBus;
         
@@ -19,6 +20,7 @@ namespace Machines.Tablet
             _signalBus.Subscribe<EndGameSignal>(ShowEndGamePanel);
             _signalBus.Subscribe<StartGameSignal>(ShowMainPanel);
             _signalBus.Subscribe<LoadSignal>(ShowMainPanel);
+            _signalBus.Subscribe<GameOverSignal>(ShowGameOverPanel);
         }
 
         private void Awake()
@@ -32,6 +34,7 @@ namespace Machines.Tablet
             _mainPanel.SetActive(false);
             _startPanel.SetActive(true);
             _endGamePanel.SetActive(false);
+            _gameOverPanel.SetActive(false);
         }
         
         private void ShowEndGamePanel()
@@ -39,6 +42,7 @@ namespace Machines.Tablet
             Debug.Log("END GAME PANEL");
             _mainPanel.SetActive(false);
             _startPanel.SetActive(false);
+            _gameOverPanel.SetActive(false);
             _endGamePanel.SetActive(true);
         }
         
@@ -48,6 +52,16 @@ namespace Machines.Tablet
             _mainPanel.SetActive(true);
             _startPanel.SetActive(false);
             _endGamePanel.SetActive(false);
+            _gameOverPanel.SetActive(false);
+        }
+        
+        private void ShowGameOverPanel()
+        {
+            Debug.Log("GAME OVER PANEL");
+            _mainPanel.SetActive(false);
+            _startPanel.SetActive(false);
+            _endGamePanel.SetActive(false);
+            _gameOverPanel.SetActive(true);
         }
     }
 }
