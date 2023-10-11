@@ -145,15 +145,18 @@ namespace Tasks
 
         private void CheckDoorWork(DoorWorkSignal doorWorkSignal)
         {
+            Debug.Log("0");
             if (!CurrentTask().DoorTypes.Equals(doorWorkSignal.DoorType))
             {
-                _signalBus.Fire<EndGameSignal>();
+                Debug.Log("1");
+                //_signalBus.Fire<EndGameSignal>();
                 return;
             }
 
             if (!CurrentTask().IsOpenDoor.Equals(doorWorkSignal.IsOpen))
             {
-                _signalBus.Fire<EndGameSignal>();
+                Debug.Log("2");
+                //_signalBus.Fire<EndGameSignal>();
                 return;
             }
 

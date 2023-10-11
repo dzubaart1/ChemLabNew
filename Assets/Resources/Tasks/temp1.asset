@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: temp1
   m_EditorClassIdentifier: 
   Number: 0
-  Title: from endless to spoon
-  SubstancesParams: {fileID: 11400000, guid: 350b3ad068060cf4d8c9b3535b6ea54e, type: 2}
-  Weight: 2
-  ContainersType: 0100000004000000
+  Title: "\u0437\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u043A\u0430\u043D\u0435\u0440"
+  SubstancesParams: {fileID: 0}
+  Weight: 0
+  ContainersType: 
   DozatorDoze: 0
   MachinesType: 0
-  DoorTypes: 0
+  DoorTypes: 2
   IsOpenDoor: 0
-  ResultSubstance: {fileID: 11400000, guid: 350b3ad068060cf4d8c9b3535b6ea54e, type: 2}
+  ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 

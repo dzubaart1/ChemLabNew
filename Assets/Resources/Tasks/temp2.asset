@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: temp2
   m_EditorClassIdentifier: 
   Number: 0
-  Title: from spoon to mix
+  Title: "\u0437\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u0443\u0448 \u0448\u043A\u0430\u0444"
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0400000003000000
+  ContainersType: 
   DozatorDoze: 0
   MachinesType: 0
-  DoorTypes: 0
+  DoorTypes: 1
   IsOpenDoor: 0
-  ResultSubstance: {fileID: 11400000, guid: 350b3ad068060cf4d8c9b3535b6ea54e, type: 2}
+  ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
