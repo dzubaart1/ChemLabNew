@@ -50,7 +50,23 @@ namespace Containers
             _substancesCntrl.AddSubstance(this, substance);
             if (ContainerType == ContainersTypes.KspectrometrContainer)
                 return true;
-            _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
+            if (ContainerType == ContainersTypes.WeightableContainer)
+            {
+                if (GetNextSubstance().GetWeight() > 1)
+                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
+                else if (GetNextSubstance().GetWeight() > 0.1)
+                {
+                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume * 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f);
+                }
+                else 
+                {
+                    _mainSubPrefab.transform.localScale = new Vector3(1 / MaxVolume, 1 / MaxVolume, 1 / MaxVolume);
+                }
+            }
+            else
+            {
+                _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
+            }
             return true;
         }
 
