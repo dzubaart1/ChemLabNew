@@ -5,6 +5,7 @@ using Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Button = UnityEngine.UI.Button;
 
 namespace Machines.WeightingMachine
 {
@@ -12,6 +13,10 @@ namespace Machines.WeightingMachine
     {
         [SerializeField]
         private Text _weightText;
+
+        [SerializeField]
+        private Button _button;
+        
         [SerializeField]
         private SnapZone _snapZone;
 
@@ -66,6 +71,7 @@ namespace Machines.WeightingMachine
             _currentDiscardWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
             _weightText.text = "0.0000g";
         }
+        
 
         private void ResetValues()
         {

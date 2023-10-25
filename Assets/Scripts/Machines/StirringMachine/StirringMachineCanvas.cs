@@ -1,5 +1,7 @@
+using Installers;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Machines
 {
@@ -13,6 +15,16 @@ namespace Machines
         public bool _isStirring;
 
         private bool _isStart;
+        
+        private SignalBus _signalBus;
+        
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            
+            _signalBus.Subscribe<LoadSignal>(OnLoadSignal);
+        }
         
         public void ClickHeatingBtn()
         {
@@ -41,6 +53,36 @@ namespace Machines
             }
 
             ChangeSpriteByUIBtnState(_stirringButtonImage, _isStirring);
+        }
+
+        private void OnLoadSignal()
+        {
+            if (_heatingButtonImage.sprite == _onSprite)
+            {
+                _isHeating = true;
+            }
+            else
+            {
+                _isHeating = false;
+            }
+
+            if (_stirringButtonImage.sprite == _onSprite)
+            {
+                _isStirring = true;
+            }
+            else
+            {
+                _isStirring = false;
+            }
+
+            if (_isHeating && _isStirring)
+            {
+                _isStart = true;
+            }
+            else
+            {
+                _isStart = false;
+            }
         }
 
         private void ChangeSpriteByUIBtnState(Image image, bool state)

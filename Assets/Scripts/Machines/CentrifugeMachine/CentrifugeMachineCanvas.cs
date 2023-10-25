@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Installers;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Machines.CentrifugeMachine
 {
@@ -17,12 +19,44 @@ namespace Machines.CentrifugeMachine
 
         private bool _isStart, _isPower;
 
+        private SignalBus _signalBus;
+        
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            _signalBus.Subscribe<LoadSignal>(OnLoadScene);
+        }
+
         private void Start()
         {
             _isStart = false;
             _isPower = false;
             _startBtn.GetComponent<Button>().enabled = false;
         }
+        
+        
+        private void OnLoadScene()
+        {
+            if (_startBtn.GetComponent<Image>().sprite == _onStartBtnSprite)
+            {
+                _isStart = true;
+            }
+            else
+            {
+                _isStart = false;
+            }
+
+            if (_powerBtn.GetComponent<Image>().sprite == _onPowerBtnSprite)
+            {
+                _isPower = true;
+            }
+            else
+            {
+                _isPower = false;
+            }
+        }
+
 
         public void OnClickPowerBtn()
         {
@@ -64,3 +98,4 @@ namespace Machines.CentrifugeMachine
         }
     }
 }
+

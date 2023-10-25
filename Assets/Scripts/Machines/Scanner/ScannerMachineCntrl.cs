@@ -3,7 +3,6 @@ using Zenject;
 using Containers;
 using BNG;
 using Installers;
-using UnityEngine.Video;
 
 namespace Machines
 {
@@ -11,7 +10,7 @@ namespace Machines
     {
         [SerializeField] private GameObject _scannerCanvas;
         [SerializeField] private SnapZone _snapZone;
-        [SerializeField] private VideoPlayer _videoPlayer;
+        //[SerializeField] private VideoPlayer _videoPlayer;
         private SignalBus _signalBus;
         public bool _isEnter;
         private bool _isStart;
@@ -54,7 +53,7 @@ namespace Machines
                 _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
                 return;
             _scannerCanvas.SetActive(true);
-            _videoPlayer.Play();
+            //_videoPlayer.Play();
             MachineWorkSignal startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine
@@ -64,7 +63,7 @@ namespace Machines
         public void OnFinishWork()
         {
             _scannerCanvas.SetActive(false);
-            _videoPlayer.Stop();
+            //_videoPlayer.Stop();
             MachineWorkSignal finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine,

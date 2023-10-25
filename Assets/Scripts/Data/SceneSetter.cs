@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BNG;
-using Canvases;
 using Containers;
 using Installers;
 using JetBrains.Annotations;
@@ -296,12 +295,7 @@ namespace Data
 
         private UIBtnState GetUIBtnStateType(GameObject obj)
         {
-            var btn = obj.GetComponent<Image>();
-
-            return new UIBtnState()
-            {
-                Sprite = btn.sprite
-            };
+            return new UIBtnState{Sprite = obj.GetComponent<Image>().sprite};
         }
     }
     

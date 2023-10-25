@@ -22,6 +22,8 @@ namespace Machines.DryBoxMachine
         {
             _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
+            
+            _signalBus.Subscribe<LoadSignal>(OnLoadScene);
         }
         
         private void Update()
@@ -39,6 +41,7 @@ namespace Machines.DryBoxMachine
                 OnEnterObject();
             }
         }
+        
         private void OnEnterObject()
         {
             _isEnter = true;
@@ -62,11 +65,22 @@ namespace Machines.DryBoxMachine
                 var res = _substancesCntrl.DrySubstance(temp);
                 if (!res)
                 {
-                    Debug.Log("Here22222");
                     _substancesCntrl.SplitSubstances(temp);
                 }
                 
                 _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance()?.SubstanceProperty});
+            }
+        }
+
+        private void OnLoadScene()
+        {
+            if (_startBtnImage.sprite == _onSprite)
+            {
+                _isStart = true;
+            }
+            else
+            {
+                _isStart = false;
             }
         }
     }
