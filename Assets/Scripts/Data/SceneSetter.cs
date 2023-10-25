@@ -36,7 +36,7 @@ namespace Data
             _signalBus.Subscribe<LoadSignal>(LoadState);
             _signalBus.Subscribe<SaveSignal>(SaveState);
         }
-        private void Start()
+        private void Awake()
         {
             _savedSceneState = new SceneState();
             

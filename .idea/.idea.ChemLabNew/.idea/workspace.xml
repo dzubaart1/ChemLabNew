@@ -6,72 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/My XR Rig Advanced.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/My XR Rig Advanced.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Spoon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Spoon.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WeightingContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WeightingContainer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/13.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/13.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/19.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/19.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/36.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/36.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/45.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/45.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/51_1 1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/51_1 1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/51_1.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/51_1.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/60.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/60.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/61 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/61 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/61.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/61.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/62.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/62.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/63.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/63.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/64.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/64.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/65.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/65.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/66.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/66.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/67.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/67.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/69.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/69.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/70.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/70.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/71.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/71.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/72.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/72.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/73.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/73.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/74.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/74.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/76.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/76.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/77.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/77.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/78.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/78.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/79 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/79 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/79.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/79.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/80.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/80.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/81.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/81.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/82.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/82.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/83.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/83.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/84.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/84.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/85.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/85.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/86.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/86.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/87.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/87.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/88.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/88.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/89.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/89.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/90.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/90.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/91.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/91.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/92.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/92.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/93.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/93.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/94.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/94.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/95.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/95.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/Succeful.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/Succeful.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Doors/DoorState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Doors/DoorState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/videoRendTexture.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/videoRendTexture.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/SceneSetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/SceneSetter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +112,7 @@
       <workItem from="1696933620568" duration="2524000" />
       <workItem from="1696938248564" duration="1450000" />
       <workItem from="1697019239891" duration="16408000" />
+      <workItem from="1698228910403" duration="42000" />
     </task>
     <servers />
   </component>
