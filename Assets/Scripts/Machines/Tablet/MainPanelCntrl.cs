@@ -89,6 +89,7 @@ namespace Machines.Tablet
             _deskPanel.SetActive(false); 
             _warnPanel.SetActive(false);
             _objDeskPanel.SetActive(false);
+            _tasksPanel.SetActive(true);
         }
         public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
