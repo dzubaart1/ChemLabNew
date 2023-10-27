@@ -57,6 +57,7 @@ namespace Machines.Tablet
                 _objDescBtn.SetActive(true);
                 _taskImage.sprite = checkTasksSignal.CurrentTask.TaskImage;
             }
+            ToogleAllPanelsOff();
         }
 
         public void ToogleDescriptionPanel()
@@ -81,6 +82,13 @@ namespace Machines.Tablet
             _tasksPanel.SetActive(!_objDeskPanel.activeSelf);
             _deskPanel.SetActive(false); 
             _warnPanel.SetActive(false);
+        }
+
+        public void ToogleAllPanelsOff()
+        {
+            _deskPanel.SetActive(false); 
+            _warnPanel.SetActive(false);
+            _objDeskPanel.SetActive(false);
         }
         public static bool IsNull<T>(T myObject, string message = "") where T : class
         {

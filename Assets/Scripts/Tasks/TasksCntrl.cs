@@ -1,14 +1,10 @@
 #nullable enable
-using System;
 using System.Collections.Generic;
-using Canvases;
 using Containers;
-using DefaultNamespace;
 using Installers;
 using Machines;
 using UnityEngine;
 using Zenject;
-using UnityEngine.SceneManagement;
 
 namespace Tasks
 {
