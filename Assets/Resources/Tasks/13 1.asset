@@ -21,8 +21,9 @@ MonoBehaviour:
   DozatorDoze: 0
   MachinesType: 2
   DoorTypes: 0
-  IsOpenDoor: 0
+  IsOpenDoor: 1
   ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
+  TaskImage: {fileID: 0}

@@ -45,14 +45,17 @@ public class DoorState : MonoBehaviour
                 _rightGrabber = grabber;
             }
         }
+
         _signalBus = signalBus;
     }
-    void Start() 
+    
+    private void Start() 
     {
         rigid = GetComponent<Rigidbody>();
         startPos = transform.position;
     }
-    void Update() {
+    
+    private void Update() {
         currentRotation = transform.localEulerAngles;
         angle = Mathf.Floor(currentRotation.y);
         if(angle >= 180) {

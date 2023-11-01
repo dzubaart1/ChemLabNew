@@ -40,6 +40,7 @@ namespace Machines
             MachineWorkSignal enterIntoMachineSignal = new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetNextSubstance().SubstanceProperty,
                 MachinesType = MachinesTypes.ScannerMachine
             };
             _signalBus.Fire(enterIntoMachineSignal);

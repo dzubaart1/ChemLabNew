@@ -107,6 +107,8 @@ namespace Data
 
                 LoadTransformForObj(obj, state.TransformState);
                 LoadSubstanceForObj(obj, state.SubstanceState);
+
+                obj.gameObject.GetComponent<Grabbable>().enabled = true;
             }
         }
 

@@ -54,7 +54,7 @@ namespace Tasks
             
             _signalBus.Fire(new CheckTasksSignal(){CurrentTask = CurrentTask()});
         }
-        private TaskParams CurrentTask()
+        public TaskParams CurrentTask()
         {
             return _tasksParamsList[_taskCurrentId];
         }
@@ -70,24 +70,17 @@ namespace Tasks
             Debug.Log($"Transfer Enter {_taskCurrentId}");
 
             Debug.Log("Transfer 0");
-            
-            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.To)
-                && transferSubstanceSignal.To is not ContainersTypes.None)
+
+            foreach (var containersType in CurrentTask().ContainersType)
             {
-                _signalBus.Fire<EndGameSignal>();
-                return;
+                if (containersType != transferSubstanceSignal.To && containersType != transferSubstanceSignal.From)
+                {
+                    _signalBus.Fire<EndGameSignal>();
+                    return;
+                }
             }
             
             Debug.Log("Transfer 1");
-            
-            if (!CurrentTask().ContainersType.Contains(transferSubstanceSignal.From) 
-                && transferSubstanceSignal.From is not ContainersTypes.None)
-            {
-                _signalBus.Fire<EndGameSignal>();
-                return;
-            }
-            
-            Debug.Log("Transfer 2");
 
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(transferSubstanceSignal.TranserProperty))
             {
@@ -128,7 +121,7 @@ namespace Tasks
             
             Debug.Log("Machine 2");
 
-            if (CurrentTask().SubstancesParams && !CurrentTask().SubstancesParams.Equals(machineWorkSignal.SubstancePropertyBase))
+            if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(machineWorkSignal.SubstancePropertyBase))
             {
                 _signalBus.Fire<EndGameSignal>();
                 return;

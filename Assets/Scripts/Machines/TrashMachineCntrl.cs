@@ -44,7 +44,7 @@ namespace Machines
             other.gameObject.SetActive(false);
             var startMachineWorkSignal = new MachineWorkSignal()
             {
-                MachinesType = MachinesTypes.TrashMachine
+                MachinesType = MachinesTypes.TrashMachine,
             };
             _signalBus.Fire(startMachineWorkSignal);
         }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BNG;
 using Installers;
+using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -14,15 +15,24 @@ namespace Machines
         [SerializeField] private GameObject _docPrefab;
 
         private SignalBus _signalBus;
+        private TasksCntrl _tasksCntrl;
+
+        private bool _isTeleportTask;
 
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
+            _signalBus.Subscribe<CheckTasksSignal>(OnTaskChanged);
         }
     
         public void OnEnter()
         {
+            if (!_isTeleportTask)
+            {
+                return;
+            }
+            
             foreach (var particleSystem in ParticleSystems)
             {
                 particleSystem.Play();
@@ -52,6 +62,11 @@ namespace Machines
                 MachinesType = _teleportType
             };
             _signalBus.Fire(startMachineWorkSignal);
+        }
+
+        private void OnTaskChanged(CheckTasksSignal signal)
+        {
+            _isTeleportTask = signal.CurrentTask.MachinesType == _teleportType;
         }
     }
 }
