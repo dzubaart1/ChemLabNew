@@ -34,10 +34,12 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
         {
             return;
         }
-        string _fileName = System.IO.Path.Combine(Application.streamingAssetsPath, "Answer.pdf");
+        string _fileName = System.IO.Path.Combine(Application.streamingAssetsPath, "Paper.pdf");
+        string _fileName2 = System.IO.Path.Combine(Application.streamingAssetsPath, "Results.pdf");
         using(MailMessage mail = new MailMessage(email, to, subject, body))
         {
             mail.Attachments.Add(new Attachment(_fileName));
+            mail.Attachments.Add(new Attachment(_fileName2));
             using (SmtpClient smtp = new SmtpClient(host, port))
             {
                 smtp.UseDefaultCredentials = false;
