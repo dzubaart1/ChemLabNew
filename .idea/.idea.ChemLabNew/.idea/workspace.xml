@@ -4,32 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/holoMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/holoMaterial.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/holoNeon.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/holoNeon.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/textNeon.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/holo/textNeon.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TasksCntrl.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TasksCntrl.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/Na2HPO4AgarH2O.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/Na2HPO4AgarH2O.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/12.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/12.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/13 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/13 1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/57.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/57.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FinalScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Canvases/FinalSceneCanvasCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Canvases/FinalSceneCanvasCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/SceneSetter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/SceneSetter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Doors/DoorState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Doors/DoorState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EmailSender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EmailSender.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/Scanner/ScannerMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/Scanner/ScannerMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/TeleportMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/TeleportMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/TrashMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/TrashMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
-    </list>
+    <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
