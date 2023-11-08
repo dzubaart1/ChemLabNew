@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class FinalSceneCanvasCntrl : MonoBehaviour
 {
     [SerializeField] private Text _inputText;
-    [SerializeField] private GameObject _sendPanel, _successPanel;
+    [SerializeField] private GameObject _sendPanel, _send1Panel, _successPanel, _mainPanel, _resultsPanel;
     string to = "";
     string subject = "Лабораторная работа по формированию колец Лизеганга";
     string body = "Здравствуй! Это Лаборатория инфохимии Университета ИТМО и Центр юзабилити и смешанной реальности Университета ИТМО. В прикрепленном файле отчёт о проделанной работе. Надеемся, время, проведенное с нами, было увлекательным. До скорых встреч!";
@@ -27,6 +27,26 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    public void Results()
+    {
+        _mainPanel.SetActive(false);
+        _resultsPanel.SetActive(true);
+    }
+    
+    public void Send()
+    {
+        _mainPanel.SetActive(false);
+        _sendPanel.SetActive(true);
+    }
+    public void Back()
+    {
+        _resultsPanel.SetActive(false);
+        _sendPanel.SetActive(false);
+        _mainPanel.SetActive(true);
+    }
+    
+    
     public void SendMail()
     {
         to = _inputText.text;
@@ -47,7 +67,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
                 smtp.Credentials = new NetworkCredential(email, pwd);
                 smtp.Send(mail);
                 Console.WriteLine("Success");
-                _sendPanel.SetActive(false);
+                _send1Panel.SetActive(false);
                 _successPanel.SetActive(true);
             }
         }
