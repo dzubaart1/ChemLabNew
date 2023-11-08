@@ -1,4 +1,5 @@
 #nullable enable
+using System;
 using System.Collections.Generic;
 using Containers;
 using Installers;
@@ -11,9 +12,14 @@ namespace Tasks
     public class TasksCntrl : MonoBehaviour
     {
         public List<TaskParams> _tasksParamsList;
-        private int _taskCurrentId = 0;
+        private int _taskCurrentId;
+        private List<TaskParams> _errorTasks;
         private bool _isStartGame;
+        private DateTime _startTime;
+        private DateTime _endTime;
         private SignalBus _signalBus;
+
+        public IReadOnlyList<TaskParams> ErrorTasks => _errorTasks;
         
         [Inject]
         public void Construct(SignalBus signalBus)
@@ -27,6 +33,9 @@ namespace Tasks
 
         private void Start()
         {
+            _errorTasks = new List<TaskParams>();
+            _startTime = DateTime.Now;
+            
             _signalBus.Fire(new StartGameSignal());
             _signalBus.Fire(new CheckTasksSignal() { CurrentTask = CurrentTask() });
             _signalBus.Fire(new SaveSignal(){TaskId = _taskCurrentId});
@@ -42,6 +51,7 @@ namespace Tasks
             
             if (_taskCurrentId + 1 >= _tasksParamsList.Count)
             {
+                _endTime = DateTime.Now;
                 _signalBus.Fire(new GameOverSignal());
                 return;
             }
@@ -75,6 +85,7 @@ namespace Tasks
             {
                 if (containersType != transferSubstanceSignal.To && containersType != transferSubstanceSignal.From)
                 {
+                    _errorTasks.Add(CurrentTask());
                     _signalBus.Fire<EndGameSignal>();
                     return;
                 }
@@ -84,6 +95,7 @@ namespace Tasks
 
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(transferSubstanceSignal.TranserProperty))
             {
+                _errorTasks.Add(CurrentTask());
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
@@ -106,6 +118,7 @@ namespace Tasks
             if (!CurrentTask().ContainersType.Contains(machineWorkSignal.ContainersType)
                 && machineWorkSignal.ContainersType is not ContainersTypes.None)
             {
+                _errorTasks.Add(CurrentTask());
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
@@ -115,6 +128,7 @@ namespace Tasks
             if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType)
                 && machineWorkSignal.MachinesType is not MachinesTypes.None)
             {
+                _errorTasks.Add(CurrentTask());
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
@@ -123,6 +137,7 @@ namespace Tasks
 
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(machineWorkSignal.SubstancePropertyBase))
             {
+                _errorTasks.Add(CurrentTask());
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
@@ -134,18 +149,13 @@ namespace Tasks
 
         private void CheckDoorWork(DoorWorkSignal doorWorkSignal)
         {
-            Debug.Log("0");
             if (!CurrentTask().DoorTypes.Equals(doorWorkSignal.DoorType))
             {
-                Debug.Log("1");
-                //_signalBus.Fire<EndGameSignal>();
                 return;
             }
 
             if (!CurrentTask().IsOpenDoor.Equals(doorWorkSignal.IsOpen))
             {
-                Debug.Log("2");
-                //_signalBus.Fire<EndGameSignal>();
                 return;
             }
 
