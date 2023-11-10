@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using BNG;
+using Containers;
 using Installers;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -15,8 +15,6 @@ namespace Machines
         [SerializeField] private GameObject _docPrefab;
 
         private SignalBus _signalBus;
-        private TasksCntrl _tasksCntrl;
-
         private bool _isTeleportTask;
 
         [Inject]
@@ -45,7 +43,7 @@ namespace Machines
             _snapZone.HeldItem = null;
             var startMachineWorkSignal = new MachineWorkSignal()
             {
-                MachinesType = _teleportType
+                MachinesType = _teleportType,
             };
             _signalBus.Fire(startMachineWorkSignal);
         }

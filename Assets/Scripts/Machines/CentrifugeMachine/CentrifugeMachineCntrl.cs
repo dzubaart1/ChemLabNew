@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BNG;
 using Containers;
 using Installers;
@@ -11,6 +12,8 @@ namespace Machines.CentrifugeMachine
     public class CentrifugeMachineCntrl : MonoBehaviour
     {
         [SerializeField] private List<SnapZone> _snapZones;
+        [SerializeField] private Animator _animatedPart;
+        [SerializeField] private AudioSource _audioSource;
         private SignalBus _signalBus;
         private const int MINTOCOMPLITETASK = 2;
 
@@ -25,19 +28,18 @@ namespace Machines.CentrifugeMachine
 
         public void OnStartWork()
         {
+            if (_snapZones.Any(snapZone => snapZone.HeldItem is null || snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null))
+            {
+                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.CentrifugeMachine });
+                return;
+            }
+            
+            _audioSource.Play();
+            _animatedPart.enabled = true;
+            
             int countCurrentCentrifugeContainer = 0;
             foreach (var snapZone in _snapZones)
             {
-                if (snapZone.HeldItem is null)
-                {
-                    continue;
-                }
-
-                if (snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null)
-                {
-                    continue;
-                }
-
                 var subCont = snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
                 _substancesCntrl.SplitSubstances(subCont);
 
@@ -52,8 +54,10 @@ namespace Machines.CentrifugeMachine
 
         public void OnFinishWork()
         {
-            var index = 0;
-            for (; index < _snapZones.Count; index++)
+            _audioSource.Stop();
+            _animatedPart.enabled = false;
+            
+            for (var index = 0; index < _snapZones.Count; index++)
             {
                 var snapZone = _snapZones[index];
                 if (snapZone.HeldItem is null)

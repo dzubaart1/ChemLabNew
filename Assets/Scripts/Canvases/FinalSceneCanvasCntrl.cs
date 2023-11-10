@@ -4,11 +4,16 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 public class FinalSceneCanvasCntrl : MonoBehaviour
 {
     [SerializeField] private Text _inputText;
     [SerializeField] private GameObject _sendPanel, _send1Panel, _successPanel, _mainPanel, _resultsPanel;
+
+    [SerializeField] public Object _resultsFile;
+    [SerializeField] public Object _papreFile;
+    
     string to = "";
     string subject = "Лабораторная работа по формированию колец Лизеганга";
     string body = "Здравствуй! Это Лаборатория инфохимии Университета ИТМО и Центр юзабилити и смешанной реальности Университета ИТМО. В прикрепленном файле отчёт о проделанной работе. Надеемся, время, проведенное с нами, было увлекательным. До скорых встреч!";
@@ -54,8 +59,10 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
         {
             return;
         }
-        string _fileName = System.IO.Path.Combine(Application.streamingAssetsPath, "Paper.pdf");
-        string _fileName2 = System.IO.Path.Combine(Application.streamingAssetsPath, "Results.pdf");
+        
+        string _fileName = System.IO.Path.Combine(Application.dataPath, "Resources/Paper.pdf");
+        string _fileName2 = System.IO.Path.Combine(Application.dataPath, "Resources/Results.pdf");
+        
         using(MailMessage mail = new MailMessage(email, to, subject, body))
         {
             mail.Attachments.Add(new Attachment(_fileName));

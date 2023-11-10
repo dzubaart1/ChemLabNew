@@ -12,6 +12,9 @@ namespace Containers
                 return false;
             }
             
+            Debug.Log($"---В {ContainerType}----");
+            PrintAllSubstances();
+            
             Debug.Log(substance.GetWeight());   
             _substancesCntrl.AddSubstance(this, substance);
 

@@ -80,5 +80,20 @@ namespace Containers
             }
             return null;
         }
+
+        public void PrintAllSubstances()
+        {
+            for (var i = MAX_LAYOURS_COUNT - 1; i >= 0; i--)
+            {
+                if (CurrentSubstances[i] != null)
+                {
+                    Debug.Log($"На слое {i}: {CurrentSubstances[i].SubstanceProperty.SubName}");
+                }
+                else
+                {
+                    Debug.Log($"На слое {i}: ничего");
+                }
+            }
+        }
     }
 }

@@ -5,7 +5,6 @@ using Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
-using Button = UnityEngine.UI.Button;
 
 namespace Machines.WeightingMachine
 {
@@ -13,10 +12,6 @@ namespace Machines.WeightingMachine
     {
         [SerializeField]
         private Text _weightText;
-
-        [SerializeField]
-        private Button _button;
-        
         [SerializeField]
         private SnapZone _snapZone;
 
@@ -64,6 +59,11 @@ namespace Machines.WeightingMachine
 
         public void OnClickContainerBtn()
         {
+            if (_snapZone.HeldItem is null || _snapZone.HeldItem.GetComponent<BaseContainer>() is null)
+            {
+                return;
+            }
+            
             _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine

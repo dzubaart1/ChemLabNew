@@ -9,7 +9,7 @@ namespace Containers
         [SerializeField] private UnityEvent _onAddSubstanceEvent;
         public override bool AddSubstance(Substance substance)
         {
-            if (CurrentCountSubstances != 0)
+            if (CurrentCountSubstances > 0)
             {
                 return false;
             }

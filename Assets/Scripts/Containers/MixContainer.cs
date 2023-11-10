@@ -11,6 +11,8 @@ namespace Containers
         public AnchorCntrl AnchorCntrl => _anchor;
         public override bool AddSubstance(Substance substance)
         {
+            Debug.Log($"---В {ContainerType}----");
+            PrintAllSubstances();
             if (!IsEnable())
             {
                 return false;

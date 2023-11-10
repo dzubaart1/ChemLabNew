@@ -3,7 +3,6 @@ using Containers;
 using Installers;
 using Interfaces;
 using Substances;
-using Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -12,17 +11,18 @@ namespace Machines
     public class StirringMachineCntrl : MonoBehaviour, IMachine
     {
         [SerializeField] private SnapZone _snapZone;
-        private TasksCntrl _tasksCntrl;
         private bool _isEnter;
         private bool _isStart;
 
         private SubstancesCntrl _substancesCntrl;
         private SignalBus _signalBus;
+
         [Inject]
         public void Construct(SignalBus signalBus, SubstancesCntrl substancesCntrl)
         {
             _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
+            _signalBus.Subscribe<LoadSignal>(StopStirringAnimation);
         }
 
         private void Update()
@@ -57,19 +57,27 @@ namespace Machines
         {
             if (!_isEnter || _isStart)
             {
+                var errorMachineWorkSignal = new MachineWorkSignal()
+                {
+                    MachinesType = MachinesTypes.StirringMachine,
+                };
+                _signalBus.Fire(errorMachineWorkSignal);
                 return;
             }
+            StartStirringAnimation();
+            
             _isStart = true;
+            
+            var startMachineWorkSignal = new MachineWorkSignal()
+            {
+                MachinesType = MachinesTypes.StirringMachine,
+                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty
+            };
+            _signalBus.Fire(startMachineWorkSignal);
             
             var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
             _substancesCntrl.StirSubstance(temp);
-            StartStirringAnimation();
-            gameObject.GetComponent<AudioSource>().Play();
-            var startMachineWorkSignal = new MachineWorkSignal()
-            {
-                MachinesType = MachinesTypes.StirringMachine
-            };
-            _signalBus.Fire(startMachineWorkSignal);
+
         }
         public void OnFinishWork()
         {
@@ -77,9 +85,10 @@ namespace Machines
             {
                 return;
             }
-            _isStart = false;
             StopStirringAnimation();
-            gameObject.GetComponent<AudioSource>().Stop();
+            
+            _isStart = false;
+
             var finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
@@ -91,17 +100,13 @@ namespace Machines
         private void StartStirringAnimation()
         {
             _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.StartAnimate();
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>().enabled = true;
-            //gameObject.GetComponent<Animator>().enabled = true;
+            gameObject.GetComponent<AudioSource>().Play();
         }
         
         private void StopStirringAnimation()
         {
             _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.FinishAnimate();
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>().enabled = false;
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().gameObject.GetComponentInChildren<Animator>()
-                .gameObject.transform.localPosition = new Vector3(0, 0, 0);
-            //gameObject.GetComponent<Animator>().enabled = false;
+            gameObject.GetComponent<AudioSource>().Stop();
         }
     }
 }

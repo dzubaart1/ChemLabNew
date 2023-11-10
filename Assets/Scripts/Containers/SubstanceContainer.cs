@@ -77,6 +77,9 @@ namespace Containers
                 return false;
             }
             
+            Debug.Log($"---В {ContainerType}----");
+            PrintAllSubstances();
+            
             _substancesCntrl.RemoveSubstance(this, targetVolume);
             return true;
         }

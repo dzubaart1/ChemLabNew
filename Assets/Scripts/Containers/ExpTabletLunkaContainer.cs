@@ -1,5 +1,4 @@
 using Substances;
-using UnityEngine;
 
 namespace Containers
 {
@@ -12,6 +11,12 @@ namespace Containers
                 _substancesCntrl.AddSubstance(this,substance);
                 return true;
             }
+
+            if (GetNextSubstance().SubstanceProperty.Equals(substance.SubstanceProperty))
+            {
+                return false;
+            }
+            
             _substancesCntrl.MixSubstances(this,substance);
             return true;
         }

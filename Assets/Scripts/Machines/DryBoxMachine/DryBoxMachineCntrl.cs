@@ -22,8 +22,6 @@ namespace Machines.DryBoxMachine
         {
             _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
-            
-            _signalBus.Subscribe<LoadSignal>(OnLoadScene);
         }
         
         private void Update()
@@ -45,7 +43,7 @@ namespace Machines.DryBoxMachine
         private void OnEnterObject()
         {
             _isEnter = true;
-            _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
+            _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject?.GetComponent<MixContainer>().GetNextSubstance()?.SubstanceProperty});
         }
         
         public void OnToggleWork()
@@ -55,7 +53,7 @@ namespace Machines.DryBoxMachine
             if (_isStart)
             {
                 _startBtnImage.sprite = _onSprite;
-                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty});
+                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject?.GetComponent<MixContainer>().GetNextSubstance()?.SubstanceProperty});
             }
             else
             {
@@ -69,18 +67,6 @@ namespace Machines.DryBoxMachine
                 }
                 
                 _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance()?.SubstanceProperty});
-            }
-        }
-
-        private void OnLoadScene()
-        {
-            if (_startBtnImage.sprite == _onSprite)
-            {
-                _isStart = true;
-            }
-            else
-            {
-                _isStart = false;
             }
         }
     }

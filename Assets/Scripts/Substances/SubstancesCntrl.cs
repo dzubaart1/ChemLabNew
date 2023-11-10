@@ -72,8 +72,6 @@ namespace Substances
             substanceContainer.AddSubstanceToArray(sub);
             substanceContainer.UpdateDisplaySubstance();
         }
-
-        
         
         public bool SplitSubstances(SubstanceContainer substanceContainer)
         {
