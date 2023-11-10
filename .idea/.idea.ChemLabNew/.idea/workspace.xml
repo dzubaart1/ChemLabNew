@@ -6,42 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/plastic.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/plastic.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ChemicGlass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ChemicGlass.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DozatorCup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/DozatorCup.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/12.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/12.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/17.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/17.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/23.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/23.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/44.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/44.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/74.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/74.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/85.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/85.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/86.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/86.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/color 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/color 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/29.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/29.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FinalScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FinalScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testEmail.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/testEmail.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Canvases/FinalSceneCanvasCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Canvases/FinalSceneCanvasCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/AtomicMicContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/AtomicMicContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/BaseContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/BaseContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/ExpTabletLunkaContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/ExpTabletLunkaContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/MixContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/MixContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/SpoonContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/SpoonContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/SubstanceContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/SubstanceContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/CentrifugeMachine/CentrifugeMachineCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/CentrifugeMachine/CentrifugeMachineCanvas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/CentrifugeMachine/CentrifugeMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/CentrifugeMachine/CentrifugeMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/DryBoxMachine/DryBoxMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/DryBoxMachine/DryBoxMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/StirringMachine/StirringMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/StirringMachine/StirringMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/TeleportMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/TeleportMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/WeightingMachine/WeightingMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/WeightingMachine/WeightingMachineCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Substances/SubstancesCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Substances/SubstancesCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tasks/TasksCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +24,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e97d84204f8d4aef92b538c5bab948f1172800/c7/7949acb7/Resources.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/ResultPanelCntrl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.6.3/InputSystem/InputManagerStateMonitors.cs" root0="SKIP_HIGHLIGHTING" />
@@ -69,27 +40,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;lily-14-07-fitch&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "lily-14-07-fitch",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\uxr\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\uxr\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\uxr\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.7f1\Editor\Unity.exe" />
@@ -157,6 +128,7 @@
       <workItem from="1699436620275" duration="642000" />
       <workItem from="1699438848915" duration="1965000" />
       <workItem from="1699443233319" duration="17481000" />
+      <workItem from="1699621746293" duration="861000" />
     </task>
     <servers />
   </component>

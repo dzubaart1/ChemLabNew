@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 0
   Title: "\u0412\u043E\u0437\u044C\u043C\u0438 \u0432\u0435\u0449-\u0432\u043E"
-  SubstancesParams: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
+  SubstancesParams: {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
   Weight: 100000
   ContainersType: 0100000004000000
   DozatorDoze: 0
   MachinesType: 0
   DoorTypes: 0
   IsOpenDoor: 0
-  ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
+  ResultSubstance: {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 

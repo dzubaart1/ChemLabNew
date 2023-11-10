@@ -1,5 +1,7 @@
 using Installers;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 using Zenject;
 
@@ -13,6 +15,7 @@ namespace Machines.Tablet
         [SerializeField] private Image _taskImage;
         [SerializeField] private GameObject _tasksPanel, _deskPanel, _warnPanel, _objDeskPanel;
         [SerializeField] private GameObject _deskBtn, _warnBtn, _objDescBtn;
+        [SerializeField] private List<Transform> _scrollviews;
         
         private SignalBus _signalBus;
         
@@ -58,6 +61,7 @@ namespace Machines.Tablet
                 _taskImage.sprite = checkTasksSignal.CurrentTask.TaskImage;
             }
             ToogleAllPanelsOff();
+            SetAllScrollviewUp();
         }
 
         public void ToogleDescriptionPanel()
@@ -91,6 +95,15 @@ namespace Machines.Tablet
             _objDeskPanel.SetActive(false);
             _tasksPanel.SetActive(true);
         }
+
+        public void SetAllScrollviewUp()
+        {
+            foreach (var scrollView in _scrollviews)
+            {
+                scrollView.localPosition = new Vector3(scrollView.localPosition.x, 0, scrollView.localPosition.z);
+            }
+        }
+        
         public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
             switch (myObject)

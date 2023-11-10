@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: temp2
   m_EditorClassIdentifier: 
   Number: 0
-  Title: "\u0418\u0437 spoon \u0432 Petri"
+  Title: "\u0418\u0437 spoon \u0432 lunka"
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0400000008000000
+  ContainersType: 0400000009000000
   DozatorDoze: 0
   MachinesType: 0
   DoorTypes: 0
   IsOpenDoor: 0
-  ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
+  ResultSubstance: {fileID: 11400000, guid: 7c5e3e99d7f181f42be5c7c2d50478c4, type: 2}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 

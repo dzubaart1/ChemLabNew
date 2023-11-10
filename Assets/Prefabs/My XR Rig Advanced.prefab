@@ -54671,6 +54671,9 @@ MonoBehaviour:
   _deskBtn: {fileID: 3155957024707391483}
   _warnBtn: {fileID: 890725934752050511}
   _objDescBtn: {fileID: 1637909156582924722}
+  _scrollviews:
+  - {fileID: 2585098819228848422}
+  - {fileID: 3125908814817143261}
 --- !u!1 &5679886268844368936
 GameObject:
   m_ObjectHideFlags: 0
@@ -94004,6 +94007,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6287013665f789542ba2f59d88691177, type: 3}
+--- !u!224 &3125908814817143261 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5959133269297186590, guid: 6287013665f789542ba2f59d88691177,
+    type: 3}
+  m_PrefabInstance: {fileID: 8778199174553005763}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3267103998938115068 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6090406446714651967, guid: 6287013665f789542ba2f59d88691177,
