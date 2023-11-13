@@ -24,7 +24,7 @@ MonoBehaviour:
   DoorTypes: 0
   IsOpenDoor: 0
   ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
-  IsSpawnPoint: 0
+  IsSpawnPoint: 1
   TaskDescription: 
   TaskWarning: 
   TaskImage: {fileID: 21300000, guid: 643c295139bfcf144b680158ff91a901, type: 3}

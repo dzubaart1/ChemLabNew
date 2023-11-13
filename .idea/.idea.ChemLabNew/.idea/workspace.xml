@@ -6,14 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/New Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/color 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/color 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/29.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/29.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/52.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/52.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/53.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/53.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/68.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/75.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/76.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/76.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/EndlessContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/EndlessContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/ExpTabletLunkaContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/ExpTabletLunkaContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/Scanner/ScannerMachineCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/Scanner/ScannerMachineCntrl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/UI/videoRendTexture.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/UI/videoRendTexture.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +28,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e97d84204f8d4aef92b538c5bab948f1172800/c7/7949acb7/Resources.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/ResultPanelCntrl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.6.3/InputSystem/InputManagerStateMonitors.cs" root0="SKIP_HIGHLIGHTING" />
@@ -46,6 +51,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "do_not_show_Android_plugin_suggestion": "true",
     "git-widget-placeholder": "lily-14-07-fitch",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -55,9 +61,9 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\uxr\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\uxr\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\uxr\\AppData\\Local\\Symbols\\src"
+      "C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
+      "C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
+      "C:\\Users\\dzubaart.DESKTOP-IHQ7OL6\\AppData\\Local\\Symbols\\src"
     ]
   }
 }]]></component>
@@ -129,6 +135,8 @@
       <workItem from="1699438848915" duration="1965000" />
       <workItem from="1699443233319" duration="17481000" />
       <workItem from="1699621746293" duration="861000" />
+      <workItem from="1699855655909" duration="1117000" />
+      <workItem from="1699861570804" duration="856000" />
     </task>
     <servers />
   </component>

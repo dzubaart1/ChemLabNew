@@ -10,7 +10,6 @@ namespace Machines
     {
         [SerializeField] private GameObject _scannerCanvas;
         [SerializeField] private SnapZone _snapZone;
-        //[SerializeField] private VideoPlayer _videoPlayer;
         private SignalBus _signalBus;
         public bool _isEnter;
         private bool _isStart;
@@ -49,28 +48,27 @@ namespace Machines
         
         public void OnStartWork()
         {
-            if (!_isEnter ||
-                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
-                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
-                return;
-            _scannerCanvas.SetActive(true);
-            //_videoPlayer.Play();
             MachineWorkSignal startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine
             }; 
             _signalBus.Fire(startMachineWorkSignal);
+            
+            if (!_isEnter ||
+                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
+                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
+                return;
+            _scannerCanvas.SetActive(true);
         }
         public void OnFinishWork()
         {
-            _scannerCanvas.SetActive(false);
-            //_videoPlayer.Stop();
             MachineWorkSignal finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine,
-                SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().GetNextSubstance().SubstanceProperty
+                SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<MixContainer>().GetNextSubstance().SubstanceProperty
             };
             _signalBus.Fire(finishMashineWorkSignal);
+            _scannerCanvas.SetActive(false);
         }
     }
 }

@@ -6,6 +6,11 @@ namespace Containers
     {
         public override bool AddSubstance(Substance substance)
         {
+            if (!IsEnable())
+            {
+                return false;
+            }
+            
             if (CurrentCountSubstances == 0)
             {
                 _substancesCntrl.AddSubstance(this,substance);
@@ -19,6 +24,11 @@ namespace Containers
             
             _substancesCntrl.MixSubstances(this,substance);
             return true;
+        }
+
+        protected override bool IsEnable()
+        {
+            return _snapZone.HeldItem is null;
         }
     }
 }

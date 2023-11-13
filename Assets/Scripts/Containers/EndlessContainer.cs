@@ -42,6 +42,8 @@ namespace Containers
 
         private void CheckTasks(CheckTasksSignal checkTasksSignal)
         {
+            _mainSubPrefab.SetActive(true);
+            _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
             if (checkTasksSignal.CurrentTask.SubstancesParams is null ||
                 !_substanceParams.SubName.Equals(checkTasksSignal.CurrentTask.SubstancesParams.SubName))
             {
