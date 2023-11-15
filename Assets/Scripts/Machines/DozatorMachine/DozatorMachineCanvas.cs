@@ -34,7 +34,7 @@ namespace Machines.DozatorMachine
         {
             if (!_isStartTimer)
             {
-                _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", _dozatorMachineCntrl.GetDozeFromTask());
+                _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:#.00}", _dozatorMachineCntrl.GetDozeFromTask());
                 _isStartTimer = true;
             }
         }
@@ -47,7 +47,7 @@ namespace Machines.DozatorMachine
         public void SetDoze(float volume)
         {
             _dozatorMachineCntrl.SetDoze(volume);
-            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:0.00}", volume);
+            _dozeText.text = String.Format(CultureInfo.InvariantCulture, "{0:#.00}", volume);
         }
     }
 }

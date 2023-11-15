@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 41
   m_EditorClassIdentifier: 
-  Number: 44
+  Number: 41
   Title: "\u0423\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435 \u043F\u0440\u0430\u0432\u043E\u0439
     \u0440\u0443\u043A\u043E\u0439 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435
-    \u043D\u0430 \u043F\u0438\u043F\u0435\u0442-\u0434\u043E\u0437\u0430\u0442\u043E\u0440\u0435
-    0.05."
+    \u043D\u0430 \u043F\u0438\u043F\u0435\u0442\u0434\u043E\u0437\u0430\u0442\u043E\u0440\u0435
+    1.00 \u043C\u043B."
   SubstancesParams: {fileID: 0}
   Weight: 0
   ContainersType: 
-  DozatorDoze: 0.05
+  DozatorDoze: 1
   MachinesType: 3
   DoorTypes: 0
   IsOpenDoor: 0
   ResultSubstance: {fileID: 0}
-  IsSpawnPoint: 1
+  IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
   TaskImage: {fileID: 21300000, guid: 3b049827ee56ce54bae67d2c209a128a, type: 3}

@@ -1,3 +1,4 @@
+using System;
 using System.Globalization;
 using Containers;
 using Installers;
@@ -37,11 +38,11 @@ namespace Machines.DozatorMachine
         {
             return _baseContainer.MaxVolume;
         }
-        public string GetDozeFromTask()
+        public float GetDozeFromTask()
         {
             _baseContainer.MaxVolume = _currentDoze;
             _signalBus.Fire(new MachineWorkSignal(){MachinesType = MachinesTypes.DozatorMachine});
-            return _currentDoze.ToString(CultureInfo.InvariantCulture);
+            return _currentDoze;
         }
     }
 }

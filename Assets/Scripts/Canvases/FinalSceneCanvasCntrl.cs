@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 public class FinalSceneCanvasCntrl : MonoBehaviour
 {
     [SerializeField] private Text _inputText;
-    [SerializeField] private GameObject _sendPanel, _send1Panel, _successPanel, _mainPanel, _resultsPanel;
+    [SerializeField] private GameObject _sendPanel, _send1Panel, _successPanel, _mainPanel, _resultsPanel, _vrKeyboard;
 
     [SerializeField] public Object _resultsFile;
     [SerializeField] public Object _papreFile;
@@ -37,6 +37,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
     {
         _mainPanel.SetActive(false);
         _resultsPanel.SetActive(true);
+        _vrKeyboard.SetActive(true);
     }
     
     public void Send()
@@ -47,6 +48,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
     public void Back()
     {
         _resultsPanel.SetActive(false);
+        _vrKeyboard.SetActive(false);
         _sendPanel.SetActive(false);
         _mainPanel.SetActive(true);
     }

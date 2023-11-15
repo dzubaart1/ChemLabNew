@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37514fbfc8744451b13e9e0a59119406, type: 3}
   m_Name: 50
   m_EditorClassIdentifier: 
-  Number: 53
-  Title: "\u0412\u044B\u043A\u043B\u044E\u0447\u0438\u0442\u0435 \u0441\u043A\u0430\u043D\u0435\u0440
-    \u043F\u0440\u0430\u0432\u043E\u0439 \u0440\u0443\u043A\u043E\u0439."
+  Number: 50
+  Title: "\u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u043A\u0443\u043B\u044C\u0442\u0443\u0440\u0430\u043B\u044C\u043D\u044B\u0439
+    \u043F\u043B\u0430\u043D\u0448\u0435\u0442 \u0438 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+    \u0442\u0435\u043B\u0435\u043F\u043E\u0440\u0442\u0430 \u043E\u0442\u043F\u0440\u0430\u0432\u044C\u0442\u0435
+    \u0435\u0433\u043E \u0432 \u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u0438\u044E
+    \u043A\u043B\u0435\u0442\u043E\u0447\u043D\u044B\u0445 \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u0438\u0439"
   SubstancesParams: {fileID: 0}
   Weight: 0
   ContainersType: 
   DozatorDoze: 0
-  MachinesType: 7
+  MachinesType: 10
   DoorTypes: 0
   IsOpenDoor: 0
-  ResultSubstance: {fileID: 11400000, guid: db58935b849f8e441b5955bcd2106b01, type: 2}
+  ResultSubstance: {fileID: 0}
   IsSpawnPoint: 0
   TaskDescription: 
   TaskWarning: 
-  TaskImage: {fileID: 21300000, guid: 6b3a9a4fdc16ac34d8953a98193e6ff7, type: 3}
+  TaskImage: {fileID: 21300000, guid: f982f45131895dd4bafbcc62619807ee, type: 3}
