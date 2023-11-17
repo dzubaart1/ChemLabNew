@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &23969307
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -530,9 +530,9 @@ RectTransform:
   - {fileID: 157137295}
   m_Father: {fileID: 1287055769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 977.5, y: -50}
   m_SizeDelta: {x: 561.47, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &523896033
@@ -1104,9 +1104,9 @@ RectTransform:
   - {fileID: 632890114}
   m_Father: {fileID: 1287055769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 322.5, y: -50}
   m_SizeDelta: {x: 561.47, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &683914441
@@ -1437,7 +1437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1216041877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1750,9 +1750,9 @@ RectTransform:
   - {fileID: 1486728786}
   m_Father: {fileID: 1179017481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 322.5, y: -50}
   m_SizeDelta: {x: 561.47, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1409926229
@@ -2243,9 +2243,9 @@ RectTransform:
   - {fileID: 1861182320}
   m_Father: {fileID: 1179017481}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 977.5, y: -50}
   m_SizeDelta: {x: 561.47, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1549980744
@@ -2586,6 +2586,7 @@ MonoBehaviour:
   _vrKeyboard: {fileID: 3917244861523800107}
   _resultsFile: {fileID: 102900000, guid: 973acbf3b6aa31b43b7ffd1db3bf0c88, type: 3}
   _papreFile: {fileID: 102900000, guid: 8578e42328e6c974d9a61dabe683c8bd, type: 3}
+  _resPanelCntrl: {fileID: 0}
 --- !u!114 &1713505490
 MonoBehaviour:
   m_ObjectHideFlags: 0

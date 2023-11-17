@@ -13,10 +13,12 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
 
     [SerializeField] public Object _resultsFile;
     [SerializeField] public Object _papreFile;
+
+    [SerializeField] private ResultPanelCntrl _resPanelCntrl;
     
     string to = "";
     string subject = "Лабораторная работа по формированию колец Лизеганга";
-    string body = "Здравствуй! Это Лаборатория инфохимии Университета ИТМО и Центр юзабилити и смешанной реальности Университета ИТМО. В прикрепленном файле отчёт о проделанной работе. Надеемся, время, проведенное с нами, было увлекательным. До скорых встреч!";
+    string body = "";
 
     string email = "xxxr771@gmail.com";
     string pwd = "Qw122476";
@@ -64,7 +66,9 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
         
         string _fileName = System.IO.Path.Combine(Application.dataPath, "Resources/Paper.pdf");
         string _fileName2 = System.IO.Path.Combine(Application.dataPath, "Resources/Results.pdf");
-        
+        body = "Здравствуй! Это Лаборатория инфохимии Университета ИТМО и Центр юзабилити и смешанной реальности Университета ИТМО. Далее ваши результаты по лабораторной работе по формированию колец Лизеганга.\n" +
+               "Время:" + _resPanelCntrl.GetTimerText() + "\nОшибки:" + _resPanelCntrl.GetErrorsCount()+ "\n " + _resPanelCntrl.GetErrorsDescription() + "\n " +
+               "В прикрепленном файле отчёт по проделанной работе. Надеемся, время, проведенное с нами, было увлекательным. До скорых встреч!";
         using(MailMessage mail = new MailMessage(email, to, subject, body))
         {
             mail.Attachments.Add(new Attachment(_fileName));

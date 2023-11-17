@@ -25,4 +25,17 @@ public class ResultPanelCntrl : MonoBehaviour
             _errorsDescription.text += error.Number + ". " + error.Title + "\n";
         }
     }
+
+    public string GetTimerText()
+    {
+        return _timerText.text;
+    }
+    public string GetErrorsCount()
+    {
+        return _errorsCount.text;
+    }
+    public string GetErrorsDescription()
+    {
+        return _errorsDescription.text;
+    }
 }

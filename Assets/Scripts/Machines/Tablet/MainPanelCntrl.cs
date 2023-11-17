@@ -1,9 +1,11 @@
+using System;
 using Installers;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Machines.Tablet
 {
@@ -17,6 +19,10 @@ namespace Machines.Tablet
         [SerializeField] private GameObject _deskBtn, _warnBtn, _objDescBtn;
         [SerializeField] private List<Transform> _scrollviews;
         
+        [SerializeField] private AudioController _audioController;
+        [SerializeField] private AudioSource _music;
+        private bool _musicIsOn, _audioIsOn;
+        
         private SignalBus _signalBus;
         
         [Inject]
@@ -24,6 +30,11 @@ namespace Machines.Tablet
         {
             _signalBus = signalBus;
             _signalBus.Subscribe<CheckTasksSignal>(UpdateText);
+        }
+
+        private void Awake()
+        {
+            _audioController = FindObjectOfType<AudioController>();
         }
 
         private void UpdateText(CheckTasksSignal checkTasksSignal)
@@ -102,6 +113,31 @@ namespace Machines.Tablet
             {
                 scrollView.localPosition = new Vector3(scrollView.localPosition.x, 0, scrollView.localPosition.z);
             }
+        }
+
+        public void SetAudio()
+        {
+            if (_audioIsOn)
+            {
+                foreach (var audio in _audioController.Audios)
+                {
+                    audio.mute = true;
+                }
+            }
+            else
+            {
+                foreach (var audio in _audioController.Audios)
+                {
+                    audio.mute = false;
+                }
+            }
+            _audioIsOn = !_audioIsOn;
+        }
+
+        public void SetMusic()
+        {
+            _music.mute = _musicIsOn;
+            _musicIsOn = !_musicIsOn;
         }
         
         public static bool IsNull<T>(T myObject, string message = "") where T : class

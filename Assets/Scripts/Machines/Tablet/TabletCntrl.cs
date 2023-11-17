@@ -63,5 +63,7 @@ namespace Machines.Tablet
             _endGamePanel.SetActive(false);
             _gameOverPanel.SetActive(true);
         }
+        
+        
     }
 }
