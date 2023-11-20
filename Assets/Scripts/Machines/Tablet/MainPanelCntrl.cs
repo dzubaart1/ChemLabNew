@@ -21,8 +21,9 @@ namespace Machines.Tablet
         
         [SerializeField] private AudioController _audioController;
         [SerializeField] private AudioSource _music;
-        private bool _musicIsOn, _audioIsOn;
-        
+        private bool _musicIsOn = true, _audioIsOn = true;
+        [SerializeField] private List<Image> _images;
+        [SerializeField] private List<Sprite> _sprites;
         private SignalBus _signalBus;
         
         [Inject]
@@ -81,6 +82,9 @@ namespace Machines.Tablet
             _tasksPanel.SetActive(!_deskPanel.activeSelf);
             _warnPanel.SetActive(false);
             _objDeskPanel.SetActive(false);
+            _images[0].sprite = _deskPanel.activeSelf?_sprites[1]:_sprites[0];
+            _images[1].sprite = _sprites[2];
+            _images[2].sprite = _sprites[4];
         }
         
         public void ToogleWarningPanel()
@@ -89,6 +93,9 @@ namespace Machines.Tablet
             _tasksPanel.SetActive(!_warnPanel.activeSelf);
             _deskPanel.SetActive(false);
             _objDeskPanel.SetActive(false);
+            _images[1].sprite = _warnPanel.activeSelf?_sprites[3]:_sprites[2];
+            _images[0].sprite = _sprites[0];
+            _images[2].sprite = _sprites[4];
         }
         
         public void ToogleObjDescriptionPanel()
@@ -97,6 +104,9 @@ namespace Machines.Tablet
             _tasksPanel.SetActive(!_objDeskPanel.activeSelf);
             _deskPanel.SetActive(false); 
             _warnPanel.SetActive(false);
+            _images[2].sprite = _objDeskPanel.activeSelf?_sprites[5]:_sprites[4];
+            _images[0].sprite = _sprites[0];
+            _images[1].sprite = _sprites[2];
         }
 
         public void ToogleAllPanelsOff()
@@ -105,6 +115,9 @@ namespace Machines.Tablet
             _warnPanel.SetActive(false);
             _objDeskPanel.SetActive(false);
             _tasksPanel.SetActive(true);
+            _images[0].sprite = _sprites[0];
+            _images[1].sprite = _sprites[2];
+            _images[2].sprite = _sprites[4];
         }
 
         public void SetAllScrollviewUp()
@@ -132,12 +145,14 @@ namespace Machines.Tablet
                 }
             }
             _audioIsOn = !_audioIsOn;
+            _images[3].sprite = _audioIsOn?_sprites[7]:_sprites[6];
         }
 
         public void SetMusic()
         {
             _music.mute = _musicIsOn;
             _musicIsOn = !_musicIsOn;
+            _images[4].sprite = _musicIsOn?_sprites[9]:_sprites[8];
         }
         
         public static bool IsNull<T>(T myObject, string message = "") where T : class

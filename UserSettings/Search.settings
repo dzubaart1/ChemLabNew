@@ -66,6 +66,7 @@ objectSelectors = {
 }
 recentSearches = [
 	"h: t:AudioSource"
+	"h:"
 	""
 	"h: t=MeshFilter vertices>=1024"
 ]

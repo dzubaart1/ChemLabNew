@@ -9141,7 +9141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1f86934c5d4d0d74593bed1cbb9922fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 653f3df2efb1d304cbfca65a21007fc7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19051,7 +19051,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8d72f0cbfc0092946894165db5668186, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1ea88077d2ee264e97af52be0225f6b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31215,7 +31215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 59263cb12dd2ec746b95428b14141420, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b636601d99e34a64c8f64d0c8f75ec76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -31244,7 +31244,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -54808,7 +54808,24 @@ MonoBehaviour:
   - {fileID: 2585098819228848422}
   - {fileID: 3125908814817143261}
   _audioController: {fileID: 0}
-  _music: {fileID: 0}
+  _music: {fileID: 1577201408509786219}
+  _images:
+  - {fileID: 717746367077874846}
+  - {fileID: 3081033890885028166}
+  - {fileID: 2276323106088463505}
+  - {fileID: 5896483199728231034}
+  - {fileID: 3855271247125860965}
+  _sprites:
+  - {fileID: 21300000, guid: b636601d99e34a64c8f64d0c8f75ec76, type: 3}
+  - {fileID: 21300000, guid: 59263cb12dd2ec746b95428b14141420, type: 3}
+  - {fileID: 21300000, guid: 653f3df2efb1d304cbfca65a21007fc7, type: 3}
+  - {fileID: 21300000, guid: 1f86934c5d4d0d74593bed1cbb9922fb, type: 3}
+  - {fileID: 21300000, guid: f1ea88077d2ee264e97af52be0225f6b, type: 3}
+  - {fileID: 21300000, guid: 74b690afda654a84b83a1cbd4fbc4423, type: 3}
+  - {fileID: 21300000, guid: a89c861dda8c6ae4cbc7e00cebe8332a, type: 3}
+  - {fileID: 21300000, guid: 053d51d6cbf612b48b640afd749c9544, type: 3}
+  - {fileID: 21300000, guid: 85bf7bb569e803c4595608aec1d5a3f5, type: 3}
+  - {fileID: 21300000, guid: 42b4e10b221966d488eaedc8285d2371, type: 3}
 --- !u!1 &5679886268844368936
 GameObject:
   m_ObjectHideFlags: 0
