@@ -1,19 +1,19 @@
-using System;
 using Installers;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using Zenject;
 using Object = UnityEngine.Object;
+using TMPro;
 
 namespace Machines.Tablet
 {
     public class MainPanelCntrl : MonoBehaviour
     {
         [SerializeField] private Text _taskNumber;
-        [SerializeField] private Text _taskTitle;
-        [SerializeField] private Text _taskDescription, _taskWarning;
+        [SerializeField] private TextMeshProUGUI _taskTitleTMP;
+        [SerializeField] private TextMeshProUGUI _taskDescriptionTMP, _taskWarningTMP;
+        //[SerializeField] private Text _taskDescription, _taskWarning;
         [SerializeField] private Image _taskImage;
         [SerializeField] private GameObject _tasksPanel, _deskPanel, _warnPanel, _objDeskPanel;
         [SerializeField] private GameObject _deskBtn, _warnBtn, _objDescBtn;
@@ -40,7 +40,8 @@ namespace Machines.Tablet
 
         private void UpdateText(CheckTasksSignal checkTasksSignal)
         {
-            _taskTitle.text = checkTasksSignal.CurrentTask.Title;
+            //_taskTitle.text = checkTasksSignal.CurrentTask.Title;
+            _taskTitleTMP.text = checkTasksSignal.CurrentTask.Title;
             _taskNumber.text = "Задание " + checkTasksSignal.CurrentTask.Number;
             
             if (string.IsNullOrWhiteSpace(checkTasksSignal.CurrentTask.TaskDescription))
@@ -50,7 +51,8 @@ namespace Machines.Tablet
             else
             {
                 _deskBtn.SetActive(true);
-                _taskDescription.text = checkTasksSignal.CurrentTask.TaskDescription;
+                //_taskDescription.text = checkTasksSignal.CurrentTask.TaskDescription;
+                _taskDescriptionTMP.text = checkTasksSignal.CurrentTask.TaskDescription;
             }
             
             if (string.IsNullOrWhiteSpace(checkTasksSignal.CurrentTask.TaskWarning))
@@ -60,7 +62,8 @@ namespace Machines.Tablet
             else
             {
                 _warnBtn.SetActive(true);
-                _taskWarning.text = checkTasksSignal.CurrentTask.TaskWarning;
+                //_taskWarning.text = checkTasksSignal.CurrentTask.TaskWarning;
+                _taskWarningTMP.text = checkTasksSignal.CurrentTask.TaskWarning;
             }
             
             if (IsNull(checkTasksSignal.CurrentTask.TaskImage))

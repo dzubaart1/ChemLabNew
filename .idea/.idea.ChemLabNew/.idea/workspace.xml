@@ -6,25 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/glass4.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/glass4.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Xolonium-Regular.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Xolonium-Regular.otf.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/My XR Rig Advanced.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/My XR Rig Advanced.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TestTube.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/3.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Tasks/temp1.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Machines/Tablet/MainPanelCntrl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/circle@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/circle@2x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/musicOff@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/musicOff@2x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/musicOn@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/musicOn@2x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/objDescButton@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/objDescButton@2x.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/sound.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/sound.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/soundMute.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/soundMute.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/triangle@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UI/triangle@2x.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Search.settings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +140,7 @@
       <workItem from="1700058790615" duration="120000" />
       <workItem from="1700220374077" duration="7043000" />
       <workItem from="1700478862139" duration="3389000" />
+      <workItem from="1700824257092" duration="1029000" />
     </task>
     <servers />
   </component>

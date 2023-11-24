@@ -8,7 +8,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.110DEAF1" = "h: t:AudioSource"
+	"last_search.110DEAF1" = "h:t:Text"
 	"OpenInspectorPreview.110DEAF1" = "0"
 	"currentGroup.110DEAF1" = "scene"
 	"last_search.3BE40471" = "h: t:AudioSource"
@@ -65,9 +65,10 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
-	"h: t:AudioSource"
 	"h:"
+	"h:text{}"
 	""
+	"h: t:AudioSource"
 	"h: t=MeshFilter vertices>=1024"
 ]
 searchItemFavorites = [
