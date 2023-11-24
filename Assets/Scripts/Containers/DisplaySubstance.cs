@@ -36,8 +36,17 @@ namespace Containers
                 _substanceCanvasCntrl.gameObject.SetActive(false);
                 return;
             }
-            _substanceCanvasCntrl.UpdateSubstanceText(GetStringStack());
+            UpdateSubstanceCanvas();
             _substanceCanvasCntrl.gameObject.SetActive(!_substanceCanvasCntrl.gameObject.activeSelf);
+        }
+        
+        private void UpdateSubstanceCanvas()
+        {
+            if (_substanceCanvasCntrl is not null)
+            {
+                _substanceCanvasCntrl.UpdateSubstanceText(GetStringStack());
+            }
+            
         }
         
         public void UpdateDisplaySubstance()
@@ -46,12 +55,13 @@ namespace Containers
             {
                 TogglePrefab(_mainSubPrefab, GetNextSubstance()?.SubstanceProperty);
                 UpdateParticleSystem(GetNextSubstance()?.SubstanceProperty);
+                UpdateSubstanceCanvas();
                 return;
             }
             TogglePrefab(_sedimentPrefab, CurrentSubstances[0]?.SubstanceProperty);
             TogglePrefab(_mainSubPrefab, CurrentSubstances[1]?.SubstanceProperty);
             TogglePrefab(_membranePrefab, CurrentSubstances[2]?.SubstanceProperty);
-
+            UpdateSubstanceCanvas();
             UpdateParticleSystem(CurrentSubstances[1]?.SubstanceProperty);
         }
         

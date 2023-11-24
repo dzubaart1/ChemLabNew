@@ -5721,6 +5721,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1038755888686120312}
     m_Modifications:
+    - target: {fileID: 220127529168492012, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 1acde42e69530b648950f89af5b01c06,
+        type: 3}
     - target: {fileID: 1524224993823069171, guid: ff2a53e8ef15fec479b3b3f6c1ce2881,
         type: 3}
       propertyPath: m_Layer
