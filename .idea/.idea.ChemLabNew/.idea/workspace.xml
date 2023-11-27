@@ -6,13 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="60b8d59a-172f-4abb-8a80-01c31ed543f7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ChemLabNew/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CentrifugeContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CentrifugeContainer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/Xolonium-Regular SDF 1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/Xolonium-Regular SDF 1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/noURP/Liquid.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/noURP/Liquid.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ChemicGlass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ChemicGlass.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/ExpTablet 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/ExpTablet 1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/MeasuringCyllinder.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/MeasuringCyllinder.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PetriDish.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PetriDish.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/WeightingContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/WeightingContainer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyBase/Agar.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyBase/Agar.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyBase/H2O.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyBase/H2O.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/CaCl2H2O.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/CaCl2H2O.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/HardAgar.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/HardAgar.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/HardAgarH2O.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/HardAgarH2O.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/Na2HPO4AgarH2O.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyComponents/Na2HPO4AgarH2O.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/CaCl2H2OStir.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/CaCl2H2OStir.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/HardAgarH2OStir.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/HardAgarH2OStir.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/Na2HPO4AgarH2OStir.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/SubstancesProperties/SubstancePropertyStirring/Na2HPO4AgarH2OStir.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/DisplaySubstance.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/DisplaySubstance.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/MeasuringContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/MeasuringContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/MixContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/MixContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Containers/SubstanceContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Containers/SubstanceContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2022.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Search.settings" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Search.settings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,6 +152,7 @@
       <workItem from="1700220374077" duration="7043000" />
       <workItem from="1700478862139" duration="3389000" />
       <workItem from="1700824257092" duration="2518000" />
+      <workItem from="1701082396399" duration="5704000" />
     </task>
     <servers />
   </component>

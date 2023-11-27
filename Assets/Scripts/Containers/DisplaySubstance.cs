@@ -2,6 +2,7 @@ using System.Linq;
 using BNG;
 using Canvases;
 using JetBrains.Annotations;
+using LiquidVolumeFX;
 using Substances;
 using UnityEngine;
 
@@ -77,6 +78,12 @@ namespace Containers
                 return;
             }
             prefab.SetActive(true);
+            var _lv = prefab.GetComponentInChildren<LiquidVolume>();
+            if (_lv != null)
+            {
+                _lv.liquidColor1 = substanceParams.Color;
+                return;
+            }
             var _mr = prefab.GetComponentInChildren<MeshRenderer>();
             if (_mr == null)
             {

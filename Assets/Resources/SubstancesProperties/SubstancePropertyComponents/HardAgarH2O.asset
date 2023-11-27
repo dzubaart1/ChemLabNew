@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HardAgarH2O
   m_EditorClassIdentifier: 
   SubName: HardAgarH2O
-  Color: {r: 0.7647059, g: 0.7490196, b: 0.6745098, a: 0.45882353}
+  Color: {r: 0.7647059, g: 0.7490196, b: 0.6745098, a: 0.050980393}
   SubstanceLayer: 1
   HintName: "\u0414\u0435\u043A\u0430\u043D\u0442\u0430\u0446\u0438\u044F \u043A\u043E\u043B\u0435\u0446
     \u041B\u0438\u0437\u0435\u0433\u0430\u043D\u0433\u0430 "

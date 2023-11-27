@@ -1,3 +1,4 @@
+using LiquidVolumeFX;
 using Substances;
 using UnityEngine;
 using Zenject;
@@ -65,6 +66,12 @@ namespace Containers
             }
             else
             {
+                var _lv = _mainSubPrefab.GetComponentInChildren<LiquidVolume>();
+                if (_lv != null)
+                {
+                    _lv.level = GetNextSubstance().GetWeight() / MaxVolume;
+                    return true;
+                }
                 _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
             }
             return true;

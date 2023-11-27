@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: H2O
   m_EditorClassIdentifier: 
   SubName: H2O
-  Color: {r: 0.627451, g: 0.7176471, b: 0.8666667, a: 0.93333334}
+  Color: {r: 0.627451, g: 0.7176471, b: 0.8666667, a: 0.050980393}
   SubstanceLayer: 1
   HintName: "\u0412\u043E\u0434\u0430"
