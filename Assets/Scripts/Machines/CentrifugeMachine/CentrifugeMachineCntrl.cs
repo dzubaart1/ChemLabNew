@@ -28,7 +28,7 @@ namespace Machines.CentrifugeMachine
 
         public void OnStartWork()
         {
-            if (_snapZones.Any(snapZone => snapZone.HeldItem is null || snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null))
+            if (_snapZones.Any(snapZone => snapZone.HeldItem is null || snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>() is null || !snapZone.HeldItem.gameObject.GetComponent<CentrifugeContainer>().IsEnable()))
             {
                 _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.CentrifugeMachine });
                 return;

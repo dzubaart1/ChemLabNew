@@ -64,7 +64,7 @@ namespace Containers
             _mainSubPrefab.GetComponentInChildren<MeshRenderer>().material.color = _substanceParams.Color;
         }
         
-        protected override bool IsEnable()
+        public override bool IsEnable()
         {
             if (_snapZone)
             {

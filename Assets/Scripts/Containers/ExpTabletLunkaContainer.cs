@@ -26,7 +26,7 @@ namespace Containers
             return true;
         }
 
-        protected override bool IsEnable()
+        public override bool IsEnable()
         {
             return _snapZone.HeldItem is null;
         }

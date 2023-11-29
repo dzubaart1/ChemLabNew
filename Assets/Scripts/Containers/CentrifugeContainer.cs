@@ -32,7 +32,7 @@ namespace Containers
             }
         }
 
-        protected override bool IsEnable()
+        public override bool IsEnable()
         {
             return _isOpen;
         }

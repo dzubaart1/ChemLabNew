@@ -55,7 +55,7 @@ namespace Containers
             return true;
         }
 
-        protected override bool IsEnable()
+        public override bool IsEnable()
         {
             if (_cupsList.Count > 0)
             {

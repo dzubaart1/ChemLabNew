@@ -39,7 +39,7 @@ namespace Containers
             }
         }
 
-        protected virtual bool IsEnable()
+        public virtual bool IsEnable()
         {
             return true;
         }

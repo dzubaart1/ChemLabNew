@@ -2584,9 +2584,7 @@ MonoBehaviour:
   _mainPanel: {fileID: 23969304}
   _resultsPanel: {fileID: 1216041876}
   _vrKeyboard: {fileID: 3917244861523800107}
-  _resultsFile: {fileID: 102900000, guid: 973acbf3b6aa31b43b7ffd1db3bf0c88, type: 3}
-  _papreFile: {fileID: 102900000, guid: 8578e42328e6c974d9a61dabe683c8bd, type: 3}
-  _resPanelCntrl: {fileID: 0}
+  _resPanelCntrl: {fileID: 1216041878}
 --- !u!114 &1713505490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,7 +3129,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: SendMail
+        m_MethodName: OnClickSendMailBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
