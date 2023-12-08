@@ -10,7 +10,8 @@ using Zenject;
 public class DoorState : MonoBehaviour
 {
     public DoorTypes DoorType;
-    //public int MinAngleToMove, MaxAngleToMove;
+    [SerializeField] ScannerMachineCntrl _scannerMachineCntrl;
+    
     public bool DoorIsOpen = false;
 
     public float angle, _addAngle;
@@ -150,11 +151,17 @@ public class DoorState : MonoBehaviour
         if (!DoorIsOpen)
             return;
         DoorIsOpen = false;
+        if (DoorType is DoorTypes.ScannerDoor)
+        {
+            _scannerMachineCntrl.OnStartWork();
+            return;
+        }
         _signalBus.Fire(new DoorWorkSignal()
             {
                 DoorType = DoorType,
                 IsOpen = false
             });
+        
         Debug.Log("DOOR IS " + DoorIsOpen);
     }
 

@@ -13,6 +13,7 @@ namespace Machines
         private SignalBus _signalBus;
         public bool _isEnter;
         private bool _isStart;
+        public bool _buttonIsOn;
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -48,6 +49,10 @@ namespace Machines
         
         public void OnStartWork()
         {
+            if (!_buttonIsOn)
+            {
+                return;
+            }
             MachineWorkSignal startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine
@@ -70,6 +75,8 @@ namespace Machines
             _signalBus.Fire(finishMashineWorkSignal);
             _scannerCanvas.SetActive(false);
         }
+
+        
     }
 }
 

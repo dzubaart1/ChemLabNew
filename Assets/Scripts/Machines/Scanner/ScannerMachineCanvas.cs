@@ -6,7 +6,7 @@ namespace Machines
     
     public class ScannerMachineCanvas : MonoBehaviour
     {
-        private bool _buttonIsOn = false;
+        public bool _buttonIsOn = false;
         [SerializeField] private Image _img;
         [SerializeField] ScannerMachineCntrl _scannerMachineCntrl;
         
@@ -17,7 +17,7 @@ namespace Machines
             {
                 gameObject.GetComponent<Animator>().Play("ButtonOn");
                 _img.color = new Color(76, 255, 0, 0.8f);
-                TryStart();
+                _scannerMachineCntrl._buttonIsOn = true;
             }
             else
             {
@@ -27,12 +27,9 @@ namespace Machines
             }
 
         }
-        public void TryStart()
-        {
-            _scannerMachineCntrl.OnStartWork();
-        }
         public void TryStop()
         {
+            _buttonIsOn = false;
             _scannerMachineCntrl.OnFinishWork();
         }
     }

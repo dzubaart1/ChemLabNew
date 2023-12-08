@@ -30,13 +30,14 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
     {
         _mainPanel.SetActive(false);
         _resultsPanel.SetActive(true);
-        _vrKeyboard.SetActive(true);
+        _vrKeyboard.SetActive(false);
     }
     
     public void Send()
     {
         _mainPanel.SetActive(false);
         _sendPanel.SetActive(true);
+        _vrKeyboard.SetActive(true);
     }
     public void Back()
     {
