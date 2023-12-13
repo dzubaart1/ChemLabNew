@@ -110,6 +110,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
                 smtp.Credentials = new NetworkCredential(_senderEmail, "GMyZS6afH6");
                 smtp.Send(mail);
                 _successPanel.SetActive(true);
+                _send1Panel.SetActive(false);
             }
         }
     }

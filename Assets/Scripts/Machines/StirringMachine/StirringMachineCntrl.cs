@@ -68,7 +68,7 @@ namespace Machines
             
             _isStart = true;
 
-            _snapZone.HeldItem.gameObject.GetComponent<Grabbable>().enabled = false;
+            _snapZone.CanRemoveItem = false;
             var startMachineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
@@ -89,8 +89,8 @@ namespace Machines
             StopStirringAnimation();
             
             _isStart = false;
-            
-            _snapZone.HeldItem.gameObject.GetComponent<Grabbable>().enabled = true;
+
+            _snapZone.CanRemoveItem = true;
             var finishMashineWorkSignal = new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
