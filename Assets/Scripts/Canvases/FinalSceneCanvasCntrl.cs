@@ -13,7 +13,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
     [SerializeField] private GameObject _sendPanel, _send1Panel, _successPanel, _mainPanel, _resultsPanel, _vrKeyboard;
     [SerializeField] private ResultPanelCntrl _resPanelCntrl;
 
-    private string _senderEmail = "xxxr771@gmail.com";
+    private string _senderEmail = "infochemvr@gmail.com";
     private string _paperPath, _resultsPath;
 
     public void Again()
@@ -87,7 +87,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
             
             yield return null;
         }
-        if (loadingRequest.isNetworkError || loadingRequest.isHttpError) {
+        if (loadingRequest.isNetworkError || loadingRequest.isHttpError){
 
         } else
         {
@@ -107,7 +107,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
             {
                 smtp.UseDefaultCredentials = false;
                 smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential(_senderEmail, "Qw122476");
+                smtp.Credentials = new NetworkCredential(_senderEmail, "GMyZS6afH6");
                 smtp.Send(mail);
             }
         }
