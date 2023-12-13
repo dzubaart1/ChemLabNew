@@ -109,6 +109,7 @@ public class FinalSceneCanvasCntrl : MonoBehaviour
                 smtp.EnableSsl = true;
                 smtp.Credentials = new NetworkCredential(_senderEmail, "Qw122476");
                 smtp.Send(mail);
+                _successPanel.SetActive(true);
             }
         }
     }
