@@ -49,7 +49,7 @@ namespace Machines
         
         public void OnStartWork()
         {
-            if (!_buttonIsOn)
+            if (!_buttonIsOn || _snapZone.HeldItem is null)
             {
                 return;
             }
