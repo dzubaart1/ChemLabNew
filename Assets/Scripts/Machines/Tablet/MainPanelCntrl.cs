@@ -157,7 +157,12 @@ namespace Machines.Tablet
             _musicIsOn = !_musicIsOn;
             _images[4].sprite = _musicIsOn?_sprites[9]:_sprites[8];
         }
-        
+
+        public void GetBackToPrevLoad()
+        {
+            _signalBus.Fire<LoadSignal>();
+        }
+
         public static bool IsNull<T>(T myObject, string message = "") where T : class
         {
             switch (myObject)
