@@ -1,4 +1,3 @@
-using System.Linq;
 using BNG;
 using Canvases;
 using JetBrains.Annotations;
@@ -10,12 +9,15 @@ namespace Containers
 {
     public class DisplaySubstance : BaseContainer
     {
-        [Header("Display Container Params")]
-        [SerializeField] private SubstanceCanvasCntrl _substanceCanvasCntrl;
         [SerializeField] protected GameObject _mainSubPrefab;
+
+        [SerializeField] private SubstanceCanvasCntrl _substanceCanvasCntrl;
         [SerializeField] private GameObject _sedimentPrefab;
         [SerializeField] private GameObject _membranePrefab;
         [SerializeField] private GameObject _particleSystem;
+
+        protected LiquidVolume _liquidVolume;
+        private MeshRenderer _liquidVolumeMeshRenderer;
 
         private void Start()
         {
@@ -23,11 +25,13 @@ namespace Containers
             {
                 InputBridge.OnAButtonPressed += ToggleSubstanceCanvas;
             }
-            if (IsNull(_particleSystem))
+
+            if (_particleSystem)
             {
-                return;
+                _particleSystem.SetActive(false);
             }
-            _particleSystem.SetActive(false);
+            _liquidVolume = _mainSubPrefab.GetComponentInChildren<LiquidVolume>();
+            _liquidVolumeMeshRenderer = _mainSubPrefab.GetComponentInChildren<MeshRenderer>();
         }
 
         private void ToggleSubstanceCanvas()
@@ -37,36 +41,32 @@ namespace Containers
                 _substanceCanvasCntrl.gameObject.SetActive(false);
                 return;
             }
-            UpdateSubstanceCanvas();
+
             _substanceCanvasCntrl.gameObject.SetActive(!_substanceCanvasCntrl.gameObject.activeSelf);
-        }
-        
-        private void UpdateSubstanceCanvas()
-        {
-            if (_substanceCanvasCntrl is not null)
-            {
-                _substanceCanvasCntrl.UpdateSubstanceText(GetStringStack());
-            }
-            
         }
         
         public void UpdateDisplaySubstance()
         {
+            if (_substanceCanvasCntrl)
+            {
+                _substanceCanvasCntrl.UpdateSubstanceText(this);
+            }
+
             if (_mainSubPrefab && !_membranePrefab && !_sedimentPrefab)
             {
                 TogglePrefab(_mainSubPrefab, GetNextSubstance()?.SubstanceProperty);
                 UpdateParticleSystem(GetNextSubstance()?.SubstanceProperty);
-                UpdateSubstanceCanvas();
                 return;
             }
             TogglePrefab(_sedimentPrefab, CurrentSubstances[0]?.SubstanceProperty);
             TogglePrefab(_mainSubPrefab, CurrentSubstances[1]?.SubstanceProperty);
             TogglePrefab(_membranePrefab, CurrentSubstances[2]?.SubstanceProperty);
-            UpdateSubstanceCanvas();
+
             UpdateParticleSystem(CurrentSubstances[1]?.SubstanceProperty);
         }
-        
-        private void TogglePrefab(GameObject prefab, [CanBeNull] SubstancePropertyBase substanceParams)
+
+
+        private void TogglePrefab(GameObject prefab, SubstancePropertyBase substanceParams)
         {
             if (!prefab)
             {
@@ -78,32 +78,25 @@ namespace Containers
                 return;
             }
             prefab.SetActive(true);
-            var _lv = prefab.GetComponentInChildren<LiquidVolume>();
-            if (_lv != null)
+
+
+            if (_liquidVolume is null || _liquidVolumeMeshRenderer is null)
             {
-                _lv.liquidColor1 = substanceParams.Color;
+                prefab.GetComponentInChildren<MeshRenderer>().material.color = substanceParams.Color;
                 return;
             }
-            var _mr = prefab.GetComponentInChildren<MeshRenderer>();
-            if (_mr == null)
-            {
-                return;
-            }
-            _mr.material.color = substanceParams.Color;
+
+            _liquidVolume.liquidColor1 = substanceParams.Color;
+            _liquidVolumeMeshRenderer.material.color = substanceParams.Color;
         }
         
-        private string GetStringStack()
-        {
-            return CurrentCountSubstances == 0 ? "Вещество не определено" :
-                CurrentSubstances.Aggregate("", (current, sub) => current + (sub?.SubstanceProperty.HintName + " "));
-        }
-
         private void UpdateParticleSystem([CanBeNull] SubstancePropertyBase substanceParams)
         {
-            if (IsNull(_particleSystem))
+            if (!_particleSystem)
             {
                 return;
             }
+
             if (substanceParams is null)
             {
                 _particleSystem.SetActive(false);
@@ -111,8 +104,7 @@ namespace Containers
             }
             
             _particleSystem.SetActive(true);
-            var newMat = _particleSystem.GetComponent<Renderer>().material;
-            newMat.SetColor("_EmissionColor", substanceParams.Color);
+            _particleSystem.GetComponent<Renderer>().material.SetColor("_EmissionColor", substanceParams.Color);
         }
     }
 }

@@ -5,29 +5,32 @@ using Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Assets.Scripts.UI;
 
 namespace Machines.WeightingMachine
 {
     public class WeightingMachineCntrl : MonoBehaviour
     {
-        [SerializeField]
-        private Text _weightText;
-        [SerializeField]
-        private SnapZone _snapZone;
+        [SerializeField] private Text _weightText;
+        [SerializeField] private SnapZone _snapZone;
 
         private SignalBus _signalBus;
         
         private int _prevSubCount = -1;
         private float _currentDiscardWeight;
+
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
+
         private void Awake()
         {
             ResetValues();
         }
+
 
         private void Update()
         {
@@ -47,17 +50,19 @@ namespace Machines.WeightingMachine
 
         private void OnEnterObject()
         {
-            ChangeValues();
+            SetWeight(_snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight() - _currentDiscardWeight);
+            
             _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.WeightingMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty,
                 ContainersType = _snapZone.HeldItem.GetComponent<BaseContainer>().ContainerType
             });
+
             _prevSubCount = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().CurrentCountSubstances;
         }
 
-        public void OnClickContainerBtn()
+        public void OnClickTaraBtn()
         {
             if (_snapZone.HeldItem is null || _snapZone.HeldItem.GetComponent<BaseContainer>() is null)
             {
@@ -68,21 +73,21 @@ namespace Machines.WeightingMachine
             {
                 MachinesType = MachinesTypes.WeightingMachine
             });
+
             _currentDiscardWeight = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight();
-            _weightText.text = "0.0000g";
+            SetWeight(_snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight() - _currentDiscardWeight);
         }
         
 
         private void ResetValues()
         {
-            _weightText.text = "0.0000g";
+            SetWeight(0);
             _currentDiscardWeight = 0;
         }
 
-        private void ChangeValues()
+        private void SetWeight(float weight)
         {
-            var res = _snapZone.HeldItem.GetComponent<BaseContainer>().GetWeight()-_currentDiscardWeight;
-            _weightText.text = res.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
+            _weightText.text = weight.ToString("0.0000", CultureInfo.InvariantCulture) + "g";
         }
     }
 }

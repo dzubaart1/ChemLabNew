@@ -15,11 +15,15 @@ namespace Machines
     
         private Stack<GameObject> thrownObjects;
         private SignalBus _signalBus;
+        private AudioSource _sinkAudioSource;
 
-        public void Start()
+        public void Awake()
         {
             thrownObjects = new Stack<GameObject>();
+
+            _sinkAudioSource = GetComponent<AudioSource>();
         }
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -28,36 +32,37 @@ namespace Machines
 
         private void OnTriggerStay(Collider other)
         {
-            var gameObj = other.gameObject;
-            if (gameObj.GetComponent<BaseContainer>() is null || !gameObj.GetComponent<BaseContainer>().IsDirty || gameObj.GetComponent<Grabbable>().BeingHeld)
+            var thrownObject = other.gameObject;
+            var grabbable = other.gameObject.GetComponent<Grabbable>(); ;
+            var baseContainer = other.gameObject.GetComponent<BaseContainer>();
+
+            if (baseContainer is null || grabbable is null || !baseContainer.IsDirty || grabbable.BeingHeld)
             {
                 return;
             }
-            
-            
-            thrownObjects.Push(gameObj);
-            if (gameObj.activeSelf)
-            {
-                foreach (var particleSystem in ParticleSystems)
-                {
-                    particleSystem.Play();
-                }
-                gameObject.GetComponent<AudioSource>().Play();
-            }
-            gameObj.SetActive(false);
 
-            var startMachineWorkSignal = new MachineWorkSignal()
+            thrownObject.SetActive(false);
+            thrownObjects.Push(thrownObject);
+
+            foreach (var particleSystem in ParticleSystems)
+            {
+                particleSystem.Play();
+            }
+            _sinkAudioSource.Play();
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.SinkMachine
-            };
-            _signalBus.Fire(startMachineWorkSignal);
-            
+            });            
         }
         
         public void ReturnObject()
         {
-            if (thrownObjects.Count == 0 )
+            if (thrownObjects.Count == 0)
+            {
                 return;
+            }
+
             var removeObj = thrownObjects.Pop();
             removeObj.transform.localPosition = new Vector3(_spawnPoint.position.x,_spawnPoint.position.y,_spawnPoint.position.z);
             removeObj.SetActive(true);

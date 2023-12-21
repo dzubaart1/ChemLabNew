@@ -78,10 +78,6 @@ namespace Tasks
         
         private void CheckTransferSubstance(TransferSubstanceSignal transferSubstanceSignal)
         {
-            Debug.Log($"Transfer Enter {_taskCurrentId}");
-
-            Debug.Log("Transfer 0");
-
             foreach (var containersType in CurrentTask().ContainersType)
             {
                 if (containersType != transferSubstanceSignal.To && containersType != transferSubstanceSignal.From)
@@ -93,8 +89,6 @@ namespace Tasks
                 }
             }
             
-            Debug.Log("Transfer 1");
-
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(transferSubstanceSignal.TranserProperty))
             {
                 if(!_errorTasks.Contains(CurrentTask()))
@@ -102,8 +96,6 @@ namespace Tasks
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            
-            Debug.Log("Transfer 3");
             
             if (CurrentTask().MachinesType is not MachinesTypes.None)
             {
@@ -115,9 +107,6 @@ namespace Tasks
         
         private void CheckMachineWork(MachineWorkSignal machineWorkSignal)
         {
-            Debug.Log($"Machine Enter {_taskCurrentId}");
-            Debug.Log($"{machineWorkSignal.MachinesType} {machineWorkSignal.ContainersType} {machineWorkSignal.SubstancePropertyBase}");
-            
             if (!CurrentTask().ContainersType.Contains(machineWorkSignal.ContainersType)
                 && machineWorkSignal.ContainersType is not ContainersTypes.None)
             {
@@ -126,8 +115,8 @@ namespace Tasks
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            
-            Debug.Log("Machine 1");
+
+            Debug.Log("M1");
 
             if (!CurrentTask().MachinesType.Equals(machineWorkSignal.MachinesType)
                 && machineWorkSignal.MachinesType is not MachinesTypes.None)
@@ -137,10 +126,8 @@ namespace Tasks
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            
-            Debug.Log("Machine 2");
-            
-            Debug.Log($"{CurrentTask().ResultSubstance} {machineWorkSignal.SubstancePropertyBase}");
+
+            Debug.Log("M2");
 
             if (CurrentTask().ResultSubstance && !CurrentTask().ResultSubstance.Equals(machineWorkSignal.SubstancePropertyBase))
             {
@@ -149,8 +136,8 @@ namespace Tasks
                 _signalBus.Fire<EndGameSignal>();
                 return;
             }
-            
-            Debug.Log("Machine 3");
+
+            Debug.Log("M3");
 
             MoveToNext();
         }

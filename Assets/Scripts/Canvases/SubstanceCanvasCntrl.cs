@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Containers;
+using System.Linq;
 
 namespace Canvases
 {
     public class SubstanceCanvasCntrl : MonoBehaviour
     {
         [SerializeField] private Text _substanceText;
+
         private Transform obj1;
         private GameObject _XRrig;
         private Transform target;
@@ -29,9 +32,16 @@ namespace Canvases
             obj1.eulerAngles = new Vector3(0, obj1.eulerAngles.y, 0);
         }
         
-        public void UpdateSubstanceText(string substances)
+        public void UpdateSubstanceText(BaseContainer baseContainer)
         {
-            _substanceText.text = substances;
+            if(baseContainer.CurrentCountSubstances == 0)
+            {
+                _substanceText.text = "Вещество не определено";
+            }
+            else
+            {
+                _substanceText.text = baseContainer.CurrentSubstances.Aggregate("", (current, sub) => current + (sub?.SubstanceProperty.HintName + " "));
+            }
         }
 
     }

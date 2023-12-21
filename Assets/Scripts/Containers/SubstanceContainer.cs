@@ -20,7 +20,6 @@ namespace Containers
             CurrentSubstances[(int)substance.SubstanceProperty.SubstanceLayer] = substance;
             CurrentCountSubstances++;
             UpdateDisplaySubstance();
-            Debug.Log("Increze" + ContainerType);
         }
 
         public void RemoveSubstanceFromArray(int index)
@@ -28,7 +27,6 @@ namespace Containers
             CurrentSubstances[index] = null;
             CurrentCountSubstances--;
             UpdateDisplaySubstance();
-            Debug.Log("Decreze" + ContainerType);
         }
 
         public void ClearSubstances()
@@ -50,30 +48,46 @@ namespace Containers
 
             _substancesCntrl.AddSubstance(this, substance);
             if (ContainerType == ContainersTypes.KspectrometrContainer)
+            {
                 return true;
+            }
+
+
+            float weight = GetNextSubstance().GetWeight();
+
+
             if (ContainerType == ContainersTypes.WeightableContainer)
             {
-                if (GetNextSubstance().GetWeight() > 1)
-                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
-                else if (GetNextSubstance().GetWeight() > 0.1)
+                Vector3 scale = new Vector3(1 / MaxVolume, 1 / MaxVolume, 1 / MaxVolume);
+                if (weight > 1)
                 {
-                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume * 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f);
+                    scale = new Vector3(weight / MaxVolume, weight / MaxVolume, weight / MaxVolume);
                 }
-                else 
+                else if (weight > 0.1)
                 {
-                    _mainSubPrefab.transform.localScale = new Vector3(1 / MaxVolume, 1 / MaxVolume, 1 / MaxVolume);
+                    scale = new Vector3(weight / MaxVolume * 4f, weight / MaxVolume * 4f, weight / MaxVolume * 4f);
                 }
+
+                _mainSubPrefab.transform.localScale = scale;
+
+                return true;
+            }
+
+            if (_liquidVolume is not null)
+            {
+                var temp = weight / MaxVolume;
+                if (temp < 0.1f)
+                {
+                    temp = 0.1f;
+                }
+                _liquidVolume.level = temp;
+                _mainSubPrefab.transform.localScale = new Vector3(1, temp, 1);
             }
             else
             {
-                var _lv = _mainSubPrefab.GetComponentInChildren<LiquidVolume>();
-                if (_lv != null)
-                {
-                    _lv.level = GetNextSubstance().GetWeight() / MaxVolume;
-                    return true;
-                }
-                _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
+                _mainSubPrefab.transform.localScale = new Vector3(weight / MaxVolume, weight / MaxVolume, weight / MaxVolume);
             }
+            
             return true;
         }
 
@@ -83,9 +97,6 @@ namespace Containers
             {
                 return false;
             }
-            
-            Debug.Log($"---В {ContainerType}----");
-            PrintAllSubstances();
             
             _substancesCntrl.RemoveSubstance(this, targetVolume);
             return true;

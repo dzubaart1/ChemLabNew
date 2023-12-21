@@ -11,22 +11,22 @@ namespace Containers
     public class BaseContainer : MonoBehaviour
     {
         public Substance[] CurrentSubstances;
-        [HideInInspector] public int CurrentCountSubstances;
-
-        [Header("Base Container Params")]
         public float Weight;
         public float MaxVolume = 9000;
         public ContainersTypes ContainerType;
         public bool IsAbleToWeight;
         public bool IsDirty;
+        public int CurrentCountSubstances;
 
         [SerializeField] protected List<BaseCup> _cupsList;
         [SerializeField] protected SnapZone _snapZone;
+
         protected const int MAX_LAYOURS_COUNT = 3;
         
         public void Awake()
         {
             CurrentSubstances = new Substance[MAX_LAYOURS_COUNT];
+
             if (_cupsList.Count == 0)
             {
                 return;
@@ -53,19 +53,6 @@ namespace Containers
             }
 
             return sumWeight + Weight;
-        }
-        
-        public static bool IsNull<T>(T myObject, string message = "") where T : class
-        {
-            switch (myObject)
-            {
-                case Object obj when !obj:
-                    return true;
-                case null:
-                    return true;
-                default:
-                    return false;
-            }
         }
         
         [CanBeNull]

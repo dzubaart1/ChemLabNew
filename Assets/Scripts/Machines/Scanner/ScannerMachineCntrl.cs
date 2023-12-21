@@ -10,10 +10,10 @@ namespace Machines
     {
         [SerializeField] private GameObject _scannerCanvas;
         [SerializeField] private SnapZone _snapZone;
+
         private SignalBus _signalBus;
-        public bool _isEnter;
-        private bool _isStart;
-        public bool _buttonIsOn;
+        private bool _isEnter;
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -37,46 +37,50 @@ namespace Machines
         }
         public void OnEnterObject()
         {
-            MachineWorkSignal enterIntoMachineSignal = new MachineWorkSignal()
+            _isEnter = true;
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetNextSubstance().SubstanceProperty,
                 MachinesType = MachinesTypes.ScannerMachine
-            };
-            _signalBus.Fire(enterIntoMachineSignal);
-            _isEnter = true;
+            });
         }
         
         public void OnStartWork()
         {
-            if (!_buttonIsOn || _snapZone.HeldItem is null)
+            if (!_isEnter)
             {
                 return;
             }
-            MachineWorkSignal startMachineWorkSignal = new MachineWorkSignal()
+
+            ShowResultCanvas();
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine
-            }; 
-            _signalBus.Fire(startMachineWorkSignal);
-            
-            if (!_isEnter ||
-                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>() is null ||
-                _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().ContainerType != ContainersTypes.PetriContainer)
-                return;
-            _scannerCanvas.SetActive(true);
+            });
         }
         public void OnFinishWork()
         {
-            MachineWorkSignal finishMashineWorkSignal = new MachineWorkSignal()
+            HideResultCanvas();
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.ScannerMachine,
                 SubstancePropertyBase = _snapZone.HeldItem?.gameObject.GetComponent<MixContainer>().GetNextSubstance().SubstanceProperty
-            };
-            _signalBus.Fire(finishMashineWorkSignal);
-            _scannerCanvas.SetActive(false);
+            });
         }
 
-        
+        public void ShowResultCanvas()
+        {
+            _scannerCanvas.SetActive(true);
+        }
+
+        public void HideResultCanvas()
+        {
+            _scannerCanvas.SetActive(false);
+        }
     }
 }
 

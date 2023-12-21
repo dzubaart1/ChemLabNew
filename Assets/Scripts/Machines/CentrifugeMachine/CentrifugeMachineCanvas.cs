@@ -2,23 +2,30 @@ using Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Assets.Scripts.UI;
 
 namespace Machines.CentrifugeMachine
 {
     public class CentrifugeMachineCanvas : MonoBehaviour
     {
         [SerializeField] private CentrifugeMachineCntrl _centrifugeMachineCntrl;
-        [SerializeField] private GameObject _startBtn;
-        [SerializeField] private GameObject _powerBtn;
-        [SerializeField] private Sprite _onPowerBtnSprite;
-        [SerializeField] private Sprite _offPowerBtnSprite;
-        [SerializeField] private Sprite _onStartBtnSprite;
-        [SerializeField] private Sprite _offStartBtnSprite;
-
-        private bool _isStart, _isPower;
+        [SerializeField] private UIButton _startBtn;
+        [SerializeField] private UIButton _powerBtn;
 
         private SignalBus _signalBus;
-        
+
+        private void Awake()
+        {
+            _startBtn.ClickBtnEvent += OnClickBtns;
+            _powerBtn.ClickBtnEvent += OnClickBtns;
+        }
+
+        private void OnDestroy()
+        {
+            _startBtn.ClickBtnEvent -= OnClickBtns;
+            _powerBtn.ClickBtnEvent -= OnClickBtns;
+        }
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -26,53 +33,26 @@ namespace Machines.CentrifugeMachine
             _signalBus.Subscribe<LoadSignal>(OnLoadScene);
         }
         
-        private void OnLoadScene()
-        {
-            if (_startBtn.GetComponent<Image>().sprite == _onStartBtnSprite)
-            {
-                _isStart = true;
-            }
-            else
-            {
-                _isStart = false;
-            }
-
-            if (_powerBtn.GetComponent<Image>().sprite == _onPowerBtnSprite)
-            {
-                _isPower = true;
-            }
-            else
-            {
-                _isPower = false;
-            }
-        }
-        
-        public void OnClickPowerBtn()
-        {
-            _isPower = !_isPower;
-            
-            _powerBtn.GetComponent<Image>().sprite = _isPower ? _onPowerBtnSprite : _offPowerBtnSprite;
-            OnClickBtns();
-        }
-        
-        public void OnClickStartBtn()
-        {
-            _isStart = !_isStart;
-            _startBtn.GetComponent<Image>().sprite = _isStart ? _onStartBtnSprite : _offStartBtnSprite;
-            OnClickBtns();
-        }
-
         private void OnClickBtns()
         {
-            if (_isStart && _isPower)
+            if (_startBtn.State && _powerBtn.State)
             {
                 _centrifugeMachineCntrl.OnStartWork();
+                return;
+            }
+            
+            _centrifugeMachineCntrl.OnFinishWork();
+        }
+
+        private void OnLoadScene()
+        {
+            if (_startBtn.State && _powerBtn.State)
+            {
+                _centrifugeMachineCntrl.StartAnimation();
+                return;
             }
 
-            if (!_isStart && !_isPower)
-            {
-                _centrifugeMachineCntrl.OnFinishWork();
-            }
+            _centrifugeMachineCntrl.StopAnimation();
         }
     }
 }

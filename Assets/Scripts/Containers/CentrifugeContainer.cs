@@ -5,7 +5,7 @@ namespace Containers
     public class CentrifugeContainer : TransferSubstanceContainer
     {
         [SerializeField] private GameObject _pipetkaCanvas;
-        private bool _isOpen;
+        private bool _isOpen = false;
         private const string OPENCUPANIMNAME = "Armature_001|ArmatureAction_001";
         private const string CLOSECUPANIMNAME = "Armature_001|ArmatureAction_002";
         

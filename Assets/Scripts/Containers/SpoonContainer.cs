@@ -12,24 +12,23 @@ namespace Containers
                 return false;
             }
             
-            Debug.Log($"---В {ContainerType}----");
-            PrintAllSubstances();
-            
-            Debug.Log(substance.GetWeight());   
             _substancesCntrl.AddSubstance(this, substance);
 
-            if (ContainerType != ContainersTypes.TweezersContainer && ContainerType != ContainersTypes.MagicSpatulaContainer && ContainerType != ContainersTypes.SpatulaContainer)
+            float weight = GetWeight();
+
+            if(ContainerType == ContainersTypes.SpoonContainer)
             {
-                if (GetNextSubstance().GetWeight() > 1)
-                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume, GetNextSubstance().GetWeight() / MaxVolume);
-                else if (GetNextSubstance().GetWeight() > 0.1)
+                Vector3 scale = new Vector3(1 / MaxVolume, 1 / MaxVolume, 1 / MaxVolume);
+                if (weight > 1)
                 {
-                    _mainSubPrefab.transform.localScale = new Vector3(GetNextSubstance().GetWeight() / MaxVolume * 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f, GetNextSubstance().GetWeight() / MaxVolume* 4f);
+                    scale = new Vector3(weight / MaxVolume, weight / MaxVolume, weight / MaxVolume);
                 }
-                else 
+                else if (weight > 0.1)
                 {
-                    _mainSubPrefab.transform.localScale = new Vector3(1 / MaxVolume, 1 / MaxVolume, 1 / MaxVolume);
+                    scale = new Vector3(weight / MaxVolume * 4f, weight / MaxVolume * 4f, weight / MaxVolume * 4f);
                 }
+
+                _mainSubPrefab.transform.localScale = scale;
             }
             return true;
         }

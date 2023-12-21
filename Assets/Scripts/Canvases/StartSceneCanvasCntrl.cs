@@ -12,10 +12,7 @@ namespace Canvases
         [SerializeField] private List<GameObject> _panels;
         [SerializeField] private List<ParticleSystem> _teleportParticleSystems;
         
-        [SerializeField] private String _sceneName;
-        
         private int _rulesCount;
-        
         
         public void OnStartBtnClick()
         {
@@ -24,7 +21,6 @@ namespace Canvases
 
         public void OnNextBtnClick()
         {
-            Debug.Log("here");
             _panels[_rulesCount].SetActive(false);
             _rulesCount++;
             _panels[_rulesCount].SetActive(true);
@@ -39,8 +35,8 @@ namespace Canvases
 
         private IEnumerator LoadSceneAnimation()
         {
-            var operation = SceneManager.LoadSceneAsync(_sceneName);
-            
+            var operation = SceneManager.LoadSceneAsync(1);
+
             foreach (var particleSystem in _teleportParticleSystems)
             {
                 particleSystem.Play();

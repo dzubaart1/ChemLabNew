@@ -9,6 +9,7 @@ using Substances;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Assets.Scripts.UI;
 
 namespace Data
 {
@@ -180,11 +181,13 @@ namespace Data
 
         private void LoadUIBtns()
         {
-            foreach (var t in _uiBtnsObjects)
+            foreach (var btn in _uiBtnsObjects)
             {
-                if (_savedSceneState.UIBtnStates.TryGetValue(t, out var value))
+                var uiBitton = btn.GetComponent<UIButton>();
+
+                if (uiBitton is not null)
                 {
-                    t.GetComponent<Image>().sprite = value.Sprite;
+                    uiBitton.LoadState(_savedSceneState.UIBtnStates[btn].State);
                 }
             }
         }
@@ -250,9 +253,11 @@ namespace Data
             _savedSceneState.UIBtnStates.Clear();
             foreach (var btn in _uiBtnsObjects)
             {
-                if (btn.GetComponent<Image>() is not null)
+                var uiBitton = btn.GetComponent<UIButton>();
+
+                if (uiBitton is not null)
                 {
-                    _savedSceneState.UIBtnStates.Add(btn, GetUIBtnStateType(btn));
+                    _savedSceneState.UIBtnStates.Add(btn, GetUIBtnStateType(uiBitton));
                 }
             }
         }
@@ -295,9 +300,9 @@ namespace Data
             return substanceState;
         }
 
-        private UIBtnState GetUIBtnStateType(GameObject obj)
+        private UIBtnState GetUIBtnStateType(UIButton uIButton)
         {
-            return new UIBtnState{Sprite = obj.GetComponent<Image>().sprite};
+            return new UIBtnState{State = uIButton.State};
         }
     }
     
@@ -343,6 +348,6 @@ namespace Data
 
     public struct UIBtnState
     {
-        public Sprite Sprite;
+        public bool State;
     }
 }

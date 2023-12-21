@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using BNG;
-using Containers;
 using Installers;
 using UnityEngine;
 using Zenject;
@@ -38,28 +37,28 @@ namespace Machines
             gameObject.GetComponent<AudioSource>().Play();
 
             var _teleportedGameObject = _snapZone.HeldItem.gameObject;
-            
             _teleportedGameObject.SetActive(false);
+
             _snapZone.HeldItem = null;
-            var startMachineWorkSignal = new MachineWorkSignal()
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = _teleportType,
-            };
-            _signalBus.Fire(startMachineWorkSignal);
+            });
         }
 
         public void OnReturnBtnClick()
         {
             Instantiate(_docPrefab, _snapZone.transform.position, Quaternion.identity);
+
             foreach (var particleSystem in ParticleSystems)
             {
                 particleSystem.Play();
             }
-            var startMachineWorkSignal = new MachineWorkSignal()
+            
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = _teleportType
-            };
-            _signalBus.Fire(startMachineWorkSignal);
+            });
         }
 
         private void OnTaskChanged(CheckTasksSignal signal)

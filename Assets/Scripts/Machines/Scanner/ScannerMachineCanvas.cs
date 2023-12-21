@@ -1,36 +1,70 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.Scripts.UI;
+using Zenject;
+using Installers;
 
 namespace Machines
 {
     
     public class ScannerMachineCanvas : MonoBehaviour
     {
-        public bool _buttonIsOn = false;
-        [SerializeField] private Image _img;
+        [SerializeField] private UIButton _scannerBtn;
         [SerializeField] ScannerMachineCntrl _scannerMachineCntrl;
-        
-        public void clickButton()
+
+        private SignalBus _signalBus;
+
+        private void Awake()
         {
-            _buttonIsOn = !_buttonIsOn;
-            if (_buttonIsOn)
+            _scannerBtn.ClickBtnEvent += OnClickScannerBtn;
+        }
+
+        private void OnDestroy()
+        {
+            _scannerBtn.ClickBtnEvent -= OnClickScannerBtn;
+        }
+
+        [Inject]
+        public void Construct(SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+            _signalBus.Subscribe<LoadSignal>(OnLoadScene);
+        }
+
+        public void OnClickScannerBtn()
+        {
+            if (!_scannerBtn.State)
             {
-                gameObject.GetComponent<Animator>().Play("ButtonOn");
-                _img.color = new Color(76, 255, 0, 0.8f);
-                _scannerMachineCntrl._buttonIsOn = true;
+                StopAnimation();
+                _scannerMachineCntrl.OnFinishWork();
             }
             else
             {
-                gameObject.GetComponent<Animator>().Play("ButtonOff");
-                _img.color = new Color(255, 103, 132, 0.6f);
-                TryStop();
+                StartAnimation();
             }
-
         }
-        public void TryStop()
+
+        private void StartAnimation()
         {
-            _buttonIsOn = false;
-            _scannerMachineCntrl.OnFinishWork();
+            gameObject.GetComponent<Animator>().Play("ButtonOn");
+        }
+
+        private void StopAnimation()
+        {
+            gameObject.GetComponent<Animator>().Play("ButtonOff");
+            _scannerMachineCntrl.HideResultCanvas();
+        }
+
+        private void OnLoadScene()
+        {
+            if (!_scannerBtn.State)
+            {
+                StopAnimation();
+            }
+            else
+            {
+                StartAnimation();
+            }
         }
     }
 }

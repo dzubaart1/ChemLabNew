@@ -2,22 +2,31 @@ using Installers;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
+using Assets.Scripts.UI;
 
 namespace Machines
 {
     public class StirringMachineCanvas : MonoBehaviour
     {
-        [SerializeField] private Image _heatingButtonImage, _stirringButtonImage;
-        [SerializeField] private Sprite _onSprite, _offSprite;
         [SerializeField] private StirringMachineCntrl _heatMachineCntrl;
-
-        public bool _isHeating;
-        public bool _isStirring;
-
-        private bool _isStart;
+        [SerializeField] private UIButton _stirringBtn;
+        [SerializeField] private UIButton _heatingBtn;
         
         private SignalBus _signalBus;
-        
+        private bool _isStart;
+
+        private void Awake()
+        {
+            _heatingBtn.ClickBtnEvent += OnClickBtns;
+            _stirringBtn.ClickBtnEvent += OnClickBtns;
+        }
+
+        private void OnDestroy()
+        {
+            _heatingBtn.ClickBtnEvent -= OnClickBtns;
+            _stirringBtn.ClickBtnEvent -= OnClickBtns;
+        }
+
         [Inject]
         public void Construct(SignalBus signalBus)
         {
@@ -25,94 +34,33 @@ namespace Machines
             
             _signalBus.Subscribe<LoadSignal>(OnLoadSignal);
         }
-        
-        public void ClickHeatingBtn()
+
+        private void OnClickBtns()
         {
-            _isHeating = !_isHeating;
-            if (_isHeating)
+            if(_heatingBtn.State && _stirringBtn.State)
             {
-                TryStart();
-            }
-            else
-            {
-                TryStop();
-            }
-
-            ChangeSpriteByUIBtnState(_heatingButtonImage, _isHeating);
-        }
-        public void ClickStirringBtn()
-        {
-            _isStirring = !_isStirring;
-            if (_isStirring)
-            {
-                TryStart();
-            }
-            else
-            {
-                TryStop();
-            }
-
-            ChangeSpriteByUIBtnState(_stirringButtonImage, _isStirring);
-        }
-
-        private void OnLoadSignal()
-        {
-            if (_heatingButtonImage.sprite == _onSprite)
-            {
-                _isHeating = true;
-            }
-            else
-            {
-                _isHeating = false;
-            }
-
-            if (_stirringButtonImage.sprite == _onSprite)
-            {
-                _isStirring = true;
-            }
-            else
-            {
-                _isStirring = false;
-            }
-
-            if (_isHeating && _isStirring)
-            {
+                _heatMachineCntrl.StartWork();
                 _isStart = true;
+                return;
             }
-            else
+            if (_isStart)
             {
+                _heatMachineCntrl.FinishWork();
                 _isStart = false;
             }
         }
 
-        private void ChangeSpriteByUIBtnState(Image image, bool state)
+        private void OnLoadSignal()
         {
-            if (state)
+            if (_heatingBtn.State && _stirringBtn.State)
             {
-                image.sprite = _onSprite;
+                _heatMachineCntrl.StartStirringAnimation();
+                _isStart = true;
+                return;
             }
-            else
-            {
-                image.sprite = _offSprite;
-            }
-        }
 
-        private void TryStart()
-        {
-            if (_isHeating && _isStirring)
-            {
-                Debug.Log("Start Canvas");
-                _heatMachineCntrl.OnStartWork();
-            }
-        }
-        
-        private void TryStop()
-        {
-            if (!_isHeating && !_isStirring)
-            {
-                Debug.Log("Stop Canvas");
-                _heatMachineCntrl.OnFinishWork();
-            }
+            _heatMachineCntrl.StopStirringAnimation();
+            _isStart = false;
         }
     }
 }

@@ -8,20 +8,24 @@ namespace Machines
 {
     public class PaperTrayMachine : MonoBehaviour
     {
-        private SignalBus _signalBus;
         [SerializeField] private List<ParticleSystem> ParticleSystems;
+        
+        private SignalBus _signalBus;
         
         [Inject]
         public void Construct(SignalBus signalBus)
         {
             _signalBus = signalBus;
         }
+
+
         private void OnTriggerStay(Collider other)
         {
             if (!other.transform.tag.Equals("Document") || other.gameObject.GetComponent<Grabbable>().BeingHeld)
             {
                 return;
             }
+
             other.gameObject.SetActive(false);
             
             foreach (var particleSystem in ParticleSystems)
@@ -30,11 +34,10 @@ namespace Machines
             }
             gameObject.GetComponent<AudioSource>().Play();
             
-            var startMachineWorkSignal = new MachineWorkSignal()
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.PaperTray
-            };
-            _signalBus.Fire(startMachineWorkSignal);
+            });
         }
     }
 }

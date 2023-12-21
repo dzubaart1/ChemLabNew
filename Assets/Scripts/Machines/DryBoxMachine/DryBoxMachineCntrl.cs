@@ -3,7 +3,7 @@ using Containers;
 using Installers;
 using Substances;
 using UnityEngine;
-using UnityEngine.UI;
+using Assets.Scripts.UI;
 using Zenject;
 
 namespace Machines.DryBoxMachine
@@ -11,8 +11,9 @@ namespace Machines.DryBoxMachine
     public class DryBoxMachineCntrl : MonoBehaviour
     {
         [SerializeField] private SnapZone _snapZone;
-        [SerializeField] private Image _startBtnImage;
-        [SerializeField] private Sprite _onSprite, _offSprite;
+
+        [SerializeField] private UIButton _startBtn;
+
         private bool _isEnter, _isStart;
 
         private SubstancesCntrl _substancesCntrl;
@@ -23,7 +24,17 @@ namespace Machines.DryBoxMachine
             _signalBus = signalBus;
             _substancesCntrl = substancesCntrl;
         }
-        
+
+        private void Awake()
+        {
+            _startBtn.ClickBtnEvent += OnClickStartBtn;
+        }
+
+        private void OnDestroy()
+        {
+            _startBtn.ClickBtnEvent -= OnClickStartBtn;
+        }
+
         private void Update()
         {
             if (_snapZone.HeldItem is null ||
@@ -45,29 +56,22 @@ namespace Machines.DryBoxMachine
             _isEnter = true;
             _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject?.GetComponent<MixContainer>().GetNextSubstance()?.SubstanceProperty});
         }
-        
-        public void OnToggleWork()
+
+        private void OnClickStartBtn()
         {
-            _isStart = !_isStart;
-            
-            if (_isStart)
+            if(_startBtn.State)
             {
-                _startBtnImage.sprite = _onSprite;
-                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject?.GetComponent<MixContainer>().GetNextSubstance()?.SubstanceProperty});
+                _signalBus.Fire(new MachineWorkSignal(){ MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = _snapZone.HeldItem?.gameObject?.GetComponent<MixContainer>().GetNextSubstance()?.SubstanceProperty });
+                return;
             }
-            else
+
+            var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
+            var res = _substancesCntrl.DrySubstance(temp);
+            if (!res)
             {
-                _startBtnImage.sprite = _offSprite;
-                
-                var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
-                var res = _substancesCntrl.DrySubstance(temp);
-                if (!res)
-                {
-                    _substancesCntrl.SplitSubstances(temp);
-                }
-                
-                _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance()?.SubstanceProperty});
+                _substancesCntrl.SplitSubstances(temp);
             }
+            _signalBus.Fire(new MachineWorkSignal() { MachinesType = MachinesTypes.DryBoxMachine, SubstancePropertyBase = temp.GetNextSubstance()?.SubstanceProperty });
         }
     }
 }

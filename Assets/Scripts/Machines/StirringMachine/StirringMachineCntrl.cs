@@ -11,6 +11,7 @@ namespace Machines
     public class StirringMachineCntrl : MonoBehaviour, IMachine
     {
         [SerializeField] private SnapZone _snapZone;
+
         private bool _isEnter;
         private bool _isStart;
 
@@ -43,72 +44,80 @@ namespace Machines
 
         public void OnEnterObject()
         {
-            var enterIntoMachineSignal = new MachineWorkSignal()
+            _isEnter = true;
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 ContainersType = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().ContainerType,
                 MachinesType = MachinesTypes.StirringMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<BaseContainer>().GetNextSubstance()?.SubstanceProperty
-            };
-            _signalBus.Fire(enterIntoMachineSignal);
-            _isEnter = true;
+            });
         }
         
-        public void OnStartWork()
+        public void StartWork()
         {
             if (!_isEnter || _isStart)
             {
-                var errorMachineWorkSignal = new MachineWorkSignal()
-                {
-                    MachinesType = MachinesTypes.StirringMachine,
-                };
-                _signalBus.Fire(errorMachineWorkSignal);
+                _signalBus.Fire(new EndGameSignal());
                 return;
             }
+
             StartStirringAnimation();
             
             _isStart = true;
-
             _snapZone.CanRemoveItem = false;
-            var startMachineWorkSignal = new MachineWorkSignal()
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty
-            };
-            _signalBus.Fire(startMachineWorkSignal);
-            
-            var temp = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>();
-            _substancesCntrl.StirSubstance(temp);
-
+            });
         }
-        public void OnFinishWork()
+
+        public void FinishWork()
         {
             if (!_isStart)
             {
+                _signalBus.Fire(new EndGameSignal());
                 return;
             }
+
             StopStirringAnimation();
             
             _isStart = false;
-
             _snapZone.CanRemoveItem = true;
-            var finishMashineWorkSignal = new MachineWorkSignal()
+
+            _substancesCntrl.StirSubstance(_snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>());
+
+            _signalBus.Fire(new MachineWorkSignal()
             {
                 MachinesType = MachinesTypes.StirringMachine,
                 SubstancePropertyBase = _snapZone.HeldItem.gameObject.GetComponent<SubstanceContainer>().GetNextSubstance().SubstanceProperty
-            };
-            _signalBus.Fire(finishMashineWorkSignal);
+            });
         }
 
-        private void StartStirringAnimation()
+        public void StartStirringAnimation()
         {
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.StartAnimate();
+            _isStart = true;
+
             gameObject.GetComponent<AudioSource>().Play();
+            if (_snapZone.HeldItem is null)
+            {
+                return;
+            }
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.StartAnimate();
         }
         
-        private void StopStirringAnimation()
+        public void StopStirringAnimation()
         {
-            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.FinishAnimate();
+            _isStart = false;
+
             gameObject.GetComponent<AudioSource>().Stop();
+            if (_snapZone.HeldItem is null)
+            {
+                return;
+            }
+            _snapZone.HeldItem.gameObject.GetComponent<MixContainer>().AnchorCntrl.FinishAnimate();
         }
     }
 }
