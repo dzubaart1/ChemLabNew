@@ -2232,7 +2232,7 @@ namespace LiquidVolumeFX {
                 scatteringPower = 0;
                 scatteringAmount = 0;
             }
-            liqMat.SetVector(ShaderParams.GlossinessInt, new Vector4(_flaskGlossinessInternal * 96f + 1f, Mathf.Pow(2, scatteringPower), scatteringAmount, 0));
+            //liqMat.SetVector(ShaderParams.GlossinessInt, new Vector4(_flaskGlossinessInternal * 96f + 1f, Mathf.Pow(2, scatteringPower), scatteringAmount, 0));
             liqMat.SetFloat(ShaderParams.DoubleSidedBias, _doubleSidedBias);
             liqMat.SetFloat(ShaderParams.BackDepthBias, -_backDepthBias);
 

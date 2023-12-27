@@ -32,6 +32,12 @@ namespace Containers
             {
                 temp = 0.3f;
             }
+            if (ContainerType == ContainersTypes.PetriContainer) 
+            {
+                return true;
+            }
+            _liquidVolume.enabled = false;
+            _liquidVolume.enabled = true;
             _liquidVolume.level = temp;
             _mainSubPrefab.transform.localScale = new Vector3(1, temp, 1);
 

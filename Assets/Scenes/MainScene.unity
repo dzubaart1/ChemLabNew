@@ -56381,6 +56381,105 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1617125051}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &1619212238
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LiquidVolumeDefaultNoFlask(Clone)
+  m_Shader: {fileID: 4800000, guid: 045a60f5db3314d55b5609a847d062a8, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - LIQUID_VOLUME_CYLINDER
+  m_InvalidKeywords:
+  - 
+  - 
+  - 
+  - 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise2Tex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 11700000, guid: 41974beaaddc547889b39d0022cb1d07, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex2D:
+        m_Texture: {fileID: 2800000, guid: 2e25f51e1f31e4da8bdac5d08b0f578f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Alpha: 1
+    - _AlphaCombined: 0.72156864
+    - _BasePos: -1
+    - _CullMode: 2
+    - _DeepAtten: 2
+    - _DoubleSidedBias: 0.001
+    - _FlaskBlurIntensity: 0.75
+    - _FlaskThickness: 0.05
+    - _FoamBottom: 1
+    - _FoamDensity: -0.32
+    - _FoamMaxPos: 0.36095178
+    - _FoamRaySteps: 7
+    - _FoamTurbulence: 1
+    - _FoamWeight: 10
+    - _Glossiness: 0.767
+    - _GlossinessInt: 0.5
+    - _Level: 1
+    - _LevelPos: 0.59892064
+    - _LiquidRaySteps: 10
+    - _LowerLimit: -0.17440432
+    - _Metallic: 0
+    - _Muddy: 1
+    - _Radius: 0.5
+    - _SmokeAtten: 2
+    - _SmokeHeightAtten: 2.55
+    - _SmokeRaySteps: 1
+    - _SmokeSpeed: 5
+    - _Sparkling: 1
+    - _SparklingIntensity: 25
+    - _SparklingThreshold: 0.949
+    - _Topology: 0
+    - _Turbulence: 1
+    - _Turbulence2: 1
+    - _TurbulenceSpeed: 1
+    - _UpperLimit: 0.17440432
+    - _ZTestMode: 4
+    m_Colors:
+    - _Bounds: {r: 1, g: 1, b: 1, a: 1}
+    - _Center: {r: -6.2879, g: 0.48651004, b: 3.9847, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1: {r: 0, g: 0.7074084, b: 1, a: 0.09019608}
+    - _Color2: {r: 1, g: 1, b: 1, a: 0.09019608}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _FlaskColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FlaskThickness: {r: 0.97, g: 0.96999997, b: 0.96999997, a: 0}
+    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.65}
+    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Scale: {r: 2.0458875, g: 0.79380435, b: 5.2374716, a: 33.14338}
+    - _Size: {r: 0.24926509, g: 0.24532872, b: 0.031200001, a: 0.015132019}
+    - _SmokeColor: {r: 0.7, g: 0.7, b: 0.7, a: 0}
+    - _Turbulence: {r: 0.3, g: 0, b: 9.424778, a: 3.1415927}
+    - _ViewDir: {r: 0, g: 0, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1620972633
 GameObject:
   m_ObjectHideFlags: 0
@@ -66789,7 +66888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DoorType: 2
-  _scannerMachineCntrl: {fileID: 0}
+  _scannerMachineCntrl: {fileID: 4405199145264893931}
   DoorIsOpen: 0
   angle: 0
   _addAngle: 0
@@ -68976,105 +69075,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!21 &2132174201
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: LiquidVolumeDefaultNoFlask(Clone)
-  m_Shader: {fileID: 4800000, guid: 045a60f5db3314d55b5609a847d062a8, type: 3}
-  m_Parent: {fileID: 0}
-  m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - LIQUID_VOLUME_CYLINDER
-  m_InvalidKeywords:
-  - 
-  - 
-  - 
-  - 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_LockedProperties: 
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Noise2Tex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 11700000, guid: 41974beaaddc547889b39d0022cb1d07, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex2D:
-        m_Texture: {fileID: 2800000, guid: 2e25f51e1f31e4da8bdac5d08b0f578f, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats:
-    - _Alpha: 1
-    - _AlphaCombined: 0.72156864
-    - _BasePos: -1
-    - _CullMode: 2
-    - _DeepAtten: 2
-    - _DoubleSidedBias: 0.001
-    - _FlaskBlurIntensity: 0.75
-    - _FlaskThickness: 0.05
-    - _FoamBottom: 1
-    - _FoamDensity: -0.32
-    - _FoamMaxPos: 0.36294687
-    - _FoamRaySteps: 7
-    - _FoamTurbulence: 1
-    - _FoamWeight: 10
-    - _Glossiness: 0.767
-    - _GlossinessInt: 0.5
-    - _Level: 1
-    - _LevelPos: 0.59978795
-    - _LiquidRaySteps: 10
-    - _LowerLimit: -0.17440432
-    - _Metallic: 0
-    - _Muddy: 1
-    - _Radius: 0.5
-    - _SmokeAtten: 2
-    - _SmokeHeightAtten: 2.55
-    - _SmokeRaySteps: 5
-    - _SmokeSpeed: 5
-    - _Sparkling: 1
-    - _SparklingIntensity: 25
-    - _SparklingThreshold: 0.949
-    - _Topology: 0
-    - _Turbulence: 1
-    - _Turbulence2: 1
-    - _TurbulenceSpeed: 1
-    - _UpperLimit: 0.17440432
-    - _ZTestMode: 4
-    m_Colors:
-    - _Bounds: {r: 1, g: 1, b: 1, a: 1}
-    - _Center: {r: -6.2879, g: 0.48791003, b: 3.9847, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color1: {r: 0, g: 0.7074084, b: 1, a: 0.09019608}
-    - _Color2: {r: 1, g: 1, b: 1, a: 0.09019608}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
-    - _FlaskColor: {r: 1, g: 1, b: 1, a: 0}
-    - _FlaskThickness: {r: 0.97, g: 0.96999997, b: 0.96999997, a: 0}
-    - _FoamColor: {r: 1, g: 1, b: 1, a: 0.65}
-    - _LightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Scale: {r: 2.0556672, g: 0.7975989, b: 5.262508, a: 33.30181}
-    - _Size: {r: 0.24812086, g: 0.24416603, b: 0.031200001, a: 0.015132019}
-    - _SmokeColor: {r: 0.7, g: 0.7, b: 0.7, a: 0.25}
-    - _Turbulence: {r: 0.3, g: 0, b: 9.424778, a: 3.1415927}
-    - _ViewDir: {r: 0, g: 0, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &2134471882
 GameObject:
   m_ObjectHideFlags: 0
@@ -71011,7 +71011,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weightText: {fileID: 778206571}
-  _taraBtn: {fileID: 0}
   _snapZone: {fileID: 1726921542}
 --- !u!114 &1428201519690434944
 MonoBehaviour:
@@ -73447,6 +73446,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 74958940030583186, guid: a66e6fb09cd84384fae3847a1cb11c4c,
         type: 3}
+      propertyPath: _alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74958940030583186, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: _level
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 74958940030583186, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
       propertyPath: _smokeEnabled
       value: 0
       objectReference: {fileID: 0}
@@ -73505,13 +73514,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeasuringCyllinder
       objectReference: {fileID: 0}
+    - target: {fileID: 2646711302226116103, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2657312076806374437, guid: a66e6fb09cd84384fae3847a1cb11c4c,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2132174201}
+      objectReference: {fileID: 1619212238}
+    - target: {fileID: 7097840652016876901, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0304
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795629892091847306, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.055
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795629892091847306, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939429535714336549, guid: a66e6fb09cd84384fae3847a1cb11c4c,
+        type: 3}
+      propertyPath: MaxVolume
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7679200332688259816, guid: a66e6fb09cd84384fae3847a1cb11c4c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a66e6fb09cd84384fae3847a1cb11c4c, type: 3}
@@ -74291,6 +74326,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 1acde42e69530b648950f89af5b01c06,
         type: 3}
+    - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: _docPrefab
+      value: 
+      objectReference: {fileID: 6023090812924606075, guid: bbfaab8341188784f8eb8ab86a5096a7,
+        type: 3}
+    - target: {fileID: 3631087789419195184, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: _teleportType
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3631087789419195187, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: m_RootOrder
@@ -74351,18 +74397,84 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeleportCellResearchLab
       objectReference: {fileID: 0}
+    - target: {fileID: 3631087789419195198, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: OnlyAllowNames.Array.data[0]
+      value: ExpTabletBody
+      objectReference: {fileID: 0}
+    - target: {fileID: 3631087790443033531, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: m_Text
+      value: "\u043B\u0430\u0431\u043E\u0440\u0430\u0442\u043E\u0440\u0438\u044F\n\u043A\u043B\u0435\u0442\u043E\u0447\u043D\u044B\u0445
+        \u0438\u0441\u0441\u043B\u0435\u0434\u043E\u0432\u0430\u043D\u0438\u0439"
+      objectReference: {fileID: 0}
     - target: {fileID: 3631087790443033531, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 1acde42e69530b648950f89af5b01c06,
         type: 3}
+    - target: {fileID: 6590006913484015281, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590006913484015281, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.31474957
+      objectReference: {fileID: 0}
+    - target: {fileID: 6590006913484015281, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552978338866039745, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.53459114
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552978338866039745, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.76729834
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552978338866039745, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8714917442642090219, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 1acde42e69530b648950f89af5b01c06,
         type: 3}
+    - target: {fileID: 8751812319146006227, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.100272894
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751812319146006227, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.14399697
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751812319146006227, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.49056602
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913779578107588931, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.79565567
+      objectReference: {fileID: 0}
+    - target: {fileID: 8913779578107588931, guid: c6fce193735aace4b8e5194f26729b3c,
+        type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8942116926419390339, guid: c6fce193735aace4b8e5194f26729b3c,
         type: 3}
       propertyPath: m_Volume
@@ -82238,6 +82350,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2668617336617508937, guid: 35f14ee1098330740b5b9f88f745ef48,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f92c05f7e9de84044b84f926ccb57f0a, type: 2}
     - target: {fileID: 3429748069764138211, guid: 35f14ee1098330740b5b9f88f745ef48,
         type: 3}
       propertyPath: m_Name

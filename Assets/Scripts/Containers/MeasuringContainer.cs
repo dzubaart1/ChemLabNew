@@ -15,9 +15,12 @@ namespace Containers
             _substancesCntrl.AddSubstance(this,substance);
 
             float weight = GetWeight();
-
-            _liquidVolume.level = weight / MaxVolume;
-            _mainSubPrefab.transform.localScale = new Vector3(1, weight / MaxVolume, 1);
+            float temp = (float)weight / MaxVolume;
+            _liquidVolume.enabled = false;
+            _liquidVolume.enabled = true;
+            _liquidVolume.level = temp;
+            Debug.Log(weight + " " + MaxVolume + " " + temp);
+            //_mainSubPrefab.transform.localScale = new Vector3(1, weight / MaxVolume, 1);
             return true;
         }
     }
