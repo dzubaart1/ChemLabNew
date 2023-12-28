@@ -47,6 +47,8 @@ namespace Containers
         
         public void UpdateDisplaySubstance()
         {
+            _liquidVolume.Redraw();
+
             if (_substanceCanvasCntrl)
             {
                 _substanceCanvasCntrl.UpdateSubstanceText(this);
