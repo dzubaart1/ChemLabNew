@@ -35,9 +35,13 @@ namespace Machines.CentrifugeMachine
         
         private void OnClickBtns()
         {
-            if (_startBtn.State && _powerBtn.State)
+            if (_powerBtn.State)
             {
-                _centrifugeMachineCntrl.OnStartWork();
+                if (_startBtn.State)
+                {
+                    _centrifugeMachineCntrl.OnStartWork();
+                    return;
+                }
                 return;
             }
             

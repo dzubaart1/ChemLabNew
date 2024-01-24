@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: test1 1
   m_EditorClassIdentifier: 
   Number: 0
-  Title: spoon in mix
+  Title: spoon in centrifuge container
   SubstancesParams: {fileID: 0}
   Weight: 0
-  ContainersType: 0400000003000000
+  ContainersType: 040000000a000000
   DozatorDoze: 0
   MachinesType: 0
   DoorTypes: 0
