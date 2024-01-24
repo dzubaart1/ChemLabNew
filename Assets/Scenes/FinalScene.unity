@@ -581,7 +581,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1155,7 +1155,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Again
+        m_MethodName: ReloadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1801,7 +1801,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Results
+        m_MethodName: ShowResultsPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2294,7 +2294,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Send
+        m_MethodName: ShowSendPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
