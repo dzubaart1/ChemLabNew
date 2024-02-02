@@ -2866,7 +2866,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Back
+        m_MethodName: ShowMainPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3395,7 +3395,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713505489}
         m_TargetAssemblyTypeName: FinalSceneCanvasCntrl, Assembly-CSharp
-        m_MethodName: Back
+        m_MethodName: ShowMainPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

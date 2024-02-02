@@ -1,7 +1,11 @@
+using BNG;
 using DefaultNamespace;
+using Installers;
 using LiquidVolumeFX;
 using Substances;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Containers
 {
@@ -10,6 +14,13 @@ namespace Containers
         private AnchorCntrl _anchor;
 
         public AnchorCntrl AnchorCntrl => _anchor;
+        private SignalBus _signalBus;
+
+        [Inject]
+        public void Construct(List<Grabber> grabbers, SignalBus signalBus)
+        {
+            _signalBus = signalBus;
+        }
         public override bool AddSubstance(Substance substance)
         {
             if (!IsEnable())
@@ -32,8 +43,14 @@ namespace Containers
             {
                 temp = 0.3f;
             }
+
             if (ContainerType == ContainersTypes.PetriContainer) 
             {
+                return true;
+            }
+            if (GetNextSubstance().SubstanceProperty.SubName == "Bad Substance")
+            {
+                _signalBus.Fire<EndGameSignal>();
                 return true;
             }
             _liquidVolume.Redraw();
